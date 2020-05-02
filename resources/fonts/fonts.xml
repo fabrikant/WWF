@@ -1,0 +1,25 @@
+<fonts>
+	<font id="big" scope="foreground"
+		filename="roboto/roboto_digits_67.fnt" />
+	<font id="med" scope="foreground"
+		filename="roboto/roboto_34.fnt" />
+	<font id="small" scope="foreground"
+		filename="roboto/roboto_17.fnt" />
+
+
+
+
+ 
+	<font id="images" scope="foreground"
+		filename="watch-face-images-03/watch-face-images-03-18.fnt" />
+<!--
+	<font id="images" scope="foreground"
+		filename="watch-face-images/watch-face-images-18.fnt" />
+-->		
+<!--
+	<font id="weather" scope="foreground"
+		filename="weather-images/wath-face-weather-36.fnt" />
+	<font id="moon" scope="foreground"
+		filename="moon-phase-images/moon-phase-images-10-16.fnt" />
+ -->  
+</fonts>

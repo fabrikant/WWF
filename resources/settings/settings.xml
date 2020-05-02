@@ -1,0 +1,355 @@
+<settings>
+
+	<!--CLOCK SETTING -->
+     <setting propertyKey="@Properties.MilFt" title="@Strings.MilitaryFormatTitle">
+        <settingConfig type="boolean" />
+    </setting>
+	
+	<setting propertyKey="@Properties.MilFt"
+		title="@Strings.MilitaryFormatTitle">
+		<settingConfig type="boolean" />
+	</setting>
+
+	<setting propertyKey="@Properties.HFt01"
+		title="@Strings.HFt01">
+		<settingConfig type="boolean" />
+	</setting>
+
+	<setting propertyKey="@Properties.AmPm"
+		title="@Strings.AmPm">
+		<settingConfig type="boolean" />
+	</setting>
+
+	<setting propertyKey="@Properties.Sec"
+		title="@Strings.Sec">
+		<settingConfig type="boolean" />
+	</setting>
+
+	<!--DATE FORMAT -->
+	<setting propertyKey="@Properties.DF"
+		title="@Strings.DF" prompt="@Strings.DFHELP" helpUrl="https://apps.garmin.com/ru-RU/apps/18364e0a-2f82-4b27-a0bc-f495635052ae">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+
+	<!--UNIT PRESSURE -->
+	<setting propertyKey="@Properties.PrU"
+		title="@Strings.PrU">
+		<settingConfig type="list">
+			<listEntry value="0">@Strings.PrUMmHg</listEntry>
+			<listEntry value="1">@Strings.PrUPsi</listEntry>
+			<listEntry value="2">@Strings.PrUInchHg</listEntry>
+			<listEntry value="3">@Strings.PrUBar</listEntry>
+			<listEntry value="4">@Strings.PrUKPa</listEntry>
+			<listEntry value="5">@Strings.PrUhPa</listEntry>
+		</settingConfig>
+	</setting>
+	
+	<!--UNIT WIND SPEED -->
+	<setting propertyKey="@Properties.WU"
+		title="@Strings.WU">
+		<settingConfig type="list">
+			<listEntry value="0">@Strings.SpeedUnitMSec</listEntry>
+			<listEntry value="1">@Strings.SpeedUnitKmH</listEntry>
+			<listEntry value="2">@Strings.SpeedUnitMileH</listEntry>
+			<listEntry value="3">@Strings.SpeedUnitFtSec</listEntry>
+			<listEntry value="4">@Strings.SpeedUnitBof</listEntry>
+		</settingConfig>
+	</setting>
+
+  	<setting propertyKey="@Properties.T1TZ" title="@Strings.T1TZ">
+		<settingConfig type="numeric" min="-720" max="840"/>
+	</setting>
+  
+    <setting propertyKey="@Properties.BgndColor" title="@Strings.BgndColor">
+        <settingConfig type="list">
+			<listEntry value="0xFFFFFF">@Strings.COLOR_WHITE</listEntry>
+			<listEntry value="0x000000">@Strings.COLOR_BLACK</listEntry>
+			<listEntry value="0xAAAAAA">@Strings.COLOR_LT_GRAY</listEntry>
+			<listEntry value="0x555555">@Strings.COLOR_DK_GRAY</listEntry>
+			<listEntry value="0xFF0000">@Strings.COLOR_RED</listEntry>
+			<listEntry value="0xAA0000">@Strings.COLOR_DK_RED</listEntry>
+			<listEntry value="0xFF5500">@Strings.COLOR_ORANGE</listEntry>
+			<listEntry value="0xFFAA00">@Strings.COLOR_YELLOW</listEntry>
+			<listEntry value="0x00FF00">@Strings.COLOR_GREEN</listEntry>
+			<listEntry value="0x00AA00">@Strings.COLOR_DK_GREEN</listEntry>
+			<listEntry value="0x00AAFF">@Strings.COLOR_BLUE</listEntry>
+			<listEntry value="0x0000FF">@Strings.COLOR_DK_BLUE</listEntry>
+			<listEntry value="0xAA00FF">@Strings.COLOR_PURPLE</listEntry>
+			<listEntry value="0xFF00FF">@Strings.COLOR_PINK</listEntry>
+        </settingConfig>
+    </setting>
+
+    <setting propertyKey="@Properties.TimeColor" title="@Strings.TimeColor">
+        <settingConfig type="list">
+			<listEntry value="0xFFFFFF">@Strings.COLOR_WHITE</listEntry>
+			<listEntry value="0x000000">@Strings.COLOR_BLACK</listEntry>
+			<listEntry value="0xAAAAAA">@Strings.COLOR_LT_GRAY</listEntry>
+			<listEntry value="0x555555">@Strings.COLOR_DK_GRAY</listEntry>
+			<listEntry value="0xFF0000">@Strings.COLOR_RED</listEntry>
+			<listEntry value="0xAA0000">@Strings.COLOR_DK_RED</listEntry>
+			<listEntry value="0xFF5500">@Strings.COLOR_ORANGE</listEntry>
+			<listEntry value="0xFFAA00">@Strings.COLOR_YELLOW</listEntry>
+			<listEntry value="0x00FF00">@Strings.COLOR_GREEN</listEntry>
+			<listEntry value="0x00AA00">@Strings.COLOR_DK_GREEN</listEntry>
+			<listEntry value="0x00AAFF">@Strings.COLOR_BLUE</listEntry>
+			<listEntry value="0x0000FF">@Strings.COLOR_DK_BLUE</listEntry>
+			<listEntry value="0xAA00FF">@Strings.COLOR_PURPLE</listEntry>
+			<listEntry value="0xFF00FF">@Strings.COLOR_PINK</listEntry>
+        </settingConfig>
+    </setting>
+
+   <setting propertyKey="@Properties.DateColor" title="@Strings.DateColor">
+        <settingConfig type="list">
+			<listEntry value="0xFFFFFF">@Strings.COLOR_WHITE</listEntry>
+			<listEntry value="0x000000">@Strings.COLOR_BLACK</listEntry>
+			<listEntry value="0xAAAAAA">@Strings.COLOR_LT_GRAY</listEntry>
+			<listEntry value="0x555555">@Strings.COLOR_DK_GRAY</listEntry>
+			<listEntry value="0xFF0000">@Strings.COLOR_RED</listEntry>
+			<listEntry value="0xAA0000">@Strings.COLOR_DK_RED</listEntry>
+			<listEntry value="0xFF5500">@Strings.COLOR_ORANGE</listEntry>
+			<listEntry value="0xFFAA00">@Strings.COLOR_YELLOW</listEntry>
+			<listEntry value="0x00FF00">@Strings.COLOR_GREEN</listEntry>
+			<listEntry value="0x00AA00">@Strings.COLOR_DK_GREEN</listEntry>
+			<listEntry value="0x00AAFF">@Strings.COLOR_BLUE</listEntry>
+			<listEntry value="0x0000FF">@Strings.COLOR_DK_BLUE</listEntry>
+			<listEntry value="0xAA00FF">@Strings.COLOR_PURPLE</listEntry>
+			<listEntry value="0xFF00FF">@Strings.COLOR_PINK</listEntry>
+        </settingConfig>
+    </setting>
+
+	<!--FIELD TYPES -->
+	<setting propertyKey="@Properties.F0"
+		title="@Strings.F0">
+		<settingConfig type="list">
+			<listEntry value="0">@Strings.FIELD_TYPE_HR</listEntry>
+			<listEntry value="1">@Strings.FIELD_TYPE_STEPS</listEntry>
+			<listEntry value="2">@Strings.FIELD_TYPE_PRESSURE</listEntry>
+			<listEntry value="3">@Strings.FIELD_TYPE_TEMPERATURE</listEntry>
+			<listEntry value="4">@Strings.FIELD_TYPE_CALORIES</listEntry>
+			<listEntry value="5">@Strings.FIELD_TYPE_DISTANCE</listEntry>
+			<listEntry value="6">@Strings.FIELD_TYPE_FLOOR</listEntry>
+			<listEntry value="7">@Strings.FIELD_TYPE_ELEVATION</listEntry>
+			<listEntry value="8">@Strings.FIELD_TYPE_SUN_EVENT</listEntry>
+			<listEntry value="9">@Strings.FIELD_TYPE_SUNRISE</listEntry>
+			<listEntry value="10">@Strings.FIELD_TYPE_SUNSET</listEntry>
+			<listEntry value="11">@Strings.FIELD_TYPE_TIME1</listEntry>
+			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
+		</settingConfig>
+	</setting>
+
+	<setting propertyKey="@Properties.C0"
+		title="@Strings.C0" >
+		<settingConfig type="list">
+			<listEntry value="0xFFFFFF">@Strings.COLOR_WHITE</listEntry>
+			<listEntry value="0x000000">@Strings.COLOR_BLACK</listEntry>
+			<listEntry value="0xAAAAAA">@Strings.COLOR_LT_GRAY</listEntry>
+			<listEntry value="0x555555">@Strings.COLOR_DK_GRAY</listEntry>
+			<listEntry value="0xFF0000">@Strings.COLOR_RED</listEntry>
+			<listEntry value="0xAA0000">@Strings.COLOR_DK_RED</listEntry>
+			<listEntry value="0xFF5500">@Strings.COLOR_ORANGE</listEntry>
+			<listEntry value="0xFFAA00">@Strings.COLOR_YELLOW</listEntry>
+			<listEntry value="0x00FF00">@Strings.COLOR_GREEN</listEntry>
+			<listEntry value="0x00AA00">@Strings.COLOR_DK_GREEN</listEntry>
+			<listEntry value="0x00AAFF">@Strings.COLOR_BLUE</listEntry>
+			<listEntry value="0x0000FF">@Strings.COLOR_DK_BLUE</listEntry>
+			<listEntry value="0xAA00FF">@Strings.COLOR_PURPLE</listEntry>
+			<listEntry value="0xFF00FF">@Strings.COLOR_PINK</listEntry>
+		</settingConfig>
+	</setting>
+
+	<setting propertyKey="@Properties.F1"
+		title="@Strings.F1">
+		<settingConfig type="list">
+			<listEntry value="0">@Strings.FIELD_TYPE_HR</listEntry>
+			<listEntry value="1">@Strings.FIELD_TYPE_STEPS</listEntry>
+			<listEntry value="2">@Strings.FIELD_TYPE_PRESSURE</listEntry>
+			<listEntry value="3">@Strings.FIELD_TYPE_TEMPERATURE</listEntry>
+			<listEntry value="4">@Strings.FIELD_TYPE_CALORIES</listEntry>
+			<listEntry value="5">@Strings.FIELD_TYPE_DISTANCE</listEntry>
+			<listEntry value="6">@Strings.FIELD_TYPE_FLOOR</listEntry>
+			<listEntry value="7">@Strings.FIELD_TYPE_ELEVATION</listEntry>
+			<listEntry value="8">@Strings.FIELD_TYPE_SUN_EVENT</listEntry>
+			<listEntry value="9">@Strings.FIELD_TYPE_SUNRISE</listEntry>
+			<listEntry value="10">@Strings.FIELD_TYPE_SUNSET</listEntry>
+			<listEntry value="11">@Strings.FIELD_TYPE_TIME1</listEntry>
+			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
+		</settingConfig>
+	</setting>
+
+	<setting propertyKey="@Properties.C1"
+		title="@Strings.C1" >
+		<settingConfig type="list">
+			<listEntry value="0xFFFFFF">@Strings.COLOR_WHITE</listEntry>
+			<listEntry value="0x000000">@Strings.COLOR_BLACK</listEntry>
+			<listEntry value="0xAAAAAA">@Strings.COLOR_LT_GRAY</listEntry>
+			<listEntry value="0x555555">@Strings.COLOR_DK_GRAY</listEntry>
+			<listEntry value="0xFF0000">@Strings.COLOR_RED</listEntry>
+			<listEntry value="0xAA0000">@Strings.COLOR_DK_RED</listEntry>
+			<listEntry value="0xFF5500">@Strings.COLOR_ORANGE</listEntry>
+			<listEntry value="0xFFAA00">@Strings.COLOR_YELLOW</listEntry>
+			<listEntry value="0x00FF00">@Strings.COLOR_GREEN</listEntry>
+			<listEntry value="0x00AA00">@Strings.COLOR_DK_GREEN</listEntry>
+			<listEntry value="0x00AAFF">@Strings.COLOR_BLUE</listEntry>
+			<listEntry value="0x0000FF">@Strings.COLOR_DK_BLUE</listEntry>
+			<listEntry value="0xAA00FF">@Strings.COLOR_PURPLE</listEntry>
+			<listEntry value="0xFF00FF">@Strings.COLOR_PINK</listEntry>
+		</settingConfig>
+	</setting>
+
+	<setting propertyKey="@Properties.F2"
+		title="@Strings.F2">
+		<settingConfig type="list">
+			<listEntry value="0">@Strings.FIELD_TYPE_HR</listEntry>
+			<listEntry value="1">@Strings.FIELD_TYPE_STEPS</listEntry>
+			<listEntry value="2">@Strings.FIELD_TYPE_PRESSURE</listEntry>
+			<listEntry value="3">@Strings.FIELD_TYPE_TEMPERATURE</listEntry>
+			<listEntry value="4">@Strings.FIELD_TYPE_CALORIES</listEntry>
+			<listEntry value="5">@Strings.FIELD_TYPE_DISTANCE</listEntry>
+			<listEntry value="6">@Strings.FIELD_TYPE_FLOOR</listEntry>
+			<listEntry value="7">@Strings.FIELD_TYPE_ELEVATION</listEntry>
+			<listEntry value="8">@Strings.FIELD_TYPE_SUN_EVENT</listEntry>
+			<listEntry value="9">@Strings.FIELD_TYPE_SUNRISE</listEntry>
+			<listEntry value="10">@Strings.FIELD_TYPE_SUNSET</listEntry>
+			<listEntry value="11">@Strings.FIELD_TYPE_TIME1</listEntry>
+			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
+		</settingConfig>
+	</setting>
+
+	<setting propertyKey="@Properties.C2"
+		title="@Strings.C2" >
+		<settingConfig type="list">
+			<listEntry value="0xFFFFFF">@Strings.COLOR_WHITE</listEntry>
+			<listEntry value="0x000000">@Strings.COLOR_BLACK</listEntry>
+			<listEntry value="0xAAAAAA">@Strings.COLOR_LT_GRAY</listEntry>
+			<listEntry value="0x555555">@Strings.COLOR_DK_GRAY</listEntry>
+			<listEntry value="0xFF0000">@Strings.COLOR_RED</listEntry>
+			<listEntry value="0xAA0000">@Strings.COLOR_DK_RED</listEntry>
+			<listEntry value="0xFF5500">@Strings.COLOR_ORANGE</listEntry>
+			<listEntry value="0xFFAA00">@Strings.COLOR_YELLOW</listEntry>
+			<listEntry value="0x00FF00">@Strings.COLOR_GREEN</listEntry>
+			<listEntry value="0x00AA00">@Strings.COLOR_DK_GREEN</listEntry>
+			<listEntry value="0x00AAFF">@Strings.COLOR_BLUE</listEntry>
+			<listEntry value="0x0000FF">@Strings.COLOR_DK_BLUE</listEntry>
+			<listEntry value="0xAA00FF">@Strings.COLOR_PURPLE</listEntry>
+			<listEntry value="0xFF00FF">@Strings.COLOR_PINK</listEntry>
+		</settingConfig>
+	</setting>
+
+	<setting propertyKey="@Properties.F3"
+		title="@Strings.F3">
+		<settingConfig type="list">
+			<listEntry value="0">@Strings.FIELD_TYPE_HR</listEntry>
+			<listEntry value="1">@Strings.FIELD_TYPE_STEPS</listEntry>
+			<listEntry value="2">@Strings.FIELD_TYPE_PRESSURE</listEntry>
+			<listEntry value="3">@Strings.FIELD_TYPE_TEMPERATURE</listEntry>
+			<listEntry value="4">@Strings.FIELD_TYPE_CALORIES</listEntry>
+			<listEntry value="5">@Strings.FIELD_TYPE_DISTANCE</listEntry>
+			<listEntry value="6">@Strings.FIELD_TYPE_FLOOR</listEntry>
+			<listEntry value="7">@Strings.FIELD_TYPE_ELEVATION</listEntry>
+			<listEntry value="8">@Strings.FIELD_TYPE_SUN_EVENT</listEntry>
+			<listEntry value="9">@Strings.FIELD_TYPE_SUNRISE</listEntry>
+			<listEntry value="10">@Strings.FIELD_TYPE_SUNSET</listEntry>
+			<listEntry value="11">@Strings.FIELD_TYPE_TIME1</listEntry>
+			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
+		</settingConfig>
+	</setting>
+
+	<setting propertyKey="@Properties.C3"
+		title="@Strings.C3" >
+		<settingConfig type="list">
+			<listEntry value="0xFFFFFF">@Strings.COLOR_WHITE</listEntry>
+			<listEntry value="0x000000">@Strings.COLOR_BLACK</listEntry>
+			<listEntry value="0xAAAAAA">@Strings.COLOR_LT_GRAY</listEntry>
+			<listEntry value="0x555555">@Strings.COLOR_DK_GRAY</listEntry>
+			<listEntry value="0xFF0000">@Strings.COLOR_RED</listEntry>
+			<listEntry value="0xAA0000">@Strings.COLOR_DK_RED</listEntry>
+			<listEntry value="0xFF5500">@Strings.COLOR_ORANGE</listEntry>
+			<listEntry value="0xFFAA00">@Strings.COLOR_YELLOW</listEntry>
+			<listEntry value="0x00FF00">@Strings.COLOR_GREEN</listEntry>
+			<listEntry value="0x00AA00">@Strings.COLOR_DK_GREEN</listEntry>
+			<listEntry value="0x00AAFF">@Strings.COLOR_BLUE</listEntry>
+			<listEntry value="0x0000FF">@Strings.COLOR_DK_BLUE</listEntry>
+			<listEntry value="0xAA00FF">@Strings.COLOR_PURPLE</listEntry>
+			<listEntry value="0xFF00FF">@Strings.COLOR_PINK</listEntry>
+		</settingConfig>
+	</setting>
+
+	<setting propertyKey="@Properties.F4"
+		title="@Strings.F4">
+		<settingConfig type="list">
+			<listEntry value="0">@Strings.FIELD_TYPE_HR</listEntry>
+			<listEntry value="1">@Strings.FIELD_TYPE_STEPS</listEntry>
+			<listEntry value="2">@Strings.FIELD_TYPE_PRESSURE</listEntry>
+			<listEntry value="3">@Strings.FIELD_TYPE_TEMPERATURE</listEntry>
+			<listEntry value="4">@Strings.FIELD_TYPE_CALORIES</listEntry>
+			<listEntry value="5">@Strings.FIELD_TYPE_DISTANCE</listEntry>
+			<listEntry value="6">@Strings.FIELD_TYPE_FLOOR</listEntry>
+			<listEntry value="7">@Strings.FIELD_TYPE_ELEVATION</listEntry>
+			<listEntry value="8">@Strings.FIELD_TYPE_SUN_EVENT</listEntry>
+			<listEntry value="9">@Strings.FIELD_TYPE_SUNRISE</listEntry>
+			<listEntry value="10">@Strings.FIELD_TYPE_SUNSET</listEntry>
+			<listEntry value="11">@Strings.FIELD_TYPE_TIME1</listEntry>
+			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
+		</settingConfig>
+	</setting>
+
+	<setting propertyKey="@Properties.C4"
+		title="@Strings.C4" >
+		<settingConfig type="list">
+			<listEntry value="0xFFFFFF">@Strings.COLOR_WHITE</listEntry>
+			<listEntry value="0x000000">@Strings.COLOR_BLACK</listEntry>
+			<listEntry value="0xAAAAAA">@Strings.COLOR_LT_GRAY</listEntry>
+			<listEntry value="0x555555">@Strings.COLOR_DK_GRAY</listEntry>
+			<listEntry value="0xFF0000">@Strings.COLOR_RED</listEntry>
+			<listEntry value="0xAA0000">@Strings.COLOR_DK_RED</listEntry>
+			<listEntry value="0xFF5500">@Strings.COLOR_ORANGE</listEntry>
+			<listEntry value="0xFFAA00">@Strings.COLOR_YELLOW</listEntry>
+			<listEntry value="0x00FF00">@Strings.COLOR_GREEN</listEntry>
+			<listEntry value="0x00AA00">@Strings.COLOR_DK_GREEN</listEntry>
+			<listEntry value="0x00AAFF">@Strings.COLOR_BLUE</listEntry>
+			<listEntry value="0x0000FF">@Strings.COLOR_DK_BLUE</listEntry>
+			<listEntry value="0xAA00FF">@Strings.COLOR_PURPLE</listEntry>
+			<listEntry value="0xFF00FF">@Strings.COLOR_PINK</listEntry>
+		</settingConfig>
+	</setting>
+
+	<setting propertyKey="@Properties.F5"
+		title="@Strings.F5">
+		<settingConfig type="list">
+			<listEntry value="0">@Strings.FIELD_TYPE_HR</listEntry>
+			<listEntry value="1">@Strings.FIELD_TYPE_STEPS</listEntry>
+			<listEntry value="2">@Strings.FIELD_TYPE_PRESSURE</listEntry>
+			<listEntry value="3">@Strings.FIELD_TYPE_TEMPERATURE</listEntry>
+			<listEntry value="4">@Strings.FIELD_TYPE_CALORIES</listEntry>
+			<listEntry value="5">@Strings.FIELD_TYPE_DISTANCE</listEntry>
+			<listEntry value="6">@Strings.FIELD_TYPE_FLOOR</listEntry>
+			<listEntry value="7">@Strings.FIELD_TYPE_ELEVATION</listEntry>
+			<listEntry value="8">@Strings.FIELD_TYPE_SUN_EVENT</listEntry>
+			<listEntry value="9">@Strings.FIELD_TYPE_SUNRISE</listEntry>
+			<listEntry value="10">@Strings.FIELD_TYPE_SUNSET</listEntry>
+			<listEntry value="11">@Strings.FIELD_TYPE_TIME1</listEntry>
+			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
+		</settingConfig>
+	</setting>
+
+	<setting propertyKey="@Properties.C5"
+		title="@Strings.C5" >
+		<settingConfig type="list">
+			<listEntry value="0xFFFFFF">@Strings.COLOR_WHITE</listEntry>
+			<listEntry value="0x000000">@Strings.COLOR_BLACK</listEntry>
+			<listEntry value="0xAAAAAA">@Strings.COLOR_LT_GRAY</listEntry>
+			<listEntry value="0x555555">@Strings.COLOR_DK_GRAY</listEntry>
+			<listEntry value="0xFF0000">@Strings.COLOR_RED</listEntry>
+			<listEntry value="0xAA0000">@Strings.COLOR_DK_RED</listEntry>
+			<listEntry value="0xFF5500">@Strings.COLOR_ORANGE</listEntry>
+			<listEntry value="0xFFAA00">@Strings.COLOR_YELLOW</listEntry>
+			<listEntry value="0x00FF00">@Strings.COLOR_GREEN</listEntry>
+			<listEntry value="0x00AA00">@Strings.COLOR_DK_GREEN</listEntry>
+			<listEntry value="0x00AAFF">@Strings.COLOR_BLUE</listEntry>
+			<listEntry value="0x0000FF">@Strings.COLOR_DK_BLUE</listEntry>
+			<listEntry value="0xAA00FF">@Strings.COLOR_PURPLE</listEntry>
+			<listEntry value="0xFF00FF">@Strings.COLOR_PINK</listEntry>
+		</settingConfig>
+	</setting>
+
+</settings>

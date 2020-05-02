@@ -1,0 +1,93 @@
+<strings>
+
+    <string id="AppName">WWF</string>
+
+    <string id="BgndColor">Background Color</string>
+    <string id="TimeColor">Time Color</string>
+    <string id="DateColor" scope="foreground">Date Color</string>
+    
+ 	<string id="MilitaryFormatTitle" scope="foreground">Military Format for 24 Hour
+		Time</string>
+	<string id="HFt01" scope="foreground">Use format 01 for horse .</string>
+	<string id="AmPm" scope="foreground">Show am-pm for 12 Hour Time</string>
+
+	<string id="DF" scope="foreground">Date format</string>
+	<string id="DFHELP" scope="foreground">%w - day of week number, %W - day of week name, %d - day 1 digits (less than 10), %D - day 2 digits, %m - month number 2 digits, %M - month name, %y - year 2 digits, %Y - year 4 digits, %DN - day of year, %WN - week of year ISO 8601</string>
+	<string id="Sec" scope="foreground">Seconds</string>
+	
+	<!--SECOND TIME -->
+	<string id="T1TZ" scope="foreground">Time zone ±UTC (minutes)</string>
+	
+	<!--COLORS -->
+	<string id="COLOR_WHITE" scope="foreground">White</string>
+	<string id="COLOR_LT_GRAY" scope="foreground">Lt Gray</string>
+	<string id="COLOR_DK_GRAY" scope="foreground">Dk Gray</string>
+	<string id="COLOR_BLACK" scope="foreground">Black</string>
+	<string id="COLOR_RED" scope="foreground">Red</string>
+	<string id="COLOR_DK_RED" scope="foreground">Dk Red</string>
+	<string id="COLOR_ORANGE" scope="foreground">Orange</string>
+	<string id="COLOR_YELLOW" scope="foreground">Yellow</string>
+	<string id="COLOR_GREEN" scope="foreground">Green</string>
+	<string id="COLOR_DK_GREEN" scope="foreground">Dk Green</string>
+	<string id="COLOR_BLUE" scope="foreground">Blue</string>
+	<string id="COLOR_DK_BLUE" scope="foreground">Dk Blue</string>
+	<string id="COLOR_PURPLE" scope="foreground">Purple</string>
+	<string id="COLOR_PINK" scope="foreground">Pink</string>
+
+	<!--FIELD TYPES -->
+	<string id="FIELD_TYPE_EMPTY" scope="foreground">Empty</string>
+	<string id="FIELD_TYPE_HR" scope="foreground">Heart rate</string>
+	<string id="FIELD_TYPE_STEPS" scope="foreground">Steps</string>
+	<string id="FIELD_TYPE_PRESSURE" scope="foreground">Pressure (internal sensor)</string>
+	<string id="FIELD_TYPE_TEMPERATURE" scope="foreground">Temperature (internal sensor)</string>
+	<string id="FIELD_TYPE_CALORIES" scope="foreground">Calories</string>
+	<string id="FIELD_TYPE_DISTANCE" scope="foreground">Distance</string>
+	<string id="FIELD_TYPE_FLOOR" scope="foreground">Floor</string>
+	<string id="FIELD_TYPE_ELEVATION" scope="foreground">Elevation above sea level</string>
+	<string id="FIELD_TYPE_SUN_EVENT" scope="foreground">Sun event</string>
+	<string id="FIELD_TYPE_SUNRISE" scope="foreground">Sunrise</string>
+	<string id="FIELD_TYPE_SUNSET" scope="foreground">Sunset</string>
+	<string id="FIELD_TYPE_TIME1" scope="foreground">Second time</string>
+
+	<!--FIELD NAMES -->
+	<string id="F0" scope="foreground">Field 0</string>
+	<string id="F1" scope="foreground">Field 1</string>
+	<string id="F2" scope="foreground">Field 2</string>
+	<string id="F3" scope="foreground">Field 3</string>
+	<string id="F4" scope="foreground">Field 4</string>
+	<string id="F5" scope="foreground">Field 5</string>
+
+	<!--FIELD COLORS -->
+	<string id="C0" scope="foreground">Field 0 Color</string>
+	<string id="C1" scope="foreground">Field 1 Color</string>
+	<string id="C2" scope="foreground">Field 2 Color</string>
+	<string id="C3" scope="foreground">Field 3 Color</string>
+	<string id="C4" scope="foreground">Field 4 Color</string>
+	<string id="C5" scope="foreground">Field 5 Color</string>
+
+	<!--Pressure -->
+	<string id="PrU" scope="foreground">Pressure Unit</string>
+
+	<!--WIND -->
+	<string id="WU" scope="foreground">Wind Speed Unit</string>
+	
+	<!--SECOND TIME -->
+	<string id="T1TZ" scope="foreground">Time zone ±UTC (minutes)</string>
+
+	<!--PRESSURE UNITS -->
+	<string id="PrUMmHg" scope="foreground">mmHg</string>
+	<string id="PrUPsi" scope="foreground">Psi</string>
+	<string id="PrUInchHg" scope="foreground">inchHg</string>
+	<string id="PrUBar" scope="foreground">Bar</string>
+	<string id="PrUKPa" scope="foreground">kPa</string>
+	<string id="PrUhPa" scope="foreground">hPa</string>
+	
+	<!--WIND UNITS -->
+	<!--USE VERY!!!! SHOT STRING. its displayed on screen-->
+	<string id="SpeedUnitMSec" scope="foreground">m/s</string>
+	<string id="SpeedUnitKmH" scope="foreground">km/h</string>
+	<string id="SpeedUnitMileH" scope="foreground">m/h</string>
+	<string id="SpeedUnitFtSec" scope="foreground">f/s</string>
+	<string id="SpeedUnitBof" scope="foreground">boufort</string>
+
+</strings>
