@@ -77,9 +77,6 @@
 	<!--WIND -->
 	<string id="WU" scope="foreground">Wind Speed Unit</string>
 	
-	<!--SECOND TIME -->
-	<string id="T1TZ" scope="foreground">Time zone ±UTC (minutes)</string>
-
 	<!--PRESSURE UNITS -->
 	<string id="PrUMmHg" scope="foreground">mmHg</string>
 	<string id="PrUPsi" scope="foreground">Psi</string>

@@ -2,9 +2,11 @@
 	<font id="big" scope="foreground"
 		filename="roboto/roboto_digits_67.fnt" />
 	<font id="med" scope="foreground"
-		filename="roboto/roboto_34.fnt" />
+		filename="roboto/roboto_25.fnt" />
 	<font id="small" scope="foreground"
 		filename="roboto/roboto_17.fnt" />
+	<font id="weather" scope="foreground"
+		filename="weather-moon/weather_moon_32.fnt" />
 
 
 

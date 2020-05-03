@@ -3,6 +3,7 @@ using Toybox.Graphics;
 using Toybox.System;
 using Toybox.Lang;
 using Toybox.Application;
+using Toybox.Activity;
 
 var memoryCache;
 var fonts;
@@ -21,6 +22,18 @@ enum{
 	SUNSET_EVENT,
 	TIME1,
 	EMPTY,
+
+	STORAGE_KEY_RESPONCE_CODE = 100,
+	STORAGE_KEY_RECIEVE,
+	STORAGE_KEY_TEMP,
+	STORAGE_KEY_HUMIDITY,
+	STORAGE_KEY_PRESSURE,
+	STORAGE_KEY_ICON,
+	STORAGE_KEY_WIND_SPEED,
+	STORAGE_KEY_WIND_DEG,
+	STORAGE_KEY_DT,
+	STORAGE_KEY_WEATHER,
+
 	PICTURE = 1000
 }
 
@@ -34,10 +47,13 @@ class WWFView extends WatchUi.WatchFace {
 
         WatchFace.initialize();
         memoryCache = new MemoryCache();
+        Application.getApp().registerEvents();
         fonts = {};
         fonts[:time] = Application.loadResource(Rez.Fonts.big);
         fonts[:small] = Application.loadResource(Rez.Fonts.small);
+        fonts[:medium] = Application.loadResource(Rez.Fonts.med);
         fonts[:picture] = Application.loadResource(Rez.Fonts.images);
+        fonts[:weather] = Application.loadResource(Rez.Fonts.weather);
     }
 
     // Load your resources here
@@ -203,7 +219,7 @@ class WWFView extends WatchUi.WatchFace {
     			:h => h,
     			:w => w,
     			:type => :am,
-    			:id => :am,
+    			:id => :time,
     			:fontId => :small,
     			:justify => Graphics.TEXT_JUSTIFY_CENTER
     		}
@@ -219,7 +235,52 @@ class WWFView extends WatchUi.WatchFace {
     			:h => h,
     			:w => w,
     			:type => :sec,
-    			:id => :sec,
+    			:id => :time,
+    			:fontId => :small,
+    			:justify => Graphics.TEXT_JUSTIFY_CENTER
+    		}
+    	);
+
+		///////////////////////////////////////////////////////////////////////
+		//WEATHER
+		h = 44;
+		w = h;
+        fields[:weather_picture] = new SimpleField(
+    		{
+    			:x => coord[0][0],
+    			:y => fields[:date].y - h,
+    			:h => h,
+    			:w => w,
+    			:type => :weather_picture,
+    			:id => :weather,
+    			:fontId => :weather,
+    			:justify => Graphics.TEXT_JUSTIFY_CENTER
+    		}
+    	);
+
+        fields[:weather_temp] = new SimpleField(
+    		{
+    			:x => fields[:weather_picture].x + fields[:weather_picture].w,
+    			:y => fields[:weather_picture].y,
+    			:h => h,
+    			:w => w,
+    			:type => :weather_temp,
+    			:id => :weather,
+    			:fontId => :medium,
+    			:justify => Graphics.TEXT_JUSTIFY_CENTER
+    		}
+    	);
+
+		h = fields[:weather_temp].h/2;
+		w = h;
+        fields[:weather_wind_dir] = new WindDirectionField(
+    		{
+    			:x => fields[:weather_temp].x + fields[:weather_temp].w,
+    			:y => fields[:weather_temp].y,
+    			:h => h,
+    			:w => w,
+    			:type => :weather_wind_dir,
+    			:id => :weather,
     			:fontId => :small,
     			:justify => Graphics.TEXT_JUSTIFY_CENTER
     		}
@@ -231,6 +292,13 @@ class WWFView extends WatchUi.WatchFace {
     // the state of this View and prepare it to be shown. This includes
     // loading resources into memory.
     function onShow() {
+       	var location = Activity.getActivityInfo().currentLocation;
+    	if (location != null) {
+			location = location.toDegrees();
+			Application.Storage.setValue("Lat", location[0].toFloat());
+			Application.Storage.setValue("Lon", location[1].toFloat());
+		}
+    	Application.getApp().registerEvents();
     }
 
     // Update the view

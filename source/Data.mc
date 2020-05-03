@@ -80,6 +80,8 @@ module Data{
 			res = getSunset();
 		}else if (filedType == TIME1){
 			res = getSecondTime();
+		}else if (filedType == EMPTY){
+			res = "";
 
 		///////////////////////////////////////////////////////////////////////
 		//DATA FIELDS IMAGES
@@ -107,6 +109,17 @@ module Data{
 			res = "o";
 		}else if (filedType == PICTURE + TIME1){
 			res = "q";
+		}else if (filedType == PICTURE + EMPTY){
+			res = "";
+
+		///////////////////////////////////////////////////////////////////////
+		//WEATHER
+		}else if (filedType == :weather_picture){
+			res = getWeatherPicture();
+		}else if (filedType == :weather_temp){
+			res = getWeatherTemperature();
+		}else if (filedType == :weather_wind_dir){
+			res = getWeatherWindDirection();
 		}
 
 		return res;
@@ -408,4 +421,50 @@ module Data{
 		}
 		return value;
 	}
+
+	///////////////////////////////////////////////////////////////////////////
+	function getWeatherPicture(){
+		var value = "";
+		if ( memoryCache.weather != null){
+			var dict = Refernce.weatherFontDictonary();
+			value = dict[memoryCache.weather[STORAGE_KEY_ICON]];
+			if (value == null){
+				value = "";
+			}else{
+				value = value.toChar();
+			}
+		}
+		return value;
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+	function getWeatherTemperature(){
+		var value = "";
+		if ( memoryCache.weather != null){
+			value = memoryCache.weather[STORAGE_KEY_TEMP];
+			if (value == null){
+				value = "";
+			}else{
+				value = Tools.temperatureToString(value)+"°";
+			}
+		}
+		return value;
+	}
+	///////////////////////////////////////////////////////////////////////////
+	function getWeatherWindDirection(){
+		var value = -1;
+		if ( memoryCache.weather != null){
+			value = memoryCache.weather[STORAGE_KEY_WIND_DEG];
+			if (value == null){
+				value = -1;
+			}
+		}
+		return value;
+	}
+	///////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////
+
 }
