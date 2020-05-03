@@ -1,6 +1,6 @@
 using Toybox.Application;
 
-class MemoryCach {
+class MemoryCache {
 
 	var settings;
 	var oldValues;

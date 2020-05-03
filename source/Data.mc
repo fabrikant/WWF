@@ -36,8 +36,8 @@ module Data{
 			var now = Time.now();
 			var today = Gregorian.info(now, Time.FORMAT_SHORT);
 
-			if (oldValue == null || memoryCach.oldValues[:todayDay] == null || memoryCach.oldValues[:todayDay] != today.day){
-				memoryCach.oldValues[:todayDay] = today.day;
+			if (oldValue == null || memoryCache.oldValues[:todayDay] == null || memoryCache.oldValues[:todayDay] != today.day){
+				memoryCache.oldValues[:todayDay] = today.day;
 				res = getDateString(now);
 	 		}else{
 	 			res = oldValue;
@@ -123,10 +123,10 @@ module Data{
             }
         }
         var timeFormat = "$1$:$2$";
-        if (memoryCach.settings[:time][:military]) {
+        if (memoryCache.settings[:time][:military]) {
             timeFormat = "$1$$2$";
         }
-        if (memoryCach.settings[:time][:hours01] || memoryCach.settings[:time][:military]){
+        if (memoryCache.settings[:time][:hours01] || memoryCache.settings[:time][:military]){
     		hours = hours.format("%02d");
     	}
        return Lang.format(timeFormat, [hours, clockTime.min.format("%02d")]);
@@ -381,7 +381,7 @@ module Data{
 
 	///////////////////////////////////////////////////////////////////////////
 	function getSecondTime(){
-		var offset = memoryCach.settings[:time1]*60 - System.getClockTime().timeZoneOffset;
+		var offset = memoryCache.settings[:time1]*60 - System.getClockTime().timeZoneOffset;
 		var dur = new Time.Duration(offset);
 		var secondTime = Time.now().add(dur);
 		return Tools.momentToString(secondTime);
@@ -390,7 +390,7 @@ module Data{
 	///////////////////////////////////////////////////////////////////////////
 	function getAmPm(){
 		var value = "";
-		if (!System.getDeviceSettings().is24Hour && memoryCach.settings[:time][:am]) {
+		if (!System.getDeviceSettings().is24Hour && memoryCache.settings[:time][:am]) {
             if (System.getClockTime().hour < 12) {
 				value = "A";
 			}else{
@@ -403,7 +403,7 @@ module Data{
 	///////////////////////////////////////////////////////////////////////////
 	function getSeconds(){
 		var value = "";
-		if (memoryCach.settings[:time][:sec]) {
+		if (memoryCache.settings[:time][:sec]) {
 			value = System.getClockTime().sec.format("%02d");
 		}
 		return value;

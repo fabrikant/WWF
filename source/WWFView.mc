@@ -4,7 +4,7 @@ using Toybox.System;
 using Toybox.Lang;
 using Toybox.Application;
 
-var memoryCach;
+var memoryCache;
 var fonts;
 
 enum{
@@ -33,7 +33,7 @@ class WWFView extends WatchUi.WatchFace {
     function initialize() {
 
         WatchFace.initialize();
-        memoryCach = new MemoryCach();
+        memoryCache = new MemoryCache();
         fonts = {};
         fonts[:time] = Application.loadResource(Rez.Fonts.big);
         fonts[:small] = Application.loadResource(Rez.Fonts.small);
@@ -172,7 +172,7 @@ class WWFView extends WatchUi.WatchFace {
 	    			:y => coord[i][1],
 	    			:h => h,
 	    			:w => wPicture,
-	    			:type => memoryCach.getPictureType(id),
+	    			:type => memoryCache.getPictureType(id),
 	    			:id => id,
 					:fontId => :picture,
 	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
@@ -185,7 +185,7 @@ class WWFView extends WatchUi.WatchFace {
 	    			:y => coord[i][1],
 	    			:h => h,
 	    			:w => wText,
-	    			:type => memoryCach.getFieldType(id),
+	    			:type => memoryCache.getFieldType(id),
 	    			:id => id,
 					:fontId => :small,
 	    			:justify => Graphics.TEXT_JUSTIFY_LEFT
@@ -236,41 +236,41 @@ class WWFView extends WatchUi.WatchFace {
     // Update the view
     function onUpdate(dc) {
 
-		if (memoryCach.oldValues[:isStarted] != true){
-			var color = memoryCach.settings[:colors][:background];
+		if (memoryCache.oldValues[:isStarted] != true){
+			var color = memoryCache.settings[:colors][:background];
 			var w = System.getDeviceSettings().screenWidth;
 			var h = System.getDeviceSettings().screenHeight;
 			dc.setColor(color, color);
 			dc.setClip(0, 0, w, h);
 			dc.fillRectangle(0, 0, w, h);
-			memoryCach.oldValues[:isStarted] = false;
+			memoryCache.oldValues[:isStarted] = false;
 		}
 
 		var ids = fields.keys();
 		for (var i = 0; i < ids.size(); i++){
 
 			var fieldId = ids[i];
-			var oldValue = memoryCach.oldValues[fieldId];
+			var oldValue = memoryCache.oldValues[fieldId];
 			var value = Data.getValueByFieldType(fields[fieldId].type, oldValue);
 			if (!value.equals(oldValue)){
 				fields[fieldId].draw(dc, value);
-				memoryCach.oldValues[fieldId] = value;
+				memoryCache.oldValues[fieldId] = value;
 			}
 		}
 
-		memoryCach.oldValues[:isStarted] = true;
+		memoryCache.oldValues[:isStarted] = true;
 
     }
 
 	function onPartialUpdate(dc){
 
-		if (memoryCach.settings[:time][:sec]) {
+		if (memoryCache.settings[:time][:sec]) {
 			var fieldId = :sec;
-			var oldValue = memoryCach.oldValues[fieldId];
+			var oldValue = memoryCache.oldValues[fieldId];
 			var value = Data.getValueByFieldType(fields[fieldId].type, oldValue);
 			if (!value.equals(oldValue)){
 				fields[fieldId].draw(dc, value);
-				memoryCach.oldValues[fieldId] = value;
+				memoryCache.oldValues[fieldId] = value;
 			}
 		}
 	}
@@ -292,8 +292,8 @@ class WWFView extends WatchUi.WatchFace {
 	function reloadFieldsTypes(){
 		for (var i=0; i<FIELDS_COUNT; i++){
 	        var id = "F"+i;
-	        fields["P"+i].type = memoryCach.getPictureType(id);
-	        fields[id].type = memoryCach.getFieldType(id);
+	        fields["P"+i].type = memoryCache.getPictureType(id);
+	        fields[id].type = memoryCache.getFieldType(id);
 		}
 	}
 }

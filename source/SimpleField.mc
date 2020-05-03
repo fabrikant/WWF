@@ -19,9 +19,9 @@ class SimpleField {
 	function draw(dc, text){
 
 		dc.setClip(x, y, w, h);
-		dc.setColor(memoryCach.settings[:colors][:background], Graphics.COLOR_TRANSPARENT);
+		dc.setColor(memoryCache.settings[:colors][:background], Graphics.COLOR_TRANSPARENT);
 		dc.fillRectangle(x, y, w, h);
-		dc.setColor(memoryCach.settings[:colors][id], Graphics.COLOR_TRANSPARENT);
+		dc.setColor(memoryCache.settings[:colors][id], Graphics.COLOR_TRANSPARENT);
 
 		var _x = x;
 		var _y = y + h/2;
@@ -38,7 +38,7 @@ class SimpleField {
 	}
 
 	function drawBorder(dc){
-		dc.setColor(memoryCach.settings[:colors][id], Graphics.COLOR_TRANSPARENT);
+		dc.setColor(memoryCache.settings[:colors][id], Graphics.COLOR_TRANSPARENT);
 		dc.drawRectangle(x, y, w, h);
 	}
 

@@ -16,7 +16,7 @@ module Tools {
 			}
 		}
 		var f = "%d";
-		if (memoryCach.settings[:time][:hours01]){
+		if (memoryCache.settings[:time][:hours01]){
 			f = "%02d";
 		}
 		return hours.format(f)+":"+info.min.format("%02d");
@@ -24,7 +24,7 @@ module Tools {
 
 	///////////////////////////////////////////////////////////////////////////
 	function getSunEvent(event, allowTomorrow){
-		var geoLatLong = memoryCach.settings[:geoLocation];
+		var geoLatLong = memoryCache.settings[:geoLocation];
 		if (geoLatLong[0] == null || geoLatLong[1] == null){
 			return null;
 		}
@@ -41,16 +41,16 @@ module Tools {
 
 		var now = Time.now();
 		var d = now.value().toDouble() / Time.Gregorian.SECONDS_PER_DAY - 0.5 + 2440588 - 2451545;
-		if (memoryCach.oldValues[:sunCach][:day] == null){
+		if (memoryCache.oldValues[:sunCach][:day] == null){
 			var sunEventCalculator = new SunCalc();
 			sunEventCalculator.fillCache(now, myLocation[0],myLocation[1]);
-		}else if ( !(Math.round(memoryCach.oldValues[:sunCach][:day]).equals(Math.round(d)) && memoryCach.oldValues[:sunCach][:lat].equals(myLocation[0]) && memoryCach.oldValues[:sunCach][:lon].equals(myLocation[1]) )){
+		}else if ( !(Math.round(memoryCache.oldValues[:sunCach][:day]).equals(Math.round(d)) && memoryCache.oldValues[:sunCach][:lat].equals(myLocation[0]) && memoryCache.oldValues[:sunCach][:lon].equals(myLocation[1]) )){
 			var sunEventCalculator = new SunCalc();
 			sunEventCalculator.fillCache(now, myLocation[0],myLocation[1]);
 		}
-		var eventMoment = memoryCach.oldValues[:sunCach][event][0];
+		var eventMoment = memoryCache.oldValues[:sunCach][event][0];
 		if (eventMoment.value() < now.value() && allowTomorrow){
-			eventMoment = memoryCach.oldValues[:sunCach][event][1];
+			eventMoment = memoryCache.oldValues[:sunCach][event][1];
 		}
 
 		return eventMoment;
@@ -84,7 +84,7 @@ module Tools {
 	///////////////////////////////////////////////////////////////////////////
 	function pressureToString(rawData){
 		var value = rawData; /*Pa */
-		var unit  = memoryCach.settings[:pressureUnit];
+		var unit  = memoryCache.settings[:pressureUnit];
 		if (unit == 0){ /*MmHg*/
 			value = Math.round(rawData/133.322).format("%d");
 		}else if (unit == 1){ /*Psi*/

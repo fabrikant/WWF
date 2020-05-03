@@ -142,17 +142,17 @@ class SunCalc {
 
     function fillCache(moment, lat, lon){
 		var d = getDay(moment);
-		memoryCach.oldValues[:sunCach][:day] = d;
-		memoryCach.oldValues[:sunCach][:lat] = lat;
-		memoryCach.oldValues[:sunCach][:lon] = lon;
-		memoryCach.oldValues[:sunCach][SUNRISE] = new [2];
-		memoryCach.oldValues[:sunCach][SUNSET] = new [2];
-		memoryCach.oldValues[:sunCach][SUNRISE][0] = calculate(moment, lat, lon, SUNRISE);
-		memoryCach.oldValues[:sunCach][SUNSET][0] = calculate(moment, lat, lon, SUNSET);
+		memoryCache.oldValues[:sunCach][:day] = d;
+		memoryCache.oldValues[:sunCach][:lat] = lat;
+		memoryCache.oldValues[:sunCach][:lon] = lon;
+		memoryCache.oldValues[:sunCach][SUNRISE] = new [2];
+		memoryCache.oldValues[:sunCach][SUNSET] = new [2];
+		memoryCache.oldValues[:sunCach][SUNRISE][0] = calculate(moment, lat, lon, SUNRISE);
+		memoryCache.oldValues[:sunCach][SUNSET][0] = calculate(moment, lat, lon, SUNSET);
 
 		d = moment.add(new Time.Duration(DAYS));
-		memoryCach.oldValues[:sunCach][SUNRISE][1] = calculate(moment, lat, lon, SUNRISE);
-		memoryCach.oldValues[:sunCach][SUNSET][1] = calculate(moment, lat, lon, SUNSET);
+		memoryCache.oldValues[:sunCach][SUNRISE][1] = calculate(moment, lat, lon, SUNRISE);
+		memoryCache.oldValues[:sunCach][SUNSET][1] = calculate(moment, lat, lon, SUNSET);
     }
 
 }
