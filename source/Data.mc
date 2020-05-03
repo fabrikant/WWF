@@ -12,15 +12,25 @@ module Data{
 	function getValueByFieldType(filedType, oldValue){
 
 		var res = "";
-		if (filedType == :background){
-
-			res = " ";
-
-		}else if (filedType == :time){
+		///////////////////////////////////////////////////////////////////////
+		//TIME
+		if (filedType == :time){
 
 			var clockTime = System.getClockTime();
 			res = getTimeString(clockTime);
 
+		///////////////////////////////////////////////////////////////////////
+		//SECONDS
+		}else if (filedType == :sec){
+			res = getSeconds();
+
+		///////////////////////////////////////////////////////////////////////
+		//AM PM
+		}else if (filedType == :am){
+			res = getAmPm();
+
+		///////////////////////////////////////////////////////////////////////
+		//DATE
 		}else if (filedType == :date){
 
 			var now = Time.now();
@@ -34,6 +44,18 @@ module Data{
 			}
 
 		///////////////////////////////////////////////////////////////////////
+		//STATUS FIELDS
+		}else if (filedType == :connnection){
+			res = System.getDeviceSettings().connectionAvailable ? "c" : "";
+		}else if (filedType == :messages){
+			res = System.getDeviceSettings().notificationCount > 0 ? "i" : "";
+		}else if (filedType == :dnd){
+			res = System.getDeviceSettings().doNotDisturb ? "k" : "";
+		}else if (filedType == :alarms){
+			res = System.getDeviceSettings().alarmCount > 0 ? "a" : "";
+
+		///////////////////////////////////////////////////////////////////////
+		//DATA FIELDS
 		}else if (filedType == HR){
 			res = getHeartRate();
 		}else if (filedType == STEPS){
@@ -60,6 +82,7 @@ module Data{
 			res = getSecondTime();
 
 		///////////////////////////////////////////////////////////////////////
+		//DATA FIELDS IMAGES
 		}else if (filedType == PICTURE + HR){
 			res = "g";
 		}else if (filedType == PICTURE + STEPS){
@@ -362,5 +385,27 @@ module Data{
 		var dur = new Time.Duration(offset);
 		var secondTime = Time.now().add(dur);
 		return Tools.momentToString(secondTime);
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+	function getAmPm(){
+		var value = "";
+		if (!System.getDeviceSettings().is24Hour && memoryCach.settings[:time][:am]) {
+            if (System.getClockTime().hour < 12) {
+				value = "A";
+			}else{
+				value = "P";
+			}
+		}
+		return value;
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+	function getSeconds(){
+		var value = "";
+		if (memoryCach.settings[:time][:sec]) {
+			value = System.getClockTime().sec.format("%02d");
+		}
+		return value;
 	}
 }

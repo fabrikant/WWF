@@ -18,6 +18,12 @@
 	<!--SECOND TIME -->
 	<string id="T1TZ" scope="foreground">Time zone ±UTC (minutes)</string>
 	
+	<!--Status -->
+	<string id="ConCol" scope="foreground">Connected color</string>
+	<string id="MesCol" scope="foreground">Notifications color</string>
+	<string id="AlCol" scope="foreground">Аlarms color</string>
+	<string id="DNDCol" scope="foreground">DND color</string>
+
 	<!--COLORS -->
 	<string id="COLOR_WHITE" scope="foreground">White</string>
 	<string id="COLOR_LT_GRAY" scope="foreground">Lt Gray</string>

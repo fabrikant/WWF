@@ -5,12 +5,19 @@
 	<property id="AmPm" type="boolean">true</property>
 	<property id="Sec" type="boolean">false</property>
 
-	<property id="DF" type="string">%W %D.%m.%Y %WN/%DN</property>
+	<property id="DF" type="string">%W %D %M %Y</property>
 
     <property id="BgndColor" type="number">0xFFFFFF</property>
     <property id="TimeColor" type="number">0x000000</property>
     <property id="DateColor" type="number">0x000000</property>
-
+	
+	<!--STATUS FIELDS -->
+	<property id="ConCol" type="number">0x000000</property>
+	<property id="MesCol" type="number">0x000000</property>
+	<property id="DNDCol" type="number">0x000000</property>
+	<property id="AlCol" type="number">0x000000</property>
+	
+	
 	<!--PRESSURE -->
 	<property id="PrU" type="number">0</property>
 
@@ -21,13 +28,13 @@
 	<property id="T1TZ" type="number">180</property>
 
 	<!--FIELSDS TYPES -->
-	<property id="F0" type="number">8</property>
+	<property id="F0" type="number">9</property>
 	<property id="C0" type="number">0x000000</property>
 
 	<property id="F1" type="number">0</property>
 	<property id="C1" type="number">0x000000</property>
 
-	<property id="F2" type="number">9</property>
+	<property id="F2" type="number">10</property>
 	<property id="C2" type="number">0x000000</property>
 
 	<property id="F3" type="number">4</property>

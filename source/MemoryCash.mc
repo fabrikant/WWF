@@ -22,6 +22,14 @@ class MemoryCach {
 		settings[:colors][:background] = Application.Properties.getValue("BgndColor");
 		settings[:colors][:time] = Application.Properties.getValue("TimeColor");
 		settings[:colors][:date] = Application.Properties.getValue("DateColor");
+		settings[:colors][:am] = settings[:colors][:time];
+		settings[:colors][:sec] = settings[:colors][:time];
+
+		settings[:colors][:connnection] = Application.Properties.getValue("ConCol");
+		settings[:colors][:messages] = Application.Properties.getValue("MesCol");
+		settings[:colors][:dnd] = Application.Properties.getValue("DNDCol");
+		settings[:colors][:alarms] = Application.Properties.getValue("AlCol");
+
 
 		for (var i = 0; i < FIELDS_COUNT; i++){
 			settings[:colors]["F"+i] = Application.Properties.getValue("C"+i);
