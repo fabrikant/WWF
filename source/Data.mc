@@ -6,6 +6,7 @@ using Toybox.Time.Gregorian;
 using Toybox.Activity;
 using Toybox.ActivityMonitor;
 using Toybox.SensorHistory;
+using Toybox.Math;
 
 module Data{
 
@@ -132,6 +133,13 @@ module Data{
 			res = getWeatherHumidityString();
 		}else if (filedType == :weather_pressure){
 			res = getWeatherPressureString();
+		///////////////////////////////////////////////////////////////////////
+		//WEATHER
+		}else if (filedType == :battery){
+			res = System.getSystemStats().battery.format("%d")+"%";
+		}else if (filedType == :battery_picture){
+			res = Math.round(System.getSystemStats().battery);
+
 		}
 
 		return res;

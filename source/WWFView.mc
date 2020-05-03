@@ -365,6 +365,36 @@ class WWFView extends WatchUi.WatchFace {
     		}
     	);
 
+		///////////////////////////////////////////////////////////////////////
+		//BATTERY
+		h = fields["F0"].h;
+		w = fields["F0"].w;
+        fields[:battery_picture] = new BatteryField(
+    		{
+    			:x => System.getDeviceSettings().screenWidth/2-w,
+    			:y => fields[:weather_hum].y -h,
+    			:h => h,
+    			:w => w,
+    			:type => :battery_picture,
+    			:id => :battery,
+    			:fontId => :small,
+    			:justify => Graphics.TEXT_JUSTIFY_LEFT
+    		}
+    	);
+
+        fields[:battery] = new SimpleField(
+    		{
+    			:x => System.getDeviceSettings().screenWidth/2,
+    			:y => fields[:battery_picture].y,
+    			:h => h,
+    			:w => w,
+    			:type => :battery,
+    			:id => :battery,
+    			:fontId => :small,
+    			:justify => Graphics.TEXT_JUSTIFY_LEFT
+    		}
+    	);
+
     }
 
     // Called when this View is brought to the foreground. Restore
@@ -393,6 +423,7 @@ class WWFView extends WatchUi.WatchFace {
 			memoryCache.oldValues[:isStarted] = false;
 		}
 
+		memoryCache.checkWeatherActuality();
 		var ids = fields.keys();
 		for (var i = 0; i < ids.size(); i++){
 

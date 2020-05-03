@@ -26,8 +26,6 @@ class MemoryCache {
 		settings[:colors][:background] = Application.Properties.getValue("BgndColor");
 		settings[:colors][:time] = Application.Properties.getValue("TimeColor");
 		settings[:colors][:date] = Application.Properties.getValue("DateColor");
-		//settings[:colors][:am] = settings[:colors][:time];
-		//settings[:colors][:sec] = settings[:colors][:time];
 
 		settings[:colors][:connnection] = Application.Properties.getValue("ConCol");
 		settings[:colors][:messages] = Application.Properties.getValue("MesCol");
@@ -35,6 +33,7 @@ class MemoryCache {
 		settings[:colors][:alarms] = Application.Properties.getValue("AlCol");
 
 		settings[:colors][:weather] = Application.Properties.getValue("WColor");
+		settings[:colors][:battery] = Application.Properties.getValue("BatColor");
 
 
 		for (var i = 0; i < FIELDS_COUNT; i++){
@@ -106,5 +105,13 @@ class MemoryCache {
 
 	function eraseWeather(){
 		onWeatherUpdate(null);
+	}
+
+	function checkWeatherActuality(){
+		if (weather != null){
+			if (Time.now().value() - weather[STORAGE_KEY_RECIEVE].toNumber() > 10800){
+				eraseWeather();
+			}
+		}
 	}
 }

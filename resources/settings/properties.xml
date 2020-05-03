@@ -13,6 +13,7 @@
     <property id="TimeColor" type="number">0x000000</property>
     <property id="DateColor" type="number">0x000000</property>
     <property id="WColor" type="number">0x000000</property>
+    <property id="BatColor" type="number">0x000000</property>
 	
 	<!--STATUS FIELDS -->
 	<property id="ConCol" type="number">0x000000</property>

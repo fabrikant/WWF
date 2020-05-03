@@ -41,7 +41,7 @@ class SimpleField {
 		dc.fillRectangle(x, y, w, h);
 	}
 	function drawBorder(dc){
-		//return;
+		return;
 		dc.setColor(memoryCache.settings[:colors][id], Graphics.COLOR_TRANSPARENT);
 		dc.drawRectangle(x, y, w, h);
 	}
