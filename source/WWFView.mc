@@ -83,7 +83,8 @@ class WWFView extends WatchUi.WatchFace {
 		///////////////////////////////////////////////////////////////////////
 		//DATE
     	font = fonts[:small];
-    	h = Graphics.getFontHeight(font)-Graphics.getFontDescent(font);
+    	//h = Graphics.getFontHeight(font)-Graphics.getFontDescent(font);
+    	h = 20;
     	y = y - h;
         fields[:date] = new SimpleField(
     		{
@@ -244,7 +245,7 @@ class WWFView extends WatchUi.WatchFace {
 
 		///////////////////////////////////////////////////////////////////////
 		//WEATHER
-		h = 44;
+		h = fields["F0"].h*2;
 		w = h;
         fields[:weather_picture] = new SimpleField(
     		{
@@ -296,7 +297,7 @@ class WWFView extends WatchUi.WatchFace {
     			:type => :weather_wind_speed,
     			:id => :weather,
     			:fontId => :small,
-    			:justify => Graphics.TEXT_JUSTIFY_CENTER
+    			:justify => Graphics.TEXT_JUSTIFY_LEFT
     		}
     	);
 
@@ -394,6 +395,23 @@ class WWFView extends WatchUi.WatchFace {
     			:justify => Graphics.TEXT_JUSTIFY_LEFT
     		}
     	);
+
+		///////////////////////////////////////////////////////////////////////
+		//Moon phase
+
+    	 fields[:moon] = new SimpleField(
+    		{
+    			:x => (System.getDeviceSettings().screenWidth - fields[:weather_picture].h)/2,
+    			:y => fields["F5"].y + fields["F5"].h,
+    			:h => fields[:weather_picture].h,
+    			:w => fields[:weather_picture].w,
+    			:type => :moon,
+    			:id => :moon,
+    			:fontId => :weather,
+    			:justify => Graphics.TEXT_JUSTIFY_CENTER
+    		}
+    	);
+
 
     }
 

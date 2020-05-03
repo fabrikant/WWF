@@ -2,11 +2,15 @@
 
     <string id="AppName">WWF</string>
 
+	<string id="keyOW" scope="foreground">API key for weather</string>
+	<string id="KeyOWPrompt" scope="foreground">get it for free</string>
+
     <string id="BgndColor">Background Color</string>
     <string id="TimeColor">Time Color</string>
     <string id="DateColor" scope="foreground">Date Color</string>
     <string id="WColor" scope="foreground">Weather widget color</string>
     <string id="BatColor" scope="foreground">Battery color</string>
+    <string id="MoonColor" scope="foreground">Moon color</string>
     
  	<string id="MilitaryFormatTitle" scope="foreground">Military Format for 24 Hour
 		Time</string>
@@ -83,9 +87,8 @@
 	<string id="PrUMmHg" scope="foreground">mmHg</string>
 	<string id="PrUPsi" scope="foreground">Psi</string>
 	<string id="PrUInchHg" scope="foreground">inchHg</string>
-	<string id="PrUBar" scope="foreground">Bar</string>
+	<string id="PrUBar" scope="foreground">milibar</string>
 	<string id="PrUKPa" scope="foreground">kPa</string>
-	<string id="PrUhPa" scope="foreground">hPa</string>
 	
 	<!--WIND UNITS -->
 	<!--USE VERY!!!! SHOT STRING. its displayed on screen-->

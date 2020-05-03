@@ -1,6 +1,6 @@
 <properties>
 
-	<property id="keyOW" type="string">f4faa0b19b479a5fbd67dd91cf216183</property>
+	<property id="keyOW" type="string"></property>
 
     <property id="MilFt" type="boolean">false</property>
 	<property id="HFt01" type="boolean">true</property>
@@ -14,6 +14,7 @@
     <property id="DateColor" type="number">0x000000</property>
     <property id="WColor" type="number">0x000000</property>
     <property id="BatColor" type="number">0x000000</property>
+    <property id="MoonColor" type="number">0x000000</property>
 	
 	<!--STATUS FIELDS -->
 	<property id="ConCol" type="number">0x000000</property>

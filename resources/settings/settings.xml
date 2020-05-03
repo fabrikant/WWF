@@ -1,4 +1,8 @@
 <settings>
+	
+	<setting propertyKey="@Properties.keyOW" title="@Strings.keyOW" prompt="@Strings.KeyOWPrompt" helpUrl="https://home.openweathermap.org/api_keys">
+		<settingConfig type="alphaNumeric" />
+	</setting>
 
 	<!--CLOCK SETTING -->
      <setting propertyKey="@Properties.MilFt" title="@Strings.MilitaryFormatTitle">
@@ -27,7 +31,7 @@
 
 	<!--DATE FORMAT -->
 	<setting propertyKey="@Properties.DF"
-		title="@Strings.DF" prompt="@Strings.DFHELP" helpUrl="https://apps.garmin.com/ru-RU/apps/18364e0a-2f82-4b27-a0bc-f495635052ae">
+		title="@Strings.DF" prompt="@Strings.DFHELP">
 		<settingConfig type="alphaNumeric" />
 	</setting>
 
@@ -40,7 +44,6 @@
 			<listEntry value="2">@Strings.PrUInchHg</listEntry>
 			<listEntry value="3">@Strings.PrUBar</listEntry>
 			<listEntry value="4">@Strings.PrUKPa</listEntry>
-			<listEntry value="5">@Strings.PrUhPa</listEntry>
 		</settingConfig>
 	</setting>
 	
@@ -458,6 +461,26 @@
 
 	<setting propertyKey="@Properties.C5"
 		title="@Strings.C5" >
+		<settingConfig type="list">
+			<listEntry value="0xFFFFFF">@Strings.COLOR_WHITE</listEntry>
+			<listEntry value="0x000000">@Strings.COLOR_BLACK</listEntry>
+			<listEntry value="0xAAAAAA">@Strings.COLOR_LT_GRAY</listEntry>
+			<listEntry value="0x555555">@Strings.COLOR_DK_GRAY</listEntry>
+			<listEntry value="0xFF0000">@Strings.COLOR_RED</listEntry>
+			<listEntry value="0xAA0000">@Strings.COLOR_DK_RED</listEntry>
+			<listEntry value="0xFF5500">@Strings.COLOR_ORANGE</listEntry>
+			<listEntry value="0xFFAA00">@Strings.COLOR_YELLOW</listEntry>
+			<listEntry value="0x00FF00">@Strings.COLOR_GREEN</listEntry>
+			<listEntry value="0x00AA00">@Strings.COLOR_DK_GREEN</listEntry>
+			<listEntry value="0x00AAFF">@Strings.COLOR_BLUE</listEntry>
+			<listEntry value="0x0000FF">@Strings.COLOR_DK_BLUE</listEntry>
+			<listEntry value="0xAA00FF">@Strings.COLOR_PURPLE</listEntry>
+			<listEntry value="0xFF00FF">@Strings.COLOR_PINK</listEntry>
+		</settingConfig>
+	</setting>
+
+	<setting propertyKey="@Properties.MoonColor"
+		title="@Strings.MoonColor" >
 		<settingConfig type="list">
 			<listEntry value="0xFFFFFF">@Strings.COLOR_WHITE</listEntry>
 			<listEntry value="0x000000">@Strings.COLOR_BLACK</listEntry>

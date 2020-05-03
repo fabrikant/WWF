@@ -10,7 +10,9 @@ class BatteryField extends SimpleField{
 
 	function draw(dc, value){
 		clear(dc);
-		drawBattery(dc, value);
+		if (memoryCache.settings[:colors][id] != memoryCache.settings[:colors][:background]){
+			drawBattery(dc, value);
+		}
 		drawBorder(dc);
 	}
 
@@ -18,13 +20,15 @@ class BatteryField extends SimpleField{
 
 		dc.setColor(memoryCache.settings[:colors][id], Graphics.COLOR_TRANSPARENT);
 
-		var k = 0.75;
+		var k = 0.70;
+		var xOffset = 3;
+		var yOffset = 2;
 		var hBattery = h*k;
-		var wBattery = w*k;
+		var wBattery = w*k-xOffset;
 
 		//Внешний контур
 		//[x,y,w,h]
-		var external = [x + (w - wBattery)/2, y + (h - hBattery)/2, wBattery, hBattery];
+		var external = [x + (w - wBattery)/2 + xOffset, y + (h - hBattery)/2 + yOffset, wBattery, hBattery];
 		dc.drawRectangle(external[0], external[1], external[2], external[3]);
 		var hContact = external[3]*0.6;
 		var wContact = external[2];

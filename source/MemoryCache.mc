@@ -34,6 +34,7 @@ class MemoryCache {
 
 		settings[:colors][:weather] = Application.Properties.getValue("WColor");
 		settings[:colors][:battery] = Application.Properties.getValue("BatColor");
+		settings[:colors][:moon] = Application.Properties.getValue("MoonColor");
 
 
 		for (var i = 0; i < FIELDS_COUNT; i++){
@@ -56,8 +57,8 @@ class MemoryCache {
 	function readGeolocation(){
 		//////////////////////////////////////////////////////////
 		//DEBUG
-		//Application.Storage.setValue("Lat", 54);
-		//Application.Storage.setValue("Lon", 73);
+//		Application.Storage.setValue("Lat", 54);
+//		Application.Storage.setValue("Lon", 73);
 		//////////////////////////////////////////////////////////
 		settings[:geoLocation] = [Application.Storage.getValue("Lat"), Application.Storage.getValue("Lon")];
 	}
@@ -74,20 +75,24 @@ class MemoryCache {
 
 	function getSpeedUnitString(){
 
-		if (settings[:spped_unti_string] == null){
-			settings[:spped_unti_string] = Application.loadResource(Rez.Strings.SpeedUnitMSec);//meters/sec
-			var unit =  settings[:windUnit];
-			if (unit == 1){ /*km/h*/
-				settings[:spped_unti_string] = Application.loadResource(Rez.Strings.SpeedUnitKmH);
-			}else if (unit == 2){ /*mile/h*/
-				settings[:spped_unti_string] = Application.loadResource(Rez.Strings.SpeedUnitMileH);
-			}else if (unit == 3){ /*ft/s*/
-				settings[:spped_unti_string] = Application.loadResource(Rez.Strings.SpeedUnitFtSec);
-			}else if (unit == 4){ /*ft/s*/
-				settings[:spped_unti_string] = Application.loadResource(Rez.Strings.SpeedUnitBof);
+		if (memoryCache.weather != null){
+			if (settings[:spped_unti_string] == null){
+				settings[:spped_unti_string] = Application.loadResource(Rez.Strings.SpeedUnitMSec);//meters/sec
+				var unit =  settings[:windUnit];
+				if (unit == 1){ /*km/h*/
+					settings[:spped_unti_string] = Application.loadResource(Rez.Strings.SpeedUnitKmH);
+				}else if (unit == 2){ /*mile/h*/
+					settings[:spped_unti_string] = Application.loadResource(Rez.Strings.SpeedUnitMileH);
+				}else if (unit == 3){ /*ft/s*/
+					settings[:spped_unti_string] = Application.loadResource(Rez.Strings.SpeedUnitFtSec);
+				}else if (unit == 4){ /*ft/s*/
+					settings[:spped_unti_string] = Application.loadResource(Rez.Strings.SpeedUnitBof);
+				}
 			}
+			return settings[:spped_unti_string];
+		}else{
+			return "";
 		}
-		return settings[:spped_unti_string];
 	}
 
 	function getFieldType(id){

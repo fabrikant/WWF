@@ -126,19 +126,35 @@ module Data{
 		}else if (filedType == :weather_wind_speed_unit){
 			res = memoryCache.getSpeedUnitString();
 		}else if (filedType == :weather_hum_picture){
-			res = "h";
+			res = getGentlyWeaterPictureString("h");
 		}else if (filedType == :weather_pressure_picture){
-			res = "b";
+			res = getGentlyWeaterPictureString("b");
 		}else if (filedType == :weather_hum){
 			res = getWeatherHumidityString();
 		}else if (filedType == :weather_pressure){
 			res = getWeatherPressureString();
+
 		///////////////////////////////////////////////////////////////////////
-		//WEATHER
+		//BATTERY
 		}else if (filedType == :battery){
 			res = System.getSystemStats().battery.format("%d")+"%";
 		}else if (filedType == :battery_picture){
 			res = Math.round(System.getSystemStats().battery);
+
+		///////////////////////////////////////////////////////////////////////
+		//MOON
+		}else if (filedType == :moon){
+
+			var now = Time.now();
+			var today = Gregorian.info(now, Time.FORMAT_SHORT);
+
+			if (oldValue == null || memoryCache.oldValues[:moonDay] == null || memoryCache.oldValues[:moonDay] != today.day){
+				memoryCache.oldValues[:moonDay] = today.day;
+				res = moonPhaseString();
+	 		}else{
+	 			res = oldValue;
+			}
+
 
 		}
 
@@ -504,9 +520,11 @@ module Data{
 			value = memoryCache.weather[STORAGE_KEY_HUMIDITY];
 			if (value == null){
 				value = "";
+			}else{
+				value = value.format("%d")+"%";
 			}
 		}
-		return value.format("%d")+"%";
+		return value;
 	}
 
 	///////////////////////////////////////////////////////////////////////////
@@ -522,6 +540,30 @@ module Data{
 		}
 		return value;
 	}
+
 	///////////////////////////////////////////////////////////////////////////
+	function getGentlyWeaterPictureString(str){
+		var value = "";
+		if (memoryCache.weather != null){
+			value = str;
+		}
+		return value;
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+	function moonPhaseString(){
+		var res = "";
+		var day = Tools.moonPhase(Time.now());
+		if (day == 29){
+			day = 28;
+		}
+		if (day < 16){
+			res = (61660+day).toChar();
+		}else{
+			res = (61632+day).toChar();
+		}
+		//res = (61676-day).toChar();
+		return res;
+	}
 
 }
