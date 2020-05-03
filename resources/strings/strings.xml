@@ -6,6 +6,7 @@
     <string id="TimeColor">Time Color</string>
     <string id="DateColor" scope="foreground">Date Color</string>
     <string id="WColor" scope="foreground">Weather widget color</string>
+    <string id="BatColor" scope="foreground">Battery color</string>
     
  	<string id="MilitaryFormatTitle" scope="foreground">Military Format for 24 Hour
 		Time</string>
