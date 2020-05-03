@@ -120,6 +120,18 @@ module Data{
 			res = getWeatherTemperature();
 		}else if (filedType == :weather_wind_dir){
 			res = getWeatherWindDirection();
+		}else if (filedType == :weather_wind_speed){
+			res = getWeatherWindSpeed();
+		}else if (filedType == :weather_wind_speed_unit){
+			res = memoryCache.getSpeedUnitString();
+		}else if (filedType == :weather_hum_picture){
+			res = "h";
+		}else if (filedType == :weather_pressure_picture){
+			res = "b";
+		}else if (filedType == :weather_hum){
+			res = getWeatherHumidityString();
+		}else if (filedType == :weather_pressure){
+			res = getWeatherPressureString();
 		}
 
 		return res;
@@ -425,7 +437,7 @@ module Data{
 	///////////////////////////////////////////////////////////////////////////
 	function getWeatherPicture(){
 		var value = "";
-		if ( memoryCache.weather != null){
+		if (memoryCache.weather != null){
 			var dict = Refernce.weatherFontDictonary();
 			value = dict[memoryCache.weather[STORAGE_KEY_ICON]];
 			if (value == null){
@@ -440,7 +452,7 @@ module Data{
 	///////////////////////////////////////////////////////////////////////////
 	function getWeatherTemperature(){
 		var value = "";
-		if ( memoryCache.weather != null){
+		if (memoryCache.weather != null){
 			value = memoryCache.weather[STORAGE_KEY_TEMP];
 			if (value == null){
 				value = "";
@@ -450,10 +462,11 @@ module Data{
 		}
 		return value;
 	}
+
 	///////////////////////////////////////////////////////////////////////////
 	function getWeatherWindDirection(){
 		var value = -1;
-		if ( memoryCache.weather != null){
+		if (memoryCache.weather != null){
 			value = memoryCache.weather[STORAGE_KEY_WIND_DEG];
 			if (value == null){
 				value = -1;
@@ -462,9 +475,45 @@ module Data{
 		return value;
 	}
 	///////////////////////////////////////////////////////////////////////////
+	function getWeatherWindSpeed(){
+		var value = "";
+		if (memoryCache.weather != null){
+			value = memoryCache.weather[STORAGE_KEY_WIND_SPEED];
+			if (value == null){
+				value = "";
+			}else{
+				value = Tools.speedToString(value);
+			}
+		}
+		return value;
+	}
+
+
 	///////////////////////////////////////////////////////////////////////////
+	function getWeatherHumidityString(){
+		var value = "";
+		if (memoryCache.weather != null){
+			value = memoryCache.weather[STORAGE_KEY_HUMIDITY];
+			if (value == null){
+				value = "";
+			}
+		}
+		return value.format("%d")+"%";
+	}
+
 	///////////////////////////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////////////////////
+	function getWeatherPressureString(){
+		var value = "";
+		if (memoryCache.weather != null){
+			value = memoryCache.weather[STORAGE_KEY_PRESSURE];
+			if (value == null){
+				value = "";
+			}else{
+				value = Tools.pressureToString(value.toNumber() * 100);
+			}
+		}
+		return value;
+	}
 	///////////////////////////////////////////////////////////////////////////
 
 }

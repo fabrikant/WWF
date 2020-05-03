@@ -231,7 +231,8 @@ class WWFView extends WatchUi.WatchFace {
         fields[:sec] = new SimpleField(
     		{
     			:x => fields[:am].x,
-    			:y => fields[:time].y + fields[:time].h - h,
+    			//:y => fields[:time].y + fields[:time].h - h,
+    			:y => fields[:am].y + fields[:am].h,
     			:h => h,
     			:w => w,
     			:type => :sec,
@@ -283,6 +284,84 @@ class WWFView extends WatchUi.WatchFace {
     			:id => :weather,
     			:fontId => :small,
     			:justify => Graphics.TEXT_JUSTIFY_CENTER
+    		}
+    	);
+
+        fields[:weather_wind_speed] = new SimpleField(
+    		{
+    			:x => fields[:weather_wind_dir].x + fields[:weather_wind_dir].w,
+    			:y => fields[:weather_wind_dir].y,
+    			:h => h,
+    			:w => fields["F0"].w*2/3,
+    			:type => :weather_wind_speed,
+    			:id => :weather,
+    			:fontId => :small,
+    			:justify => Graphics.TEXT_JUSTIFY_CENTER
+    		}
+    	);
+
+        fields[:weather_wind_speed_unit] = new SimpleField(
+    		{
+    			:x => fields[:weather_wind_dir].x,
+    			:y => fields[:weather_wind_dir].y + fields[:weather_wind_dir].h,
+    			:h => fields[:weather_temp].h - fields[:weather_wind_dir].h,
+    			:w => fields[:weather_wind_dir].w + fields[:weather_wind_speed].w,
+    			:type => :weather_wind_speed_unit,
+    			:id => :weather,
+    			:fontId => :small,
+    			:justify => Graphics.TEXT_JUSTIFY_CENTER
+    		}
+    	);
+
+         fields[:weather_hum_picture] = new SimpleField(
+    		{
+    			:x => fields[:weather_wind_speed].x+fields[:weather_wind_speed].w,
+    			:y => fields[:weather_wind_speed].y,
+    			:h => fields["P0"].h,
+    			:w => fields["P0"].w,
+    			:type => :weather_hum_picture,
+    			:id => :weather,
+    			:fontId => :picture,
+    			:justify => Graphics.TEXT_JUSTIFY_CENTER
+    		}
+    	);
+
+        fields[:weather_pressure_picture] = new SimpleField(
+    		{
+    			:x => fields[:weather_hum_picture].x,
+    			:y => fields[:weather_hum_picture].y + fields[:weather_hum_picture].h,
+    			:h => fields[:weather_hum_picture].h,
+    			:w => fields[:weather_hum_picture].w,
+    			:type => :weather_pressure_picture,
+    			:id => :weather,
+    			:fontId => :picture,
+    			:justify => Graphics.TEXT_JUSTIFY_CENTER
+    		}
+    	);
+
+         fields[:weather_hum] = new SimpleField(
+    		{
+    			:x => fields[:weather_hum_picture].x+fields[:weather_hum_picture].w,
+    			:y => fields[:weather_hum_picture].y,
+    			:h => fields["F0"].h,
+    			:w => fields["F0"].w,
+    			:type => :weather_hum,
+    			:id => :weather,
+    			:fontId => :small,
+    			:justify => Graphics.TEXT_JUSTIFY_LEFT
+    		}
+    	);
+
+        fields[:weather_pressure] = new SimpleField(
+    		{
+    			:x => fields[:weather_hum].x,
+    			:y => fields[:weather_hum_picture].y+fields[:weather_hum_picture].h,
+    			:h => fields[:weather_hum].h,
+    			:w => fields[:weather_hum].w,
+    			:type => :weather_pressure,
+    			:id => :weather,
+    			:fontId => :small,
+    			:justify => Graphics.TEXT_JUSTIFY_LEFT
     		}
     	);
 

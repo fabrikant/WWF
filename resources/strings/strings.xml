@@ -5,6 +5,7 @@
     <string id="BgndColor">Background Color</string>
     <string id="TimeColor">Time Color</string>
     <string id="DateColor" scope="foreground">Date Color</string>
+    <string id="WColor" scope="foreground">Weather widget color</string>
     
  	<string id="MilitaryFormatTitle" scope="foreground">Military Format for 24 Hour
 		Time</string>
@@ -89,8 +90,8 @@
 	<!--USE VERY!!!! SHOT STRING. its displayed on screen-->
 	<string id="SpeedUnitMSec" scope="foreground">m/s</string>
 	<string id="SpeedUnitKmH" scope="foreground">km/h</string>
-	<string id="SpeedUnitMileH" scope="foreground">m/h</string>
+	<string id="SpeedUnitMileH" scope="foreground">ml/h</string>
 	<string id="SpeedUnitFtSec" scope="foreground">f/s</string>
-	<string id="SpeedUnitBof" scope="foreground">boufort</string>
+	<string id="SpeedUnitBof" scope="foreground">bouf</string>
 
 </strings>
