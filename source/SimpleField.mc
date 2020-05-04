@@ -19,6 +19,9 @@ class SimpleField {
 	function draw(dc, text){
 
 		clear(dc);
+		if (memoryCache.settings[:colors][id] == memoryCache.settings[:colors][:background]){
+			return;
+		}
 		dc.setColor(memoryCache.settings[:colors][id], Graphics.COLOR_TRANSPARENT);
 
 		var _x = x;

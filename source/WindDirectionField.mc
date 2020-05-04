@@ -10,6 +10,9 @@ class WindDirectionField extends SimpleField{
 	function draw(dc, direction){
 
 		clear(dc);
+		if (memoryCache.settings[:colors][id] == memoryCache.settings[:colors][:background]){
+			return;
+		}
 		if (direction != -1){
 			dc.setColor(memoryCache.settings[:colors][id], Graphics.COLOR_TRANSPARENT);
 			var windDirection = windDirection(h*0.9, direction.toNumber(), [x, y]);

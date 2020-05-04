@@ -10,9 +10,10 @@ class BatteryField extends SimpleField{
 
 	function draw(dc, value){
 		clear(dc);
-		if (memoryCache.settings[:colors][id] != memoryCache.settings[:colors][:background]){
-			drawBattery(dc, value);
+		if (memoryCache.settings[:colors][id] == memoryCache.settings[:colors][:background]){
+			return;
 		}
+		drawBattery(dc, value);
 		drawBorder(dc);
 	}
 
