@@ -46,7 +46,10 @@ class WWFApp extends Application.AppBase {
     	if (data[STORAGE_KEY_RESPONCE_CODE] != null){
      		Application.Storage.setValue(STORAGE_KEY_RESPONCE_CODE, data[STORAGE_KEY_RESPONCE_CODE]);
 	        if (data[STORAGE_KEY_RESPONCE_CODE].toNumber() == 200){
-	        	memoryCache.onWeatherUpdate(data);
+	        	if (memoryCache == null){
+	        		memoryCache = new MemoryCache();
+	        	}
+       			memoryCache.onWeatherUpdate(data);
 	        }
  		}
         registerEvents();
