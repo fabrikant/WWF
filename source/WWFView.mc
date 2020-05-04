@@ -448,7 +448,18 @@ class WWFView extends WatchUi.WatchFace {
 			var fieldId = ids[i];
 			var oldValue = memoryCache.oldValues[fieldId];
 			var value = Data.getValueByFieldType(fields[fieldId].type, oldValue);
-			if (!value.equals(oldValue)){
+
+			//Danger place.
+			var needUpdate = false;
+			if(value == null){
+				needUpdate = (value != oldValue);
+			}else if(value has :equals){
+				needUpdate = !value.equals(oldValue);
+			}else{
+				needUpdate = (value != oldValue);
+			}
+
+			if (needUpdate){
 				fields[fieldId].draw(dc, value);
 				memoryCache.oldValues[fieldId] = value;
 			}
