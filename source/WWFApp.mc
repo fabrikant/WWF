@@ -64,6 +64,9 @@ class WWFApp extends Application.AppBase {
 		//System.println("apiKey "+memoryCache.settings[:apiKey]);
 		//////////////////////////////////////////////////////////
 
+		if (memoryCache == null){
+			return;
+		}
 		var geoLatLong = memoryCache.settings[:geoLocation];
 		if (geoLatLong[0] == null || geoLatLong[1] == null){
 			return;

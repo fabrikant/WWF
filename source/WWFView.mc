@@ -490,6 +490,7 @@ class WWFView extends WatchUi.WatchFace {
 
     // The user has just looked at their watch. Timers and animations may be started here.
     function onExitSleep() {
+    	memoryCache = new MemoryCache();
     }
 
     // Terminate any active timers and prepare for slow updates.
