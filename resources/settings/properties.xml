@@ -23,6 +23,9 @@
 	<property id="AlCol" type="number">0x000000</property>
 	
 	
+	<!--WEATHER UPDATE INTERVAL -->
+	<property id="WUpdInt" type="number">10</property>
+	
 	<!--PRESSURE -->
 	<property id="PrU" type="number">0</property>
 

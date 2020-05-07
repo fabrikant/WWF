@@ -52,6 +52,7 @@ class MemoryCache {
 		settings[:time1] = Application.Properties.getValue("T1TZ");
 
 		settings[:apiKey] = Application.Properties.getValue("keyOW");
+		settings[:weatherUpdateInteval] = Application.Properties.getValue("WUpdInt");
 	}
 
 	function readGeolocation(){

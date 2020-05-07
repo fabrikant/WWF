@@ -4,6 +4,7 @@
 
 	<string id="keyOW" scope="foreground">API key for weather</string>
 	<string id="KeyOWPrompt" scope="foreground">get it for free</string>
+	<string id="WUpdInt" scope="foreground">Weather update inteval (minutes)</string>
 
     <string id="BgndColor">Background Color</string>
     <string id="TimeColor">Time Color</string>

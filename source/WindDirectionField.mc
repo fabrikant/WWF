@@ -22,6 +22,7 @@ class WindDirectionField extends SimpleField{
 	}
 
 	private function windDirection(size, angle, leftTop){
+
 		var angleRad = Math.toRadians(angle);
 		var centerPoint = [size/2,size/2];
 		var coords = [[0+size/8,0],[size/2,size],[size-size/8,0],[size/2, size/4]];
@@ -41,11 +42,23 @@ class WindDirectionField extends SimpleField{
             	min[1]=result[i][1];
             }
         }
+        //To LEFT TOP Corner
 		var offset = [leftTop[0]-min[0],leftTop[1]-min[1]];
+		var maxY = -1;
         for (var i = 0; i < 4; i += 1) {
         	result[i][0] = result[i][0] + offset[0];
         	result[i][1] = result[i][1] + offset[1];
+        	if (maxY < result[i][1]){
+        		maxY = result[i][1];
+        	}
 		}
+		//To VERTICAL CENTER
+		offset = (y+h-maxY)/2;
+        for (var i = 0; i < 4; i += 1) {
+        	result[i][1] = result[i][1] + offset;
+		}
+
+
         return result;
 	}
 
