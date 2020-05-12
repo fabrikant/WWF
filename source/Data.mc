@@ -154,8 +154,6 @@ module Data{
 	 		}else{
 	 			res = oldValue;
 			}
-
-
 		}
 
 		return res;
@@ -252,8 +250,10 @@ module Data{
 		var info = ActivityMonitor.getInfo();
 		if (info has :steps){
 			value = info.steps;
-			if (value > 9999){
-				value = (value/1000).format("%.1f")+"k";
+			if (value > 99999){
+				value = (value/1000).format("%d")+"k";
+			}else if (value > 9999){
+				value = (value.toFloat()/1000).format("%.1f")+"k";
 			}
 		}
 		return value;

@@ -466,7 +466,6 @@ class WWFView extends WatchUi.WatchFace {
 		}
 
 		memoryCache.oldValues[:isStarted] = true;
-
     }
 
 	function onPartialUpdate(dc){
