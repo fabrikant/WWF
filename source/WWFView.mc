@@ -466,6 +466,7 @@ class WWFView extends WatchUi.WatchFace {
 		}
 
 		memoryCache.oldValues[:isStarted] = true;
+		dc.setClip(0, 0, 0, 0);//fix bug Vivoactive 4
     }
 
 	function onPartialUpdate(dc){

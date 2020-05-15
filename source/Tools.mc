@@ -17,7 +17,7 @@ module Tools {
 			value = rawData*2.237;
 		}else if (unit == 3){ /*ft/s*/
 			value = rawData*3.281;
-		}else if (unit == 4){ /*ft/s*/
+		}else if (unit == 4){ /*Beaufort*/
 			value = getBeaufort(rawData);
 		}
 		return value.format("%d");
