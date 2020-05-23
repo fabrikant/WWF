@@ -6,7 +6,9 @@
 	<string id="KeyOWPrompt" scope="foreground">get it for free</string>
 	<string id="WUpdInt" scope="foreground">Weather update inteval (minutes)</string>
 
-    <string id="BgndColor">Background Color</string>
+    <string id="BgndColor1">Background Color Top</string>
+    <string id="BgndColor2">Background Color Center</string>
+    <string id="BgndColor3">Background Color Bottom</string>
     <string id="TimeColor">Time Color</string>
     <string id="DateColor" scope="foreground">Date Color</string>
     <string id="WColor" scope="foreground">Weather widget color</string>
@@ -28,7 +30,7 @@
 	<!--Status -->
 	<string id="ConCol" scope="foreground">Connected color</string>
 	<string id="MesCol" scope="foreground">Notifications color</string>
-	<string id="AlCol" scope="foreground">Аlarms color</string>
+	<string id="AlCol" scope="foreground">Alarms color</string>
 	<string id="DNDCol" scope="foreground">DND color</string>
 
 	<!--COLORS -->

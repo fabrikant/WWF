@@ -33,6 +33,8 @@ enum{
 	STORAGE_KEY_WIND_DEG,
 	STORAGE_KEY_DT,
 	STORAGE_KEY_WEATHER,
+	STORAGE_KEY_BACKGROUND_Y1,
+	STORAGE_KEY_BACKGROUND_Y2,
 
 	PICTURE = 1000
 }
@@ -83,9 +85,10 @@ class WWFView extends WatchUi.WatchFace {
 		///////////////////////////////////////////////////////////////////////
 		//DATE
     	font = fonts[:small];
-    	//h = Graphics.getFontHeight(font)-Graphics.getFontDescent(font);
     	h = 20;
     	y = y - h;
+    	memoryCache.setBackgroundY(0, y);
+
         fields[:date] = new SimpleField(
     		{
     			:x => x,
@@ -166,6 +169,7 @@ class WWFView extends WatchUi.WatchFace {
 		h = 22;
 		y = fields[:time].y+fields[:time].h;
 		x = fields[:time].x - h;
+		memoryCache.setBackgroundY(1, y);
 
 		var wPicture = h;
 		var wText = (System.getDeviceSettings().screenWidth - 2*x - 3*wPicture)/3;
@@ -428,16 +432,26 @@ class WWFView extends WatchUi.WatchFace {
     	Application.getApp().registerEvents();
     }
 
+	function drawBackground(dc){
+		var bColors = memoryCache.settings[:colors];
+		var backgroundSettings = [
+			[0, memoryCache.backgroundY[0], bColors[:background1]],
+			[memoryCache.backgroundY[0],memoryCache.backgroundY[1] - memoryCache.backgroundY[0],bColors[:background2]],
+			[memoryCache.backgroundY[1],System.getDeviceSettings().screenHeight - memoryCache.backgroundY[1],bColors[:background3]],
+		];
+		var w = System.getDeviceSettings().screenWidth;
+		for (var i = 0; i < 3; i++){
+			dc.setColor( backgroundSettings[i][2], backgroundSettings[i][2]);
+			dc.setClip(0, backgroundSettings[i][0], w, backgroundSettings[i][1]);
+			dc.fillRectangle(0, backgroundSettings[i][0], w, backgroundSettings[i][1]);
+		}
+	}
+
     // Update the view
     function onUpdate(dc) {
 
 		if (memoryCache.oldValues[:isStarted] != true){
-			var color = memoryCache.settings[:colors][:background];
-			var w = System.getDeviceSettings().screenWidth;
-			var h = System.getDeviceSettings().screenHeight;
-			dc.setColor(color, color);
-			dc.setClip(0, 0, w, h);
-			dc.fillRectangle(0, 0, w, h);
+			drawBackground(dc);
 			memoryCache.oldValues[:isStarted] = false;
 		}
 

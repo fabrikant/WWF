@@ -10,7 +10,7 @@ class BatteryField extends SimpleField{
 
 	function draw(dc, value){
 		clear(dc);
-		if (memoryCache.settings[:colors][id] == memoryCache.settings[:colors][:background]){
+		if (memoryCache.settings[:colors][id] == getBackgroundColor()){
 			return;
 		}
 		drawBattery(dc, value);
@@ -34,7 +34,7 @@ class BatteryField extends SimpleField{
 		var hContact = external[3]*0.6;
 		var wContact = external[2];
 		dc.fillRoundedRectangle(external[0]+3, external[1] + (external[3]-hContact)/2-1, wContact, hContact, 3);
-		dc.setColor(memoryCache.settings[:colors][:background], Graphics.COLOR_TRANSPARENT);
+		dc.setColor(getBackgroundColor(), Graphics.COLOR_TRANSPARENT);
 		dc.fillRectangle(external[0]+1, external[1]+1, external[2]-2, external[3]-2);
 
 		//Заполнение

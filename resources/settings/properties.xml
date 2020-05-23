@@ -9,7 +9,9 @@
 
 	<property id="DF" type="string">%W %D %M %Y</property>
 
-    <property id="BgndColor" type="number">0xFFFFFF</property>
+    <property id="BgndColor1" type="number">0xFFFFFF</property>
+    <property id="BgndColor2" type="number">0xFFFFFF</property>
+    <property id="BgndColor3" type="number">0xFFFFFF</property>
     <property id="TimeColor" type="number">0x000000</property>
     <property id="DateColor" type="number">0x000000</property>
     <property id="WColor" type="number">0x000000</property>

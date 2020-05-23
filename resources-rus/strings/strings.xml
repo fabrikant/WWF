@@ -6,7 +6,9 @@
 	<string id="KeyOWPrompt" scope="foreground">его можно получить бесплатно</string>
 	<string id="WUpdInt" scope="foreground">Интервал обновления погоды (в минутах)</string>
 
-    <string id="BgndColor">Цвет фона</string>
+    <string id="BgndColor1">Цвет фона верх</string>
+    <string id="BgndColor2">Цвет фона центр</string>
+    <string id="BgndColor3">Цвет фона низ</string>
     <string id="TimeColor">Цвет времени</string>
     <string id="DateColor" scope="foreground">Цвет даты</string>
     <string id="WColor" scope="foreground">Цвет погодного виджета</string>
