@@ -183,6 +183,11 @@
 		</settingConfig>
 	</setting>
 
+	<setting propertyKey="@Properties.WAutoColor"
+		title="@Strings.WAutoColor">
+		<settingConfig type="boolean" />
+	</setting>
+
 	<!--BATTERY -->
 	<setting propertyKey="@Properties.BatColor"
 		title="@Strings.BatColor">

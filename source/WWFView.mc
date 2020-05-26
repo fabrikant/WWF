@@ -297,7 +297,7 @@ class WWFView extends WatchUi.WatchFace {
     			:x => fields[:weather_wind_dir].x + fields[:weather_wind_dir].w,
     			:y => fields[:weather_wind_dir].y,
     			:h => h,
-    			:w => fields["F0"].w*2/3,
+    			:w => fields["F0"].w*0.6,
     			:type => :weather_wind_speed,
     			:id => :weather,
     			:fontId => :small,

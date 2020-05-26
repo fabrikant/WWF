@@ -37,6 +37,8 @@ class MemoryCache {
 		settings[:colors][:alarms] = Application.Properties.getValue("AlCol");
 
 		settings[:colors][:weather] = Application.Properties.getValue("WColor");
+		settings[:colors][:weatherAutoColors] = Application.Properties.getValue("WAutoColor");
+
 		settings[:colors][:battery] = Application.Properties.getValue("BatColor");
 		settings[:colors][:moon] = Application.Properties.getValue("MoonColor");
 
@@ -72,14 +74,76 @@ class MemoryCache {
 
 		weather = null;
 		weather = Application.Storage.getValue(STORAGE_KEY_WEATHER);
+		setWeatherAutoColors();
 		//////////////////////////////////////////////////////////
 		//DEBUG
 		//System.println("onReadWeather: "+weather);
 		//////////////////////////////////////////////////////////
 	}
 
-	function getSpeedUnitString(){
+	function setWeatherAutoColors(){
+		var defColor = settings[:colors][:weather];
+		settings[:autoColors] = {
+			:cloud => defColor,
+			:temp => defColor,
+			:wind => defColor
+		};
 
+		if (settings[:colors][:weatherAutoColors] && weather != null){
+			var backgroundColor = settings[:colors][:background1];
+
+			//temperature
+			var tmpValue = weather[STORAGE_KEY_TEMP];
+			if (tmpValue != null){
+				if (tmpValue <= -10){
+					settings[:autoColors][:temp] = backgroundColor != Graphics.COLOR_DK_BLUE ? Graphics.COLOR_DK_BLUE : Graphics.COLOR_BLUE;
+				} else if (tmpValue <= 0){
+					settings[:autoColors][:temp] = backgroundColor != Graphics.COLOR_BLUE ? Graphics.COLOR_BLUE : Graphics.COLOR_DK_BLUE;
+				} else if (tmpValue <= 10){
+					settings[:autoColors][:temp] = backgroundColor != Graphics.COLOR_GREEN ? Graphics.COLOR_GREEN : Graphics.COLOR_DK_GREEN;
+				} else if (tmpValue <= 15){
+					settings[:autoColors][:temp] = backgroundColor != Graphics.COLOR_DK_GREEN ? Graphics.COLOR_DK_GREEN : Graphics.COLOR_GREEN;
+				} else if (tmpValue <= 23){
+					settings[:autoColors][:temp] = backgroundColor != Graphics.COLOR_RED ? Graphics.COLOR_RED : Graphics.COLOR_ORANGE;
+				} else {
+					settings[:autoColors][:temp] = backgroundColor != Graphics.COLOR_DK_RED ? Graphics.COLOR_DK_RED : Graphics.COLOR_RED;
+				}
+			}
+
+			//wind speed
+			tmpValue = weather[STORAGE_KEY_WIND_SPEED];
+			if (tmpValue != null){
+				tmpValue = Tools.getBeaufort(tmpValue);
+				if (tmpValue <= 3){
+					settings[:autoColors][:wind] = backgroundColor != Graphics.COLOR_DK_GREEN ? Graphics.COLOR_DK_GREEN : Graphics.COLOR_GREEN;
+				} else if (tmpValue <= 4){
+					settings[:autoColors][:wind] = backgroundColor != Graphics.COLOR_BLUE ? Graphics.COLOR_BLUE : Graphics.COLOR_DK_BLUE;
+				} else if (tmpValue <= 5){
+					settings[:autoColors][:wind] = backgroundColor != Graphics.COLOR_DK_BLUE ? Graphics.COLOR_DK_BLUE : Graphics.COLOR_BLUE;
+				} else {
+					settings[:autoColors][:wind] = backgroundColor != Graphics.COLOR_PURPLE ? Graphics.COLOR_PURPLE : Graphics.COLOR_DK_RED;
+				}
+			}
+
+			//cloud
+			tmpValue = weather[STORAGE_KEY_ICON];
+			if (tmpValue != null){
+				if (tmpValue.equals("01d")){
+					settings[:autoColors][:cloud] = backgroundColor != Graphics.COLOR_RED ? Graphics.COLOR_RED : Graphics.COLOR_DK_RED;
+				} else if (tmpValue.equals("01n")){
+					settings[:autoColors][:cloud] = backgroundColor != Graphics.COLOR_ORANGE ? Graphics.COLOR_ORANGE : Graphics.COLOR_YELLOW;
+				} else if (tmpValue.equals("03d") || tmpValue.equals("03n")){
+					settings[:autoColors][:cloud] = backgroundColor != Graphics.COLOR_LT_GRAY ? Graphics.COLOR_LT_GRAY : Graphics.COLOR_WHITE;
+				} else if (tmpValue.equals("04d") || tmpValue.equals("04n")){
+					settings[:autoColors][:cloud] = backgroundColor != Graphics.COLOR_DK_GRAY ? Graphics.COLOR_DK_GRAY : Graphics.COLOR_BLACK;
+				} else if (tmpValue.equals("13d") || tmpValue.equals("13n")){
+					settings[:autoColors][:cloud] = backgroundColor != Graphics.COLOR_DK_BLUE ? Graphics.COLOR_DK_BLUE : Graphics.COLOR_BLUE;
+				}
+			}
+		}
+	}
+
+	function getSpeedUnitString(){
 		if (memoryCache.weather != null){
 			if (settings[:spped_unti_string] == null){
 				settings[:spped_unti_string] = Application.loadResource(Rez.Strings.SpeedUnitMSec);//meters/sec

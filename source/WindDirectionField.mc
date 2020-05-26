@@ -14,7 +14,7 @@ class WindDirectionField extends SimpleField{
 			return;
 		}
 		if (direction != -1){
-			dc.setColor(memoryCache.settings[:colors][id], Graphics.COLOR_TRANSPARENT);
+			dc.setColor(getColor(), Graphics.COLOR_TRANSPARENT);
 			var windDirection = windDirection(h*0.9, direction.toNumber(), [x, y]);
 			dc.fillPolygon(windDirection);
 		}

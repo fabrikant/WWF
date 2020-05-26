@@ -12,6 +12,7 @@
     <string id="TimeColor">Цвет времени</string>
     <string id="DateColor" scope="foreground">Цвет даты</string>
     <string id="WColor" scope="foreground">Цвет погодного виджета</string>
+    <string id="WAutoColor" scope="foreground">Использовать автоцвета для погодного виджета</string>
     <string id="BatColor" scope="foreground">Цвет батареи</string>
     <string id="MoonColor" scope="foreground">Цвет луны</string>
     

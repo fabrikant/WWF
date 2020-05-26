@@ -12,6 +12,8 @@
     <string id="TimeColor">Time Color</string>
     <string id="DateColor" scope="foreground">Date Color</string>
     <string id="WColor" scope="foreground">Weather widget color</string>
+    <string id="WAutoColor" scope="foreground">Use auto colors for weather widget</string>
+    
     <string id="BatColor" scope="foreground">Battery color</string>
     <string id="MoonColor" scope="foreground">Moon color</string>
     
@@ -97,8 +99,8 @@
 	<!--USE VERY!!!! SHOT STRING. its displayed on screen-->
 	<string id="SpeedUnitMSec" scope="foreground">m/s</string>
 	<string id="SpeedUnitKmH" scope="foreground">km/h</string>
-	<string id="SpeedUnitMileH" scope="foreground">ml/h</string>
-	<string id="SpeedUnitFtSec" scope="foreground">f/s</string>
+	<string id="SpeedUnitMileH" scope="foreground">mph</string>
+	<string id="SpeedUnitFtSec" scope="foreground">fps</string>
 	<string id="SpeedUnitBof" scope="foreground">bouf</string>
 
 </strings>
