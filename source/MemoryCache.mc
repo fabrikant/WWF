@@ -104,9 +104,17 @@ class MemoryCache {
 				} else if (tmpValue <= 15){
 					settings[:autoColors][:temp] = backgroundColor != Graphics.COLOR_DK_GREEN ? Graphics.COLOR_DK_GREEN : Graphics.COLOR_GREEN;
 				} else if (tmpValue <= 23){
-					settings[:autoColors][:temp] = backgroundColor != Graphics.COLOR_RED ? Graphics.COLOR_RED : Graphics.COLOR_ORANGE;
+					if (backgroundColor == Graphics.COLOR_BLACK){
+						settings[:autoColors][:temp] = Graphics.COLOR_YELLOW;
+					} else {
+						settings[:autoColors][:temp] = backgroundColor != Graphics.COLOR_RED ? Graphics.COLOR_RED : Graphics.COLOR_ORANGE;
+					}
 				} else {
-					settings[:autoColors][:temp] = backgroundColor != Graphics.COLOR_DK_RED ? Graphics.COLOR_DK_RED : Graphics.COLOR_RED;
+					if (backgroundColor == Graphics.COLOR_BLACK){
+						settings[:autoColors][:temp] = Graphics.COLOR_ORANGE;
+					} else {
+						settings[:autoColors][:temp] = backgroundColor != Graphics.COLOR_DK_RED ? Graphics.COLOR_DK_RED : Graphics.COLOR_RED;
+					}
 				}
 			}
 
@@ -128,9 +136,7 @@ class MemoryCache {
 			//cloud
 			tmpValue = weather[STORAGE_KEY_ICON];
 			if (tmpValue != null){
-				if (tmpValue.equals("01d")){
-					settings[:autoColors][:cloud] = backgroundColor != Graphics.COLOR_RED ? Graphics.COLOR_RED : Graphics.COLOR_DK_RED;
-				} else if (tmpValue.equals("01n")){
+				if (tmpValue.equals("01d") || tmpValue.equals("01n")){
 					settings[:autoColors][:cloud] = backgroundColor != Graphics.COLOR_ORANGE ? Graphics.COLOR_ORANGE : Graphics.COLOR_YELLOW;
 				} else if (tmpValue.equals("03d") || tmpValue.equals("03n")){
 					settings[:autoColors][:cloud] = backgroundColor != Graphics.COLOR_LT_GRAY ? Graphics.COLOR_LT_GRAY : Graphics.COLOR_WHITE;
