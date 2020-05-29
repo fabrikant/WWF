@@ -123,11 +123,19 @@ class MemoryCache {
 			if (tmpValue != null){
 				tmpValue = Tools.getBeaufort(tmpValue);
 				if (tmpValue <= 3){
-					settings[:autoColors][:wind] = backgroundColor != Graphics.COLOR_DK_GREEN ? Graphics.COLOR_DK_GREEN : Graphics.COLOR_GREEN;
+					if (backgroundColor == Graphics.COLOR_BLACK){
+						settings[:autoColors][:wind] = Graphics.COLOR_GREEN;
+					}else{
+						settings[:autoColors][:wind] = backgroundColor != Graphics.COLOR_DK_GREEN ? Graphics.COLOR_DK_GREEN : Graphics.COLOR_GREEN;
+					}
 				} else if (tmpValue <= 4){
 					settings[:autoColors][:wind] = backgroundColor != Graphics.COLOR_BLUE ? Graphics.COLOR_BLUE : Graphics.COLOR_DK_BLUE;
 				} else if (tmpValue <= 5){
-					settings[:autoColors][:wind] = backgroundColor != Graphics.COLOR_DK_BLUE ? Graphics.COLOR_DK_BLUE : Graphics.COLOR_BLUE;
+					if (backgroundColor == Graphics.COLOR_BLACK){
+						settings[:autoColors][:wind] = Graphics.COLOR_ORANGE;
+					}else{
+						settings[:autoColors][:wind] = backgroundColor != Graphics.COLOR_DK_BLUE ? Graphics.COLOR_DK_BLUE : Graphics.COLOR_BLUE;
+					}
 				} else {
 					settings[:autoColors][:wind] = backgroundColor != Graphics.COLOR_PURPLE ? Graphics.COLOR_PURPLE : Graphics.COLOR_DK_RED;
 				}
