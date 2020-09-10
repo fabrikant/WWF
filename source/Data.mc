@@ -226,6 +226,13 @@ module Data{
 				value = info.currentHeartRate;
 			}
 		}
+		if(value == null){
+			var iter = ActivityMonitor.getHeartRateHistory(1, true);
+			var sample = iter.next();
+			if (sample != null){
+				value = sample.heartRate;
+			}
+		}
 		if (value == null){
 			if (Toybox has :SensorHistory){
 				if (Toybox.SensorHistory has :getHeartRateHistory){

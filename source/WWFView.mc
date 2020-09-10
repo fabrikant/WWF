@@ -485,13 +485,22 @@ class WWFView extends WatchUi.WatchFace {
 
 	function onPartialUpdate(dc){
 
+		var fieldId = :sec;
 		if (memoryCache.settings[:time][:sec]) {
-			var fieldId = :sec;
-			var oldValue = memoryCache.oldValues[fieldId];
-			var value = Data.getValueByFieldType(fields[fieldId].type, oldValue);
-			if (!value.equals(oldValue)){
-				fields[fieldId].draw(dc, value);
-				memoryCache.oldValues[fieldId] = value;
+			var value = Data.getSeconds();
+			fields[fieldId].draw(dc, value);
+			memoryCache.oldValues[fieldId] = value;
+		}
+		
+		for (var i = 0; i < 6; i++){
+			fieldId = "F"+i;
+			if (fields[fieldId].type == HR){
+				var oldValue = memoryCache.oldValues[fieldId];
+				var value = Data.getHeartRate();
+				if (!value.equals(oldValue)){
+					fields[fieldId].draw(dc, value);
+					memoryCache.oldValues[fieldId] = value;
+				}
 			}
 		}
 	}
