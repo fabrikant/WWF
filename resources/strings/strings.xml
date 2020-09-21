@@ -25,6 +25,7 @@
 	<string id="DF" scope="foreground">Date format</string>
 	<string id="DFHELP" scope="foreground">%w - day of week number, %W - day of week name, %d - day 1 digits (less than 10), %D - day 2 digits, %m - month number 2 digits, %M - month name, %y - year 2 digits, %Y - year 4 digits, %DN - day of year, %WN - week of year ISO 8601</string>
 	<string id="Sec" scope="foreground">Seconds</string>
+	<string id="HREverySec" scope="foreground">Update HR every second</string>
 	
 	<!--SECOND TIME -->
 	<string id="T1TZ" scope="foreground">Time zone ±UTC (minutes)</string>

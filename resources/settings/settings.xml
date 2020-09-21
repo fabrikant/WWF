@@ -33,6 +33,11 @@
 		<settingConfig type="boolean" />
 	</setting>
 
+	<setting propertyKey="@Properties.HREverySec"
+		title="@Strings.HREverySec">
+		<settingConfig type="boolean" />
+	</setting>
+
 	<!--DATE FORMAT -->
 	<setting propertyKey="@Properties.DF"
 		title="@Strings.DF" prompt="@Strings.DFHELP">

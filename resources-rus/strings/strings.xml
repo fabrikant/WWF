@@ -23,6 +23,7 @@
 	<string id="DF" scope="foreground">Формат даты</string>
 	<string id="DFHELP" scope="foreground">%w - номер дня недели, %W - наименование дня недели, %d - день месяца 1 знак (если меньше 10), %D - день месяца два знака, %m - номер месяца 2 знака, %M - наименование месяца, %y - год 2 знака, %Y - год 4 знака, %DN - день года, %WN - номер недели ISO 8601</string>
 	<string id="Sec" scope="foreground">Секунды</string>
+	<string id="HREverySec" scope="foreground">Обновлять ЧСС каждую секунду</string>
 	
 	<!--SECOND TIME -->
 	<string id="T1TZ" scope="foreground">Сдвиг от UTC в минутах для второго ч. пояса</string>
