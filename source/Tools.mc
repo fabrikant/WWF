@@ -16,9 +16,9 @@ module Tools {
 	function weightToString(rawData){
 		var value = 0.0;
 		if (System.getDeviceSettings().weightUnits ==  System.UNIT_STATUTE){ /*foot*/
-			value = rawData/454;
+			value = rawData/454.0;
 		}else{
-			value = rawData/1000;
+			value = rawData/1000.0;
 		}
 		return value.format("%.1f");
 	}

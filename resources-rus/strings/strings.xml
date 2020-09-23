@@ -64,6 +64,11 @@
 	<string id="FIELD_TYPE_SUNRISE" scope="foreground">Восход</string>
 	<string id="FIELD_TYPE_SUNSET" scope="foreground">Закат</string>
 	<string id="FIELD_TYPE_TIME1" scope="foreground">Время в другом ч. поясе</string>
+	<string id="FIELD_TYPE_ACTIVE_DAY" scope="foreground">Время активности за день</string>
+	<string id="FIELD_TYPE_ACTIVE_WEEK" scope="foreground">Время активности за неделю</string>
+	<string id="FIELD_TYPE_O2" scope="foreground">Уровень насыщ. кислородом</string>
+	<string id="FIELD_TYPE_SOLAR_CHARGE" scope="foreground">Эффективность солнечной зарядки</string>
+	<string id="FIELD_TYPE_WEIGHT" scope="foreground">Вес</string>
 
 	<!--FIELD NAMES -->
 	<string id="F0" scope="foreground">Поле 0</string>
