@@ -66,6 +66,11 @@
 	<string id="FIELD_TYPE_SUNRISE" scope="foreground">Sunrise</string>
 	<string id="FIELD_TYPE_SUNSET" scope="foreground">Sunset</string>
 	<string id="FIELD_TYPE_TIME1" scope="foreground">Second time</string>
+	<string id="FIELD_TYPE_ACTIVE_DAY" scope="foreground">Active time for the current day</string>
+	<string id="FIELD_TYPE_ACTIVE_WEEK" scope="foreground">Active time for the current week</string>
+	<string id="FIELD_TYPE_O2" scope="foreground">Oxygen saturation</string>
+	<string id="FIELD_TYPE_SOLAR_CHARGE" scope="foreground">Solar charge efficiency</string>
+	<string id="FIELD_TYPE_WEIGHT" scope="foreground">Weight</string>
 
 	<!--FIELD NAMES -->
 	<string id="F0" scope="foreground">Field 0</string>

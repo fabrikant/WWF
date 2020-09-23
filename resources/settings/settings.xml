@@ -312,6 +312,11 @@
 			<listEntry value="9">@Strings.FIELD_TYPE_SUNRISE</listEntry>
 			<listEntry value="10">@Strings.FIELD_TYPE_SUNSET</listEntry>
 			<listEntry value="11">@Strings.FIELD_TYPE_TIME1</listEntry>
+			<listEntry value="13">@Strings.FIELD_TYPE_ACTIVE_DAY</listEntry>
+			<listEntry value="14">@Strings.FIELD_TYPE_ACTIVE_WEEK</listEntry>
+			<listEntry value="15">@Strings.FIELD_TYPE_O2</listEntry>
+			<listEntry value="16">@Strings.FIELD_TYPE_SOLAR_CHARGE</listEntry>
+			<listEntry value="17">@Strings.FIELD_TYPE_WEIGHT</listEntry>
 			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
 		</settingConfig>
 	</setting>
@@ -351,6 +356,11 @@
 			<listEntry value="9">@Strings.FIELD_TYPE_SUNRISE</listEntry>
 			<listEntry value="10">@Strings.FIELD_TYPE_SUNSET</listEntry>
 			<listEntry value="11">@Strings.FIELD_TYPE_TIME1</listEntry>
+			<listEntry value="13">@Strings.FIELD_TYPE_ACTIVE_DAY</listEntry>
+			<listEntry value="14">@Strings.FIELD_TYPE_ACTIVE_WEEK</listEntry>
+			<listEntry value="15">@Strings.FIELD_TYPE_O2</listEntry>
+			<listEntry value="16">@Strings.FIELD_TYPE_SOLAR_CHARGE</listEntry>
+			<listEntry value="17">@Strings.FIELD_TYPE_WEIGHT</listEntry>
 			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
 		</settingConfig>
 	</setting>
@@ -390,6 +400,11 @@
 			<listEntry value="9">@Strings.FIELD_TYPE_SUNRISE</listEntry>
 			<listEntry value="10">@Strings.FIELD_TYPE_SUNSET</listEntry>
 			<listEntry value="11">@Strings.FIELD_TYPE_TIME1</listEntry>
+			<listEntry value="13">@Strings.FIELD_TYPE_ACTIVE_DAY</listEntry>
+			<listEntry value="14">@Strings.FIELD_TYPE_ACTIVE_WEEK</listEntry>
+			<listEntry value="15">@Strings.FIELD_TYPE_O2</listEntry>
+			<listEntry value="16">@Strings.FIELD_TYPE_SOLAR_CHARGE</listEntry>
+			<listEntry value="17">@Strings.FIELD_TYPE_WEIGHT</listEntry>
 			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
 		</settingConfig>
 	</setting>
@@ -429,6 +444,11 @@
 			<listEntry value="9">@Strings.FIELD_TYPE_SUNRISE</listEntry>
 			<listEntry value="10">@Strings.FIELD_TYPE_SUNSET</listEntry>
 			<listEntry value="11">@Strings.FIELD_TYPE_TIME1</listEntry>
+			<listEntry value="13">@Strings.FIELD_TYPE_ACTIVE_DAY</listEntry>
+			<listEntry value="14">@Strings.FIELD_TYPE_ACTIVE_WEEK</listEntry>
+			<listEntry value="15">@Strings.FIELD_TYPE_O2</listEntry>
+			<listEntry value="16">@Strings.FIELD_TYPE_SOLAR_CHARGE</listEntry>
+			<listEntry value="17">@Strings.FIELD_TYPE_WEIGHT</listEntry>
 			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
 		</settingConfig>
 	</setting>
@@ -468,6 +488,11 @@
 			<listEntry value="9">@Strings.FIELD_TYPE_SUNRISE</listEntry>
 			<listEntry value="10">@Strings.FIELD_TYPE_SUNSET</listEntry>
 			<listEntry value="11">@Strings.FIELD_TYPE_TIME1</listEntry>
+			<listEntry value="13">@Strings.FIELD_TYPE_ACTIVE_DAY</listEntry>
+			<listEntry value="14">@Strings.FIELD_TYPE_ACTIVE_WEEK</listEntry>
+			<listEntry value="15">@Strings.FIELD_TYPE_O2</listEntry>
+			<listEntry value="16">@Strings.FIELD_TYPE_SOLAR_CHARGE</listEntry>
+			<listEntry value="17">@Strings.FIELD_TYPE_WEIGHT</listEntry>
 			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
 		</settingConfig>
 	</setting>
@@ -507,6 +532,11 @@
 			<listEntry value="9">@Strings.FIELD_TYPE_SUNRISE</listEntry>
 			<listEntry value="10">@Strings.FIELD_TYPE_SUNSET</listEntry>
 			<listEntry value="11">@Strings.FIELD_TYPE_TIME1</listEntry>
+			<listEntry value="13">@Strings.FIELD_TYPE_ACTIVE_DAY</listEntry>
+			<listEntry value="14">@Strings.FIELD_TYPE_ACTIVE_WEEK</listEntry>
+			<listEntry value="15">@Strings.FIELD_TYPE_O2</listEntry>
+			<listEntry value="16">@Strings.FIELD_TYPE_SOLAR_CHARGE</listEntry>
+			<listEntry value="17">@Strings.FIELD_TYPE_WEIGHT</listEntry>
 			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
 		</settingConfig>
 	</setting>

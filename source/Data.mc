@@ -7,6 +7,7 @@ using Toybox.Activity;
 using Toybox.ActivityMonitor;
 using Toybox.SensorHistory;
 using Toybox.Math;
+using Toybox.UserProfile;
 
 module Data{
 
@@ -83,6 +84,16 @@ module Data{
 			res = getSecondTime();
 		}else if (filedType == EMPTY){
 			res = "";
+		}else if (filedType == ACTIVE_DAY){
+			res = getActive(:activeMinutesDay);
+		}else if (filedType == ACTIVE_WEEK){
+			res = getActive(:activeMinutesWeek);
+		}else if (filedType == O2){
+			res = getOxygenSaturation();
+		}else if (filedType == SOLAR_CHARGE){
+			res = getSolarCharge();
+		}else if (filedType == WEIGHT){
+			res = getWeight();
 
 		///////////////////////////////////////////////////////////////////////
 		//DATA FIELDS IMAGES
@@ -112,6 +123,16 @@ module Data{
 			res = "q";
 		}else if (filedType == PICTURE + EMPTY){
 			res = "";
+		}else if (filedType == PICTURE + ACTIVE_DAY){
+			res = "r";
+		}else if (filedType == PICTURE + ACTIVE_WEEK){
+			res = "r";
+		}else if (filedType == PICTURE + O2){
+			res = "z";
+		}else if (filedType == PICTURE + SOLAR_CHARGE){
+			res = "v";
+		}else if (filedType == PICTURE + WEIGHT){
+			res = "w";
 
 		///////////////////////////////////////////////////////////////////////
 		//WEATHER
@@ -572,5 +593,68 @@ module Data{
 		//res = (61676-day).toChar();
 		return res;
 	}
+	
+	///////////////////////////////////////////////////////////////////////////
+	function getWeight(){
+		var g = UserProfile.getProfile().weight;
+		return Tools.weightToString(g);
+	}
+	
+	///////////////////////////////////////////////////////////////////////////
+	function getActive(type){
+		var res = 0;
+		var min = ActivityMonitor.getInfo()[type];
+		if (min != null){
+			res = min.total;
+		}
+		return Tools.minutesToString(res);
+	}
+	
+	///////////////////////////////////////////////////////////////////////////
+	function getSolarCharge(){
+		var res = "n/a";
+		if ( System.Stats has :solarIntensity){
+			var stats = System.getSystemStats().solarIntensity;
+			if (stats != null){
+				res = stats.format("%d")+"%"; 
+			}
+		}
+		return res;
+	}
+	
+	///////////////////////////////////////////////////////////////////////////
+	function getOxygenSaturation(){
+	
+		var value = null;
+		var info = Activity.getActivityInfo();
+		if (info != null){
+			if (info has :currentOxygenSaturation){
+				if (info.currentOxygenSaturation != null){
+					value = info.currentOxygenSaturation.format("%d")+"%";
+				}
+			}
+		}
 
+		if (value == null){
+			if (Toybox has :SensorHistory){
+				if (Toybox.SensorHistory has :getOxygenSaturationHistory){
+					var iter = SensorHistory.getOxygenSaturationHistory({:period =>1, :order => SensorHistory.ORDER_NEWEST_FIRST});
+					if (iter != null){
+						var sample = iter.next();
+						if (sample != null){
+							if (sample.data != null){
+								value = sample.data.format("%d")+"%";
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		if (value == null){
+			value = "n/a";
+		}
+		return value;
+	}
+	
 }

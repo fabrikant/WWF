@@ -6,6 +6,22 @@ using Toybox.Position;
 
 module Tools {
 
+	///////////////////////////////////////////////////////////////////////////
+	function minutesToString(rawData){
+		var hour = (rawData / 60).toNumber();
+		return Toybox.Lang.format("$1$:$2$", [hour.format("%02d"), (rawData-hour*60).format("%02d")]);
+	}
+	
+	///////////////////////////////////////////////////////////////////////////
+	function weightToString(rawData){
+		var value = 0.0;
+		if (System.getDeviceSettings().weightUnits ==  System.UNIT_STATUTE){ /*foot*/
+			value = rawData/454;
+		}else{
+			value = rawData/1000;
+		}
+		return value.format("%.1f");
+	}
 
 	///////////////////////////////////////////////////////////////////////////
 	function speedToString(rawData){
