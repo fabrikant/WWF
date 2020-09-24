@@ -65,8 +65,8 @@ class MemoryCache {
 	function readGeolocation(){
 		//////////////////////////////////////////////////////////
 		//DEBUG
-//		Application.Storage.setValue("Lat", 54);
-//		Application.Storage.setValue("Lon", 73);
+//		Application.Storage.setValue("Lat", 55.03325);
+//		Application.Storage.setValue("Lon", 73.449715);
 		//////////////////////////////////////////////////////////
 		settings[:geoLocation] = [Application.Storage.getValue("Lat"), Application.Storage.getValue("Lon")];
 	}
