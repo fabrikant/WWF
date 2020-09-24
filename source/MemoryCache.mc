@@ -96,68 +96,115 @@ class MemoryCache {
 			//temperature
 			var tmpValue = weather[STORAGE_KEY_TEMP];
 			if (tmpValue != null){
-				if (tmpValue <= -10){
-					settings[:autoColors][:temp] = backgroundColor != Graphics.COLOR_DK_BLUE ? Graphics.COLOR_DK_BLUE : Graphics.COLOR_BLUE;
-				} else if (tmpValue <= 0){
-					settings[:autoColors][:temp] = backgroundColor != Graphics.COLOR_BLUE ? Graphics.COLOR_BLUE : Graphics.COLOR_DK_BLUE;
-				} else if (tmpValue <= 10){
-					settings[:autoColors][:temp] = backgroundColor != Graphics.COLOR_GREEN ? Graphics.COLOR_GREEN : Graphics.COLOR_DK_GREEN;
-				} else if (tmpValue <= 15){
-					settings[:autoColors][:temp] = backgroundColor != Graphics.COLOR_DK_GREEN ? Graphics.COLOR_DK_GREEN : Graphics.COLOR_GREEN;
-				} else if (tmpValue <= 23){
-					if (backgroundColor == Graphics.COLOR_BLACK){
-						settings[:autoColors][:temp] = Graphics.COLOR_YELLOW;
-					} else {
-						settings[:autoColors][:temp] = backgroundColor != Graphics.COLOR_RED ? Graphics.COLOR_RED : Graphics.COLOR_ORANGE;
-					}
-				} else {
-					if (backgroundColor == Graphics.COLOR_BLACK){
-						settings[:autoColors][:temp] = Graphics.COLOR_ORANGE;
-					} else {
-						settings[:autoColors][:temp] = backgroundColor != Graphics.COLOR_DK_RED ? Graphics.COLOR_DK_RED : Graphics.COLOR_RED;
-					}
+				if (tmpValue > 30){
+					settings[:autoColors][:temp] = Graphics.COLOR_PURPLE;
+				}else if (tmpValue > 25){
+					settings[:autoColors][:temp] = Graphics.COLOR_DK_RED;
+				}else if (tmpValue > 20){
+					settings[:autoColors][:temp] = Graphics.COLOR_RED;
+				}else if (tmpValue > 15){
+					settings[:autoColors][:temp] = Graphics.COLOR_DK_GREEN;
+				}else if (tmpValue > 10){
+					settings[:autoColors][:temp] = Graphics.COLOR_GREEN;
+				}else if (tmpValue > 5){
+					settings[:autoColors][:temp] = Graphics.COLOR_YELLOW;
+				}else if (tmpValue > 0){
+					settings[:autoColors][:temp] = Graphics.COLOR_WHITE;
+				}else if (tmpValue > -10){
+					settings[:autoColors][:temp] = Graphics.COLOR_BLUE;
+				}else{
+					settings[:autoColors][:temp] = Graphics.COLOR_DK_BLUE;
 				}
+				settings[:autoColors][:temp] = altColor(settings[:autoColors][:temp], backgroundColor);
 			}
 
 			//wind speed
 			tmpValue = weather[STORAGE_KEY_WIND_SPEED];
 			if (tmpValue != null){
 				tmpValue = Tools.getBeaufort(tmpValue);
-				if (tmpValue <= 3){
-					if (backgroundColor == Graphics.COLOR_BLACK){
-						settings[:autoColors][:wind] = Graphics.COLOR_GREEN;
-					}else{
-						settings[:autoColors][:wind] = backgroundColor != Graphics.COLOR_DK_GREEN ? Graphics.COLOR_DK_GREEN : Graphics.COLOR_GREEN;
-					}
-				} else if (tmpValue <= 4){
-					settings[:autoColors][:wind] = backgroundColor != Graphics.COLOR_BLUE ? Graphics.COLOR_BLUE : Graphics.COLOR_DK_BLUE;
-				} else if (tmpValue <= 5){
-					if (backgroundColor == Graphics.COLOR_BLACK){
-						settings[:autoColors][:wind] = Graphics.COLOR_ORANGE;
-					}else{
-						settings[:autoColors][:wind] = backgroundColor != Graphics.COLOR_DK_BLUE ? Graphics.COLOR_DK_BLUE : Graphics.COLOR_BLUE;
-					}
-				} else {
-					settings[:autoColors][:wind] = backgroundColor != Graphics.COLOR_PURPLE ? Graphics.COLOR_PURPLE : Graphics.COLOR_DK_RED;
+				if (tmpValue > 9){
+					settings[:autoColors][:wind] = Graphics.COLOR_PURPLE;
+				}else if (tmpValue > 7){
+					settings[:autoColors][:wind] = Graphics.COLOR_DK_RED;
+				}else if (tmpValue > 6){
+					settings[:autoColors][:wind] = Graphics.COLOR_RED;
+				}else if (tmpValue > 5){
+					settings[:autoColors][:wind] = Graphics.COLOR_DK_BLUE;
+				}else if (tmpValue > 4){
+					settings[:autoColors][:wind] = Graphics.COLOR_BLUE;
+				}else if (tmpValue > 3){
+					settings[:autoColors][:wind] = Graphics.COLOR_DK_GREEN;
+				}else if (tmpValue > 2){
+					settings[:autoColors][:wind] = Graphics.COLOR_GREEN;
+				}else{
+					settings[:autoColors][:wind] = Graphics.COLOR_LT_GRAY;
 				}
+				settings[:autoColors][:wind] = altColor(settings[:autoColors][:wind], backgroundColor);
 			}
 
 			//cloud
 			tmpValue = weather[STORAGE_KEY_ICON];
 			if (tmpValue != null){
 				if (tmpValue.equals("01d") || tmpValue.equals("01n")){
-					settings[:autoColors][:cloud] = backgroundColor != Graphics.COLOR_ORANGE ? Graphics.COLOR_ORANGE : Graphics.COLOR_YELLOW;
-				} else if (tmpValue.equals("03d") || tmpValue.equals("03n")){
-					settings[:autoColors][:cloud] = backgroundColor != Graphics.COLOR_LT_GRAY ? Graphics.COLOR_LT_GRAY : Graphics.COLOR_WHITE;
-				} else if (tmpValue.equals("04d") || tmpValue.equals("04n")){
-					settings[:autoColors][:cloud] = backgroundColor != Graphics.COLOR_DK_GRAY ? Graphics.COLOR_DK_GRAY : Graphics.COLOR_BLACK;
+					settings[:autoColors][:cloud] = Graphics.COLOR_ORANGE;
 				} else if (tmpValue.equals("13d") || tmpValue.equals("13n")){
-					settings[:autoColors][:cloud] = backgroundColor != Graphics.COLOR_DK_BLUE ? Graphics.COLOR_DK_BLUE : Graphics.COLOR_BLUE;
+					settings[:autoColors][:cloud] = Graphics.COLOR_DK_BLUE;
 				}
+				settings[:autoColors][:cloud] = altColor(settings[:autoColors][:cloud], backgroundColor);
 			}
 		}
 	}
 
+	function altColor(color, backgroundColor){
+		var res = color;
+		if (color == backgroundColor){
+			if (color == Graphics.COLOR_PURPLE){
+				res = Graphics.COLOR_PINK;
+			}else if (color == Graphics.COLOR_PINK){
+				res = Graphics.COLOR_PURPLE;
+			}else if (color == Graphics.COLOR_WHITE){
+				res = Graphics.COLOR_LT_GRAY;
+			}else if (color == Graphics.COLOR_LT_GRAY){
+				res = Graphics.COLOR_DK_GRAY;
+			}else if (color == Graphics.COLOR_DK_GRAY){
+				res = Graphics.COLOR_LT_GRAY;
+			}else if (color == Graphics.COLOR_GREEN){
+				res = Graphics.COLOR_DK_GREEN;
+			}else if (color == Graphics.COLOR_DK_GREEN){
+				res = Graphics.COLOR_GREEN;
+			}else if (color == Graphics.COLOR_RED){
+				res = Graphics.COLOR_DK_RED;
+			}else if (color == Graphics.COLOR_DK_RED){
+				res = Graphics.COLOR_RED;
+			}else if (color == Graphics.COLOR_YELLOW){
+				res = Graphics.COLOR_ORANGE;
+			}else if (color == Graphics.COLOR_ORANGE){
+				res = Graphics.COLOR_YELLOW;
+			}else if (color == Graphics.COLOR_BLACK){
+				res = Graphics.COLOR_DK_GRAY;
+			}else if (color == Graphics.COLOR_BLUE){
+				res = Graphics.COLOR_DK_BLUE;
+			}else if (color == Graphics.COLOR_DK_BLUE){
+				res = Graphics.COLOR_BLUE;
+			}
+		}
+		
+		if (backgroundColor == Graphics.COLOR_BLACK){
+			if (res == Graphics.COLOR_DK_BLUE){
+				res = Graphics.COLOR_BLUE;
+			}else if (res == Graphics.COLOR_DK_RED){
+				res = Graphics.COLOR_RED;
+			}
+		}else if (backgroundColor == Graphics.COLOR_WHITE){
+			if (res == Graphics.COLOR_YELLOW){
+				res = Graphics.COLOR_ORANGE;			
+			}else if (res == Graphics.COLOR_LT_GRAY){
+				res = Graphics.COLOR_DK_GRAY;			
+			}
+		}
+		return res;
+	}
+	
 	function getSpeedUnitString(){
 		if (memoryCache.weather != null){
 			if (settings[:spped_unti_string] == null){
@@ -179,6 +226,7 @@ class MemoryCache {
 		}
 	}
 
+	
 	function getFieldType(id){
 		return Application.Properties.getValue(id);
 	}
