@@ -13,6 +13,7 @@
     <string id="DateColor" scope="foreground">Цвет даты</string>
     <string id="WColor" scope="foreground">Цвет погодного виджета</string>
     <string id="WAutoColor" scope="foreground">Использовать автоцвета для погодного виджета</string>
+    <string id="WShowHumPr" scope="foreground">Показывать влажность и давление</string>
     <string id="BatColor" scope="foreground">Цвет батареи</string>
     <string id="MoonColor" scope="foreground">Цвет луны</string>
     
@@ -106,5 +107,13 @@
 	<string id="SpeedUnitMileH" scope="foreground">мл/ч</string>
 	<string id="SpeedUnitFtSec" scope="foreground">ф/с</string>
 	<string id="SpeedUnitBof" scope="foreground">бал.</string>
+	
+	<!--Settings view -->
+	<string id="SettingsMenu" scope="foreground">Настройки</string>
+	<string id="SettingsSave" scope="foreground">Сохранить</string>
+	<string id="SettingsLoad" scope="foreground">Применить...</string>
+	<string id="SettingsRemove" scope="foreground">Удалить...</string>
+	<string id="SettingsLoadMenu" scope="foreground">Применить</string>
+	<string id="SettingsRemoveMenu" scope="foreground">Удалить</string>
 
 </strings>

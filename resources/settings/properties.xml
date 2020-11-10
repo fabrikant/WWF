@@ -17,6 +17,7 @@
     <property id="DateColor" type="number">0xFFFFFF</property>
     <property id="WColor" type="number">0xFFFFFF</property>
     <property id="WAutoColor" type="boolean">false</property>
+    <property id="WShowHumPr" type="boolean">true</property>
     
     <property id="BatColor" type="number">0xFFFFFF</property>
     <property id="MoonColor" type="number">0xFF5500</property>

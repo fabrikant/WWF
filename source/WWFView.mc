@@ -40,6 +40,7 @@ enum{
 	STORAGE_KEY_WEATHER,
 	STORAGE_KEY_BACKGROUND_Y1,
 	STORAGE_KEY_BACKGROUND_Y2,
+	STORAGE_KEY_SETTINGS,
 
 	PICTURE = 1000
 }
@@ -65,7 +66,12 @@ class WWFView extends WatchUi.WatchFace {
 
     // Load your resources here
     function onLayout(dc) {
-
+    	//createFields(dc);
+	}
+	
+	function createFields(dc){
+		
+		fields = {};
 		///////////////////////////////////////////////////////////////////////
 		//TIME
 		var font = fonts[:time];
@@ -322,59 +328,68 @@ class WWFView extends WatchUi.WatchFace {
     			:justify => Graphics.TEXT_JUSTIFY_CENTER
     		}
     	);
-
-         fields[:weather_hum_picture] = new SimpleField(
-    		{
-    			:x => fields[:weather_wind_speed].x+fields[:weather_wind_speed].w,
-    			:y => fields[:weather_wind_speed].y,
-    			:h => fields["P0"].h,
-    			:w => fields["P0"].w,
-    			:type => :weather_hum_picture,
-    			:id => :weather,
-    			:fontId => :picture,
-    			:justify => Graphics.TEXT_JUSTIFY_CENTER
-    		}
-    	);
-
-        fields[:weather_pressure_picture] = new SimpleField(
-    		{
-    			:x => fields[:weather_hum_picture].x,
-    			:y => fields[:weather_hum_picture].y + fields[:weather_hum_picture].h,
-    			:h => fields[:weather_hum_picture].h,
-    			:w => fields[:weather_hum_picture].w,
-    			:type => :weather_pressure_picture,
-    			:id => :weather,
-    			:fontId => :picture,
-    			:justify => Graphics.TEXT_JUSTIFY_CENTER
-    		}
-    	);
-
-         fields[:weather_hum] = new SimpleField(
-    		{
-    			:x => fields[:weather_hum_picture].x+fields[:weather_hum_picture].w,
-    			:y => fields[:weather_hum_picture].y,
-    			:h => fields["F0"].h,
-    			:w => fields["F0"].w,
-    			:type => :weather_hum,
-    			:id => :weather,
-    			:fontId => :small,
-    			:justify => Graphics.TEXT_JUSTIFY_LEFT
-    		}
-    	);
-
-        fields[:weather_pressure] = new SimpleField(
-    		{
-    			:x => fields[:weather_hum].x,
-    			:y => fields[:weather_hum_picture].y+fields[:weather_hum_picture].h,
-    			:h => fields[:weather_hum].h,
-    			:w => fields[:weather_hum].w,
-    			:type => :weather_pressure,
-    			:id => :weather,
-    			:fontId => :small,
-    			:justify => Graphics.TEXT_JUSTIFY_LEFT
-    		}
-    	);
-
+		
+		if ( Application.Properties.getValue("WShowHumPr")){
+	        fields[:weather_hum_picture] = new SimpleField(
+	    		{
+	    			:x => fields[:weather_wind_speed].x+fields[:weather_wind_speed].w,
+	    			:y => fields[:weather_wind_speed].y,
+	    			:h => fields["P0"].h,
+	    			:w => fields["P0"].w,
+	    			:type => :weather_hum_picture,
+	    			:id => :weather,
+	    			:fontId => :picture,
+	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
+	    		}
+	    	);
+	
+	        fields[:weather_pressure_picture] = new SimpleField(
+	    		{
+	    			:x => fields[:weather_hum_picture].x,
+	    			:y => fields[:weather_hum_picture].y + fields[:weather_hum_picture].h,
+	    			:h => fields[:weather_hum_picture].h,
+	    			:w => fields[:weather_hum_picture].w,
+	    			:type => :weather_pressure_picture,
+	    			:id => :weather,
+	    			:fontId => :picture,
+	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
+	    		}
+	    	);
+	
+	         fields[:weather_hum] = new SimpleField(
+	    		{
+	    			:x => fields[:weather_hum_picture].x+fields[:weather_hum_picture].w,
+	    			:y => fields[:weather_hum_picture].y,
+	    			:h => fields["F0"].h,
+	    			:w => fields["F0"].w,
+	    			:type => :weather_hum,
+	    			:id => :weather,
+	    			:fontId => :small,
+	    			:justify => Graphics.TEXT_JUSTIFY_LEFT
+	    		}
+	    	);
+	
+	        fields[:weather_pressure] = new SimpleField(
+	    		{
+	    			:x => fields[:weather_hum].x,
+	    			:y => fields[:weather_hum_picture].y+fields[:weather_hum_picture].h,
+	    			:h => fields[:weather_hum].h,
+	    			:w => fields[:weather_hum].w,
+	    			:type => :weather_pressure,
+	    			:id => :weather,
+	    			:fontId => :small,
+	    			:justify => Graphics.TEXT_JUSTIFY_LEFT
+	    		}
+	    	);
+		}else{//dont show pressure and hummidity
+			var shiftX = (dc.getWidth() - fields[:weather_picture][:x] - fields[:weather_wind_speed_unit][:x] - fields[:weather_wind_speed_unit][:w])/2;
+			fields[:weather_picture][:x] += shiftX; 
+			fields[:weather_temp][:x] += shiftX;
+			fields[:weather_wind_dir][:x] += shiftX; 
+			fields[:weather_wind_speed][:x] += shiftX; 
+			fields[:weather_wind_speed_unit][:x] += shiftX;
+		
+		}
 		///////////////////////////////////////////////////////////////////////
 		//BATTERY
 		h = fields["F0"].h;
@@ -382,7 +397,7 @@ class WWFView extends WatchUi.WatchFace {
         fields[:battery_picture] = new BatteryField(
     		{
     			:x => System.getDeviceSettings().screenWidth/2-w,
-    			:y => fields[:weather_hum].y -h,
+    			:y => fields[:weather_picture].y -h,
     			:h => h,
     			:w => w,
     			:type => :battery_picture,
@@ -456,6 +471,7 @@ class WWFView extends WatchUi.WatchFace {
     function onUpdate(dc) {
 
 		if (memoryCache.oldValues[:isStarted] != true){
+			createFields(dc);
 			drawBackground(dc);
 			memoryCache.oldValues[:isStarted] = false;
 		}
@@ -512,10 +528,8 @@ class WWFView extends WatchUi.WatchFace {
 		}
 	}
 
-    // Called when this View is removed from the screen. Save the
-    // state of this View here. This includes freeing resources from
-    // memory.
     function onHide() {
+    	memoryCache.reload();
     }
 
     // The user has just looked at their watch. Timers and animations may be started here.

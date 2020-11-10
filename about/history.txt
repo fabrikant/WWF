@@ -1,0 +1,9 @@
+1.3.0 - Added the ability to save and load settings for 3.2.x devices.
+Now you can turn off pressure and humidity in the weather widget
+Fixed rendering when returning from a widget 
+1.2.1 - add new fields: Oxygen saturation, Active time for the current day, Active time for the current week, Solar charge efficiency, Weight.
+1.1.5 - Update HR every second (optional).
+1.1.0 - Now you can turn on the colors in the weather widget. The colors depend on the weather.
+1.0.10 - Disabled Russian language. Garmin instead of Russian letters shows the symbol '? '
+1.0.9 - If you changed the background color in the settings, you will have to set it again after the update.
+Now the background consists of 3 areas. Each can be configured separately.

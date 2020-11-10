@@ -3,6 +3,7 @@ using Toybox.Time.Gregorian;
 using Toybox.Math;
 using Toybox.System;
 using Toybox.Position;
+using Toybox.Lang;
 
 module Tools {
 
@@ -84,6 +85,15 @@ module Tools {
 			f = "%02d";
 		}
 		return hours.format(f)+":"+info.min.format("%02d");
+	}
+	
+	///////////////////////////////////////////////////////////////////////////
+	function momentToDateTimeString(moment){
+		var info = Time.Gregorian.info(moment, Time.FORMAT_MEDIUM);
+		return Lang.format(
+		    "$1$ $2$ $3$ $4$:$5$:$6$",
+		    [info.month, info.day, info.year, info.hour.format("%02d"), info.min.format("%02d"), info.sec.format("%02d")]
+		);
 	}
 
 	///////////////////////////////////////////////////////////////////////////
@@ -289,4 +299,5 @@ module Tools {
 	    return v;
 	}
 
+	 
 }

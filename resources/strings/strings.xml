@@ -13,6 +13,7 @@
     <string id="DateColor" scope="foreground">Date Color</string>
     <string id="WColor" scope="foreground">Weather widget color</string>
     <string id="WAutoColor" scope="foreground">Use auto colors for weather widget</string>
+    <string id="WShowHumPr" scope="foreground">Show humidity and pressure</string>
     
     <string id="BatColor" scope="foreground">Battery color</string>
     <string id="MoonColor" scope="foreground">Moon color</string>
@@ -109,4 +110,12 @@
 	<string id="SpeedUnitFtSec" scope="foreground">fps</string>
 	<string id="SpeedUnitBof" scope="foreground">bouf</string>
 
+	<!--Settings view -->
+	<string id="SettingsMenu" scope="foreground">Settings</string>
+	<string id="SettingsSave" scope="foreground">Save</string>
+	<string id="SettingsLoad" scope="foreground">Load...</string>
+	<string id="SettingsRemove" scope="foreground">Remove...</string>
+	<string id="SettingsLoadMenu" scope="foreground">Load</string>
+	<string id="SettingsRemoveMenu" scope="foreground">Remove</string>
+	
 </strings>

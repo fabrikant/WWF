@@ -193,6 +193,11 @@
 		<settingConfig type="boolean" />
 	</setting>
 
+	<setting propertyKey="@Properties.WShowHumPr"
+		title="@Strings.WShowHumPr">
+		<settingConfig type="boolean" />
+	</setting>
+
 	<!--BATTERY -->
 	<setting propertyKey="@Properties.BatColor"
 		title="@Strings.BatColor">

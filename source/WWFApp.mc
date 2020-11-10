@@ -35,6 +35,13 @@ class WWFApp extends Application.AppBase {
         WatchUi.requestUpdate();
     }
 
+	function getSettingsView(){
+		
+		var menu = new MenuSettings();
+		return [ menu, new MenuDelegate(menu)];
+	
+	}
+	
 	///////////////////////////////////////////////////////////////////////////
 	// Background
 	function onBackgroundData(data) {
