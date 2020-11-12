@@ -3,6 +3,7 @@ using Toybox.WatchUi;
 using Toybox.System;
 using Toybox.Time;
 
+//*****************************************************************************
 class MenuSettings extends WatchUi.Menu2{
 
 	function initialize() {
@@ -36,23 +37,8 @@ class MenuSettings extends WatchUi.Menu2{
 	}
 	
     function saveCurrentSettings(item){
-    	
     	var moment = Time.now();
-    	var idsSettings = Application.Storage.getValue(STORAGE_KEY_SETTINGS);
-    	if (idsSettings == null){
-    		idsSettings = [];
-    	}
-    	
-    	var propKeys = memoryCache.getPropertiesKeys();
-    	var settings = {};
-    	for (var i = 0; i < propKeys.size(); i++){
-			settings.put(propKeys[i], Application.Properties.getValue(propKeys[i]));    		
-    	}
-    	
-    	var currentSettingsId = moment.value();
-    	Application.Storage.setValue(currentSettingsId, settings);
-    	idsSettings.add(currentSettingsId); 
-    	Application.Storage.setValue(STORAGE_KEY_SETTINGS, idsSettings);
+    	StorageSettings.save(moment);
     	item.setSubLabel(Tools.momentToDateTimeString(moment));
     }
     
@@ -70,6 +56,7 @@ class MenuSettings extends WatchUi.Menu2{
     }
 }
 
+//*****************************************************************************
 class MenuSettingsList extends WatchUi.Menu2{
 	
 	protected var id; 
@@ -101,8 +88,60 @@ class MenuSettingsList extends WatchUi.Menu2{
 	        );
 		}
 	}
+			
+	function onSelect(item){
+		var itemId = item.getId();
+		if (itemId != :empty){
+			if(id == :load){
+				StorageSettings.load(itemId);
+	    	}else if(id == :remove){
+	    		StorageSettings.remove(itemId);
+	    	}
+    	}	
+    	WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
+    }
+} 
 
-	function loadSettings(currentSettingsId){
+//*****************************************************************************
+class MenuDelegate extends WatchUi.Menu2InputDelegate{
+
+	var menu;
+	
+	function initialize(menu) {
+		self.menu = menu;
+		Menu2InputDelegate.initialize();
+	}
+	
+	function onSelect(item){
+		menu.onSelect(item);
+	}
+}
+
+//*****************************************************************************
+module StorageSettings {
+	
+	///////////////////////////////////////////////////////////////////////////
+    function save(moment){
+    	
+    	var idsSettings = Application.Storage.getValue(STORAGE_KEY_SETTINGS);
+    	if (idsSettings == null){
+    		idsSettings = [];
+    	}
+    	
+    	var propKeys = memoryCache.getPropertiesKeys();
+    	var settings = {};
+    	for (var i = 0; i < propKeys.size(); i++){
+			settings.put(propKeys[i], Application.Properties.getValue(propKeys[i]));    		
+    	}
+    	
+    	var currentSettingsId = moment.value();
+    	Application.Storage.setValue(currentSettingsId, settings);
+    	idsSettings.add(currentSettingsId); 
+    	Application.Storage.setValue(STORAGE_KEY_SETTINGS, idsSettings);
+    }
+
+	///////////////////////////////////////////////////////////////////////////
+	function load(currentSettingsId){
 		
 		var settings = Application.Storage.getValue(currentSettingsId);
 		if (settings == null){
@@ -118,8 +157,9 @@ class MenuSettingsList extends WatchUi.Menu2{
 		}
 		memoryCache.reload();			
 	}
-
-	function removeSettings(currentSettingsId){
+		
+	///////////////////////////////////////////////////////////////////////////
+	function remove(currentSettingsId){
 		Application.Storage.deleteValue(currentSettingsId);
 		var idsSettings = Application.Storage.getValue(STORAGE_KEY_SETTINGS);
 		if (idsSettings != null){
@@ -127,32 +167,5 @@ class MenuSettingsList extends WatchUi.Menu2{
 				Application.Storage.setValue(STORAGE_KEY_SETTINGS, idsSettings);				
 			}
 		}
-	}
-			
-	function onSelect(item){
-		var itemId = item.getId();
-		if (itemId != :empty){
-			if(id == :load){
-				loadSettings(itemId);
-	    	}else if(id == :remove){
-	    		removeSettings(itemId);
-	    	}
-    	}	
-    	WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
-    }
-   
-} 
-
-class MenuDelegate extends WatchUi.Menu2InputDelegate{
-
-	var menu;
-	
-	function initialize(menu) {
-		self.menu = menu;
-		Menu2InputDelegate.initialize();
-	}
-	
-	function onSelect(item){
-		menu.onSelect(item);
 	}
 }
