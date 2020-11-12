@@ -13,6 +13,7 @@ class MemoryCache {
 	}
 
 	function reload(){
+		setDayNight();
 		readSettings();
 		readGeolocation();
 		readBackgroundY();
@@ -24,6 +25,7 @@ class MemoryCache {
 	function readSettings(){
 
 		settings = {};
+		settings[:switchDayNight] = Application.Properties.getValue("SwitchDayNight");
 		settings[:colors] = {};
 		settings[:colors][:background1] = Application.Properties.getValue("BgndColor1");
 		settings[:colors][:background2] = Application.Properties.getValue("BgndColor2");
@@ -282,44 +284,22 @@ class MemoryCache {
 		}
 	}
 	
-	function getPropertiesKeys(){
-		var res = [];
-	    res.add("MilFt");
-		res.add("HFt01");
-		res.add("AmPm");
-		res.add("Sec");
-		res.add("HREverySec");
-		res.add("DF");
-	    res.add("BgndColor1");
-	    res.add("BgndColor2");
-	    res.add("BgndColor3");
-	    res.add("TimeColor");
-	    res.add("DateColor");
-	    res.add("WColor");
-	    res.add("WAutoColor");
-	    res.add("WShowHumPr");
-	    res.add("BatColor");
-	    res.add("MoonColor");
-		res.add("ConCol");
-		res.add("MesCol");
-		res.add("DNDCol");
-		res.add("AlCol");
-		res.add("WUpdInt");
-		res.add("PrU");
-		res.add("WU");
-		res.add("T1TZ");
-		res.add("F0");
-		res.add("C0");
-		res.add("F1");
-		res.add("C1");
-		res.add("F2");
-		res.add("C2");
-		res.add("F3");
-		res.add("C3");
-		res.add("F4");
-		res.add("C4");
-		res.add("F5");
-		res.add("C5");
-		return res;
+	function setDayNight(){
+		var settingsType = Application.Properties.getValue("SettingsType");
+		if (settingsType == 0){
+			return;
+		}
+		
+		var keyDayNight = settingsType == 1 ? STORAGE_KEY_DAY : STORAGE_KEY_NIGHT;
+		
+		var currentId = StorageSettings.getPeriodicSettingsId(keyDayNight);
+		if (currentId != null){
+			StorageSettings.remove(currentId);
+		}
+		var now = Time.now();
+		StorageSettings.save(now);
+		StorageSettings.setPeriodicSettings(keyDayNight, now.value());
+		
+		Application.Properties.setValue("SettingsType", 0);
 	}
 }

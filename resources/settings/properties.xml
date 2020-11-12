@@ -2,6 +2,9 @@
 
 	<property id="keyOW" type="string"></property>
 
+	<property id="SwitchDayNight" type="boolean">false</property>
+	<property id="SettingsType" type="number">0</property>
+	
     <property id="MilFt" type="boolean">false</property>
 	<property id="HFt01" type="boolean">true</property>
 	<property id="AmPm" type="boolean">true</property>

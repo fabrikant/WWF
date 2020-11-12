@@ -5,48 +5,6 @@ using Toybox.Lang;
 using Toybox.Application;
 using Toybox.Activity;
 
-var memoryCache;
-var fonts;
-
-enum{
-	HR,
-	STEPS,
-	PRESSURE,
-	TEMPERATURE,
-	CALORIES,
-	DISTANCE,
-	FLOOR,
-	ELEVATION,
-	SUN_EVENT,
-	SUNRISE_EVENT,
-	SUNSET_EVENT,
-	TIME1,
-	EMPTY,
-	ACTIVE_DAY,
-	ACTIVE_WEEK,
-	O2,
-	SOLAR_CHARGE,
-	WEIGHT,
-
-	STORAGE_KEY_RESPONCE_CODE = 100,
-	STORAGE_KEY_RECIEVE,
-	STORAGE_KEY_TEMP,
-	STORAGE_KEY_HUMIDITY,
-	STORAGE_KEY_PRESSURE,
-	STORAGE_KEY_ICON,
-	STORAGE_KEY_WIND_SPEED,
-	STORAGE_KEY_WIND_DEG,
-	STORAGE_KEY_DT,
-	STORAGE_KEY_WEATHER,
-	STORAGE_KEY_BACKGROUND_Y1,
-	STORAGE_KEY_BACKGROUND_Y2,
-	STORAGE_KEY_SETTINGS,
-
-	PICTURE = 1000
-}
-
-const FIELDS_COUNT = 6;
-
 class WWFView extends WatchUi.WatchFace {
 
 	var fields = {};
@@ -469,7 +427,28 @@ class WWFView extends WatchUi.WatchFace {
 
     // Update the view
     function onUpdate(dc) {
-
+		
+		//Set day naght presets
+		if (memoryCache.settings[:switchDayNight]){
+			var sunrise = Tools.getSunEvent(SUNRISE, false);
+			var sunset = Tools.getSunEvent(SUNSET, false);
+			if (sunrise != null && sunset != null){
+				var now = Time.now();
+				var isNight = true;
+				if(now.greaterThan(sunrise) && now.lessThan(sunset)){
+					isNight = false;
+				}
+				
+				if (memoryCache.oldValues[:isNight] != isNight){
+					var idSettings = StorageSettings.getPeriodicSettingsId(isNight ? STORAGE_KEY_NIGHT : STORAGE_KEY_DAY);
+					if (idSettings != null){
+						StorageSettings.load(idSettings);
+					}
+					memoryCache.oldValues[:isNight] = isNight;
+				}
+			}
+		}
+		
 		if (memoryCache.oldValues[:isStarted] != true){
 			createFields(dc);
 			drawBackground(dc);

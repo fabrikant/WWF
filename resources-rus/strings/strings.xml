@@ -111,9 +111,12 @@
 	<!--Settings view -->
 	<string id="SettingsMenu" scope="foreground">Настройки</string>
 	<string id="SettingsSave" scope="foreground">Сохранить</string>
-	<string id="SettingsLoad" scope="foreground">Применить...</string>
-	<string id="SettingsRemove" scope="foreground">Удалить...</string>
-	<string id="SettingsLoadMenu" scope="foreground">Применить</string>
-	<string id="SettingsRemoveMenu" scope="foreground">Удалить</string>
+	<string id="SettingsLoad" scope="foreground">Применить</string>
+	<string id="SettingsRemove" scope="foreground">Удалить</string>
+	<string id="SettingsDay" scope="foreground">Дневные настройки</string>
+	<string id="SettingsNight" scope="foreground">Ночные настройки</string>
+	<string id="SwitchDayNight" scope="foreground">Автопереключение день/ночь</string>
+	<string id="SettingsType" scope="foreground">Сохранить настройки как</string>
+	<string id="SettingsGlobal" scope="foreground">Глобальные настройки</string>
 
 </strings>

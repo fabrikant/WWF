@@ -4,6 +4,20 @@
 		<settingConfig type="alphaNumeric" />
 	</setting>
 
+	<setting propertyKey="@Properties.SwitchDayNight"
+		title="@Strings.SwitchDayNight">
+		<settingConfig type="boolean" />
+	</setting>
+
+	<setting propertyKey="@Properties.SettingsType"
+		title="@Strings.SettingsType">
+		<settingConfig type="list">
+			<listEntry value="0">@Strings.SettingsGlobal</listEntry>
+			<listEntry value="1">@Strings.SettingsDay</listEntry>
+			<listEntry value="2">@Strings.SettingsNight</listEntry>
+		</settingConfig>
+	</setting>
+
 	<setting propertyKey="@Properties.WUpdInt" title="@Strings.WUpdInt">
 		<settingConfig type="numeric" min="10" max="120"/>
 	</setting>

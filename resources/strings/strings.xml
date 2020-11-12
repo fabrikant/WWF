@@ -113,9 +113,12 @@
 	<!--Settings view -->
 	<string id="SettingsMenu" scope="foreground">Settings</string>
 	<string id="SettingsSave" scope="foreground">Save</string>
-	<string id="SettingsLoad" scope="foreground">Load...</string>
-	<string id="SettingsRemove" scope="foreground">Remove...</string>
-	<string id="SettingsLoadMenu" scope="foreground">Load</string>
-	<string id="SettingsRemoveMenu" scope="foreground">Remove</string>
+	<string id="SettingsLoad" scope="foreground">Load</string>
+	<string id="SettingsRemove" scope="foreground">Remove</string>
+	<string id="SettingsDay" scope="foreground">Daytime settings</string>
+	<string id="SettingsNight" scope="foreground">Night settings</string>
+	<string id="SwitchDayNight" scope="foreground">Auto switch day/night</string>
+	<string id="SettingsType" scope="foreground">Save settings as</string>
+	<string id="SettingsGlobal" scope="foreground">Global settings</string>
 	
 </strings>
