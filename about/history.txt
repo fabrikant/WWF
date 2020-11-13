@@ -1,3 +1,4 @@
+1.3.2 - Added autoswitch between daytime and night settings (optional)
 1.3.0 - Added the ability to save and load settings for 3.2.x devices.
 Now you can turn off pressure and humidity in the weather widget
 Fixed rendering when returning from a widget 
