@@ -118,5 +118,6 @@
 	<string id="SwitchDayNight" scope="foreground">Автопереключение день/ночь</string>
 	<string id="SettingsType" scope="foreground">Сохранить настройки как</string>
 	<string id="SettingsGlobal" scope="foreground">Глобальные настройки</string>
+	<string id="SettingsDontChange" scope="foreground">Не изменять настройки</string>
 
 </strings>

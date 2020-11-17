@@ -13,7 +13,7 @@ class MemoryCache {
 	}
 
 	function reload(){
-		setDayNight();
+		saveSettingsToStorage();
 		readSettings();
 		readGeolocation();
 		readBackgroundY();
@@ -284,21 +284,26 @@ class MemoryCache {
 		}
 	}
 	
-	function setDayNight(){
+	function saveSettingsToStorage(){
 		var settingsType = Application.Properties.getValue("SettingsType");
 		if (settingsType == 0){
 			return;
 		}
 		
-		var keyDayNight = settingsType == 1 ? STORAGE_KEY_DAY : STORAGE_KEY_NIGHT;
+		var keyPeriodicSettings = STORAGE_KEY_GLOBAL;
+		if(settingsType == 2){
+			keyPeriodicSettings = STORAGE_KEY_DAY;
+		}else if (settingsType == 3){
+			keyPeriodicSettings = STORAGE_KEY_NIGHT;
+		}
 		
-		var currentId = StorageSettings.getPeriodicSettingsId(keyDayNight);
+		var currentId = StorageSettings.getPeriodicSettingsId(keyPeriodicSettings);
 		if (currentId != null){
 			StorageSettings.remove(currentId);
 		}
 		var now = Time.now();
 		StorageSettings.save(now);
-		StorageSettings.setPeriodicSettings(keyDayNight, now.value());
+		StorageSettings.setPeriodicSettings(keyPeriodicSettings, now.value());
 		
 		Application.Properties.setValue("SettingsType", 0);
 	}

@@ -12,9 +12,10 @@
 	<setting propertyKey="@Properties.SettingsType"
 		title="@Strings.SettingsType">
 		<settingConfig type="list">
-			<listEntry value="0">@Strings.SettingsGlobal</listEntry>
-			<listEntry value="1">@Strings.SettingsDay</listEntry>
-			<listEntry value="2">@Strings.SettingsNight</listEntry>
+			<listEntry value="0">@Strings.SettingsDontChange</listEntry>
+			<listEntry value="1">@Strings.SettingsGlobal</listEntry>
+			<listEntry value="2">@Strings.SettingsDay</listEntry>
+			<listEntry value="3">@Strings.SettingsNight</listEntry>
 		</settingConfig>
 	</setting>
 

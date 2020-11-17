@@ -36,7 +36,21 @@ class MenuSettings extends WatchUi.Menu2{
         );
 
 		var sublabel = null;
-		var momentValue = StorageSettings.getPeriodicSettingsId(STORAGE_KEY_DAY);
+		var momentValue = StorageSettings.getPeriodicSettingsId(STORAGE_KEY_GLOBAL);
+		if (momentValue != null){
+			sublabel = Tools.momentToDateTimeString(new Time.Moment(momentValue));
+		}
+        addItem(
+            new MenuItem(
+                Application.loadResource(Rez.Strings.SettingsGlobal)+"...",
+                sublabel,
+                :global,
+                {}
+            )
+        );
+
+		sublabel = null;
+		momentValue = StorageSettings.getPeriodicSettingsId(STORAGE_KEY_DAY);
 		if (momentValue != null){
 			sublabel = Tools.momentToDateTimeString(new Time.Moment(momentValue));
 		}
@@ -62,6 +76,7 @@ class MenuSettings extends WatchUi.Menu2{
                 {}
             )
         );
+
 	}
 	
     function saveCurrentSettings(item){
@@ -84,6 +99,8 @@ class MenuSettings extends WatchUi.Menu2{
 	    		listMenu = new MenuSettingsList(item, Application.loadResource(Rez.Strings.SettingsRemove));
 	    	}else if(id == :night){
 	    		listMenu = new MenuSettingsList(item, Application.loadResource(Rez.Strings.SettingsNight));
+	    	}else if(id == :global){
+	    		listMenu = new MenuSettingsList(item, Application.loadResource(Rez.Strings.SettingsGlobal));
     		}
     		if (listMenu != null){
  		    	WatchUi.pushView(listMenu, new MenuDelegate(listMenu), WatchUi.SLIDE_IMMEDIATE);
@@ -139,6 +156,9 @@ class MenuSettingsList extends WatchUi.Menu2{
 	    		parentItem.setSubLabel(Tools.momentToDateTimeString(new Time.Moment(itemId)));
 	    	}else if(id == :night){
 	    		StorageSettings.setPeriodicSettings(STORAGE_KEY_NIGHT, itemId);
+	    		parentItem.setSubLabel(Tools.momentToDateTimeString(new Time.Moment(itemId)));
+	    	}else if(id == :global){
+	    		StorageSettings.setPeriodicSettings(STORAGE_KEY_GLOBAL, itemId);
 	    		parentItem.setSubLabel(Tools.momentToDateTimeString(new Time.Moment(itemId)));
 	    	}
     	}	
@@ -204,6 +224,9 @@ module StorageSettings {
 		
 	///////////////////////////////////////////////////////////////////////////
 	function remove(currentSettingsId){
+		if (currentSettingsId == null){
+			return;
+		}
 		Application.Storage.deleteValue(currentSettingsId);
 		var idsSettings = Application.Storage.getValue(STORAGE_KEY_SETTINGS);
 		if (idsSettings != null){
@@ -217,28 +240,31 @@ module StorageSettings {
 		if (StorageSettings.getPeriodicSettingsId(STORAGE_KEY_NIGHT) == currentSettingsId){
 			setPeriodicSettings(STORAGE_KEY_NIGHT, null);
 		}
+		if (StorageSettings.getPeriodicSettingsId(STORAGE_KEY_GLOBAL) == currentSettingsId){
+			setPeriodicSettings(STORAGE_KEY_GLOBAL, null);
+		}
 	}
 	
 	///////////////////////////////////////////////////////////////////////////
-	function setPeriodicSettings(keyDayNight, settingsId){
+	function setPeriodicSettings(keyStorage, settingsId){
 		
 		if (settingsId == null){
-			Application.Storage.deleteValue(keyDayNight);
+			Application.Storage.deleteValue(keyStorage);
 			return;
 		}
 		
 		var settings = Application.Storage.getValue(settingsId);
 		if (settings == null){
-			Application.Storage.deleteValue(keyDayNight);
+			Application.Storage.deleteValue(keyStorage);
 			return;
 		}
-		Application.Storage.setValue(keyDayNight, settingsId);
+		Application.Storage.setValue(keyStorage, settingsId);
 	}
 	
 	///////////////////////////////////////////////////////////////////////////
-	function getPeriodicSettingsId(keyDayNight){
+	function getPeriodicSettingsId(keyStorage){
 		var res = null;
-		res = Application.Storage.getValue(keyDayNight);
+		res = Application.Storage.getValue(keyStorage);
 		return res;
 	}
 	

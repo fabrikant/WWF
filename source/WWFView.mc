@@ -447,6 +447,13 @@ class WWFView extends WatchUi.WatchFace {
 					memoryCache.oldValues[:isNight] = isNight;
 				}
 			}
+		}else{//dont switch day/night
+			if (memoryCache.oldValues[:isStarted] != true){
+				var idSettings = StorageSettings.getPeriodicSettingsId(STORAGE_KEY_GLOBAL);
+				if (idSettings != null){
+					StorageSettings.load(idSettings);
+				}			
+			}
 		}
 		
 		if (memoryCache.oldValues[:isStarted] != true){
