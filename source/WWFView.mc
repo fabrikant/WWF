@@ -218,6 +218,7 @@ class WWFView extends WatchUi.WatchFace {
 
 		///////////////////////////////////////////////////////////////////////
 		//WEATHER
+		var fromPictureToTemp = 5;
 		h = fields["F0"].h*2;
 		w = h;
         fields[:weather_picture] = new SimpleField(
@@ -225,7 +226,7 @@ class WWFView extends WatchUi.WatchFace {
     			:x => coord[0][0],
     			:y => fields[:date].y - h,
     			:h => h,
-    			:w => w,
+    			:w => w-fromPictureToTemp,
     			:type => :weather_picture,
     			:id => :weather,
     			:fontId => :weather,
@@ -238,7 +239,7 @@ class WWFView extends WatchUi.WatchFace {
     			:x => fields[:weather_picture].x + fields[:weather_picture].w,
     			:y => fields[:weather_picture].y,
     			:h => h,
-    			:w => w,
+    			:w => w+fromPictureToTemp,
     			:type => :weather_temp,
     			:id => :weather,
     			:fontId => :medium,
