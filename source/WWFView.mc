@@ -407,6 +407,17 @@ class WWFView extends WatchUi.WatchFace {
 			location = location.toDegrees();
 			Application.Storage.setValue("Lat", location[0].toFloat());
 			Application.Storage.setValue("Lon", location[1].toFloat());
+		} else {
+			if (Application.Storage.getValue("Lat") == null || Application.Storage.getValue("Lon") == null){
+				if ( Toybox has :Weather){
+					location = Toybox.Weather.getCurrentConditions().observationLocationPosition;
+			    	if (location != null) {
+						location = location.toDegrees();
+						Application.Storage.setValue("Lat", location[0].toFloat());
+						Application.Storage.setValue("Lon", location[1].toFloat());
+					}
+				}
+			}
 		}
     	Application.getApp().registerEvents();
     }

@@ -8,20 +8,22 @@ class MenuSettings extends WatchUi.Menu2{
 
 	function initialize() {
 		Menu2.initialize({:title=>Application.loadResource(Rez.Strings.SettingsMenu)});
+		var set = Application.loadResource(Rez.Strings.SettingsSet);
         addItem(
-            new MenuItem(
-                Application.loadResource(Rez.Strings.SettingsSave),
+            new ToggleMenuItem(
+                Application.loadResource(Rez.Strings.SwitchDayNight),
                 null,
-                :save,
+                :autoSwitch,
+                Application.Properties.getValue("SwitchDayNight"),
                 {}
             )
         );
-        
+
         addItem(
             new MenuItem(
-                Application.loadResource(Rez.Strings.SettingsLoad)+"...",
-                null,
-                :load,
+                Application.loadResource(Rez.Strings.SettingsSave),
+                Application.loadResource(Rez.Strings.SettingsSaveDescription),
+                :save,
                 {}
             )
         );
@@ -42,7 +44,7 @@ class MenuSettings extends WatchUi.Menu2{
 		}
         addItem(
             new MenuItem(
-                Application.loadResource(Rez.Strings.SettingsGlobal)+"...",
+                set+Application.loadResource(Rez.Strings.SettingsGlobal),
                 sublabel,
                 :global,
                 {}
@@ -56,7 +58,7 @@ class MenuSettings extends WatchUi.Menu2{
 		}
         addItem(
             new MenuItem(
-                Application.loadResource(Rez.Strings.SettingsDay)+"...",
+                set+Application.loadResource(Rez.Strings.SettingsDay),
                 sublabel,
                 :day,
                 {}
@@ -70,7 +72,7 @@ class MenuSettings extends WatchUi.Menu2{
 		}
         addItem(
             new MenuItem(
-                Application.loadResource(Rez.Strings.SettingsNight)+"...",
+                set+Application.loadResource(Rez.Strings.SettingsNight),
                 sublabel,
                 :night,
                 {}
@@ -89,18 +91,20 @@ class MenuSettings extends WatchUi.Menu2{
     	var id = item.getId();
     	if (id == :save){
     		saveCurrentSettings(item);
+    	}else if (id == :autoSwitch){
+    		Application.Properties.setValue("SwitchDayNight", item.isEnabled());
+    		memoryCache.reload();
     	}else{
     		var listMenu = null;
-	    	if(id == :load){
-	    		listMenu = new MenuSettingsList(item, Application.loadResource(Rez.Strings.SettingsDay));
-	    	}else if(id == :remove){
+    		var set = Application.loadResource(Rez.Strings.SettingsSet);
+	    	if(id == :remove){
 	    		listMenu = new MenuSettingsList(item, Application.loadResource(Rez.Strings.SettingsRemove));
 	    	}else if(id == :day){
-	    		listMenu = new MenuSettingsList(item, Application.loadResource(Rez.Strings.SettingsRemove));
+	    		listMenu = new MenuSettingsList(item, set+Application.loadResource(Rez.Strings.SettingsDay));
 	    	}else if(id == :night){
-	    		listMenu = new MenuSettingsList(item, Application.loadResource(Rez.Strings.SettingsNight));
+	    		listMenu = new MenuSettingsList(item, set+Application.loadResource(Rez.Strings.SettingsNight));
 	    	}else if(id == :global){
-	    		listMenu = new MenuSettingsList(item, Application.loadResource(Rez.Strings.SettingsGlobal));
+	    		listMenu = new MenuSettingsList(item, set+Application.loadResource(Rez.Strings.SettingsGlobal));
     		}
     		if (listMenu != null){
  		    	WatchUi.pushView(listMenu, new MenuDelegate(listMenu), WatchUi.SLIDE_IMMEDIATE);
@@ -147,9 +151,7 @@ class MenuSettingsList extends WatchUi.Menu2{
 	function onSelect(item){
 		var itemId = item.getId();
 		if (itemId != :empty){
-			if(id == :load){
-				StorageSettings.load(itemId);
-	    	}else if(id == :remove){
+			if(id == :remove){
 	    		StorageSettings.remove(itemId);
 	    	}else if(id == :day){
 	    		StorageSettings.setPeriodicSettings(STORAGE_KEY_DAY, itemId);

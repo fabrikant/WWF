@@ -111,6 +111,7 @@
 	<!--Settings view -->
 	<string id="SettingsMenu" scope="foreground">Настройки</string>
 	<string id="SettingsSave" scope="foreground">Сохранить</string>
+	<string id="SettingsSaveDescription" scope="foreground">сохранить текущие настройки</string>
 	<string id="SettingsLoad" scope="foreground">Применить</string>
 	<string id="SettingsRemove" scope="foreground">Удалить</string>
 	<string id="SettingsDay" scope="foreground">Дневные настройки</string>
@@ -119,5 +120,6 @@
 	<string id="SettingsType" scope="foreground">Сохранить настройки как</string>
 	<string id="SettingsGlobal" scope="foreground">Глобальные настройки</string>
 	<string id="SettingsDontChange" scope="foreground">Не изменять настройки</string>
-
+	<string id="SettingsSet" scope="foreground">Выбрать </string>
+	
 </strings>
