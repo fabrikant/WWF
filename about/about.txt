@@ -1,3 +1,8 @@
+Important! Don't update to version 1.4.4! You must:
+1. Remove application
+2. Reload the watch. REQUIRED!
+3. Install the application.
+
 Free, open sourse and configurable watchface with weather widget and data fields.
 Generate API key on openweathermap.org and paste it in the settings for the weather data.
 Location data is also required for weather and calculation of solar events. Location successfully captured if solar events are calculated.
