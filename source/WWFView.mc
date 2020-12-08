@@ -25,7 +25,7 @@ class WWFView extends WatchUi.WatchFace {
 
     // Load your resources here
     function onLayout(dc) {
-    	createFields(dc);
+    	//createFields(dc);
 	}
 	
 	function createFields(dc){
@@ -417,10 +417,6 @@ class WWFView extends WatchUi.WatchFace {
 			createFields(dc);
 			drawBackground(dc);
 			memoryCache.oldValues[:isStarted] = false;
-		}
-		
-		if (fields.keys().size() == 0){
-			createFields(dc);
 		}
 		
 		memoryCache.checkWeatherActuality();
