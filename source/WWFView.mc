@@ -25,7 +25,7 @@ class WWFView extends WatchUi.WatchFace {
 
     // Load your resources here
     function onLayout(dc) {
-    	//createFields(dc);
+    	createFields(dc);
 	}
 	
 	function createFields(dc){
@@ -418,7 +418,11 @@ class WWFView extends WatchUi.WatchFace {
 			drawBackground(dc);
 			memoryCache.oldValues[:isStarted] = false;
 		}
-
+		
+		if (fields.keys().size() == 0){
+			createFields(dc);
+		}
+		
 		memoryCache.checkWeatherActuality();
 		var ids = fields.keys();
 		for (var i = 0; i < ids.size(); i++){
@@ -453,7 +457,7 @@ class WWFView extends WatchUi.WatchFace {
 			for (var i = 0; i < memoryCache.everySecondFields.size(); i++){
 				var fieldId = memoryCache.everySecondFields[i];
 				var oldValue = memoryCache.oldValues[fieldId];
-				var value = getValueByFieldType(fields[fieldId].type, oldValue);
+				var value = Data.getValueByFieldType(fields[fieldId].type, oldValue);
 				if (!value.equals(oldValue)){
 					fields[fieldId].draw(dc, value);
 					memoryCache.oldValues[fieldId] = value;
