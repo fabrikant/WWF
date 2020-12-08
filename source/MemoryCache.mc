@@ -7,12 +7,22 @@ class MemoryCache {
 	var oldValues;
 	var weather;
 	var backgroundY = [0,0];
-
+	var everySecondFields;
+	
 	function initialize(){
 		reload();
 	}
 
 	function reload(){
+		//Erase all feilds for clear RAM before saveSettings
+		everySecondFields = null;
+		settings = null;
+		weather = null;
+		var view = Application.getApp().view;
+		if (view != null){
+			view.fields = {};
+		}
+		
 		saveSettingsToStorage();
 		readSettings();
 		readGeolocation();
@@ -33,27 +43,22 @@ class MemoryCache {
 		settings[:colors][:time] = Application.Properties.getValue("TimeColor");
 		settings[:colors][:date] = Application.Properties.getValue("DateColor");
 
-		settings[:colors][:connnection] = Application.Properties.getValue("ConCol");
-		settings[:colors][:messages] = Application.Properties.getValue("MesCol");
-		settings[:colors][:dnd] = Application.Properties.getValue("DNDCol");
-		settings[:colors][:alarms] = Application.Properties.getValue("AlCol");
-
 		settings[:colors][:weather] = Application.Properties.getValue("WColor");
 		settings[:colors][:weatherAutoColors] = Application.Properties.getValue("WAutoColor");
 
 		settings[:colors][:battery] = Application.Properties.getValue("BatColor");
 		settings[:colors][:moon] = Application.Properties.getValue("MoonColor");
 
-
 		for (var i = 0; i < FIELDS_COUNT; i++){
 			settings[:colors]["F"+i] = Application.Properties.getValue("C"+i);
+		}
+		for (var i = 0; i < STATUS_FIELDS_COUNT; i++){
+			settings[:colors]["SF"+i] = Application.Properties.getValue("SFC"+i);
 		}
 
 		settings[:time] = {};
 		settings[:time][:military] = Application.Properties.getValue("MilFt");
 		settings[:time][:hours01] = Application.Properties.getValue("HFt01");
-		settings[:time][:am] = Application.Properties.getValue("AmPm");
-		settings[:time][:sec] = Application.Properties.getValue("Sec");
 
 		settings[:pressureUnit] = Application.Properties.getValue("PrU");
 		settings[:windUnit] = Application.Properties.getValue("WU");
@@ -61,7 +66,6 @@ class MemoryCache {
 
 		settings[:apiKey] = Application.Properties.getValue("keyOW");
 		settings[:weatherUpdateInteval] = Application.Properties.getValue("WUpdInt");
-		settings[:hrUpdate] = Application.Properties.getValue("HREverySec");
 	}
 
 	function readGeolocation(){
@@ -228,11 +232,26 @@ class MemoryCache {
 		}
 	}
 
-	
 	function getFieldType(id){
 		return Application.Properties.getValue(id);
 	}
 
+	function getFontByFieldType(type){
+		var res = :small;
+		if (type == CONNECTED || type == NOTIFICATIONS || type == DND ||type == ALARMS){
+			res = :picture;
+		}
+		return res;
+	} 
+
+	function addEverySecondField(id){
+		if (everySecondFields == null){
+			everySecondFields = [id];
+		}else{
+			everySecondFields.add(id);
+		}
+	}
+		
 	function getPictureType(id){
 		return PICTURE+Application.Properties.getValue(id);
 	}

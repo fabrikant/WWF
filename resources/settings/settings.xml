@@ -38,21 +38,6 @@
 		<settingConfig type="boolean" />
 	</setting>
 
-	<setting propertyKey="@Properties.AmPm"
-		title="@Strings.AmPm">
-		<settingConfig type="boolean" />
-	</setting>
-
-	<setting propertyKey="@Properties.Sec"
-		title="@Strings.Sec">
-		<settingConfig type="boolean" />
-	</setting>
-
-	<setting propertyKey="@Properties.HREverySec"
-		title="@Strings.HREverySec">
-		<settingConfig type="boolean" />
-	</setting>
-
 	<!--DATE FORMAT -->
 	<setting propertyKey="@Properties.DF"
 		title="@Strings.DF" prompt="@Strings.DFHELP">
@@ -235,8 +220,24 @@
 	</setting>
 
 	<!--STATUS -->
-	<setting propertyKey="@Properties.ConCol"
-		title="@Strings.ConCol" >
+
+	<setting propertyKey="@Properties.SF0"
+		title="@Strings.SF0">
+		<settingConfig type="list">
+			<listEntry value="18">@Strings.FIELD_TYPE_CONNECTED</listEntry>
+			<listEntry value="19">@Strings.FIELD_TYPE_NOTIFICATIONS</listEntry>
+			<listEntry value="24">@Strings.FIELD_TYPE_NOTIFICATIONS_COUNT</listEntry>
+			<listEntry value="20">@Strings.FIELD_TYPE_DND</listEntry>
+			<listEntry value="21">@Strings.FIELD_TYPE_ALARMS</listEntry>
+			<listEntry value="25">@Strings.FIELD_TYPE_ALARMS_COUNT</listEntry>
+			<listEntry value="22">@Strings.FIELD_TYPE_AMPM</listEntry>
+			<listEntry value="23">@Strings.FIELD_TYPE_SECONDS</listEntry>
+			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
+		</settingConfig>
+	</setting>
+	
+	<setting propertyKey="@Properties.SFC0"
+		title="@Strings.SFC0" >
 		<settingConfig type="list">
 			<listEntry value="0xFFFFFF">@Strings.COLOR_WHITE</listEntry>
 			<listEntry value="0x000000">@Strings.COLOR_BLACK</listEntry>
@@ -255,8 +256,23 @@
 		</settingConfig>
 	</setting>
 
-	<setting propertyKey="@Properties.MesCol"
-		title="@Strings.MesCol" >
+	<setting propertyKey="@Properties.SF1"
+		title="@Strings.SF1">
+		<settingConfig type="list">
+			<listEntry value="18">@Strings.FIELD_TYPE_CONNECTED</listEntry>
+			<listEntry value="19">@Strings.FIELD_TYPE_NOTIFICATIONS</listEntry>
+			<listEntry value="24">@Strings.FIELD_TYPE_NOTIFICATIONS_COUNT</listEntry>
+			<listEntry value="20">@Strings.FIELD_TYPE_DND</listEntry>
+			<listEntry value="21">@Strings.FIELD_TYPE_ALARMS</listEntry>
+			<listEntry value="25">@Strings.FIELD_TYPE_ALARMS_COUNT</listEntry>
+			<listEntry value="22">@Strings.FIELD_TYPE_AMPM</listEntry>
+			<listEntry value="23">@Strings.FIELD_TYPE_SECONDS</listEntry>
+			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
+		</settingConfig>
+	</setting>
+	
+	<setting propertyKey="@Properties.SFC1"
+		title="@Strings.SFC1" >
 		<settingConfig type="list">
 			<listEntry value="0xFFFFFF">@Strings.COLOR_WHITE</listEntry>
 			<listEntry value="0x000000">@Strings.COLOR_BLACK</listEntry>
@@ -275,8 +291,23 @@
 		</settingConfig>
 	</setting>
 
-	<setting propertyKey="@Properties.DNDCol"
-		title="@Strings.DNDCol" >
+	<setting propertyKey="@Properties.SF2"
+		title="@Strings.SF2">
+		<settingConfig type="list">
+			<listEntry value="18">@Strings.FIELD_TYPE_CONNECTED</listEntry>
+			<listEntry value="19">@Strings.FIELD_TYPE_NOTIFICATIONS</listEntry>
+			<listEntry value="24">@Strings.FIELD_TYPE_NOTIFICATIONS_COUNT</listEntry>
+			<listEntry value="20">@Strings.FIELD_TYPE_DND</listEntry>
+			<listEntry value="21">@Strings.FIELD_TYPE_ALARMS</listEntry>
+			<listEntry value="25">@Strings.FIELD_TYPE_ALARMS_COUNT</listEntry>
+			<listEntry value="22">@Strings.FIELD_TYPE_AMPM</listEntry>
+			<listEntry value="23">@Strings.FIELD_TYPE_SECONDS</listEntry>
+			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
+		</settingConfig>
+	</setting>
+	
+	<setting propertyKey="@Properties.SFC2"
+		title="@Strings.SFC2" >
 		<settingConfig type="list">
 			<listEntry value="0xFFFFFF">@Strings.COLOR_WHITE</listEntry>
 			<listEntry value="0x000000">@Strings.COLOR_BLACK</listEntry>
@@ -295,8 +326,163 @@
 		</settingConfig>
 	</setting>
 
-	<setting propertyKey="@Properties.AlCol"
-		title="@Strings.AlCol" >
+	<setting propertyKey="@Properties.SF3"
+		title="@Strings.SF3">
+		<settingConfig type="list">
+			<listEntry value="18">@Strings.FIELD_TYPE_CONNECTED</listEntry>
+			<listEntry value="19">@Strings.FIELD_TYPE_NOTIFICATIONS</listEntry>
+			<listEntry value="24">@Strings.FIELD_TYPE_NOTIFICATIONS_COUNT</listEntry>
+			<listEntry value="20">@Strings.FIELD_TYPE_DND</listEntry>
+			<listEntry value="21">@Strings.FIELD_TYPE_ALARMS</listEntry>
+			<listEntry value="25">@Strings.FIELD_TYPE_ALARMS_COUNT</listEntry>
+			<listEntry value="22">@Strings.FIELD_TYPE_AMPM</listEntry>
+			<listEntry value="23">@Strings.FIELD_TYPE_SECONDS</listEntry>
+			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
+		</settingConfig>
+	</setting>
+	
+	<setting propertyKey="@Properties.SFC3"
+		title="@Strings.SFC3" >
+		<settingConfig type="list">
+			<listEntry value="0xFFFFFF">@Strings.COLOR_WHITE</listEntry>
+			<listEntry value="0x000000">@Strings.COLOR_BLACK</listEntry>
+			<listEntry value="0xAAAAAA">@Strings.COLOR_LT_GRAY</listEntry>
+			<listEntry value="0x555555">@Strings.COLOR_DK_GRAY</listEntry>
+			<listEntry value="0xFF0000">@Strings.COLOR_RED</listEntry>
+			<listEntry value="0xAA0000">@Strings.COLOR_DK_RED</listEntry>
+			<listEntry value="0xFF5500">@Strings.COLOR_ORANGE</listEntry>
+			<listEntry value="0xFFAA00">@Strings.COLOR_YELLOW</listEntry>
+			<listEntry value="0x00FF00">@Strings.COLOR_GREEN</listEntry>
+			<listEntry value="0x00AA00">@Strings.COLOR_DK_GREEN</listEntry>
+			<listEntry value="0x00AAFF">@Strings.COLOR_BLUE</listEntry>
+			<listEntry value="0x0000FF">@Strings.COLOR_DK_BLUE</listEntry>
+			<listEntry value="0xAA00FF">@Strings.COLOR_PURPLE</listEntry>
+			<listEntry value="0xFF00FF">@Strings.COLOR_PINK</listEntry>
+		</settingConfig>
+	</setting>
+
+	<setting propertyKey="@Properties.SF4"
+		title="@Strings.SF4">
+		<settingConfig type="list">
+			<listEntry value="18">@Strings.FIELD_TYPE_CONNECTED</listEntry>
+			<listEntry value="19">@Strings.FIELD_TYPE_NOTIFICATIONS</listEntry>
+			<listEntry value="24">@Strings.FIELD_TYPE_NOTIFICATIONS_COUNT</listEntry>
+			<listEntry value="20">@Strings.FIELD_TYPE_DND</listEntry>
+			<listEntry value="21">@Strings.FIELD_TYPE_ALARMS</listEntry>
+			<listEntry value="25">@Strings.FIELD_TYPE_ALARMS_COUNT</listEntry>
+			<listEntry value="22">@Strings.FIELD_TYPE_AMPM</listEntry>
+			<listEntry value="23">@Strings.FIELD_TYPE_SECONDS</listEntry>
+			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
+		</settingConfig>
+	</setting>
+	
+	<setting propertyKey="@Properties.SFC4"
+		title="@Strings.SFC4" >
+		<settingConfig type="list">
+			<listEntry value="0xFFFFFF">@Strings.COLOR_WHITE</listEntry>
+			<listEntry value="0x000000">@Strings.COLOR_BLACK</listEntry>
+			<listEntry value="0xAAAAAA">@Strings.COLOR_LT_GRAY</listEntry>
+			<listEntry value="0x555555">@Strings.COLOR_DK_GRAY</listEntry>
+			<listEntry value="0xFF0000">@Strings.COLOR_RED</listEntry>
+			<listEntry value="0xAA0000">@Strings.COLOR_DK_RED</listEntry>
+			<listEntry value="0xFF5500">@Strings.COLOR_ORANGE</listEntry>
+			<listEntry value="0xFFAA00">@Strings.COLOR_YELLOW</listEntry>
+			<listEntry value="0x00FF00">@Strings.COLOR_GREEN</listEntry>
+			<listEntry value="0x00AA00">@Strings.COLOR_DK_GREEN</listEntry>
+			<listEntry value="0x00AAFF">@Strings.COLOR_BLUE</listEntry>
+			<listEntry value="0x0000FF">@Strings.COLOR_DK_BLUE</listEntry>
+			<listEntry value="0xAA00FF">@Strings.COLOR_PURPLE</listEntry>
+			<listEntry value="0xFF00FF">@Strings.COLOR_PINK</listEntry>
+		</settingConfig>
+	</setting>
+
+	<setting propertyKey="@Properties.SF5"
+		title="@Strings.SF5">
+		<settingConfig type="list">
+			<listEntry value="18">@Strings.FIELD_TYPE_CONNECTED</listEntry>
+			<listEntry value="19">@Strings.FIELD_TYPE_NOTIFICATIONS</listEntry>
+			<listEntry value="24">@Strings.FIELD_TYPE_NOTIFICATIONS_COUNT</listEntry>
+			<listEntry value="20">@Strings.FIELD_TYPE_DND</listEntry>
+			<listEntry value="21">@Strings.FIELD_TYPE_ALARMS</listEntry>
+			<listEntry value="25">@Strings.FIELD_TYPE_ALARMS_COUNT</listEntry>
+			<listEntry value="22">@Strings.FIELD_TYPE_AMPM</listEntry>
+			<listEntry value="23">@Strings.FIELD_TYPE_SECONDS</listEntry>
+			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
+		</settingConfig>
+	</setting>
+	
+	<setting propertyKey="@Properties.SFC5"
+		title="@Strings.SFC5" >
+		<settingConfig type="list">
+			<listEntry value="0xFFFFFF">@Strings.COLOR_WHITE</listEntry>
+			<listEntry value="0x000000">@Strings.COLOR_BLACK</listEntry>
+			<listEntry value="0xAAAAAA">@Strings.COLOR_LT_GRAY</listEntry>
+			<listEntry value="0x555555">@Strings.COLOR_DK_GRAY</listEntry>
+			<listEntry value="0xFF0000">@Strings.COLOR_RED</listEntry>
+			<listEntry value="0xAA0000">@Strings.COLOR_DK_RED</listEntry>
+			<listEntry value="0xFF5500">@Strings.COLOR_ORANGE</listEntry>
+			<listEntry value="0xFFAA00">@Strings.COLOR_YELLOW</listEntry>
+			<listEntry value="0x00FF00">@Strings.COLOR_GREEN</listEntry>
+			<listEntry value="0x00AA00">@Strings.COLOR_DK_GREEN</listEntry>
+			<listEntry value="0x00AAFF">@Strings.COLOR_BLUE</listEntry>
+			<listEntry value="0x0000FF">@Strings.COLOR_DK_BLUE</listEntry>
+			<listEntry value="0xAA00FF">@Strings.COLOR_PURPLE</listEntry>
+			<listEntry value="0xFF00FF">@Strings.COLOR_PINK</listEntry>
+		</settingConfig>
+	</setting>
+
+	<setting propertyKey="@Properties.SF6"
+		title="@Strings.SF6">
+		<settingConfig type="list">
+			<listEntry value="18">@Strings.FIELD_TYPE_CONNECTED</listEntry>
+			<listEntry value="19">@Strings.FIELD_TYPE_NOTIFICATIONS</listEntry>
+			<listEntry value="24">@Strings.FIELD_TYPE_NOTIFICATIONS_COUNT</listEntry>
+			<listEntry value="20">@Strings.FIELD_TYPE_DND</listEntry>
+			<listEntry value="21">@Strings.FIELD_TYPE_ALARMS</listEntry>
+			<listEntry value="25">@Strings.FIELD_TYPE_ALARMS_COUNT</listEntry>
+			<listEntry value="22">@Strings.FIELD_TYPE_AMPM</listEntry>
+			<listEntry value="23">@Strings.FIELD_TYPE_SECONDS</listEntry>
+			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
+		</settingConfig>
+	</setting>
+	
+	<setting propertyKey="@Properties.SFC6"
+		title="@Strings.SFC6" >
+		<settingConfig type="list">
+			<listEntry value="0xFFFFFF">@Strings.COLOR_WHITE</listEntry>
+			<listEntry value="0x000000">@Strings.COLOR_BLACK</listEntry>
+			<listEntry value="0xAAAAAA">@Strings.COLOR_LT_GRAY</listEntry>
+			<listEntry value="0x555555">@Strings.COLOR_DK_GRAY</listEntry>
+			<listEntry value="0xFF0000">@Strings.COLOR_RED</listEntry>
+			<listEntry value="0xAA0000">@Strings.COLOR_DK_RED</listEntry>
+			<listEntry value="0xFF5500">@Strings.COLOR_ORANGE</listEntry>
+			<listEntry value="0xFFAA00">@Strings.COLOR_YELLOW</listEntry>
+			<listEntry value="0x00FF00">@Strings.COLOR_GREEN</listEntry>
+			<listEntry value="0x00AA00">@Strings.COLOR_DK_GREEN</listEntry>
+			<listEntry value="0x00AAFF">@Strings.COLOR_BLUE</listEntry>
+			<listEntry value="0x0000FF">@Strings.COLOR_DK_BLUE</listEntry>
+			<listEntry value="0xAA00FF">@Strings.COLOR_PURPLE</listEntry>
+			<listEntry value="0xFF00FF">@Strings.COLOR_PINK</listEntry>
+		</settingConfig>
+	</setting>
+
+	<setting propertyKey="@Properties.SF7"
+		title="@Strings.SF7">
+		<settingConfig type="list">
+			<listEntry value="18">@Strings.FIELD_TYPE_CONNECTED</listEntry>
+			<listEntry value="19">@Strings.FIELD_TYPE_NOTIFICATIONS</listEntry>
+			<listEntry value="24">@Strings.FIELD_TYPE_NOTIFICATIONS_COUNT</listEntry>
+			<listEntry value="20">@Strings.FIELD_TYPE_DND</listEntry>
+			<listEntry value="21">@Strings.FIELD_TYPE_ALARMS</listEntry>
+			<listEntry value="25">@Strings.FIELD_TYPE_ALARMS_COUNT</listEntry>
+			<listEntry value="22">@Strings.FIELD_TYPE_AMPM</listEntry>
+			<listEntry value="23">@Strings.FIELD_TYPE_SECONDS</listEntry>
+			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
+		</settingConfig>
+	</setting>
+	
+	<setting propertyKey="@Properties.SFC7"
+		title="@Strings.SFC7" >
 		<settingConfig type="list">
 			<listEntry value="0xFFFFFF">@Strings.COLOR_WHITE</listEntry>
 			<listEntry value="0x000000">@Strings.COLOR_BLACK</listEntry>

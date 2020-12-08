@@ -7,10 +7,6 @@
 	
     <property id="MilFt" type="boolean">false</property>
 	<property id="HFt01" type="boolean">true</property>
-	<property id="AmPm" type="boolean">true</property>
-	<property id="Sec" type="boolean">false</property>
-	<property id="HREverySec" type="boolean">false</property>
-
 	<property id="DF" type="string">%W %D %M %Y</property>
 
     <property id="BgndColor1" type="number">0x000000</property>
@@ -26,11 +22,22 @@
     <property id="MoonColor" type="number">0xFF5500</property>
 	
 	<!--STATUS FIELDS -->
-	<property id="ConCol" type="number">0xFFFFFF</property>
-	<property id="MesCol" type="number">0xFFFFFF</property>
-	<property id="DNDCol" type="number">0xFFFFFF</property>
-	<property id="AlCol" type="number">0xFFFFFF</property>
-	
+	<property id="SF0" type="number">18</property>
+	<property id="SFC0" type="number">0xFFFFFF</property>
+	<property id="SF1" type="number">19</property>
+	<property id="SFC1" type="number">0xFFFFFF</property>
+	<property id="SF2" type="number">20</property>
+	<property id="SFC2" type="number">0xFFFFFF</property>
+	<property id="SF3" type="number">21</property>
+	<property id="SFC3" type="number">0xFFFFFF</property>
+	<property id="SF4" type="number">12</property>
+	<property id="SFC4" type="number">0xFFFFFF</property>
+	<property id="SF5" type="number">12</property>
+	<property id="SFC5" type="number">0xFFFFFF</property>
+	<property id="SF6" type="number">23</property>
+	<property id="SFC6" type="number">0xFFFFFF</property>
+	<property id="SF7" type="number">12</property>
+	<property id="SFC7" type="number">0xFFFFFF</property>
 	
 	<!--WEATHER UPDATE INTERVAL -->
 	<property id="WUpdInt" type="number">10</property>

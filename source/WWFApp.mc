@@ -30,7 +30,6 @@ class WWFApp extends Application.AppBase {
     // New app settings have been received so trigger a UI update
     function onSettingsChanged() {
     	memoryCache = new MemoryCache();
-    	view.reloadFieldsTypes();
     	registerEvents();
         WatchUi.requestUpdate();
     }

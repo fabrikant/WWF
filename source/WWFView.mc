@@ -7,7 +7,7 @@ using Toybox.Activity;
 
 class WWFView extends WatchUi.WatchFace {
 
-	var fields = {};
+	var fields;
 
     function initialize() {
 
@@ -15,6 +15,7 @@ class WWFView extends WatchUi.WatchFace {
         memoryCache = new MemoryCache();
         Application.getApp().registerEvents();
         fonts = {};
+        fields = {};
         fonts[:time] = Application.loadResource(Rez.Fonts.big);
         fonts[:small] = Application.loadResource(Rez.Fonts.small);
         fonts[:medium] = Application.loadResource(Rez.Fonts.med);
@@ -75,64 +76,41 @@ class WWFView extends WatchUi.WatchFace {
 		//STATUS FIELDS
 		h = 16 + fields[:date].h/4;
 		w = h;
+		
 		y = fields[:date].y;
 		x = fields[:time].x - w - 3;
-		var stausFieldId = :connnection;
 
-        fields[stausFieldId] = new SimpleField(
-    		{
-    			:x => x,
-    			:y => y,
-    			:h => h,
-    			:w => w,
-    			:type => stausFieldId,
-    			:id => stausFieldId,
-				:fontId => :picture,
-    			:justify => Graphics.TEXT_JUSTIFY_CENTER
-    		}
-    	);
+		var coord = new [STATUS_FIELDS_COUNT];
+		coord[0] = [x,y];
+		coord[1] = [coord[0][0],y + h];
+		coord[2] = [coord[0][0],y + 2*h];
+		coord[3] = [coord[0][0],y + 3*h];
+		
+		coord[4] = [fields[:time].x + fields[:time].w + 3,y];
+		coord[5] = [coord[4][0],y + h];
+		coord[6] = [coord[4][0],y + 2*h];
+		coord[7] = [coord[4][0],y + 3*h];
+		
 
-		stausFieldId = :messages;
-		fields[stausFieldId] = new SimpleField(
-    		{
-    			:x => x,
-    			:y => y + h,
-    			:h => h,
-    			:w => w,
-    			:type => stausFieldId,
-    			:id => stausFieldId,
-				:fontId => :picture,
-    			:justify => Graphics.TEXT_JUSTIFY_CENTER
-    		}
-    	);
+		for (var i = 0; i < STATUS_FIELDS_COUNT; i++){
+			
+			var id = "SF"+i;
+			var type = memoryCache.getFieldType(id); 
+	        fields[id] = new SimpleField(
+	    		{
+	    			:x => coord[i][0],
+	    			:y => coord[i][1],
+	    			:h => h,
+	    			:w => w,
+	    			:type =>type,
+	    			:id => id,
+					:fontId =>  memoryCache.getFontByFieldType(type),
+	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
+	    		}
+	    	);
+		}
 
-		stausFieldId = :dnd;
-		fields[stausFieldId] = new SimpleField(
-    		{
-    			:x => x,
-    			:y => y + 2*h,
-    			:h => h,
-    			:w => w,
-    			:type => stausFieldId,
-    			:id => stausFieldId,
-				:fontId => :picture,
-    			:justify => Graphics.TEXT_JUSTIFY_CENTER
-    		}
-    	);
 
-		stausFieldId = :alarms;
-		fields[stausFieldId] = new SimpleField(
-    		{
-    			:x => x,
-    			:y => y + 3*h,
-    			:h => h,
-    			:w => w,
-    			:type => stausFieldId,
-    			:id => stausFieldId,
-				:fontId => :picture,
-    			:justify => Graphics.TEXT_JUSTIFY_CENTER
-    		}
-    	);
 		///////////////////////////////////////////////////////////////////////
 		//DATA FIELDS
 		h = 22;
@@ -143,7 +121,7 @@ class WWFView extends WatchUi.WatchFace {
 		var wPicture = h;
 		var wText = (System.getDeviceSettings().screenWidth - 2*x - 3*wPicture)/3;
 
-		var coord = new [6];
+		coord = new [FIELDS_COUNT];
 		coord[0] = [x,y];
 		coord[1] = [x+(wPicture+wText),y];
 		coord[2] = [x+2*(wPicture+wText),y];
@@ -182,39 +160,6 @@ class WWFView extends WatchUi.WatchFace {
 	    		}
 	    	);
 		}
-
-		///////////////////////////////////////////////////////////////////////
-		//AM PM
-		w = h;
-        fields[:am] = new SimpleField(
-    		{
-    			:x => fields[:time].x + fields[:time].w + 3,
-    			:y => fields[:time].y,
-    			:h => h,
-    			:w => w,
-    			:type => :am,
-    			:id => :time,
-    			:fontId => :small,
-    			:justify => Graphics.TEXT_JUSTIFY_CENTER
-    		}
-    	);
-
-		///////////////////////////////////////////////////////////////////////
-		//SECONDS
-		w = h;
-        fields[:sec] = new SimpleField(
-    		{
-    			:x => fields[:am].x,
-    			//:y => fields[:time].y + fields[:time].h - h,
-    			:y => fields[:am].y + fields[:am].h,
-    			:h => h,
-    			:w => w,
-    			:type => :sec,
-    			:id => :time,
-    			:fontId => :small,
-    			:justify => Graphics.TEXT_JUSTIFY_CENTER
-    		}
-    	);
 
 		///////////////////////////////////////////////////////////////////////
 		//WEATHER
@@ -504,30 +449,21 @@ class WWFView extends WatchUi.WatchFace {
 
 	function onPartialUpdate(dc){
 
-		var fieldId = :sec;
-		if (memoryCache.settings[:time][:sec]) {
-			var value = Data.getSeconds();
-			fields[fieldId].draw(dc, value);
-			memoryCache.oldValues[fieldId] = value;
-		}
-		
-		if (memoryCache.settings[:hrUpdate]) {
-			for (var i = 0; i < 6; i++){
-				fieldId = "F"+i;
-				if (fields[fieldId].type == HR){
-					var oldValue = memoryCache.oldValues[fieldId];
-					var value = Data.getHeartRate();
-					if (!value.equals(oldValue)){
-						fields[fieldId].draw(dc, value);
-						memoryCache.oldValues[fieldId] = value;
-					}
+		if (memoryCache.everySecondFields.size()>0){
+			for (var i = 0; i < memoryCache.everySecondFields.size(); i++){
+				var fieldId = memoryCache.everySecondFields[i];
+				var oldValue = memoryCache.oldValues[fieldId];
+				var value = getValueByFieldType(fields[fieldId].type, oldValue);
+				if (!value.equals(oldValue)){
+					fields[fieldId].draw(dc, value);
+					memoryCache.oldValues[fieldId] = value;
 				}
 			}
 		}
 	}
 
     function onHide() {
-    	memoryCache.reload();
+    	memoryCache = new MemoryCache();
     }
 
     // The user has just looked at their watch. Timers and animations may be started here.
@@ -538,12 +474,4 @@ class WWFView extends WatchUi.WatchFace {
     // Terminate any active timers and prepare for slow updates.
     function onEnterSleep() {
     }
-
-	function reloadFieldsTypes(){
-		for (var i=0; i<FIELDS_COUNT; i++){
-	        var id = "F"+i;
-	        fields["P"+i].type = memoryCache.getPictureType(id);
-	        fields[id].type = memoryCache.getFieldType(id);
-		}
-	}
 }

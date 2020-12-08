@@ -21,22 +21,32 @@
  	<string id="MilitaryFormatTitle" scope="foreground">Military Format for 24 Hour
 		Time</string>
 	<string id="HFt01" scope="foreground">Use format 01 for horse</string>
-	<string id="AmPm" scope="foreground">Show A and P for 12 Hour Time</string>
 
 	<string id="DF" scope="foreground">Date format</string>
 	<string id="DFHELP" scope="foreground">%w - day of week number, %W - day of week name, %d - day 1 digits (less than 10), %D - day 2 digits, %m - month number 2 digits, %M - month name, %y - year 2 digits, %Y - year 4 digits, %DN - day of year, %WN - week of year ISO 8601</string>
-	<string id="Sec" scope="foreground">Seconds</string>
-	<string id="HREverySec" scope="foreground">Update HR every second</string>
 	
 	<!--SECOND TIME -->
 	<string id="T1TZ" scope="foreground">Time zone ±UTC (minutes)</string>
 	
 	<!--Status -->
-	<string id="ConCol" scope="foreground">Connected color</string>
-	<string id="MesCol" scope="foreground">Notifications color</string>
-	<string id="AlCol" scope="foreground">Alarms color</string>
-	<string id="DNDCol" scope="foreground">DND color</string>
+	<string id="SFC0" scope="foreground">Status field left 0 color</string>
+	<string id="SFC1" scope="foreground">Status field left 1 color</string>
+	<string id="SFC2" scope="foreground">Status field left 2 color</string>
+	<string id="SFC3" scope="foreground">Status field left 3 color</string>
+	<string id="SFC4" scope="foreground">Status field right 0 color</string>
+	<string id="SFC5" scope="foreground">Status field right 1 color</string>
+	<string id="SFC6" scope="foreground">Status field right 2 color</string>
+	<string id="SFC7" scope="foreground">Status field right 3 color</string>
 
+	<string id="SF0" scope="foreground">Status field left 0</string>
+	<string id="SF1" scope="foreground">Status field left 1</string>
+	<string id="SF2" scope="foreground">Status field left 2</string>
+	<string id="SF3" scope="foreground">Status field left 3</string>
+	<string id="SF4" scope="foreground">Status field right 0</string>
+	<string id="SF5" scope="foreground">Status field right 1</string>
+	<string id="SF6" scope="foreground">Status field right 2</string>
+	<string id="SF7" scope="foreground">Status field right 3</string>
+	 
 	<!--COLORS -->
 	<string id="COLOR_WHITE" scope="foreground">White</string>
 	<string id="COLOR_LT_GRAY" scope="foreground">Lt Gray</string>
@@ -72,7 +82,15 @@
 	<string id="FIELD_TYPE_O2" scope="foreground">Oxygen saturation</string>
 	<string id="FIELD_TYPE_SOLAR_CHARGE" scope="foreground">Solar charge efficiency</string>
 	<string id="FIELD_TYPE_WEIGHT" scope="foreground">Weight</string>
-
+	<string id="FIELD_TYPE_CONNECTED" scope="foreground">Connected</string>
+	<string id="FIELD_TYPE_NOTIFICATIONS" scope="foreground">Notification</string>
+	<string id="FIELD_TYPE_DND" scope="foreground">DND</string>
+	<string id="FIELD_TYPE_ALARMS" scope="foreground">Alarms</string>
+	<string id="FIELD_TYPE_AMPM" scope="foreground">Am/Pm</string>
+	<string id="FIELD_TYPE_SECONDS" scope="foreground">Seconds</string>
+	<string id="FIELD_TYPE_NOTIFICATIONS_COUNT" scope="foreground">Number of notifications</string>
+	<string id="FIELD_TYPE_ALARMS_COUNT" scope="foreground">Number of alarms</string>
+	
 	<!--FIELD NAMES -->
 	<string id="F0" scope="foreground">Field 0</string>
 	<string id="F1" scope="foreground">Field 1</string>

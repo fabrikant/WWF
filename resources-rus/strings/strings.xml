@@ -14,26 +14,38 @@
     <string id="WColor" scope="foreground">Цвет погодного виджета</string>
     <string id="WAutoColor" scope="foreground">Использовать автоцвета для погодного виджета</string>
     <string id="WShowHumPr" scope="foreground">Показывать влажность и давление</string>
+
     <string id="BatColor" scope="foreground">Цвет батареи</string>
     <string id="MoonColor" scope="foreground">Цвет луны</string>
     
  	<string id="MilitaryFormatTitle" scope="foreground">Военный формат для 24 часового режима</string>
 	<string id="HFt01" scope="foreground">Выводить лидирующий ноль в часах</string>
-	<string id="AmPm" scope="foreground">Показывать A и P для 12 часового режима</string>
 
 	<string id="DF" scope="foreground">Формат даты</string>
 	<string id="DFHELP" scope="foreground">%w - номер дня недели, %W - наименование дня недели, %d - день месяца 1 знак (если меньше 10), %D - день месяца два знака, %m - номер месяца 2 знака, %M - наименование месяца, %y - год 2 знака, %Y - год 4 знака, %DN - день года, %WN - номер недели ISO 8601</string>
-	<string id="Sec" scope="foreground">Секунды</string>
-	<string id="HREverySec" scope="foreground">Обновлять ЧСС каждую секунду</string>
 	
 	<!--SECOND TIME -->
 	<string id="T1TZ" scope="foreground">Сдвиг от UTC в минутах для второго ч. пояса</string>
 	
 	<!--Status -->
-	<string id="ConCol" scope="foreground">Цвет значка соединения</string>
-	<string id="MesCol" scope="foreground">Цвет значка уведомлений</string>
-	<string id="AlCol" scope="foreground">Цвет значка будильника</string>
-	<string id="DNDCol" scope="foreground">Цвет значка DND </string>
+	<!--Status -->
+	<string id="SFC0" scope="foreground">Индикатор левый 0 цвет</string>
+	<string id="SFC1" scope="foreground">Индикатор левый 1 цвет</string>
+	<string id="SFC2" scope="foreground">Индикатор левый 2 цвет</string>
+	<string id="SFC3" scope="foreground">Индикатор левый 3 цвет</string>
+	<string id="SFC4" scope="foreground">Индикатор правый 0 цвет</string>
+	<string id="SFC5" scope="foreground">Индикатор правый 1 цвет</string>
+	<string id="SFC6" scope="foreground">Индикатор правый 2 цвет</string>
+	<string id="SFC7" scope="foreground">Индикатор правый 3 цвет</string>
+
+	<string id="SF0" scope="foreground">Индикатор левый 0</string>
+	<string id="SF1" scope="foreground">Индикатор левый 1</string>
+	<string id="SF2" scope="foreground">Индикатор левый 2</string>
+	<string id="SF3" scope="foreground">Индикатор левый 3</string>
+	<string id="SF4" scope="foreground">Индикатор правый 0</string>
+	<string id="SF5" scope="foreground">Индикатор правый 1</string>
+	<string id="SF6" scope="foreground">Индикатор правый 2</string>
+	<string id="SF7" scope="foreground">Индикатор правый 3</string>
 
 	<!--COLORS -->
 	<string id="COLOR_WHITE" scope="foreground">Белый</string>
@@ -70,6 +82,14 @@
 	<string id="FIELD_TYPE_O2" scope="foreground">Уровень насыщ. кислородом</string>
 	<string id="FIELD_TYPE_SOLAR_CHARGE" scope="foreground">Эффективность солнечной зарядки</string>
 	<string id="FIELD_TYPE_WEIGHT" scope="foreground">Вес</string>
+	<string id="FIELD_TYPE_CONNECTED" scope="foreground">Статус подключения</string>
+	<string id="FIELD_TYPE_NOTIFICATIONS" scope="foreground">Статус уведомлений</string>
+	<string id="FIELD_TYPE_DND" scope="foreground">Режим не беспокоить</string>
+	<string id="FIELD_TYPE_ALARMS" scope="foreground">Статус будильника</string>
+	<string id="FIELD_TYPE_AMPM" scope="foreground">Поле Am/Pm</string>
+	<string id="FIELD_TYPE_SECONDS" scope="foreground">Секунды</string>
+	<string id="FIELD_TYPE_NOTIFICATIONS_COUNT" scope="foreground">Количество уведомлений</string>
+	<string id="FIELD_TYPE_ALARMS_COUNT" scope="foreground">Количество будильников</string>
 
 	<!--FIELD NAMES -->
 	<string id="F0" scope="foreground">Поле 0</string>

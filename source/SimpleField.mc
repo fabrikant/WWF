@@ -14,6 +14,10 @@ class SimpleField {
 		type = params[:type];
 		fontId = params[:fontId];
 		justify = params[:justify];
+		
+		if (type == SECONDS || type == HR){
+			memoryCache.addEverySecondField(id);
+		}
 	}
 
 	function draw(dc, text){

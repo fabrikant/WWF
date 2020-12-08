@@ -275,9 +275,6 @@ module StorageSettings {
 		var res = [];
 	    res.add("MilFt");
 		res.add("HFt01");
-		res.add("AmPm");
-		res.add("Sec");
-		res.add("HREverySec");
 		res.add("DF");
 	    res.add("BgndColor1");
 	    res.add("BgndColor2");
@@ -289,26 +286,18 @@ module StorageSettings {
 	    res.add("WShowHumPr");
 	    res.add("BatColor");
 	    res.add("MoonColor");
-		res.add("ConCol");
-		res.add("MesCol");
-		res.add("DNDCol");
-		res.add("AlCol");
 		res.add("WUpdInt");
 		res.add("PrU");
 		res.add("WU");
 		res.add("T1TZ");
-		res.add("F0");
-		res.add("C0");
-		res.add("F1");
-		res.add("C1");
-		res.add("F2");
-		res.add("C2");
-		res.add("F3");
-		res.add("C3");
-		res.add("F4");
-		res.add("C4");
-		res.add("F5");
-		res.add("C5");
+		for (var i = 0; i < FIELDS_COUNT; i++){
+			res.add("F"+i);
+			res.add("C"+i);
+		}
+		for (var i = 0; i < STATUS_FIELDS_COUNT; i++){
+			res.add("SF"+i);
+			res.add("SFC"+i);
+		}
 		return res;
 	}
 	

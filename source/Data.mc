@@ -14,21 +14,24 @@ module Data{
 	function getValueByFieldType(filedType, oldValue){
 
 		var res = "";
+		if (filedType == EMPTY){
+			res = "";
+		
 		///////////////////////////////////////////////////////////////////////
 		//TIME
-		if (filedType == :time){
+		}else if (filedType == :time){
 
 			var clockTime = System.getClockTime();
 			res = getTimeString(clockTime);
 
 		///////////////////////////////////////////////////////////////////////
 		//SECONDS
-		}else if (filedType == :sec){
+		}else if (filedType == SECONDS){
 			res = getSeconds();
 
 		///////////////////////////////////////////////////////////////////////
 		//AM PM
-		}else if (filedType == :am){
+		}else if (filedType == AMPM){
 			res = getAmPm();
 
 		///////////////////////////////////////////////////////////////////////
@@ -47,14 +50,20 @@ module Data{
 
 		///////////////////////////////////////////////////////////////////////
 		//STATUS FIELDS
-		}else if (filedType == :connnection){
+		}else if (filedType == CONNECTED){
 			res = System.getDeviceSettings().connectionAvailable ? "c" : "";
-		}else if (filedType == :messages){
+		}else if (filedType == NOTIFICATIONS){
 			res = System.getDeviceSettings().notificationCount > 0 ? "i" : "";
-		}else if (filedType == :dnd){
+		}else if (filedType == NOTIFICATIONS_COUNT){
+			res = System.getDeviceSettings().notificationCount;
+			res = res > 0 ? res : "";
+		}else if (filedType == DND){
 			res = System.getDeviceSettings().doNotDisturb ? "k" : "";
-		}else if (filedType == :alarms){
+		}else if (filedType == ALARMS){
 			res = System.getDeviceSettings().alarmCount > 0 ? "a" : "";
+		}else if (filedType == ALARMS_COUNT){
+			res = System.getDeviceSettings().alarmCount;
+			res = res > 0 ? res : "";
 
 		///////////////////////////////////////////////////////////////////////
 		//DATA FIELDS
@@ -82,8 +91,6 @@ module Data{
 			res = getSunset();
 		}else if (filedType == TIME1){
 			res = getSecondTime();
-		}else if (filedType == EMPTY){
-			res = "";
 		}else if (filedType == ACTIVE_DAY){
 			res = getActive(:activeMinutesDay);
 		}else if (filedType == ACTIVE_WEEK){
@@ -467,12 +474,10 @@ module Data{
 	///////////////////////////////////////////////////////////////////////////
 	function getAmPm(){
 		var value = "";
-		if (!System.getDeviceSettings().is24Hour && memoryCache.settings[:time][:am]) {
-            if (System.getClockTime().hour < 12) {
-				value = "A";
-			}else{
-				value = "P";
-			}
+        if (System.getClockTime().hour < 12) {
+			value = "A";
+		}else{
+			value = "P";
 		}
 		return value;
 	}
@@ -480,9 +485,7 @@ module Data{
 	///////////////////////////////////////////////////////////////////////////
 	function getSeconds(){
 		var value = "";
-		if (memoryCache.settings[:time][:sec]) {
-			value = System.getClockTime().sec.format("%02d");
-		}
+		value = System.getClockTime().sec.format("%02d");
 		return value;
 	}
 
