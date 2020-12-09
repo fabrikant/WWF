@@ -448,7 +448,10 @@ class WWFView extends WatchUi.WatchFace {
     }
 
 	function onPartialUpdate(dc){
-
+		
+		if (memoryCache.everySecondFields == null){
+			return;
+		}
 		if (memoryCache.everySecondFields.size()>0){
 			for (var i = 0; i < memoryCache.everySecondFields.size(); i++){
 				var fieldId = memoryCache.everySecondFields[i];
