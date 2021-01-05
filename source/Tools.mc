@@ -12,7 +12,7 @@ module Tools {
 		var hour = (rawData / 60).toNumber();
 		return Toybox.Lang.format("$1$:$2$", [hour.format("%02d"), (rawData-hour*60).format("%02d")]);
 	}
-	
+
 	///////////////////////////////////////////////////////////////////////////
 	function weightToString(rawData){
 		var value = 0.0;
@@ -86,7 +86,7 @@ module Tools {
 		}
 		return hours.format(f)+":"+info.min.format("%02d");
 	}
-	
+
 	///////////////////////////////////////////////////////////////////////////
 	function momentToDateTimeString(moment){
 		var info = Time.Gregorian.info(moment, Time.FORMAT_MEDIUM);
@@ -230,16 +230,21 @@ module Tools {
 			}
 			return 1 + beginMoment.subtract(moment).value()/(Gregorian.SECONDS_PER_DAY*7);
 		} else{
+			if (momentInfo.month == 1 && momentInfo.day <= 3 && (momentInfo.day_of_week==1 || momentInfo.day_of_week > 5)){
+				return weekOfYear(
+					Gregorian.moment(
+						{
+							:year => momentInfo.year-1,
+							:month => 12,
+							:day =>31,
+						}
+					)
+				);
+			}else{
+				var beginMoment = jan1.add(new Time.Duration((8-jan1DayOfWeek)*Gregorian.SECONDS_PER_DAY));
+				return 1 + beginMoment.subtract(moment).value()/(Gregorian.SECONDS_PER_DAY*7);
 
-			return weekOfYear(
-				Gregorian.moment(
-					{
-						:year => momentInfo.year-1,
-						:month => 12,
-						:day =>31,
-					}
-				)
-			);
+			}
 		}
 	}
 
@@ -298,5 +303,5 @@ module Tools {
 		}
 	    return v;
 	}
-	 
+
 }
