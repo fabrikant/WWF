@@ -8,7 +8,7 @@ class MemoryCache {
 	var weather;
 	var backgroundY = [0,0];
 	var everySecondFields;
-	
+
 	function initialize(){
 		reload();
 	}
@@ -22,7 +22,7 @@ class MemoryCache {
 		if (view != null){
 			view.fields = {};
 		}
-		
+
 		saveSettingsToStorage();
 		readSettings();
 		readGeolocation();
@@ -194,7 +194,7 @@ class MemoryCache {
 				res = Graphics.COLOR_BLUE;
 			}
 		}
-		
+
 		if (backgroundColor == Graphics.COLOR_BLACK){
 			if (res == Graphics.COLOR_DK_BLUE){
 				res = Graphics.COLOR_BLUE;
@@ -203,14 +203,14 @@ class MemoryCache {
 			}
 		}else if (backgroundColor == Graphics.COLOR_WHITE){
 			if (res == Graphics.COLOR_YELLOW){
-				res = Graphics.COLOR_ORANGE;			
+				res = Graphics.COLOR_ORANGE;
 			}else if (res == Graphics.COLOR_LT_GRAY){
-				res = Graphics.COLOR_DK_GRAY;			
+				res = Graphics.COLOR_DK_GRAY;
 			}
 		}
 		return res;
 	}
-	
+
 	function getSpeedUnitString(){
 		if (memoryCache.weather != null){
 			if (settings[:spped_unti_string] == null){
@@ -224,6 +224,8 @@ class MemoryCache {
 					settings[:spped_unti_string] = Application.loadResource(Rez.Strings.SpeedUnitFtSec);
 				}else if (unit == 4){ /*ft/s*/
 					settings[:spped_unti_string] = Application.loadResource(Rez.Strings.SpeedUnitBof);
+				}else if (unit == 5){ /*knots*/
+					settings[:spped_unti_string] = Application.loadResource(Rez.Strings.SpeedUnitKnots);
 				}
 			}
 			return settings[:spped_unti_string];
@@ -242,7 +244,7 @@ class MemoryCache {
 			res = :picture;
 		}
 		return res;
-	} 
+	}
 
 	function addEverySecondField(id){
 		if (everySecondFields == null){
@@ -251,7 +253,7 @@ class MemoryCache {
 			everySecondFields.add(id);
 		}
 	}
-		
+
 	function getPictureType(id){
 		return PICTURE+Application.Properties.getValue(id);
 	}
@@ -302,20 +304,20 @@ class MemoryCache {
 			return value;
 		}
 	}
-	
+
 	function saveSettingsToStorage(){
 		var settingsType = Application.Properties.getValue("SettingsType");
 		if (settingsType == 0){
 			return;
 		}
-		
+
 		var keyPeriodicSettings = STORAGE_KEY_GLOBAL;
 		if(settingsType == 2){
 			keyPeriodicSettings = STORAGE_KEY_DAY;
 		}else if (settingsType == 3){
 			keyPeriodicSettings = STORAGE_KEY_NIGHT;
 		}
-		
+
 		var currentId = StorageSettings.getPeriodicSettingsId(keyPeriodicSettings);
 		if (currentId != null){
 			StorageSettings.remove(currentId);
@@ -323,7 +325,7 @@ class MemoryCache {
 		var now = Time.now();
 		StorageSettings.save(now);
 		StorageSettings.setPeriodicSettings(keyPeriodicSettings, now.value());
-		
+
 		Application.Properties.setValue("SettingsType", 0);
 	}
 }

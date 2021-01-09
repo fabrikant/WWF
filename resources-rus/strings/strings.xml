@@ -127,6 +127,7 @@
 	<string id="SpeedUnitMileH" scope="foreground">мл/ч</string>
 	<string id="SpeedUnitFtSec" scope="foreground">ф/с</string>
 	<string id="SpeedUnitBof" scope="foreground">бал.</string>
+	<string id="SpeedUnitKnots" scope="foreground">узл.</string>
 	
 	<!--Settings view -->
 	<string id="SettingsMenu" scope="foreground">Настройки</string>

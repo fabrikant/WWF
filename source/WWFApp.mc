@@ -35,12 +35,12 @@ class WWFApp extends Application.AppBase {
     }
 
 	function getSettingsView(){
-		
+
 		var menu = new MenuSettings();
 		return [ menu, new MenuDelegate(menu)];
-	
+
 	}
-	
+
 	///////////////////////////////////////////////////////////////////////////
 	// Background
 	function onBackgroundData(data) {
@@ -49,14 +49,16 @@ class WWFApp extends Application.AppBase {
 		//System.println("onBackgroundData "+Tools.momentToString(Time.now()));
 		//System.println("data: "+data);
 		//////////////////////////////////////////////////////////
-    	if (data[STORAGE_KEY_RESPONCE_CODE] != null){
-     		Application.Storage.setValue(STORAGE_KEY_RESPONCE_CODE, data[STORAGE_KEY_RESPONCE_CODE]);
-	        if (data[STORAGE_KEY_RESPONCE_CODE].toNumber() == 200){
-	        	if (memoryCache == null){
-	        		memoryCache = new MemoryCache();
-	        	}
-       			memoryCache.onWeatherUpdate(data);
-	        }
+		if (data != null){
+	    	if (data[STORAGE_KEY_RESPONCE_CODE] != null){
+	     		Application.Storage.setValue(STORAGE_KEY_RESPONCE_CODE, data[STORAGE_KEY_RESPONCE_CODE]);
+		        if (data[STORAGE_KEY_RESPONCE_CODE].toNumber() == 200){
+		        	if (memoryCache == null){
+		        		memoryCache = new MemoryCache();
+		        	}
+	       			memoryCache.onWeatherUpdate(data);
+		        }
+	 		}
  		}
         registerEvents();
     }

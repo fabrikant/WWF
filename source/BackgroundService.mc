@@ -58,6 +58,12 @@ class BackgroundService extends System.ServiceDelegate {
     }
 
 	function onTemporalEvent() {
+
+		var connStat = System.getDeviceSettings().connectionInfo;
+		if (connStat != System.CONNECTION_STATE_CONNECTED){
+			Background.exit(null);
+		}
+
 		var url = "https://api.openweathermap.org/data/2.5/weather";
 
 		var lat = Application.Storage.getValue("Lat");

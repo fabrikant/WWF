@@ -127,6 +127,7 @@
 	<string id="SpeedUnitMileH" scope="foreground">mph</string>
 	<string id="SpeedUnitFtSec" scope="foreground">fps</string>
 	<string id="SpeedUnitBof" scope="foreground">bouf</string>
+	<string id="SpeedUnitKnots" scope="foreground">knots</string>
 
 	<!--Settings view -->
 	<string id="SettingsMenu" scope="foreground">Settings</string>

@@ -36,6 +36,8 @@ module Tools {
 			value = rawData*3.281;
 		}else if (unit == 4){ /*Beaufort*/
 			value = getBeaufort(rawData);
+		}else if (unit == 5){ /*knots*/
+			value = rawData*1.94384;
 		}
 		return value.format("%d");
 	}
