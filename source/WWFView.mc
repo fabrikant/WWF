@@ -365,6 +365,7 @@ class WWFView extends WatchUi.WatchFace {
 			}
 		}
     	Application.getApp().registerEvents();
+    	memoryCache = new MemoryCache();
     }
 
 	function drawBackground(dc){
