@@ -355,7 +355,7 @@ class WWFView extends WatchUi.WatchFace {
 		} else {
 			if (Application.Storage.getValue("Lat") == null || Application.Storage.getValue("Lon") == null){
 				if ( Toybox has :Weather){
-					location = Weather.getCurrentConditions().observationLocationPosition;
+					location = Toybox.Weather.getCurrentConditions().observationLocationPosition;
 			    	if (location != null) {
 						location = location.toDegrees();
 						Application.Storage.setValue("Lat", location[0].toFloat());
