@@ -276,9 +276,7 @@ module StorageSettings {
 	    res.add("MilFt");
 		res.add("HFt01");
 		res.add("DF");
-	    res.add("BgndColor1");
-	    res.add("BgndColor2");
-	    res.add("BgndColor3");
+	    res.add("BgndColor");
 	    res.add("TimeColor");
 	    res.add("DateColor");
 	    res.add("WColor");

@@ -1,4 +1,4 @@
-1.5.0 - Сhanged font, added enduro support
+1.5.5 - Bug fix. The interface has been redrawn. Removed 2 status fields, removed multi-colored background. Now only one background color can be selected. You must reinstall (NOT UPDATE) the watchface.1.5.0 - Сhanged font, added enduro support
 1.4.6 - Bug fix
 1.4.5 - Bug fix
 1.4.4 - The concept of status fields has been changed. Now they are more configurable. Probably you will have to configure the watchface again.

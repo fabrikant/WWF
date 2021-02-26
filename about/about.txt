@@ -1,7 +1,9 @@
-Important! Don't update to version 1.4.4! You must:
-1. Remove application
-2. Reload the watch. REQUIRED!
-3. Install the application.
+ATTENTION! IMPORTANT!
+If an error occurs after the update:
+1. Uninstall the watchface
+2. Reboot your watch. Required!
+3. Install the watchface
+4. Set the settings
 
 Free, open sourse and configurable watchface with weather widget and data fields.
 Generate API key on openweathermap.org and paste it in the settings for the weather data.

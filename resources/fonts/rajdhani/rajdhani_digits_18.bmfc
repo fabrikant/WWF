@@ -18,9 +18,6 @@ dontIncludeKerningPairs=0
 useHinting=1
 renderFromOutline=1
 useClearType=0
-autoFitNumPages=0
-autoFitFontSizeMin=0
-autoFitFontSizeMax=0
 
 # character alignment
 paddingDown=0
@@ -31,7 +28,6 @@ spacingHoriz=1
 spacingVert=1
 useFixedHeight=0
 forceZero=0
-widthPaddingFactor=0.00
 
 # output file
 outWidth=256
@@ -54,6 +50,6 @@ invB=0
 outlineThickness=0
 
 # selected chars
-chars=44-46,48-58,107
+chars=37,44-46,48-58,103,107,112,115
 
 # imported icon images

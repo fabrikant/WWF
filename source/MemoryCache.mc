@@ -26,7 +26,7 @@ class MemoryCache {
 		saveSettingsToStorage();
 		readSettings();
 		readGeolocation();
-		readBackgroundY();
+		//readBackgroundY();
 		readWeather();
 		oldValues = {};
 		oldValues[:sunCach] = {};
@@ -37,9 +37,7 @@ class MemoryCache {
 		settings = {};
 		settings[:switchDayNight] = Application.Properties.getValue("SwitchDayNight");
 		settings[:colors] = {};
-		settings[:colors][:background1] = Application.Properties.getValue("BgndColor1");
-		settings[:colors][:background2] = Application.Properties.getValue("BgndColor2");
-		settings[:colors][:background3] = Application.Properties.getValue("BgndColor3");
+		settings[:colors][:backgroundColor] = Application.Properties.getValue("BgndColor");
 		settings[:colors][:time] = Application.Properties.getValue("TimeColor");
 		settings[:colors][:date] = Application.Properties.getValue("DateColor");
 
@@ -275,26 +273,26 @@ class MemoryCache {
 		}
 	}
 
-	function setBackgroundY(idx, value){
-		backgroundY[idx] = value;
-		var key = getBackgroundYKeyStorageId(idx);
-		if (Application.Storage.getValue(key) != value){
-			Application.Storage.setValue(key, value);
-		}
-	}
-
-	function readBackgroundY(){
-		backgroundY[0] = getStorageValue(getBackgroundYKeyStorageId(0),0);
-		backgroundY[1] = getStorageValue(getBackgroundYKeyStorageId(1),0);
-	}
-
-	private function getBackgroundYKeyStorageId(idx){
-		if (idx == 0){
-			return STORAGE_KEY_BACKGROUND_Y1;
-		}else{
-			return STORAGE_KEY_BACKGROUND_Y2;
-		}
-	}
+//	function setBackgroundY(idx, value){
+//		backgroundY[idx] = value;
+//		var key = getBackgroundYKeyStorageId(idx);
+//		if (Application.Storage.getValue(key) != value){
+//			Application.Storage.setValue(key, value);
+//		}
+//	}
+//
+//	function readBackgroundY(){
+//		backgroundY[0] = getStorageValue(getBackgroundYKeyStorageId(0),0);
+//		backgroundY[1] = getStorageValue(getBackgroundYKeyStorageId(1),0);
+//	}
+//
+//	private function getBackgroundYKeyStorageId(idx){
+//		if (idx == 0){
+//			return STORAGE_KEY_BACKGROUND_Y1;
+//		}else{
+//			return STORAGE_KEY_BACKGROUND_Y2;
+//		}
+//	}
 
 	private function getStorageValue(key, defaultValue){
 		var value = Application.Storage.getValue(key);

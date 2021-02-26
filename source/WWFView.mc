@@ -8,7 +8,7 @@ using Toybox.Activity;
 class WWFView extends WatchUi.WatchFace {
 
 	var fields;
-
+	
     function initialize() {
 
         WatchFace.initialize();
@@ -35,11 +35,10 @@ class WWFView extends WatchUi.WatchFace {
 		///////////////////////////////////////////////////////////////////////
 		//TIME
 		var font = fonts[:time];
-		var w = dc.getTextWidthInPixels("00:00", font);
-		var h = Graphics.getFontHeight(font)-Graphics.getFontDescent(font);
-		var x = (System.getDeviceSettings().screenWidth - w)/2;
+		var w = dc.getTextWidthInPixels("00:02", font);
+		var h = Graphics.getFontHeight(font)-1.5*Graphics.getFontDescent(font);
+		var x = (System.getDeviceSettings().screenWidth - w)/2-2;
 		var y = (System.getDeviceSettings().screenHeight - h)/2;
-
         fields[:time] = new SimpleField(
     		{
     			:x => x,
@@ -58,7 +57,7 @@ class WWFView extends WatchUi.WatchFace {
     	font = fonts[:small];
     	h = 20;
     	y = y - h;
-    	memoryCache.setBackgroundY(0, y);
+//    	memoryCache.setBackgroundY(0, y+1);
 
         fields[:date] = new SimpleField(
     		{
@@ -75,23 +74,20 @@ class WWFView extends WatchUi.WatchFace {
 
 		///////////////////////////////////////////////////////////////////////
 		//STATUS FIELDS
-		h = 16 + fields[:date].h/4;
-		w = h;
+		h = (fields[:time].h + fields[:date].h)/4;
+		w = dc.getTextWidthInPixels("00", fonts[:small]);
 		
-		y = fields[:date].y;
-		x = fields[:time].x - w - 3;
+		y = (dc.getHeight() - STATUS_FIELDS_COUNT*h/2)/2;
+		x = fields[:time].x - w;
 
 		var coord = new [STATUS_FIELDS_COUNT];
-		coord[0] = [x,y];
-		coord[1] = [coord[0][0],y + h];
-		coord[2] = [coord[0][0],y + 2*h];
-		coord[3] = [coord[0][0],y + 3*h];
-		
-		coord[4] = [fields[:time].x + fields[:time].w + 3,y];
-		coord[5] = [coord[4][0],y + h];
-		coord[6] = [coord[4][0],y + 2*h];
-		coord[7] = [coord[4][0],y + 3*h];
-		
+		coord[0] = [x,y,Graphics.TEXT_JUSTIFY_RIGHT];
+		coord[1] = [coord[0][0],y + h,Graphics.TEXT_JUSTIFY_RIGHT];
+		coord[2] = [coord[0][0],y + 2*h,Graphics.TEXT_JUSTIFY_RIGHT];
+
+		coord[3] = [fields[:time].x + fields[:time].w,y,Graphics.TEXT_JUSTIFY_LEFT];
+		coord[4] = [coord[3][0],y + h,Graphics.TEXT_JUSTIFY_LEFT];
+		coord[5] = [coord[3][0],y + 2*h,Graphics.TEXT_JUSTIFY_LEFT];
 
 		for (var i = 0; i < STATUS_FIELDS_COUNT; i++){
 			
@@ -106,7 +102,7 @@ class WWFView extends WatchUi.WatchFace {
 	    			:type =>type,
 	    			:id => id,
 					:fontId =>  memoryCache.getFontByFieldType(type),
-	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
+	    			:justify => coord[i][2]
 	    		}
 	    	);
 		}
@@ -115,13 +111,13 @@ class WWFView extends WatchUi.WatchFace {
 		///////////////////////////////////////////////////////////////////////
 		//DATA FIELDS
 		h = 22;
-		y = fields[:time].y+fields[:time].h;
-		x = fields[:time].x - h;
-		memoryCache.setBackgroundY(1, y);
+//		memoryCache.setBackgroundY(1, y);
 
 		var wPicture = h;
-		var wText = (System.getDeviceSettings().screenWidth - 2*x - 3*wPicture)/3;
-
+		var wText = dc.getTextWidthInPixels("00:00", fonts[:small]);
+		y = fields[:time].y+fields[:time].h;
+		x = (dc.getWidth() - 3*(wPicture+wText))/2;
+		
 		coord = new [FIELDS_COUNT];
 		coord[0] = [x,y];
 		coord[1] = [x+(wPicture+wText),y];
@@ -370,18 +366,9 @@ class WWFView extends WatchUi.WatchFace {
     }
 
 	function drawBackground(dc){
-		var bColors = memoryCache.settings[:colors];
-		var backgroundSettings = [
-			[0, memoryCache.backgroundY[0], bColors[:background1]],
-			[memoryCache.backgroundY[0],memoryCache.backgroundY[1] - memoryCache.backgroundY[0],bColors[:background2]],
-			[memoryCache.backgroundY[1],System.getDeviceSettings().screenHeight - memoryCache.backgroundY[1],bColors[:background3]],
-		];
-		var w = System.getDeviceSettings().screenWidth;
-		for (var i = 0; i < 3; i++){
-			dc.setColor( backgroundSettings[i][2], backgroundSettings[i][2]);
-			dc.setClip(0, backgroundSettings[i][0], w, backgroundSettings[i][1]);
-			dc.fillRectangle(0, backgroundSettings[i][0], w, backgroundSettings[i][1]);
-		}
+		dc.setColor(memoryCache.settings[:colors][:backgroundColor], memoryCache.settings[:colors][:backgroundColor]);
+		dc.setClip(0, 0, dc.getWidth(), dc.getHeight());
+		dc.fillRectangle(0, 0, dc.getWidth(), dc.getHeight());
 	}
 
     // Update the view
@@ -407,7 +394,7 @@ class WWFView extends WatchUi.WatchFace {
 				}
 			}
 		}else{//dont switch day/night
-			if (memoryCache.oldValues[:isStarted] != true){
+			if (memoryCache.oldValues[:isStarted] != true ){
 				var idSettings = StorageSettings.getPeriodicSettingsId(STORAGE_KEY_GLOBAL);
 				if (idSettings != null){
 					StorageSettings.load(idSettings);
@@ -416,11 +403,11 @@ class WWFView extends WatchUi.WatchFace {
 		}
 		
 		if (memoryCache.oldValues[:isStarted] != true){
-			createFields(dc);
 			drawBackground(dc);
+			createFields(dc);
 			memoryCache.oldValues[:isStarted] = false;
 		}
-		
+
 		memoryCache.checkWeatherActuality();
 		var ids = fields.keys();
 		for (var i = 0; i < ids.size(); i++){

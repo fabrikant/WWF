@@ -50,4 +50,4 @@ enum{
 }
 
 const FIELDS_COUNT = 6;
-const STATUS_FIELDS_COUNT = 8;
+const STATUS_FIELDS_COUNT = 6;

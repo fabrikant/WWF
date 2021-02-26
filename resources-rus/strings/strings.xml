@@ -6,10 +6,8 @@
 	<string id="KeyOWPrompt" scope="foreground">его можно получить бесплатно</string>
 	<string id="WUpdInt" scope="foreground">Интервал обновления погоды (в минутах)</string>
 
-    <string id="BgndColor1">Цвет фона верх</string>
-    <string id="BgndColor2">Цвет фона центр</string>
-    <string id="BgndColor3">Цвет фона низ</string>
-    <string id="TimeColor">Цвет времени</string>
+    <string id="BgndColor">Цвет фона</string>
+     <string id="TimeColor">Цвет времени</string>
     <string id="DateColor" scope="foreground">Цвет даты</string>
     <string id="WColor" scope="foreground">Цвет погодного виджета</string>
     <string id="WAutoColor" scope="foreground">Использовать автоцвета для погодного виджета</string>
@@ -32,20 +30,16 @@
 	<string id="SFC0" scope="foreground">Индикатор левый 0 цвет</string>
 	<string id="SFC1" scope="foreground">Индикатор левый 1 цвет</string>
 	<string id="SFC2" scope="foreground">Индикатор левый 2 цвет</string>
-	<string id="SFC3" scope="foreground">Индикатор левый 3 цвет</string>
-	<string id="SFC4" scope="foreground">Индикатор правый 0 цвет</string>
-	<string id="SFC5" scope="foreground">Индикатор правый 1 цвет</string>
-	<string id="SFC6" scope="foreground">Индикатор правый 2 цвет</string>
-	<string id="SFC7" scope="foreground">Индикатор правый 3 цвет</string>
+	<string id="SFC3" scope="foreground">Индикатор правый 0 цвет</string>
+	<string id="SFC4" scope="foreground">Индикатор правый 1 цвет</string>
+	<string id="SFC5" scope="foreground">Индикатор правый 2 цвет</string>
 
 	<string id="SF0" scope="foreground">Индикатор левый 0</string>
 	<string id="SF1" scope="foreground">Индикатор левый 1</string>
 	<string id="SF2" scope="foreground">Индикатор левый 2</string>
-	<string id="SF3" scope="foreground">Индикатор левый 3</string>
-	<string id="SF4" scope="foreground">Индикатор правый 0</string>
-	<string id="SF5" scope="foreground">Индикатор правый 1</string>
-	<string id="SF6" scope="foreground">Индикатор правый 2</string>
-	<string id="SF7" scope="foreground">Индикатор правый 3</string>
+	<string id="SF3" scope="foreground">Индикатор правый 0</string>
+	<string id="SF4" scope="foreground">Индикатор правый 1</string>
+	<string id="SF5" scope="foreground">Индикатор правый 2</string>
 
 	<!--COLORS -->
 	<string id="COLOR_WHITE" scope="foreground">Белый</string>

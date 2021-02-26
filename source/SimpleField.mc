@@ -49,13 +49,7 @@ class SimpleField {
 	}
 
 	function getBackgroundColor(){
-		if (y < memoryCache.backgroundY[0]){
-			return memoryCache.settings[:colors][:background1];
-		}else if (y < memoryCache.backgroundY[1]){
-			return memoryCache.settings[:colors][:background2];
-		}else {
-			return memoryCache.settings[:colors][:background3];
-		}
+		return memoryCache.settings[:colors][:backgroundColor];
 	}
 
 	function getColor(){
