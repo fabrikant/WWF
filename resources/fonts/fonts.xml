@@ -1,12 +1,25 @@
 <fonts>
-	<font id="big" scope="foreground"
+ <!-- 
+	<font id="big" scope="foreground" antialias="true" 
 		filename="roboto/roboto_digits_67_med.fnt" />
-	<font id="med" scope="foreground"
+	<font id="med" scope="foreground" antialias="true"
 		filename="roboto/roboto_digits_25_black.fnt" />
-	<font id="small" scope="foreground"
+	<font id="small" scope="foreground" antialias="true"
 		filename="roboto/roboto_17_black.fnt" />
-	<font id="weather" scope="foreground"
+		
+-->	 	
+	
+	<font id="big" scope="foreground" antialias="true"
+		filename="rajdhani/rajdhani_digits_70.fnt" />
+	
+	<font id="med" scope="foreground" antialias="true"
+		filename="rajdhani/rajdhani_digits_26.fnt" />
+	<font id="small" scope="foreground" antialias="true"
+		filename="rajdhani/rajdhani_digits_18.fnt" />
+	<font id="small_letters" scope="foreground" antialias="true"
+		filename="roboto/roboto_17_black.fnt" />
+	<font id="weather" scope="foreground"  antialias="true"
 		filename="weather-moon/weather_moon_32.fnt" />
-	<font id="images" scope="foreground"
+	<font id="images" scope="foreground" antialias="true"
 		filename="watch-face-images-04/watch-face-images-04-18.fnt" />
 </fonts>

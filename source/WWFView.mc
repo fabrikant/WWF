@@ -18,6 +18,7 @@ class WWFView extends WatchUi.WatchFace {
         fields = {};
         fonts[:time] = Application.loadResource(Rez.Fonts.big);
         fonts[:small] = Application.loadResource(Rez.Fonts.small);
+        fonts[:small_letters] = Graphics.FONT_SYSTEM_XTINY;
         fonts[:medium] = Application.loadResource(Rez.Fonts.med);
         fonts[:picture] = Application.loadResource(Rez.Fonts.images);
         fonts[:weather] = Application.loadResource(Rez.Fonts.weather);
@@ -67,7 +68,7 @@ class WWFView extends WatchUi.WatchFace {
     			:w => w,
     			:type => :date,
     			:id => :date,
-    			:fontId => :small,
+    			:fontId => :small_letters,
     			:justify => Graphics.TEXT_JUSTIFY_CENTER
     		}
     	);
@@ -228,7 +229,7 @@ class WWFView extends WatchUi.WatchFace {
     			:w => fields[:weather_wind_dir].w + fields[:weather_wind_speed].w,
     			:type => :weather_wind_speed_unit,
     			:id => :weather,
-    			:fontId => :small,
+    			:fontId => :small_letters,
     			:justify => Graphics.TEXT_JUSTIFY_CENTER
     		}
     	);
