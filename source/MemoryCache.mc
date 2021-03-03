@@ -273,27 +273,6 @@ class MemoryCache {
 		}
 	}
 
-//	function setBackgroundY(idx, value){
-//		backgroundY[idx] = value;
-//		var key = getBackgroundYKeyStorageId(idx);
-//		if (Application.Storage.getValue(key) != value){
-//			Application.Storage.setValue(key, value);
-//		}
-//	}
-//
-//	function readBackgroundY(){
-//		backgroundY[0] = getStorageValue(getBackgroundYKeyStorageId(0),0);
-//		backgroundY[1] = getStorageValue(getBackgroundYKeyStorageId(1),0);
-//	}
-//
-//	private function getBackgroundYKeyStorageId(idx){
-//		if (idx == 0){
-//			return STORAGE_KEY_BACKGROUND_Y1;
-//		}else{
-//			return STORAGE_KEY_BACKGROUND_Y2;
-//		}
-//	}
-
 	private function getStorageValue(key, defaultValue){
 		var value = Application.Storage.getValue(key);
 		if (value == null){

@@ -2,22 +2,25 @@
 fileVersion=1
 
 # font settings
-fontName=Roboto
+fontName=watch-face-images-05
 fontFile=
 charSet=0
-fontSize=-17
+fontSize=-16
 aa=1
 scaleH=100
-useSmoothing=0
+useSmoothing=1
 isBold=0
 isItalic=0
 useUnicode=1
 disableBoxChars=1
-outputInvalidCharGlyph=1
+outputInvalidCharGlyph=0
 dontIncludeKerningPairs=0
 useHinting=1
 renderFromOutline=1
 useClearType=0
+autoFitNumPages=0
+autoFitFontSizeMin=0
+autoFitFontSizeMax=0
 
 # character alignment
 paddingDown=0
@@ -28,6 +31,7 @@ spacingHoriz=1
 spacingVert=1
 useFixedHeight=0
 forceZero=0
+widthPaddingFactor=0.00
 
 # output file
 outWidth=256
@@ -50,6 +54,6 @@ invB=0
 outlineThickness=0
 
 # selected chars
-chars=0-0,2,13,32-126,160-255,900-906,908,910-929,931-974,977-978,982,1024-1158,1160-1279
+chars=97-119,122
 
 # imported icon images

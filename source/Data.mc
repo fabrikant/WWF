@@ -184,14 +184,6 @@ module Data{
 			res = getWeatherWindSpeed();
 		}else if (filedType == :weather_wind_speed_unit){
 			res = memoryCache.getSpeedUnitString();
-//		}else if (filedType == :weather_hum_picture){
-//			res = getGentlyWeaterPictureString("h");
-//		}else if (filedType == :weather_pressure_picture){
-//			res = getGentlyWeaterPictureString("b");
-//		}else if (filedType == :weather_hum){
-//			res = getWeatherHumidityString();
-//		}else if (filedType == :weather_pressure){
-//			res = getWeatherPressureString();
 		}else if (filedType == :weather_wind_widget){
 			res =  {
 				:weather_wind_dir => getWeatherWindDirection(),

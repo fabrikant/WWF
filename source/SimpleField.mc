@@ -65,7 +65,7 @@ class SimpleField {
 	}
 
 	function drawBorder(dc){
-		//return;
+		return;
 		dc.setColor(getColor(), Graphics.COLOR_TRANSPARENT);
 		dc.drawRectangle(x, y, w, h);
 	}

@@ -12,7 +12,6 @@ class WindDWidget extends SimpleField{
 		if (memoryCache.settings[:colors][id] == getBackgroundColor()){
 			return;
 		}
-		
 		var ratio = 0.5;
 		//direction		
 		var direction = values[:weather_wind_dir];
@@ -20,7 +19,9 @@ class WindDWidget extends SimpleField{
 			var windDirection = Tools.windDirection(h*ratio*0.9, direction.toNumber(), [x, y], [w*ratio, h*ratio]);
 			dc.setColor(getColor(), Graphics.COLOR_TRANSPARENT);
 			dc.setPenWidth(2);
-			dc.setAntiAlias(true);
+			if (dc has :setAntiAlias){
+				dc.setAntiAlias(true);
+			}
 			
 			var arSize = windDirection.size();
 			

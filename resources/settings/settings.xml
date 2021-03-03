@@ -399,7 +399,6 @@
 		</settingConfig>
 	</setting>
 
-
 	<!--FIELD TYPES -->
 	
 	<setting propertyKey="@Properties.F6"
@@ -503,7 +502,6 @@
 			<listEntry value="0xFF00FF">@Strings.COLOR_PINK</listEntry>
 		</settingConfig>
 	</setting>
-	
 	
 	<setting propertyKey="@Properties.F0"
 		title="@Strings.F0">

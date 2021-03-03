@@ -28,19 +28,19 @@
 	<string id="T1TZ" scope="foreground">Time zone ±UTC (minutes)</string>
 	
 	<!--Status -->
-	<string id="SFC0" scope="foreground">Status field left 0 color</string>
-	<string id="SFC1" scope="foreground">Status field left 1 color</string>
-	<string id="SFC2" scope="foreground">Status field left 2 color</string>
-	<string id="SFC3" scope="foreground">Status field right 0 color</string>
-	<string id="SFC4" scope="foreground">Status field right 1 color</string>
-	<string id="SFC5" scope="foreground">Status field right 2 color</string>
+	<string id="SFC0" scope="foreground">Status field left 1 color</string>
+	<string id="SFC1" scope="foreground">Status field left 2 color</string>
+	<string id="SFC2" scope="foreground">Status field left 3 color</string>
+	<string id="SFC3" scope="foreground">Status field right 1 color</string>
+	<string id="SFC4" scope="foreground">Status field right 2 color</string>
+	<string id="SFC5" scope="foreground">Status field right 3 color</string>
 
-	<string id="SF0" scope="foreground">Status field left 0</string>
-	<string id="SF1" scope="foreground">Status field left 1</string>
-	<string id="SF2" scope="foreground">Status field left 2</string>
-	<string id="SF3" scope="foreground">Status field right 0</string>
-	<string id="SF4" scope="foreground">Status field right 1</string>
-	<string id="SF5" scope="foreground">Status field right 2</string>
+	<string id="SF0" scope="foreground">Status field left 1</string>
+	<string id="SF1" scope="foreground">Status field left 2</string>
+	<string id="SF2" scope="foreground">Status field left 3</string>
+	<string id="SF3" scope="foreground">Status field right 1</string>
+	<string id="SF4" scope="foreground">Status field right 2</string>
+	<string id="SF5" scope="foreground">Status field right 3</string>
 	 
 	<!--COLORS -->
 	<string id="COLOR_WHITE" scope="foreground">White</string>
@@ -87,10 +87,9 @@
 	<string id="FIELD_TYPE_ALARMS_COUNT" scope="foreground">Number of alarms</string>
 	<string id="FIELD_TYPE_WEATHER_PRESSURE" scope="foreground">Pressure weather</string>
 	<string id="FIELD_TYPE_WEATHER_HUM" scope="foreground">Humidity weather</string>
-	
 	<string id="FIELD_TYPE_WEATHER_VISIBILITY" scope="foreground">Visibility</string>
 	<string id="FIELD_TYPE_WEATHER_WIND_SPEED" scope="foreground">Wind speed</string>
-	<string id="FIELD_TYPE_WEATHER_WIND_DEG" scope="foreground">Wind degrees</string>
+	<string id="FIELD_TYPE_WEATHER_WIND_DEG" scope="foreground">Direction of the wind</string>
 	<string id="FIELD_TYPE_WEATHER_UVI" scope="foreground">UVI</string>
 	<string id="FIELD_TYPE_WEATHER_DEW_POINT" scope="foreground">Dew point</string>
 	

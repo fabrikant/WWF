@@ -1,14 +1,4 @@
 <fonts>
- <!-- 
-	<font id="big" scope="foreground" antialias="true" 
-		filename="roboto/roboto_digits_67_med.fnt" />
-	<font id="med" scope="foreground" antialias="true"
-		filename="roboto/roboto_digits_25_black.fnt" />
-	<font id="small" scope="foreground" antialias="true"
-		filename="roboto/roboto_17_black.fnt" />
-		
--->	 	
-	
 	<font id="big" scope="foreground" antialias="true"
 		filename="rajdhani/rajdhani_digits_86.fnt" />
 	<font id="med" scope="foreground" antialias="true"

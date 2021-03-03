@@ -28,19 +28,19 @@
 	
 	<!--Status -->
 	<!--Status -->
-	<string id="SFC0" scope="foreground">Индикатор левый 0 цвет</string>
-	<string id="SFC1" scope="foreground">Индикатор левый 1 цвет</string>
-	<string id="SFC2" scope="foreground">Индикатор левый 2 цвет</string>
-	<string id="SFC3" scope="foreground">Индикатор правый 0 цвет</string>
-	<string id="SFC4" scope="foreground">Индикатор правый 1 цвет</string>
-	<string id="SFC5" scope="foreground">Индикатор правый 2 цвет</string>
+	<string id="SFC0" scope="foreground">Индикатор левый 1 цвет</string>
+	<string id="SFC1" scope="foreground">Индикатор левый 2 цвет</string>
+	<string id="SFC2" scope="foreground">Индикатор левый 3 цвет</string>
+	<string id="SFC3" scope="foreground">Индикатор правый 1 цвет</string>
+	<string id="SFC4" scope="foreground">Индикатор правый 2 цвет</string>
+	<string id="SFC5" scope="foreground">Индикатор правый 3 цвет</string>
 
-	<string id="SF0" scope="foreground">Индикатор левый 0</string>
-	<string id="SF1" scope="foreground">Индикатор левый 1</string>
-	<string id="SF2" scope="foreground">Индикатор левый 2</string>
-	<string id="SF3" scope="foreground">Индикатор правый 0</string>
-	<string id="SF4" scope="foreground">Индикатор правый 1</string>
-	<string id="SF5" scope="foreground">Индикатор правый 2</string>
+	<string id="SF0" scope="foreground">Индикатор левый 1</string>
+	<string id="SF1" scope="foreground">Индикатор левый 2</string>
+	<string id="SF2" scope="foreground">Индикатор левый 3</string>
+	<string id="SF3" scope="foreground">Индикатор правый 1</string>
+	<string id="SF4" scope="foreground">Индикатор правый 2</string>
+	<string id="SF5" scope="foreground">Индикатор правый 3</string>
 
 	<!--COLORS -->
 	<string id="COLOR_WHITE" scope="foreground">Белый</string>
@@ -85,22 +85,33 @@
 	<string id="FIELD_TYPE_SECONDS" scope="foreground">Секунды</string>
 	<string id="FIELD_TYPE_NOTIFICATIONS_COUNT" scope="foreground">Количество уведомлений</string>
 	<string id="FIELD_TYPE_ALARMS_COUNT" scope="foreground">Количество будильников</string>
+	<string id="FIELD_TYPE_WEATHER_PRESSURE" scope="foreground">Давление (погода)</string>
+	<string id="FIELD_TYPE_WEATHER_HUM" scope="foreground">Влажность (погода)</string>
+	<string id="FIELD_TYPE_WEATHER_VISIBILITY" scope="foreground">Видимость</string>
+	<string id="FIELD_TYPE_WEATHER_WIND_SPEED" scope="foreground">Скорость ветра</string>
+	<string id="FIELD_TYPE_WEATHER_WIND_DEG" scope="foreground">Направление ветра</string>
+	<string id="FIELD_TYPE_WEATHER_UVI" scope="foreground">УФ индекс</string>
+	<string id="FIELD_TYPE_WEATHER_DEW_POINT" scope="foreground">Точка росы</string>
 
 	<!--FIELD NAMES -->
-	<string id="F0" scope="foreground">Поле 0</string>
-	<string id="F1" scope="foreground">Поле 1</string>
-	<string id="F2" scope="foreground">Поле 2</string>
-	<string id="F3" scope="foreground">Поле 3</string>
-	<string id="F4" scope="foreground">Поле 4</string>
-	<string id="F5" scope="foreground">Поле 5</string>
+	<string id="F0" scope="foreground">Поле 1</string>
+	<string id="F1" scope="foreground">Поле 2</string>
+	<string id="F2" scope="foreground">Поле 3</string>
+	<string id="F3" scope="foreground">Поле 4</string>
+	<string id="F4" scope="foreground">Поле 5</string>
+	<string id="F5" scope="foreground">Поле 6</string>
+	<string id="F6" scope="foreground">Верхнее поле 1</string>
+	<string id="F7" scope="foreground">Верхнее поле 2</string>
 
 	<!--FIELD COLORS -->
-	<string id="C0" scope="foreground">Поле 0 цвет</string>
-	<string id="C1" scope="foreground">Поле 1 цвет</string>
-	<string id="C2" scope="foreground">Поле 2 цвет</string>
-	<string id="C3" scope="foreground">Поле 3 цвет</string>
-	<string id="C4" scope="foreground">Поле 4 цвет</string>
-	<string id="C5" scope="foreground">Поле 5 цвет</string>
+	<string id="C0" scope="foreground">Поле 1 цвет</string>
+	<string id="C1" scope="foreground">Поле 2 цвет</string>
+	<string id="C2" scope="foreground">Поле 3 цвет</string>
+	<string id="C3" scope="foreground">Поле 4 цвет</string>
+	<string id="C4" scope="foreground">Поле 5 цвет</string>
+	<string id="C5" scope="foreground">Поле 6 цвет</string>
+	<string id="C6" scope="foreground">Верхнее поле 1 цвет</string>
+	<string id="C7" scope="foreground">Верхнее поле 2 цвет</string>
 
 	<!--Pressure -->
 	<string id="PrU" scope="foreground">Единицы давления</string>

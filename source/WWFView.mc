@@ -33,6 +33,10 @@ class WWFView extends WatchUi.WatchFace {
 		
 		fields = {};
 		var hDataField = 22;
+		if (dc.getWidth() == 218){
+			hDataField = 18;
+		}
+		
 		///////////////////////////////////////////////////////////////////////
 		//TIME
 		var font = fonts[:time];

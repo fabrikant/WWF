@@ -1,4 +1,8 @@
 <fonts>
 	<font id="big" scope="foreground" antialias="true"
-		filename="/fonts/rajdhani/rajdhani_digits_70.fnt" />
+		filename="fonts/rajdhani/rajdhani_digits_74.fnt" />
+	<font id="small" scope="foreground" antialias="true"
+		filename="fonts/rajdhani/rajdhani_digits_18.fnt" />
+	<font id="images" scope="foreground" antialias="true"
+		filename="fonts/watch-face-images-05/watch-face-images-05-16.fnt" />
 </fonts>
