@@ -8,6 +8,48 @@ using Toybox.Lang;
 module Tools {
 
 	///////////////////////////////////////////////////////////////////////////
+	function windDirection(size, angle, leftTop, fieldSize){
+		
+		var angleRad = Math.toRadians(angle);
+		var centerPoint = [leftTop[0]+fieldSize[0]/2, leftTop[1]+fieldSize[1]/2];
+		var coords = [
+			[-size*3/8,-size/2], 
+			[0,size/2], 
+			[size*3/8,-size/2], 
+			[0, -size/4]
+		];
+	    var result = new [4];
+        var cos = Math.cos(angleRad);
+        var sin = Math.sin(angleRad);
+        // Transform the coordinates
+        for (var i = 0; i < 4; i += 1) {
+            var x = (coords[i][0] * cos) - (coords[i][1] * sin) + 0.5;
+            var y = (coords[i][0] * sin) + (coords[i][1] * cos) + 0.5;
+            result[i] = [x + centerPoint[0], y + centerPoint[1]];
+            
+        }
+        return result;
+	}
+	
+	///////////////////////////////////////////////////////////////////////////
+	function min(v1, v2){
+		if(v1 < v2){
+			return v1;
+		}else{
+			return v2;
+		}
+	}	
+
+	///////////////////////////////////////////////////////////////////////////
+	function max(v1, v2){
+		if(v1 > v2){
+			return v1;
+		}else{
+			return v2;
+		}
+	}	
+
+	///////////////////////////////////////////////////////////////////////////
 	function minutesToString(rawData){
 		var hour = (rawData / 60).toNumber();
 		return Toybox.Lang.format("$1$:$2$", [hour.format("%02d"), (rawData-hour*60).format("%02d")]);

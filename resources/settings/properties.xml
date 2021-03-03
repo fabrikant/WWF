@@ -14,7 +14,8 @@
     <property id="DateColor" type="number">0xFFFFFF</property>
     <property id="WColor" type="number">0xFFFFFF</property>
     <property id="WAutoColor" type="boolean">true</property>
-    <property id="WShowHumPr" type="boolean">false</property>
+    <property id="WShowWindWidget" type="boolean">true</property>
+    <property id="ShowTopFields" type="boolean">false</property>
     
     <property id="BatColor" type="number">0xFFFFFF</property>
     <property id="MoonColor" type="number">0xFF5500</property>
@@ -63,5 +64,11 @@
 
 	<property id="F5" type="number">1</property>
 	<property id="C5" type="number">0xFFFFFF</property>
+
+	<property id="F6" type="number">26</property>
+	<property id="C6" type="number">0xFFFFFF</property>
+
+	<property id="F7" type="number">27</property>
+	<property id="C7" type="number">0xFFFFFF</property>
 
 </properties>

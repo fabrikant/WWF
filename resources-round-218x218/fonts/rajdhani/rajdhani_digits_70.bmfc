@@ -5,7 +5,7 @@ fileVersion=1
 fontName=Rajdhani
 fontFile=
 charSet=0
-fontSize=-20
+fontSize=-70
 aa=1
 scaleH=100
 useSmoothing=1
@@ -54,6 +54,6 @@ invB=0
 outlineThickness=0
 
 # selected chars
-chars=37,44-58,65,80,103,107,112,115,176
+chars=48-58
 
 # imported icon images

@@ -32,6 +32,7 @@ class WWFView extends WatchUi.WatchFace {
 	function createFields(dc){
 		
 		fields = {};
+		var hDataField = 22;
 		///////////////////////////////////////////////////////////////////////
 		//TIME
 		var font = fonts[:time];
@@ -107,26 +108,79 @@ class WWFView extends WatchUi.WatchFace {
 	    	);
 		}
 
-
+		///////////////////////////////////////////////////////////////////////
+		//WEATHER
+		var wWeatherBar = 0;
+		var fromPictureToTemp = 5;
+		h = hDataField*2;
+		w = h;
+        fields[:weather_picture] = new SimpleField(
+    		{
+    			:x => 0,
+    			:y => fields[:date].y - h,
+    			:h => h,
+    			:w => w-fromPictureToTemp,
+    			:type => :weather_picture,
+    			:id => :weather,
+    			:fontId => :weather,
+    			:justify => Graphics.TEXT_JUSTIFY_CENTER
+    		}
+    	);
+		wWeatherBar += fields[:weather_picture][:w];
+		
+        fields[:weather_temp] = new SimpleField(
+    		{
+    			:x => fields[:weather_picture].x + fields[:weather_picture].w,
+    			:y => fields[:weather_picture].y,
+    			:h => h,
+    			:w => w+fromPictureToTemp,
+    			:type => :weather_temp,
+    			:id => :weather,
+    			:fontId => :medium,
+    			:justify => Graphics.TEXT_JUSTIFY_CENTER
+    		}
+    	);
+		wWeatherBar += fields[:weather_temp][:w];
+		
+		if (Application.Properties.getValue("WShowWindWidget")){
+	        fields[:weather_wind_widget] = new WindDWidget(
+	    		{
+	    			:x => fields[:weather_temp].x + fields[:weather_temp].w,
+	    			:y => fields[:weather_temp].y,
+	    			:h => fields[:weather_temp].h,
+	    			:w => fields[:weather_temp].w,
+	    			:type => :weather_wind_widget,
+	    			:id => :weather,
+	    			:fontId => :small_letters,
+	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
+	    		}
+			);
+			wWeatherBar += fields[:weather_wind_widget][:w];
+		}
+		
 		///////////////////////////////////////////////////////////////////////
 		//DATA FIELDS
-		h = 22;
-//		memoryCache.setBackgroundY(1, y);
-
-		var wPicture = h;
+		h = hDataField;
+		var wPicture = hDataField;
 		var wText = dc.getTextWidthInPixels("00:00", fonts[:small]);
 		y = fields[:time].y+fields[:time].h;
 		x = (dc.getWidth() - 3*(wPicture+wText))/2;
 		
-		coord = new [FIELDS_COUNT];
+		coord = new [FIELDS_COUNT-2];
 		coord[0] = [x,y];
 		coord[1] = [x+(wPicture+wText),y];
 		coord[2] = [x+2*(wPicture+wText),y];
 		coord[3] = [x,y + h];
 		coord[4] = [x+(wPicture+wText),y + h];
 		coord[5] = [x+2*(wPicture+wText),y + h];
-
-		for (var i = 0; i < FIELDS_COUNT; i++){
+		
+		if (Application.Properties.getValue("ShowTopFields")){
+			coord.add([wWeatherBar, fields[:weather_picture][:y]]);
+			coord.add([wWeatherBar, fields[:weather_picture][:y] + h]);
+			wWeatherBar += wPicture+wText;
+		}
+		
+		for (var i = 0; i < coord.size(); i++){
 
 			var idPicture = "P"+i;
 	        var id = "F"+i;
@@ -157,140 +211,23 @@ class WWFView extends WatchUi.WatchFace {
 	    		}
 	    	);
 		}
+		
 
 		///////////////////////////////////////////////////////////////////////
-		//WEATHER
-		var fromPictureToTemp = 5;
-		h = fields["F0"].h*2;
-		w = h;
-        fields[:weather_picture] = new SimpleField(
-    		{
-    			:x => coord[0][0],
-    			:y => fields[:date].y - h,
-    			:h => h,
-    			:w => w-fromPictureToTemp,
-    			:type => :weather_picture,
-    			:id => :weather,
-    			:fontId => :weather,
-    			:justify => Graphics.TEXT_JUSTIFY_CENTER
-    		}
-    	);
-
-        fields[:weather_temp] = new SimpleField(
-    		{
-    			:x => fields[:weather_picture].x + fields[:weather_picture].w,
-    			:y => fields[:weather_picture].y,
-    			:h => h,
-    			:w => w+fromPictureToTemp,
-    			:type => :weather_temp,
-    			:id => :weather,
-    			:fontId => :medium,
-    			:justify => Graphics.TEXT_JUSTIFY_CENTER
-    		}
-    	);
-
-		h = fields[:weather_temp].h/2;
-		w = h;
-        fields[:weather_wind_dir] = new WindDirectionField(
-    		{
-    			:x => fields[:weather_temp].x + fields[:weather_temp].w,
-    			:y => fields[:weather_temp].y,
-    			:h => h,
-    			:w => w,
-    			:type => :weather_wind_dir,
-    			:id => :weather,
-    			:fontId => :small,
-    			:justify => Graphics.TEXT_JUSTIFY_CENTER
-    		}
-    	);
-
-        fields[:weather_wind_speed] = new SimpleField(
-    		{
-    			:x => fields[:weather_wind_dir].x + fields[:weather_wind_dir].w,
-    			:y => fields[:weather_wind_dir].y,
-    			:h => h,
-    			:w => fields["F0"].w*0.6,
-    			:type => :weather_wind_speed,
-    			:id => :weather,
-    			:fontId => :small,
-    			:justify => Graphics.TEXT_JUSTIFY_LEFT
-    		}
-    	);
-
-        fields[:weather_wind_speed_unit] = new SimpleField(
-    		{
-    			:x => fields[:weather_wind_dir].x,
-    			:y => fields[:weather_wind_dir].y + fields[:weather_wind_dir].h,
-    			:h => fields[:weather_temp].h - fields[:weather_wind_dir].h,
-    			:w => fields[:weather_wind_dir].w + fields[:weather_wind_speed].w,
-    			:type => :weather_wind_speed_unit,
-    			:id => :weather,
-    			:fontId => :small_letters,
-    			:justify => Graphics.TEXT_JUSTIFY_CENTER
-    		}
-    	);
-		
-		if ( Application.Properties.getValue("WShowHumPr")){
-	        fields[:weather_hum_picture] = new SimpleField(
-	    		{
-	    			:x => fields[:weather_wind_speed].x+fields[:weather_wind_speed].w,
-	    			:y => fields[:weather_wind_speed].y,
-	    			:h => fields["P0"].h,
-	    			:w => fields["P0"].w,
-	    			:type => :weather_hum_picture,
-	    			:id => :weather,
-	    			:fontId => :picture,
-	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
-	    		}
-	    	);
-	
-	        fields[:weather_pressure_picture] = new SimpleField(
-	    		{
-	    			:x => fields[:weather_hum_picture].x,
-	    			:y => fields[:weather_hum_picture].y + fields[:weather_hum_picture].h,
-	    			:h => fields[:weather_hum_picture].h,
-	    			:w => fields[:weather_hum_picture].w,
-	    			:type => :weather_pressure_picture,
-	    			:id => :weather,
-	    			:fontId => :picture,
-	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
-	    		}
-	    	);
-	
-	         fields[:weather_hum] = new SimpleField(
-	    		{
-	    			:x => fields[:weather_hum_picture].x+fields[:weather_hum_picture].w,
-	    			:y => fields[:weather_hum_picture].y,
-	    			:h => fields["F0"].h,
-	    			:w => fields["F0"].w,
-	    			:type => :weather_hum,
-	    			:id => :weather,
-	    			:fontId => :small,
-	    			:justify => Graphics.TEXT_JUSTIFY_LEFT
-	    		}
-	    	);
-	
-	        fields[:weather_pressure] = new SimpleField(
-	    		{
-	    			:x => fields[:weather_hum].x,
-	    			:y => fields[:weather_hum_picture].y+fields[:weather_hum_picture].h,
-	    			:h => fields[:weather_hum].h,
-	    			:w => fields[:weather_hum].w,
-	    			:type => :weather_pressure,
-	    			:id => :weather,
-	    			:fontId => :small,
-	    			:justify => Graphics.TEXT_JUSTIFY_LEFT
-	    		}
-	    	);
-		}else{//dont show pressure and hummidity
-			var shiftX = (dc.getWidth() - fields[:weather_picture][:x] - fields[:weather_wind_speed_unit][:x] - fields[:weather_wind_speed_unit][:w])/2;
-			fields[:weather_picture][:x] += shiftX; 
-			fields[:weather_temp][:x] += shiftX;
-			fields[:weather_wind_dir][:x] += shiftX; 
-			fields[:weather_wind_speed][:x] += shiftX; 
-			fields[:weather_wind_speed_unit][:x] += shiftX;
-		
+		//MOVE WEATHER BAR
+		var shiftX = (dc.getWidth() - wWeatherBar)/2;
+		fields[:weather_picture][:x] += shiftX; 
+		fields[:weather_temp][:x] += shiftX;
+		if (Application.Properties.getValue("WShowWindWidget")){
+			fields[:weather_wind_widget][:x] += shiftX;
 		}
+		if (Application.Properties.getValue("ShowTopFields")){
+			fields["P6"][:x] += shiftX;
+			fields["F6"][:x] += shiftX;
+			fields["P7"][:x] += shiftX;
+			fields["F7"][:x] += shiftX;
+		} 
+
 		///////////////////////////////////////////////////////////////////////
 		//BATTERY
 		h = fields["F0"].h;
@@ -420,6 +357,26 @@ class WWFView extends WatchUi.WatchFace {
 			var needUpdate = false;
 			if(value == null){
 				needUpdate = (value != oldValue);
+			}else if(value instanceof  Dictionary){
+				needUpdate = false;
+				if (oldValue instanceof  Dictionary){
+					var keys = value.keys();
+					for (var i = 0; i < keys.size(); i++){
+						if(value[keys[i]] has :equals){
+							if (!value[keys[i]].equals(oldValue[keys[i]])){
+								needUpdate = true;
+								break;
+							}
+						}else{
+							if (!value[keys[i]] != oldValue[keys[i]]){
+								needUpdate = true;
+								break;
+							}
+						}
+					}
+				}else{
+					needUpdate = true;
+				}
 			}else if(value has :equals){
 				needUpdate = !value.equals(oldValue);
 			}else{

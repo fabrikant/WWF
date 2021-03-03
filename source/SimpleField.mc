@@ -56,7 +56,7 @@ class SimpleField {
 		var res =  memoryCache.settings[:colors][id];
 		if (type == :weather_temp){
 			res = memoryCache.settings[:autoColors][:temp];
-		} else if (type == :weather_wind_dir || type == :weather_wind_speed || type == :weather_wind_speed_unit){
+		} else if (type == :weather_wind_dir || type == :weather_wind_speed || type == :weather_wind_speed_unit || type == :weather_wind_widget){
 			res = memoryCache.settings[:autoColors][:wind];
 		} else if (type == :weather_picture){
 			res = memoryCache.settings[:autoColors][:cloud];
@@ -65,7 +65,7 @@ class SimpleField {
 	}
 
 	function drawBorder(dc){
-		return;
+		//return;
 		dc.setColor(getColor(), Graphics.COLOR_TRANSPARENT);
 		dc.drawRectangle(x, y, w, h);
 	}

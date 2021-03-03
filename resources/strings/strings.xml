@@ -11,7 +11,8 @@
     <string id="DateColor" scope="foreground">Date Color</string>
     <string id="WColor" scope="foreground">Weather widget color</string>
     <string id="WAutoColor" scope="foreground">Use auto colors for weather widget</string>
-    <string id="WShowHumPr" scope="foreground">Show humidity and pressure</string>
+    <string id="ShowTopFields" scope="foreground">Show top data fields</string>
+    <string id="WShowWindWidget" scope="foreground">Show wind widget</string>
     
     <string id="BatColor" scope="foreground">Battery color</string>
     <string id="MoonColor" scope="foreground">Moon color</string>
@@ -84,22 +85,35 @@
 	<string id="FIELD_TYPE_SECONDS" scope="foreground">Seconds</string>
 	<string id="FIELD_TYPE_NOTIFICATIONS_COUNT" scope="foreground">Number of notifications</string>
 	<string id="FIELD_TYPE_ALARMS_COUNT" scope="foreground">Number of alarms</string>
+	<string id="FIELD_TYPE_WEATHER_PRESSURE" scope="foreground">Pressure weather</string>
+	<string id="FIELD_TYPE_WEATHER_HUM" scope="foreground">Humidity weather</string>
+	
+	<string id="FIELD_TYPE_WEATHER_VISIBILITY" scope="foreground">Visibility</string>
+	<string id="FIELD_TYPE_WEATHER_WIND_SPEED" scope="foreground">Wind speed</string>
+	<string id="FIELD_TYPE_WEATHER_WIND_DEG" scope="foreground">Wind degrees</string>
+	<string id="FIELD_TYPE_WEATHER_UVI" scope="foreground">UVI</string>
+	<string id="FIELD_TYPE_WEATHER_DEW_POINT" scope="foreground">Dew point</string>
+	
 	
 	<!--FIELD NAMES -->
-	<string id="F0" scope="foreground">Field 0</string>
-	<string id="F1" scope="foreground">Field 1</string>
-	<string id="F2" scope="foreground">Field 2</string>
-	<string id="F3" scope="foreground">Field 3</string>
-	<string id="F4" scope="foreground">Field 4</string>
-	<string id="F5" scope="foreground">Field 5</string>
+	<string id="F0" scope="foreground">Field 1</string>
+	<string id="F1" scope="foreground">Field 2</string>
+	<string id="F2" scope="foreground">Field 3</string>
+	<string id="F3" scope="foreground">Field 4</string>
+	<string id="F4" scope="foreground">Field 5</string>
+	<string id="F5" scope="foreground">Field 6</string>
+	<string id="F6" scope="foreground">Top field 1</string>
+	<string id="F7" scope="foreground">Top field 2</string>
 
 	<!--FIELD COLORS -->
-	<string id="C0" scope="foreground">Field 0 Color</string>
-	<string id="C1" scope="foreground">Field 1 Color</string>
-	<string id="C2" scope="foreground">Field 2 Color</string>
-	<string id="C3" scope="foreground">Field 3 Color</string>
-	<string id="C4" scope="foreground">Field 4 Color</string>
-	<string id="C5" scope="foreground">Field 5 Color</string>
+	<string id="C0" scope="foreground">Field 1 Color</string>
+	<string id="C1" scope="foreground">Field 2 Color</string>
+	<string id="C2" scope="foreground">Field 3 Color</string>
+	<string id="C3" scope="foreground">Field 4 Color</string>
+	<string id="C4" scope="foreground">Field 5 Color</string>
+	<string id="C5" scope="foreground">Field 6 Color</string>
+	<string id="C6" scope="foreground">Top field 1 Color</string>
+	<string id="C7" scope="foreground">Top field 2 Color</string>
 
 	<!--Pressure -->
 	<string id="PrU" scope="foreground">Pressure Unit</string>

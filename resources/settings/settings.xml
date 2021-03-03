@@ -156,8 +156,13 @@
 		<settingConfig type="boolean" />
 	</setting>
 
-	<setting propertyKey="@Properties.WShowHumPr"
-		title="@Strings.WShowHumPr">
+	<setting propertyKey="@Properties.WShowWindWidget"
+		title="@Strings.WShowWindWidget">
+		<settingConfig type="boolean" />
+	</setting>
+
+	<setting propertyKey="@Properties.ShowTopFields"
+		title="@Strings.ShowTopFields">
 		<settingConfig type="boolean" />
 	</setting>
 
@@ -396,6 +401,110 @@
 
 
 	<!--FIELD TYPES -->
+	
+	<setting propertyKey="@Properties.F6"
+		title="@Strings.F6">
+		<settingConfig type="list">
+			<listEntry value="0">@Strings.FIELD_TYPE_HR</listEntry>
+			<listEntry value="1">@Strings.FIELD_TYPE_STEPS</listEntry>
+			<listEntry value="2">@Strings.FIELD_TYPE_PRESSURE</listEntry>
+			<listEntry value="3">@Strings.FIELD_TYPE_TEMPERATURE</listEntry>
+			<listEntry value="4">@Strings.FIELD_TYPE_CALORIES</listEntry>
+			<listEntry value="5">@Strings.FIELD_TYPE_DISTANCE</listEntry>
+			<listEntry value="6">@Strings.FIELD_TYPE_FLOOR</listEntry>
+			<listEntry value="7">@Strings.FIELD_TYPE_ELEVATION</listEntry>
+			<listEntry value="8">@Strings.FIELD_TYPE_SUN_EVENT</listEntry>
+			<listEntry value="9">@Strings.FIELD_TYPE_SUNRISE</listEntry>
+			<listEntry value="10">@Strings.FIELD_TYPE_SUNSET</listEntry>
+			<listEntry value="11">@Strings.FIELD_TYPE_TIME1</listEntry>
+			<listEntry value="13">@Strings.FIELD_TYPE_ACTIVE_DAY</listEntry>
+			<listEntry value="14">@Strings.FIELD_TYPE_ACTIVE_WEEK</listEntry>
+			<listEntry value="15">@Strings.FIELD_TYPE_O2</listEntry>
+			<listEntry value="16">@Strings.FIELD_TYPE_SOLAR_CHARGE</listEntry>
+			<listEntry value="17">@Strings.FIELD_TYPE_WEIGHT</listEntry>
+			<listEntry value="26">@Strings.FIELD_TYPE_WEATHER_PRESSURE</listEntry>
+			<listEntry value="27">@Strings.FIELD_TYPE_WEATHER_HUM</listEntry>
+			<listEntry value="28">@Strings.FIELD_TYPE_WEATHER_VISIBILITY</listEntry>
+			<listEntry value="29">@Strings.FIELD_TYPE_WEATHER_WIND_SPEED</listEntry>
+			<listEntry value="30">@Strings.FIELD_TYPE_WEATHER_WIND_DEG</listEntry>
+			<listEntry value="31">@Strings.FIELD_TYPE_WEATHER_UVI</listEntry>
+			<listEntry value="32">@Strings.FIELD_TYPE_WEATHER_DEW_POINT</listEntry>
+			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
+		</settingConfig>
+	</setting>
+
+	<setting propertyKey="@Properties.C6"
+		title="@Strings.C6" >
+		<settingConfig type="list">
+			<listEntry value="0xFFFFFF">@Strings.COLOR_WHITE</listEntry>
+			<listEntry value="0x000000">@Strings.COLOR_BLACK</listEntry>
+			<listEntry value="0xAAAAAA">@Strings.COLOR_LT_GRAY</listEntry>
+			<listEntry value="0x555555">@Strings.COLOR_DK_GRAY</listEntry>
+			<listEntry value="0xFF0000">@Strings.COLOR_RED</listEntry>
+			<listEntry value="0xAA0000">@Strings.COLOR_DK_RED</listEntry>
+			<listEntry value="0xFF5500">@Strings.COLOR_ORANGE</listEntry>
+			<listEntry value="0xFFAA00">@Strings.COLOR_YELLOW</listEntry>
+			<listEntry value="0x00FF00">@Strings.COLOR_GREEN</listEntry>
+			<listEntry value="0x00AA00">@Strings.COLOR_DK_GREEN</listEntry>
+			<listEntry value="0x00AAFF">@Strings.COLOR_BLUE</listEntry>
+			<listEntry value="0x0000FF">@Strings.COLOR_DK_BLUE</listEntry>
+			<listEntry value="0xAA00FF">@Strings.COLOR_PURPLE</listEntry>
+			<listEntry value="0xFF00FF">@Strings.COLOR_PINK</listEntry>
+		</settingConfig>
+	</setting>
+
+	<setting propertyKey="@Properties.F7"
+		title="@Strings.F7">
+		<settingConfig type="list">
+			<listEntry value="0">@Strings.FIELD_TYPE_HR</listEntry>
+			<listEntry value="1">@Strings.FIELD_TYPE_STEPS</listEntry>
+			<listEntry value="2">@Strings.FIELD_TYPE_PRESSURE</listEntry>
+			<listEntry value="3">@Strings.FIELD_TYPE_TEMPERATURE</listEntry>
+			<listEntry value="4">@Strings.FIELD_TYPE_CALORIES</listEntry>
+			<listEntry value="5">@Strings.FIELD_TYPE_DISTANCE</listEntry>
+			<listEntry value="6">@Strings.FIELD_TYPE_FLOOR</listEntry>
+			<listEntry value="7">@Strings.FIELD_TYPE_ELEVATION</listEntry>
+			<listEntry value="8">@Strings.FIELD_TYPE_SUN_EVENT</listEntry>
+			<listEntry value="9">@Strings.FIELD_TYPE_SUNRISE</listEntry>
+			<listEntry value="10">@Strings.FIELD_TYPE_SUNSET</listEntry>
+			<listEntry value="11">@Strings.FIELD_TYPE_TIME1</listEntry>
+			<listEntry value="13">@Strings.FIELD_TYPE_ACTIVE_DAY</listEntry>
+			<listEntry value="14">@Strings.FIELD_TYPE_ACTIVE_WEEK</listEntry>
+			<listEntry value="15">@Strings.FIELD_TYPE_O2</listEntry>
+			<listEntry value="16">@Strings.FIELD_TYPE_SOLAR_CHARGE</listEntry>
+			<listEntry value="17">@Strings.FIELD_TYPE_WEIGHT</listEntry>
+			<listEntry value="26">@Strings.FIELD_TYPE_WEATHER_PRESSURE</listEntry>
+			<listEntry value="27">@Strings.FIELD_TYPE_WEATHER_HUM</listEntry>
+			<listEntry value="28">@Strings.FIELD_TYPE_WEATHER_VISIBILITY</listEntry>
+			<listEntry value="29">@Strings.FIELD_TYPE_WEATHER_WIND_SPEED</listEntry>
+			<listEntry value="30">@Strings.FIELD_TYPE_WEATHER_WIND_DEG</listEntry>
+			<listEntry value="31">@Strings.FIELD_TYPE_WEATHER_UVI</listEntry>
+			<listEntry value="32">@Strings.FIELD_TYPE_WEATHER_DEW_POINT</listEntry>
+			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
+		</settingConfig>
+	</setting>
+
+	<setting propertyKey="@Properties.C7"
+		title="@Strings.C7" >
+		<settingConfig type="list">
+			<listEntry value="0xFFFFFF">@Strings.COLOR_WHITE</listEntry>
+			<listEntry value="0x000000">@Strings.COLOR_BLACK</listEntry>
+			<listEntry value="0xAAAAAA">@Strings.COLOR_LT_GRAY</listEntry>
+			<listEntry value="0x555555">@Strings.COLOR_DK_GRAY</listEntry>
+			<listEntry value="0xFF0000">@Strings.COLOR_RED</listEntry>
+			<listEntry value="0xAA0000">@Strings.COLOR_DK_RED</listEntry>
+			<listEntry value="0xFF5500">@Strings.COLOR_ORANGE</listEntry>
+			<listEntry value="0xFFAA00">@Strings.COLOR_YELLOW</listEntry>
+			<listEntry value="0x00FF00">@Strings.COLOR_GREEN</listEntry>
+			<listEntry value="0x00AA00">@Strings.COLOR_DK_GREEN</listEntry>
+			<listEntry value="0x00AAFF">@Strings.COLOR_BLUE</listEntry>
+			<listEntry value="0x0000FF">@Strings.COLOR_DK_BLUE</listEntry>
+			<listEntry value="0xAA00FF">@Strings.COLOR_PURPLE</listEntry>
+			<listEntry value="0xFF00FF">@Strings.COLOR_PINK</listEntry>
+		</settingConfig>
+	</setting>
+	
+	
 	<setting propertyKey="@Properties.F0"
 		title="@Strings.F0">
 		<settingConfig type="list">
@@ -416,6 +525,13 @@
 			<listEntry value="15">@Strings.FIELD_TYPE_O2</listEntry>
 			<listEntry value="16">@Strings.FIELD_TYPE_SOLAR_CHARGE</listEntry>
 			<listEntry value="17">@Strings.FIELD_TYPE_WEIGHT</listEntry>
+			<listEntry value="26">@Strings.FIELD_TYPE_WEATHER_PRESSURE</listEntry>
+			<listEntry value="27">@Strings.FIELD_TYPE_WEATHER_HUM</listEntry>
+			<listEntry value="28">@Strings.FIELD_TYPE_WEATHER_VISIBILITY</listEntry>
+			<listEntry value="29">@Strings.FIELD_TYPE_WEATHER_WIND_SPEED</listEntry>
+			<listEntry value="30">@Strings.FIELD_TYPE_WEATHER_WIND_DEG</listEntry>
+			<listEntry value="31">@Strings.FIELD_TYPE_WEATHER_UVI</listEntry>
+			<listEntry value="32">@Strings.FIELD_TYPE_WEATHER_DEW_POINT</listEntry>
 			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
 		</settingConfig>
 	</setting>
@@ -460,6 +576,13 @@
 			<listEntry value="15">@Strings.FIELD_TYPE_O2</listEntry>
 			<listEntry value="16">@Strings.FIELD_TYPE_SOLAR_CHARGE</listEntry>
 			<listEntry value="17">@Strings.FIELD_TYPE_WEIGHT</listEntry>
+			<listEntry value="26">@Strings.FIELD_TYPE_WEATHER_PRESSURE</listEntry>
+			<listEntry value="27">@Strings.FIELD_TYPE_WEATHER_HUM</listEntry>
+			<listEntry value="28">@Strings.FIELD_TYPE_WEATHER_VISIBILITY</listEntry>
+			<listEntry value="29">@Strings.FIELD_TYPE_WEATHER_WIND_SPEED</listEntry>
+			<listEntry value="30">@Strings.FIELD_TYPE_WEATHER_WIND_DEG</listEntry>
+			<listEntry value="31">@Strings.FIELD_TYPE_WEATHER_UVI</listEntry>
+			<listEntry value="32">@Strings.FIELD_TYPE_WEATHER_DEW_POINT</listEntry>
 			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
 		</settingConfig>
 	</setting>
@@ -504,6 +627,13 @@
 			<listEntry value="15">@Strings.FIELD_TYPE_O2</listEntry>
 			<listEntry value="16">@Strings.FIELD_TYPE_SOLAR_CHARGE</listEntry>
 			<listEntry value="17">@Strings.FIELD_TYPE_WEIGHT</listEntry>
+			<listEntry value="26">@Strings.FIELD_TYPE_WEATHER_PRESSURE</listEntry>
+			<listEntry value="27">@Strings.FIELD_TYPE_WEATHER_HUM</listEntry>
+			<listEntry value="28">@Strings.FIELD_TYPE_WEATHER_VISIBILITY</listEntry>
+			<listEntry value="29">@Strings.FIELD_TYPE_WEATHER_WIND_SPEED</listEntry>
+			<listEntry value="30">@Strings.FIELD_TYPE_WEATHER_WIND_DEG</listEntry>
+			<listEntry value="31">@Strings.FIELD_TYPE_WEATHER_UVI</listEntry>
+			<listEntry value="32">@Strings.FIELD_TYPE_WEATHER_DEW_POINT</listEntry>
 			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
 		</settingConfig>
 	</setting>
@@ -548,6 +678,13 @@
 			<listEntry value="15">@Strings.FIELD_TYPE_O2</listEntry>
 			<listEntry value="16">@Strings.FIELD_TYPE_SOLAR_CHARGE</listEntry>
 			<listEntry value="17">@Strings.FIELD_TYPE_WEIGHT</listEntry>
+			<listEntry value="26">@Strings.FIELD_TYPE_WEATHER_PRESSURE</listEntry>
+			<listEntry value="27">@Strings.FIELD_TYPE_WEATHER_HUM</listEntry>
+			<listEntry value="28">@Strings.FIELD_TYPE_WEATHER_VISIBILITY</listEntry>
+			<listEntry value="29">@Strings.FIELD_TYPE_WEATHER_WIND_SPEED</listEntry>
+			<listEntry value="30">@Strings.FIELD_TYPE_WEATHER_WIND_DEG</listEntry>
+			<listEntry value="31">@Strings.FIELD_TYPE_WEATHER_UVI</listEntry>
+			<listEntry value="32">@Strings.FIELD_TYPE_WEATHER_DEW_POINT</listEntry>
 			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
 		</settingConfig>
 	</setting>
@@ -592,6 +729,13 @@
 			<listEntry value="15">@Strings.FIELD_TYPE_O2</listEntry>
 			<listEntry value="16">@Strings.FIELD_TYPE_SOLAR_CHARGE</listEntry>
 			<listEntry value="17">@Strings.FIELD_TYPE_WEIGHT</listEntry>
+			<listEntry value="26">@Strings.FIELD_TYPE_WEATHER_PRESSURE</listEntry>
+			<listEntry value="27">@Strings.FIELD_TYPE_WEATHER_HUM</listEntry>
+			<listEntry value="28">@Strings.FIELD_TYPE_WEATHER_VISIBILITY</listEntry>
+			<listEntry value="29">@Strings.FIELD_TYPE_WEATHER_WIND_SPEED</listEntry>
+			<listEntry value="30">@Strings.FIELD_TYPE_WEATHER_WIND_DEG</listEntry>
+			<listEntry value="31">@Strings.FIELD_TYPE_WEATHER_UVI</listEntry>
+			<listEntry value="32">@Strings.FIELD_TYPE_WEATHER_DEW_POINT</listEntry>
 			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
 		</settingConfig>
 	</setting>
@@ -636,6 +780,13 @@
 			<listEntry value="15">@Strings.FIELD_TYPE_O2</listEntry>
 			<listEntry value="16">@Strings.FIELD_TYPE_SOLAR_CHARGE</listEntry>
 			<listEntry value="17">@Strings.FIELD_TYPE_WEIGHT</listEntry>
+			<listEntry value="26">@Strings.FIELD_TYPE_WEATHER_PRESSURE</listEntry>
+			<listEntry value="27">@Strings.FIELD_TYPE_WEATHER_HUM</listEntry>
+			<listEntry value="28">@Strings.FIELD_TYPE_WEATHER_VISIBILITY</listEntry>
+			<listEntry value="29">@Strings.FIELD_TYPE_WEATHER_WIND_SPEED</listEntry>
+			<listEntry value="30">@Strings.FIELD_TYPE_WEATHER_WIND_DEG</listEntry>
+			<listEntry value="31">@Strings.FIELD_TYPE_WEATHER_UVI</listEntry>
+			<listEntry value="32">@Strings.FIELD_TYPE_WEATHER_DEW_POINT</listEntry>
 			<listEntry value="12">@Strings.FIELD_TYPE_EMPTY</listEntry>
 		</settingConfig>
 	</setting>

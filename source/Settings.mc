@@ -281,7 +281,8 @@ module StorageSettings {
 	    res.add("DateColor");
 	    res.add("WColor");
 	    res.add("WAutoColor");
-	    res.add("WShowHumPr");
+	    res.add("WShowWindWidget");
+	    res.add("ShowTopFields");
 	    res.add("BatColor");
 	    res.add("MoonColor");
 		res.add("WUpdInt");

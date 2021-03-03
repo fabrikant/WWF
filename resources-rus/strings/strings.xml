@@ -11,7 +11,8 @@
     <string id="DateColor" scope="foreground">Цвет даты</string>
     <string id="WColor" scope="foreground">Цвет погодного виджета</string>
     <string id="WAutoColor" scope="foreground">Использовать автоцвета для погодного виджета</string>
-    <string id="WShowHumPr" scope="foreground">Показывать влажность и давление</string>
+    <string id="ShowTopFields" scope="foreground">Показывать верхние поля данных</string>
+    <string id="WShowWindWidget" scope="foreground">Показывать виджет с ветром</string>
 
     <string id="BatColor" scope="foreground">Цвет батареи</string>
     <string id="MoonColor" scope="foreground">Цвет луны</string>
