@@ -523,12 +523,15 @@ module Data{
 	function getWeatherPicture(){
 		var value = "";
 		if (memoryCache.weather != null){
-			var dict = Refernce.weatherFontDictonary();
-			value = dict[memoryCache.weather[STORAGE_KEY_ICON]];
-			if (value == null){
-				value = "";
-			}else{
-				value = value.toChar();
+			value = memoryCache.weather[STORAGE_KEY_ICON];
+			if (!Application.Properties.getValue("ShowOWMIcons")){
+				var dict = Refernce.weatherFontDictonary();
+				value = dict[value];
+				if (value == null){
+					value = "";
+				}else{
+					value = value.toChar();
+				}
 			}
 		}
 		return value;

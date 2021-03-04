@@ -208,64 +208,13 @@ class MemoryCache {
 					settings[:autoColors][:cloud] = Graphics.COLOR_ORANGE;
 				} else if (tmpValue.equals("13d") || tmpValue.equals("13n")){
 					if (backIsLight){
-						settings[:autoColors][:cloud] = 0x0000ff;
+						settings[:autoColors][:cloud] = Graphics.COLOR_DK_BLUE;
 					}else{
-						settings[:autoColors][:cloud] = 0xaaffff;
+						settings[:autoColors][:cloud] = Graphics.COLOR_BLUE;
 					}
 				}
-				settings[:autoColors][:cloud] = altColor(settings[:autoColors][:cloud], backgroundColor);
 			}
 		}
-	}
-
-	function altColor(color, backgroundColor){
-		var res = color;
-		if (color == backgroundColor){
-			if (color == Graphics.COLOR_PURPLE){
-				res = Graphics.COLOR_PINK;
-			}else if (color == Graphics.COLOR_PINK){
-				res = Graphics.COLOR_PURPLE;
-			}else if (color == Graphics.COLOR_WHITE){
-				res = Graphics.COLOR_LT_GRAY;
-			}else if (color == Graphics.COLOR_LT_GRAY){
-				res = Graphics.COLOR_DK_GRAY;
-			}else if (color == Graphics.COLOR_DK_GRAY){
-				res = Graphics.COLOR_LT_GRAY;
-			}else if (color == Graphics.COLOR_GREEN){
-				res = Graphics.COLOR_DK_GREEN;
-			}else if (color == Graphics.COLOR_DK_GREEN){
-				res = Graphics.COLOR_GREEN;
-			}else if (color == Graphics.COLOR_RED){
-				res = Graphics.COLOR_DK_RED;
-			}else if (color == Graphics.COLOR_DK_RED){
-				res = Graphics.COLOR_RED;
-			}else if (color == Graphics.COLOR_YELLOW){
-				res = Graphics.COLOR_ORANGE;
-			}else if (color == Graphics.COLOR_ORANGE){
-				res = Graphics.COLOR_YELLOW;
-			}else if (color == Graphics.COLOR_BLACK){
-				res = Graphics.COLOR_DK_GRAY;
-			}else if (color == Graphics.COLOR_BLUE){
-				res = Graphics.COLOR_DK_BLUE;
-			}else if (color == Graphics.COLOR_DK_BLUE){
-				res = Graphics.COLOR_BLUE;
-			}
-		}
-
-		if (backgroundColor == Graphics.COLOR_BLACK){
-			if (res == Graphics.COLOR_DK_BLUE){
-				res = Graphics.COLOR_BLUE;
-			}else if (res == Graphics.COLOR_DK_RED){
-				res = Graphics.COLOR_RED;
-			}
-		}else if (backgroundColor == Graphics.COLOR_WHITE){
-			if (res == Graphics.COLOR_YELLOW){
-				res = Graphics.COLOR_ORANGE;
-			}else if (res == Graphics.COLOR_LT_GRAY){
-				res = Graphics.COLOR_DK_GRAY;
-			}
-		}
-		return res;
 	}
 
 	function getSpeedUnitString(){

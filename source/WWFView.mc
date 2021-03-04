@@ -118,18 +118,33 @@ class WWFView extends WatchUi.WatchFace {
 		var fromPictureToTemp = 5;
 		h = hDataField*2;
 		w = h;
-        fields[:weather_picture] = new SimpleField(
-    		{
-    			:x => 0,
-    			:y => fields[:date].y - h,
-    			:h => h,
-    			:w => w-fromPictureToTemp,
-    			:type => :weather_picture,
-    			:id => :weather,
-    			:fontId => :weather,
-    			:justify => Graphics.TEXT_JUSTIFY_CENTER
-    		}
-    	);
+		if (Application.Properties.getValue("ShowOWMIcons")){
+	        fields[:weather_picture] = new BitmapField(
+	    		{
+	    			:x => 0,
+	    			:y => fields[:date].y - h,
+	    			:h => h,
+	    			:w => w-fromPictureToTemp,
+	    			:type => :weather_picture,
+	    			:id => :weather,
+	    			:fontId => :weather,
+	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
+	    		}
+	    	);
+		}else{
+	        fields[:weather_picture] = new SimpleField(
+	    		{
+	    			:x => 0,
+	    			:y => fields[:date].y - h,
+	    			:h => h,
+	    			:w => w-fromPictureToTemp,
+	    			:type => :weather_picture,
+	    			:id => :weather,
+	    			:fontId => :weather,
+	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
+	    		}
+	    	);
+    	}
 		wWeatherBar += fields[:weather_picture][:w];
 		
         fields[:weather_temp] = new SimpleField(

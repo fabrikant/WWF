@@ -1,0 +1,151 @@
+<resources>
+
+	<bitmap id="l01d" filename="owm/01d.png">
+		<palette disableTransparency="false">
+			<color>FF5500</color>
+		</palette>
+	</bitmap>
+
+	<bitmap id="l01n" filename="owm/01d.png">
+		<palette disableTransparency="false">
+			<color>555555</color>
+		</palette>
+	</bitmap>
+
+	<bitmap id="d01n" filename="owm/01d.png">
+		<palette disableTransparency="false">
+			<color>AAAAAA</color>
+		</palette>
+	</bitmap>
+	
+	<bitmap id="l02d" filename="owm/02d.png">
+		<palette disableTransparency="false">
+			<color>AAAAAA</color>
+			<color>FF5500</color>
+		</palette>
+	</bitmap>
+
+	<bitmap id="d02d" filename="owm/02d.png">
+		<palette disableTransparency="false">
+			<color>AAAAAA</color>
+			<color>FF5500</color>
+		</palette>
+	</bitmap>
+
+	<bitmap id="l02n" filename="owm/02n.png">
+		<palette disableTransparency="false">
+			<color>555555</color>
+			<color>AAAAAA</color>
+			<color>000000</color>
+		</palette>
+	</bitmap>
+
+	<bitmap id="d02n" filename="owm/02n.png">
+		<palette disableTransparency="false">
+			<color>AAAAAA</color>
+			<color>FFFFFF</color>
+		</palette>
+	</bitmap>
+
+	<bitmap id="l03d" filename="owm/03d.png">
+		<palette disableTransparency="false">
+			<color>555555</color>
+		</palette>
+	</bitmap>
+
+	<bitmap id="d03d" filename="owm/03d.png">
+		<palette disableTransparency="false">
+			<color>AAAAAA</color>
+		</palette>
+	</bitmap>
+
+	<bitmap id="l04d" filename="owm/04d.png">
+		<palette disableTransparency="false">
+			<color>555555</color>
+			<color>AAAAAA</color>
+		</palette>
+	</bitmap>
+
+	<bitmap id="d04d" filename="owm/04d.png">
+		<palette disableTransparency="false">
+			<color>FFFFFF</color>
+			<color>AAAAAA</color>
+		</palette>
+	</bitmap>
+
+	<bitmap id="l09d" filename="owm/09d.png">
+		<palette disableTransparency="false">
+			<color>555555</color>
+			<color>AAAAAA</color>
+		</palette>
+	</bitmap>
+
+	<bitmap id="d09d" filename="owm/09d.png">
+		<palette disableTransparency="false">
+			<color>FFFFFF</color>
+			<color>AAAAAA</color>
+		</palette>
+	</bitmap>
+
+	<bitmap id="l10d" filename="owm/10d.png">
+		<palette disableTransparency="false">
+			<color>555555</color>
+			<color>AAAAAA</color>
+			<color>FF5500</color>
+		</palette>
+	</bitmap>
+
+	<bitmap id="d10d" filename="owm/10d.png">
+		<palette disableTransparency="false">
+		</palette>
+	</bitmap>
+
+	<bitmap id="l10n" filename="owm/10n.png">
+		<palette disableTransparency="false">
+		</palette>
+	</bitmap>
+
+	<bitmap id="d10n" filename="owm/10n.png">
+		<palette disableTransparency="false">
+			<color>FFFFFF</color>
+			<color>AAAAAA</color>
+		</palette>
+	</bitmap>
+
+	<bitmap id="l11d" filename="owm/11d.png">
+		<palette disableTransparency="false">
+		</palette>
+	</bitmap>
+
+	<bitmap id="d11d" filename="owm/11d.png">
+		<palette disableTransparency="false">
+			<color>FFFFFF</color>
+			<color>555555</color>
+			<color>FF5500</color>
+		</palette>
+	</bitmap>
+
+	<bitmap id="l13d" filename="owm/13d.png">
+		<palette disableTransparency="false">
+			<color>0000FF</color>
+		</palette>
+	</bitmap>
+
+	<bitmap id="d13d" filename="owm/13d.png">
+		<palette disableTransparency="false">
+			<color>00AAFF</color>
+		</palette>
+	</bitmap>
+
+	<bitmap id="l50d" filename="owm/50d.png">
+		<palette disableTransparency="false">
+			<color>555555</color>
+		</palette>
+	</bitmap>
+
+	<bitmap id="d50d" filename="owm/50d.png">
+		<palette disableTransparency="false">
+			<color>FFFFFF</color>
+		</palette>
+	</bitmap>
+</resources>
