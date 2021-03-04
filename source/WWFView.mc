@@ -189,7 +189,7 @@ class WWFView extends WatchUi.WatchFace {
 			var idPicture = "P"+i;
 	        var id = "F"+i;
 
-	        fields[idPicture] = new SimpleField(
+	        fields[idPicture] = new ImageField(
 	    		{
 	    			:x => coord[i][0],
 	    			:y => coord[i][1],

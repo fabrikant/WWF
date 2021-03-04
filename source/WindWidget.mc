@@ -1,4 +1,5 @@
 using Toybox.System;
+using Toybox.Application;
 
 class WindDWidget extends SimpleField{
 
@@ -18,13 +19,13 @@ class WindDWidget extends SimpleField{
 		if (direction != -1){
 			var windDirection = Tools.windDirection(h*ratio*0.9, direction.toNumber(), [x, y], [w*ratio, h*ratio]);
 			dc.setColor(getColor(), Graphics.COLOR_TRANSPARENT);
-			dc.setPenWidth(2);
 			if (dc has :setAntiAlias){
 				dc.setAntiAlias(true);
 			}
 			
-			var arSize = windDirection.size();
 			if (Application.Properties.getValue("WindArrowContour")){
+				dc.setPenWidth(2);
+				var arSize = windDirection.size();
 				for (var i = 1; i <= arSize; i++){
 					dc.drawLine(
 						windDirection[i%arSize][0], 
@@ -33,6 +34,7 @@ class WindDWidget extends SimpleField{
 						windDirection[(i+1)%arSize][1]
 					);
 				}
+				dc.setPenWidth(1);
 			}else{
 				dc.fillPolygon(windDirection);
 			}

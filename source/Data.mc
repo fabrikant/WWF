@@ -166,9 +166,11 @@ module Data{
 		}else if (filedType == PICTURE + WEATHER_VISIBILITY){
 			res = "s";
 		}else if (filedType == PICTURE + WEATHER_WIND_SPEED){
-			res = "t";
+			//res = "t";
+			res = getWeatherWindDirection();
 		}else if (filedType == PICTURE + WEATHER_WIND_DEG){
-			res = "t";
+			//res = "t";
+			res = getWeatherWindDirection();
 		}else if (filedType == PICTURE + WEATHER_UVI){
 			res = "u";
 			
