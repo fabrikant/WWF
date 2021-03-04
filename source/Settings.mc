@@ -282,6 +282,7 @@ module StorageSettings {
 	    res.add("WColor");
 	    res.add("WAutoColor");
 	    res.add("WShowWindWidget");
+	    res.add("WindArrowContour");
 	    res.add("ShowTopFields");
 	    res.add("BatColor");
 	    res.add("MoonColor");

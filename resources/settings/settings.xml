@@ -160,6 +160,11 @@
 		title="@Strings.WShowWindWidget">
 		<settingConfig type="boolean" />
 	</setting>
+	
+	<setting propertyKey="@Properties.WindArrowContour"
+		title="@Strings.WindArrowContour">
+		<settingConfig type="boolean" />
+	</setting>
 
 	<setting propertyKey="@Properties.ShowTopFields"
 		title="@Strings.ShowTopFields">

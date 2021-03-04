@@ -13,6 +13,7 @@
     <string id="WAutoColor" scope="foreground">Use auto colors for weather widget</string>
     <string id="ShowTopFields" scope="foreground">Show top data fields</string>
     <string id="WShowWindWidget" scope="foreground">Show wind widget</string>
+    <string id="WindArrowContour" scope="foreground">Wind arrow as a contour</string>
     
     <string id="BatColor" scope="foreground">Battery color</string>
     <string id="MoonColor" scope="foreground">Moon color</string>

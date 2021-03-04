@@ -24,16 +24,18 @@ class WindDWidget extends SimpleField{
 			}
 			
 			var arSize = windDirection.size();
-			
-			for (var i = 1; i <= arSize; i++){
-				dc.drawLine(
-					windDirection[i%arSize][0], 
-					windDirection[i%arSize][1], 
-					windDirection[(i+1)%arSize][0], 
-					windDirection[(i+1)%arSize][1]
-				);
+			if (Application.Properties.getValue("WindArrowContour")){
+				for (var i = 1; i <= arSize; i++){
+					dc.drawLine(
+						windDirection[i%arSize][0], 
+						windDirection[i%arSize][1], 
+						windDirection[(i+1)%arSize][0], 
+						windDirection[(i+1)%arSize][1]
+					);
+				}
+			}else{
+				dc.fillPolygon(windDirection);
 			}
-//			dc.fillPolygon(windDirection);
 		}
 		
 		//text
