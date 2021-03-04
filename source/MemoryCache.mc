@@ -26,7 +26,6 @@ class MemoryCache {
 		saveSettingsToStorage();
 		readSettings();
 		readGeolocation();
-		//readBackgroundY();
 		readWeather();
 		oldValues = {};
 		oldValues[:sunCach] = {};
@@ -95,64 +94,124 @@ class MemoryCache {
 		};
 
 		if (settings[:colors][:weatherAutoColors] && weather != null){
-			var backgroundColor = settings[:colors][:background1];
-
+			var backgroundColor = settings[:colors][:backgroundColor];
+			
+			var backIsLight = false;
+			if (backgroundColor == Graphics.COLOR_WHITE 
+				|| backgroundColor == Graphics.COLOR_LT_GRAY 
+				|| backgroundColor == Graphics.COLOR_YELLOW){
+				backIsLight = true;
+			}
+			
 			//temperature
 			var tmpValue = weather[STORAGE_KEY_TEMP];
 			if (tmpValue != null){
-				if (tmpValue > 30){
-					settings[:autoColors][:temp] = Graphics.COLOR_PURPLE;
-				}else if (tmpValue > 25){
-					settings[:autoColors][:temp] = Graphics.COLOR_DK_RED;
-				}else if (tmpValue > 20){
-					settings[:autoColors][:temp] = Graphics.COLOR_RED;
-				}else if (tmpValue > 15){
-					settings[:autoColors][:temp] = Graphics.COLOR_DK_GREEN;
-				}else if (tmpValue > 10){
-					settings[:autoColors][:temp] = Graphics.COLOR_GREEN;
-				}else if (tmpValue > 5){
-					settings[:autoColors][:temp] = Graphics.COLOR_YELLOW;
-				}else if (tmpValue > 0){
-					settings[:autoColors][:temp] = Graphics.COLOR_WHITE;
-				}else if (tmpValue > -10){
-					settings[:autoColors][:temp] = Graphics.COLOR_BLUE;
+				if (backIsLight){
+					if (tmpValue > 30){
+						settings[:autoColors][:temp] = 0xaa0000;
+					}else if (tmpValue > 25){
+						settings[:autoColors][:temp] = 0xff0000;
+					}else if (tmpValue > 20){
+						settings[:autoColors][:temp] = 0x005500;
+					}else if (tmpValue > 15){
+						settings[:autoColors][:temp] = 0x00aa00;
+					}else if (tmpValue > 10){
+						settings[:autoColors][:temp] = 0xaaaa00;
+					}else if (tmpValue > 5){
+						settings[:autoColors][:temp] = 0x00aaaa;
+					}else if (tmpValue > 0){
+						settings[:autoColors][:temp] = 0x00aaff;
+					}else if (tmpValue > -10){
+						settings[:autoColors][:temp] = 0x00aaff;
+					}else if (tmpValue > -20){
+						settings[:autoColors][:temp] = 0x0000ff;
+					}else{
+						settings[:autoColors][:temp] = 0x0000aa;
+					}
 				}else{
-					settings[:autoColors][:temp] = Graphics.COLOR_DK_BLUE;
+					if (tmpValue > 30){
+						settings[:autoColors][:temp] = 0xff55ff;
+					}else if (tmpValue > 25){
+						settings[:autoColors][:temp] = 0xff0000;
+					}else if (tmpValue > 20){
+						settings[:autoColors][:temp] = 0xff5500;
+					}else if (tmpValue > 15){
+						settings[:autoColors][:temp] = 0xaaff55;
+					}else if (tmpValue > 10){
+						settings[:autoColors][:temp] = 0xffffaa;
+					}else if (tmpValue > 5){
+						settings[:autoColors][:temp] = 0xaaffff;
+					}else if (tmpValue > 0){
+						settings[:autoColors][:temp] = 0x55ffff;
+					}else if (tmpValue > -10){
+						settings[:autoColors][:temp] = 0x00ffff;
+					}else if (tmpValue > -20){
+						settings[:autoColors][:temp] = 0x55aaff;
+					}else{
+						settings[:autoColors][:temp] = 0x00aaff;
+					}
 				}
-				settings[:autoColors][:temp] = altColor(settings[:autoColors][:temp], backgroundColor);
 			}
 
 			//wind speed
 			tmpValue = weather[STORAGE_KEY_WIND_SPEED];
 			if (tmpValue != null){
 				tmpValue = Tools.getBeaufort(tmpValue);
-				if (tmpValue > 9){
-					settings[:autoColors][:wind] = Graphics.COLOR_PURPLE;
-				}else if (tmpValue > 7){
-					settings[:autoColors][:wind] = Graphics.COLOR_DK_RED;
-				}else if (tmpValue > 6){
-					settings[:autoColors][:wind] = Graphics.COLOR_RED;
-				}else if (tmpValue > 5){
-					settings[:autoColors][:wind] = Graphics.COLOR_DK_BLUE;
-				}else if (tmpValue > 4){
-					settings[:autoColors][:wind] = Graphics.COLOR_BLUE;
-				}else if (tmpValue > 3){
-					settings[:autoColors][:wind] = Graphics.COLOR_DK_GREEN;
-				}else if (tmpValue > 2){
-					settings[:autoColors][:wind] = Graphics.COLOR_GREEN;
+				if (backIsLight){
+					if (tmpValue > 9){
+						settings[:autoColors][:wind] = 0xaa0000;
+					}else if (tmpValue > 8){
+						settings[:autoColors][:wind] = 0xaa0055;
+					}else if (tmpValue > 7){
+						settings[:autoColors][:wind] = 0xaa00aa;
+					}else if (tmpValue > 6){
+						settings[:autoColors][:wind] = 0x5500ff;
+					}else if (tmpValue > 5){
+						settings[:autoColors][:wind] = 0x5555ff;
+					}else if (tmpValue > 4){
+						settings[:autoColors][:wind] = Graphics.COLOR_ORANGE;
+					}else if (tmpValue > 3){
+						settings[:autoColors][:wind] = 0x005500;
+					}else if (tmpValue > 2){
+						settings[:autoColors][:wind] = 0x00aa00;
+					}else{
+						settings[:autoColors][:wind] = Graphics.COLOR_DK_GRAY;
+					}
 				}else{
-					settings[:autoColors][:wind] = Graphics.COLOR_LT_GRAY;
+					if (tmpValue > 9){
+						settings[:autoColors][:wind] = 0xff0000;
+					}else if (tmpValue > 8){
+						settings[:autoColors][:wind] = 0xff00aa;
+					}else if (tmpValue > 7){
+						settings[:autoColors][:wind] = 0xffaaff;
+					}else if (tmpValue > 6){
+						settings[:autoColors][:wind] = 0x00ffff;
+					}else if (tmpValue > 5){
+						settings[:autoColors][:wind] = 0xaaffff;
+					}else if (tmpValue > 4){
+						settings[:autoColors][:wind] = Graphics.COLOR_YELLOW;
+					}else if (tmpValue > 3){
+						settings[:autoColors][:wind] = 0x00ff00;
+					}else if (tmpValue > 2){
+						settings[:autoColors][:wind] = 0x55ff55;
+					}else{
+						settings[:autoColors][:wind] = Graphics.COLOR_WHITE;
+					}
 				}
-				settings[:autoColors][:wind] = altColor(settings[:autoColors][:wind], backgroundColor);
 			}
 
 			//cloud
 			tmpValue = weather[STORAGE_KEY_ICON];
+			//tmpValue = "13d";
 			if (tmpValue != null){
 				if (tmpValue.equals("01d") || tmpValue.equals("01n")){
 					settings[:autoColors][:cloud] = Graphics.COLOR_ORANGE;
 				} else if (tmpValue.equals("13d") || tmpValue.equals("13n")){
-					settings[:autoColors][:cloud] = Graphics.COLOR_DK_BLUE;
+					if (backIsLight){
+						settings[:autoColors][:cloud] = 0x0000ff;
+					}else{
+						settings[:autoColors][:cloud] = 0xaaffff;
+					}
 				}
 				settings[:autoColors][:cloud] = altColor(settings[:autoColors][:cloud], backgroundColor);
 			}
