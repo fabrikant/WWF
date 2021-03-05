@@ -110,45 +110,45 @@ class MemoryCache {
 					if (tmpValue > 30){
 						settings[:autoColors][:temp] = 0xaa0000;
 					}else if (tmpValue > 25){
-						settings[:autoColors][:temp] = 0xff0000;
-					}else if (tmpValue > 20){
-						settings[:autoColors][:temp] = 0x005500;
-					}else if (tmpValue > 15){
-						settings[:autoColors][:temp] = 0x00aa00;
-					}else if (tmpValue > 10){
-						settings[:autoColors][:temp] = 0xaaaa00;
-					}else if (tmpValue > 5){
-						settings[:autoColors][:temp] = 0x00aaaa;
-					}else if (tmpValue > 0){
-						settings[:autoColors][:temp] = 0x00aaff;
-					}else if (tmpValue > -10){
-						settings[:autoColors][:temp] = 0x00aaff;
-					}else if (tmpValue > -20){
-						settings[:autoColors][:temp] = 0x0000ff;
-					}else{
-						settings[:autoColors][:temp] = 0x0000aa;
-					}
-				}else{
-					if (tmpValue > 30){
-						settings[:autoColors][:temp] = 0xff55ff;
-					}else if (tmpValue > 25){
-						settings[:autoColors][:temp] = 0xff0000;
+						settings[:autoColors][:temp] = 0xff0055;
 					}else if (tmpValue > 20){
 						settings[:autoColors][:temp] = 0xff5500;
 					}else if (tmpValue > 15){
-						settings[:autoColors][:temp] = 0xaaff55;
+						settings[:autoColors][:temp] = 0x005500;
 					}else if (tmpValue > 10){
-						settings[:autoColors][:temp] = 0xffffaa;
+						settings[:autoColors][:temp] = 0x555500;
 					}else if (tmpValue > 5){
-						settings[:autoColors][:temp] = 0xaaffff;
+						settings[:autoColors][:temp] = 0xaa5500;
 					}else if (tmpValue > 0){
-						settings[:autoColors][:temp] = 0x55ffff;
+						settings[:autoColors][:temp] = 0xff5500;
 					}else if (tmpValue > -10){
-						settings[:autoColors][:temp] = 0x00ffff;
+						settings[:autoColors][:temp] = 0x0000ff;
 					}else if (tmpValue > -20){
-						settings[:autoColors][:temp] = 0x55aaff;
+						settings[:autoColors][:temp] = 0x0000aa;
 					}else{
-						settings[:autoColors][:temp] = 0x00aaff;
+						settings[:autoColors][:temp] = 0x000055;
+					}
+				}else{
+					if (tmpValue > 30){
+						settings[:autoColors][:temp] = 0xff0000;
+					}else if (tmpValue > 25){
+						settings[:autoColors][:temp] = 0xff0055;
+					}else if (tmpValue > 20){
+						settings[:autoColors][:temp] = 0x00ff00;
+					}else if (tmpValue > 15){
+						settings[:autoColors][:temp] = 0x00ff55;
+					}else if (tmpValue > 10){
+						settings[:autoColors][:temp] = 0x55ff00;
+					}else if (tmpValue > 5){
+						settings[:autoColors][:temp] = 0xffff00;
+					}else if (tmpValue > 0){
+						settings[:autoColors][:temp] = 0xffffaa;
+					}else if (tmpValue > -10){
+						settings[:autoColors][:temp] = 0xaaffff;
+					}else if (tmpValue > -20){
+						settings[:autoColors][:temp] = 0x55ffff;
+					}else{
+						settings[:autoColors][:temp] = 0x00ffff;
 					}
 				}
 			}
