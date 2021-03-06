@@ -13,7 +13,7 @@
     <string id="WAutoColor" scope="foreground">Использовать автоцвета для погодного виджета</string>
     <string id="ShowTopFields" scope="foreground">Показывать верхние поля данных</string>
     <string id="WShowWindWidget" scope="foreground">Показывать виджет с ветром</string>
-    <string id="ShowOWMIcons" scope="foreground">Показывать OWM пиктограммы</string>
+    <string id="ShowOWMIcons" scope="foreground">Использовать новые иконки погоды</string>
 	<string id="WindArrowContour" scope="foreground">Стрелка ветра виде контура</string>
 	
     <string id="BatColor" scope="foreground">Цвет батареи</string>

@@ -1,9 +1,14 @@
 ATTENTION! IMPORTANT!
-If an error occurs after the update:
-1. Uninstall the watchface
-2. Reboot your watch. Required!
-3. Install the watchface
-4. Set the settings
+If an error occurs after the upgrade, you have two options:
+1. No reinstallation
+	1.1. Start any other watchface
+	1.2. Open Garmin Connect and save your WWF watchface settings. Just change something and hit save.
+	1.3. Start WWF watchface.
+2. Reinstall if the previous option did not work
+	2.1. Uninstall the watchface
+	2.2. Reboot your watch. Required!
+	2.3. Install the watchface
+	2.4. Set the settings
 
 Free, open sourse and configurable watchface with weather widget and data fields.
 Generate API key on openweathermap.org and paste it in the settings for the weather data.
