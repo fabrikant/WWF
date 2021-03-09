@@ -308,11 +308,14 @@ class WWFView extends WatchUi.WatchFace {
 		} else {
 			if (Application.Storage.getValue("Lat") == null || Application.Storage.getValue("Lon") == null){
 				if ( Toybox has :Weather){
-					location = Toybox.Weather.getCurrentConditions().observationLocationPosition;
-			    	if (location != null) {
-						location = location.toDegrees();
-						Application.Storage.setValue("Lat", location[0].toFloat());
-						Application.Storage.setValue("Lon", location[1].toFloat());
+					location = Toybox.Weather.getCurrentConditions();
+					if (location != null) {
+						location = location.observationLocationPosition;
+				    	if (location != null) {
+							location = location.toDegrees();
+							Application.Storage.setValue("Lat", location[0].toFloat());
+							Application.Storage.setValue("Lon", location[1].toFloat());
+						}
 					}
 				}
 			}
@@ -329,6 +332,13 @@ class WWFView extends WatchUi.WatchFace {
 
     // Update the view
     function onUpdate(dc) {
+		
+		if (memoryCache.oldValues[:isCharging] != null){
+			if (memoryCache.oldValues[:isCharging] && !System.getSystemStats().charging){
+				memoryCache = new MemoryCache();
+			}	
+		}
+		memoryCache.oldValues[:isCharging] = System.getSystemStats().charging;
 		
 		//Set day naght presets
 		if (memoryCache.settings[:switchDayNight]){
