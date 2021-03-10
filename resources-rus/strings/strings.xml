@@ -19,7 +19,7 @@
     <string id="BatColor" scope="foreground">Цвет батареи</string>
     <string id="MoonColor" scope="foreground">Цвет луны</string>
     
- 	<string id="MilitaryFormatTitle" scope="foreground">Военный формат для 24 часового режима</string>
+ 	<string id="MilFt" scope="foreground">Военный формат для 24 часового режима</string>
 	<string id="HFt01" scope="foreground">Выводить лидирующий ноль в часах</string>
 
 	<string id="DF" scope="foreground">Формат даты</string>

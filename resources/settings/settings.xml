@@ -24,12 +24,9 @@
 	</setting>
 
 	<!--CLOCK SETTING -->
-     <setting propertyKey="@Properties.MilFt" title="@Strings.MilitaryFormatTitle">
-        <settingConfig type="boolean" />
-    </setting>
 	
 	<setting propertyKey="@Properties.MilFt"
-		title="@Strings.MilitaryFormatTitle">
+		title="@Strings.MilFt">
 		<settingConfig type="boolean" />
 	</setting>
 

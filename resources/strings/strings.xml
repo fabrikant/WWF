@@ -19,7 +19,7 @@
     <string id="BatColor" scope="foreground">Battery color</string>
     <string id="MoonColor" scope="foreground">Moon color</string>
     
- 	<string id="MilitaryFormatTitle" scope="foreground">Military Format for 24 Hour
+ 	<string id="MilFt" scope="foreground">Military Format for 24 Hour
 		Time</string>
 	<string id="HFt01" scope="foreground">Use format 01 for horse</string>
 

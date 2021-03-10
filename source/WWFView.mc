@@ -333,13 +333,15 @@ class WWFView extends WatchUi.WatchFace {
     // Update the view
     function onUpdate(dc) {
 		
+		var isCharging = System.getSystemStats().charging;  
 		if (memoryCache.oldValues[:isCharging] != null){
-			if (memoryCache.oldValues[:isCharging] && !System.getSystemStats().charging){
+			if (memoryCache.oldValues[:isCharging] && !isCharging){
 				memoryCache = new MemoryCache();
-			}	
+				System.println("isCharging");
+			}
 		}
-		memoryCache.oldValues[:isCharging] = System.getSystemStats().charging;
-		
+		memoryCache.oldValues[:isCharging] = isCharging;
+				
 		//Set day naght presets
 		if (memoryCache.settings[:switchDayNight]){
 			var sunrise = Tools.getSunEvent(SUNRISE, false);
