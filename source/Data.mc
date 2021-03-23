@@ -260,9 +260,15 @@ module Data{
 			dayOfWeek = dayOfWeek == 7 ? 1 : dayOfWeek+1;
 		}
 
+		var weatherDecription = memoryCache.weather[STORAGE_KEY_WEATHER_DESCRIPTION];
+		if (weatherDecription == null){
+			weatherDecription = "";
+		}
+		
 		var dateString = Application.Properties.getValue("DF");
 		dateString = Tools.stringReplace(dateString,"%WN",Tools.weekOfYear(now));
 		dateString = Tools.stringReplace(dateString,"%DN",dayOfYear);
+		dateString = Tools.stringReplace(dateString,"%WD",weatherDecription);
 		dateString = Tools.stringReplace(dateString,"%w",dayOfWeek);
 		dateString = Tools.stringReplace(dateString,"%W",today.day_of_week);
 		dateString = Tools.stringReplace(dateString,"%d",today.day);

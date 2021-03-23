@@ -54,5 +54,6 @@ Use these keys to configure the date field:
 %Y - year 4 digits, 
 %DN - day of year, 
 %WN - week of year ISO 8601
+%WD - weather description
 
 To disable the field, set the field color as background color (оr use "empty" for data fields). In this case, the field is not drawn and the battery is not consumed.

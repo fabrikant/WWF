@@ -126,6 +126,7 @@ class BackgroundService extends System.ServiceDelegate {
 				STORAGE_KEY_UVI => data["current"]["uvi"],
 				STORAGE_KEY_DEW_POINT => data["current"]["dew_point"],
 				STORAGE_KEY_VISIBILITY => data["current"]["visibility"],
+				STORAGE_KEY_WEATHER_DESCRIPTION => data["current"]["weather"][0]["main"],
 			};
 		} else {
 			backgroundData = {
