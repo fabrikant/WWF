@@ -1,59 +1,60 @@
 //{
-//   "lat":55.75,
-//   "lon":37.61,
-//   "timezone":"Europe/Moscow",
-//   "timezone_offset":10800,
+//   "lat":55,
+//   "lon":75,
+//   "timezone":"Asia/Omsk",
+//   "timezone_offset":21600,
 //   "current":{
-//      "dt":1614746546,
-//      "sunrise":1614744953,
-//      "sunset":1614784047,
-//      "temp":-2.94,
-//      "feels_like":-9.34,
-//      "pressure":1014,
-//      "humidity":68,
-//      "dew_point":-7.44,
-//      "uvi":0.13,
-//      "clouds":0,
-//      "visibility":10000,
-//      "wind_speed":5,
-//      "wind_deg":290,
+//      "dt":1616471820,
+//      "sunrise":1616460895,
+//      "sunset":1616505492,
+//      "temp":-8.47,
+//      "feels_like":-12.96,
+//      "pressure":1017,
+//      "humidity":96,
+//      "dew_point":-8.93,
+//      "uvi":1.32,
+//      "clouds":98,
+//      "visibility":5543,
+//      "wind_speed":2.16,
+//      "wind_deg":206,
+//      "wind_gust":2.9,
 //      "weather":[
 //         {
-//            "id":800,
-//            "main":"Clear",
-//            "description":"clear sky",
-//            "icon":"01d"
+//            "id":804,
+//            "main":"Clouds",
+//            "description":"пасмурно",
+//            "icon":"04d"
 //         }
 //      ]
 //   },
 //   "alerts":[
 //      {
 //         "sender_name":"",
-//         "event":"Wind",
-//         "start":1614675600,
-//         "end":1614848400,
+//         "event":"Гололедно - изморозевое отложение",
+//         "start":1616461200,
+//         "end":1616562000,
+//         "description":"местами гололедные-изморозевые явления"
+//      },
+//      {
+//         "sender_name":"",
+//         "event":"Freezing rain, icing",
+//         "start":1616461200,
+//         "end":1616562000,
 //         "description":""
 //      },
 //      {
 //         "sender_name":"",
-//         "event":"Ветер",
-//         "start":1614675600,
-//         "end":1614848400,
-//         "description":"местами порывы 15-17"
-//      },
-//      {
-//         "sender_name":"",
-//         "event":"Other dangers",
-//         "start":1614744000,
-//         "end":1614848400,
+//         "event":"Fog",
+//         "start":1616472000,
+//         "end":1616554800,
 //         "description":""
 //      },
 //      {
 //         "sender_name":"",
-//         "event":"Прочие опасности",
-//         "start":1614744000,
-//         "end":1614848400,
-//         "description":"Гололедица"
+//         "event":"Туман",
+//         "start":1616425200,
+//         "end":1616554800,
+//         "description":"местами"
 //      }
 //   ]
 //}
@@ -112,6 +113,14 @@ class BackgroundService extends System.ServiceDelegate {
 //		System.println("responseCode: "+responseCode);
 //		System.println("data: "+data);
 		//////////////////////////////////////////////////////////
+		
+		var weatherDesription = data["current"]["weather"][0]["description"].toString();
+		var spaceInd = weatherDesription.find(" ");
+		if (spaceInd != null){
+			weatherDesription = weatherDesription.substring(0, spaceInd);
+		} 
+		weatherDesription = weatherDesription.substring(0, 11); 
+		 
 		if (responseCode == 200) {
 			backgroundData = {
 				STORAGE_KEY_RESPONCE_CODE => responseCode,
@@ -126,7 +135,7 @@ class BackgroundService extends System.ServiceDelegate {
 				STORAGE_KEY_UVI => data["current"]["uvi"],
 				STORAGE_KEY_DEW_POINT => data["current"]["dew_point"],
 				STORAGE_KEY_VISIBILITY => data["current"]["visibility"],
-				STORAGE_KEY_WEATHER_DESCRIPTION => data["current"]["weather"][0]["main"],
+				STORAGE_KEY_WEATHER_DESCRIPTION => weatherDesription,
 			};
 		} else {
 			backgroundData = {
