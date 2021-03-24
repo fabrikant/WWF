@@ -114,12 +114,16 @@ class BackgroundService extends System.ServiceDelegate {
 //		System.println("data: "+data);
 		//////////////////////////////////////////////////////////
 		
-		var weatherDesription = data["current"]["weather"][0]["description"].toString();
-		var spaceInd = weatherDesription.find(" ");
-		if (spaceInd != null){
-			weatherDesription = weatherDesription.substring(0, spaceInd);
+		var weatherDesription = data["current"]["weather"][0]["description"];
+		if (weatherDesription instanceof Toybox.Lang.String){
+			var spaceInd = weatherDesription.find(" ");
+			if (spaceInd != null){
+				weatherDesription = weatherDesription.substring(0, spaceInd);
+			} 
+			weatherDesription = weatherDesription.substring(0, 11);
+		}else{
+			weatherDesription = "";
 		} 
-		weatherDesription = weatherDesription.substring(0, 11); 
 		 
 		if (responseCode == 200) {
 			backgroundData = {

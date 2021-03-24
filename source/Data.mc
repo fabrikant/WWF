@@ -260,9 +260,15 @@ module Data{
 			dayOfWeek = dayOfWeek == 7 ? 1 : dayOfWeek+1;
 		}
 
-		var weatherDecription = memoryCache.weather[STORAGE_KEY_WEATHER_DESCRIPTION];
-		if (weatherDecription == null){
-			weatherDecription = "";
+		var weatherDecription = ""; 
+		
+		if (memoryCache instanceof MemoryCache){
+			if (memoryCache.weather instanceof Toybox.Lang.Dictionary){
+				weatherDecription = memoryCache.weather[STORAGE_KEY_WEATHER_DESCRIPTION];
+				if (weatherDecription == null){
+					weatherDecription = "";
+				}
+			}
 		}
 		
 		var dateString = Application.Properties.getValue("DF");

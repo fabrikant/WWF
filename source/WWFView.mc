@@ -42,8 +42,8 @@ class WWFView extends WatchUi.WatchFace {
 		var font = fonts[:time];
 		var w = dc.getTextWidthInPixels("00:02", font);
 		var h = Graphics.getFontHeight(font)-1.5*Graphics.getFontDescent(font);
-		var x = (System.getDeviceSettings().screenWidth - w)/2-2;
-		var y = (System.getDeviceSettings().screenHeight - h)/2;
+		var x = (System.getDeviceSettings().screenWidth - w)/2-1;
+		var y = (System.getDeviceSettings().screenHeight - h)/2+2;
         fields[:time] = new SimpleField(
     		{
     			:x => x,
@@ -60,7 +60,8 @@ class WWFView extends WatchUi.WatchFace {
 		///////////////////////////////////////////////////////////////////////
 		//DATE
     	font = fonts[:small];
-    	h = 20;
+    	h = ((fields[:time].h)/3).toNumber()+2;
+    	System.println(h);
     	y = y - h;
 //    	memoryCache.setBackgroundY(0, y+1);
 
@@ -76,10 +77,11 @@ class WWFView extends WatchUi.WatchFace {
     			:justify => Graphics.TEXT_JUSTIFY_CENTER
     		}
     	);
-
+		
 		///////////////////////////////////////////////////////////////////////
 		//STATUS FIELDS
-		h = (fields[:time].h + fields[:date].h)/4;
+		h = ((fields[:time].h)/3).toNumber();
+		
 		w = dc.getTextWidthInPixels("00", fonts[:small]);
 		
 		y = (dc.getHeight() - STATUS_FIELDS_COUNT*h/2)/2;
