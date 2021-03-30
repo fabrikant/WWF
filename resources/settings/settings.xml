@@ -128,6 +128,18 @@
     </setting>
 	
 	<!--WEATHER -->
+	<setting propertyKey="@Properties.WType"
+		title="@Strings.WType">
+		<settingConfig type="list">
+			<listEntry value="0">@Strings.WTypeWeather</listEntry>
+			<listEntry value="1">@Strings.WTypeHeartRateHistory</listEntry>
+			<listEntry value="2">@Strings.WTypeSaturationHistory</listEntry>
+			<listEntry value="3">@Strings.WTypeTemperatureHistory</listEntry>
+			<listEntry value="4">@Strings.WTypePressureHistory</listEntry>
+			<listEntry value="5">@Strings.WTypeElevationHistory</listEntry>
+		</settingConfig>
+	</setting>
+
 	<setting propertyKey="@Properties.WColor"
 		title="@Strings.WColor">
 		<settingConfig type="list">

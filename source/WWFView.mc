@@ -61,7 +61,6 @@ class WWFView extends WatchUi.WatchFace {
 		//DATE
     	font = fonts[:small];
     	h = ((fields[:time].h)/3).toNumber()+2;
-    	System.println(h);
     	y = y - h;
 //    	memoryCache.setBackgroundY(0, y+1);
 
@@ -77,6 +76,7 @@ class WWFView extends WatchUi.WatchFace {
     			:justify => Graphics.TEXT_JUSTIFY_CENTER
     		}
     	);
+		var currentTop = fields[:date][:y];
 		
 		///////////////////////////////////////////////////////////////////////
 		//STATUS FIELDS
@@ -117,66 +117,103 @@ class WWFView extends WatchUi.WatchFace {
 		///////////////////////////////////////////////////////////////////////
 		//WEATHER
 		var wWeatherBar = 0;
-		var fromPictureToTemp = 5;
 		h = hDataField*2;
 		w = h;
-		if (Application.Properties.getValue("ShowOWMIcons")){
-	        fields[:weather_picture] = new BitmapField(
+		var showWeather = false;
+		var wType = Application.Properties.getValue("WType"); 
+		if (wType == 0){
+			showWeather = true;
+		}
+		
+		currentTop -= h;
+		if (showWeather){
+			var fromPictureToTemp = 5;
+			if (Application.Properties.getValue("ShowOWMIcons")){
+		        fields[:weather_picture] = new BitmapField(
+		    		{
+		    			:x => 0,
+		    			:y => currentTop,
+		    			:h => h,
+		    			:w => w-fromPictureToTemp,
+		    			:type => :weather_picture,
+		    			:id => :weather,
+		    			:fontId => :weather,
+		    			:justify => Graphics.TEXT_JUSTIFY_CENTER
+		    		}
+		    	);
+			}else{
+		        fields[:weather_picture] = new SimpleField(
+		    		{
+		    			:x => 0,
+		    			:y => currentTop,
+		    			:h => h,
+		    			:w => w-fromPictureToTemp,
+		    			:type => :weather_picture,
+		    			:id => :weather,
+		    			:fontId => :weather,
+		    			:justify => Graphics.TEXT_JUSTIFY_CENTER
+		    		}
+		    	);
+	    	}
+			wWeatherBar += fields[:weather_picture][:w];
+			
+	        fields[:weather_temp] = new SimpleField(
 	    		{
-	    			:x => 0,
-	    			:y => fields[:date].y - h,
+	    			:x => fields[:weather_picture].x + fields[:weather_picture].w,
+	    			:y => currentTop,
 	    			:h => h,
-	    			:w => w-fromPictureToTemp,
-	    			:type => :weather_picture,
+	    			:w => w+fromPictureToTemp,
+	    			:type => :weather_temp,
 	    			:id => :weather,
-	    			:fontId => :weather,
+	    			:fontId => :medium,
 	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
 	    		}
 	    	);
+			wWeatherBar += fields[:weather_temp][:w];
+			
+			if (Application.Properties.getValue("WShowWindWidget")){
+		        fields[:weather_wind_widget] = new WindDWidget(
+		    		{
+		    			:x => fields[:weather_temp].x + fields[:weather_temp].w,
+		    			:y => currentTop,
+		    			:h => fields[:weather_temp].h,
+		    			:w => fields[:weather_temp].w,
+		    			:type => :weather_wind_widget,
+		    			:id => :weather,
+		    			:fontId => :small_letters,
+		    			:justify => Graphics.TEXT_JUSTIFY_CENTER
+		    		}
+				);
+				wWeatherBar += fields[:weather_wind_widget][:w];
+			}
 		}else{
-	        fields[:weather_picture] = new SimpleField(
+		
+			var wMulti = 3;
+			if (Application.Properties.getValue("ShowTopFields")){wMulti = 2;}
+			var graphType = :getHeartRateHistory;
+			if (wType == 2){
+				graphType = :getOxygenSaturationHistory;
+			}else if (wType == 3){
+				graphType = :getTemperatureHistory;
+			}else if (wType == 4){
+				graphType = :getPressureHistory;
+			}else if (wType == 5){
+				graphType = :getElevationHistory;
+			}
+			
+	        fields[:graphic] = new GraphicsField(
 	    		{
 	    			:x => 0,
-	    			:y => fields[:date].y - h,
+	    			:y => currentTop,
 	    			:h => h,
-	    			:w => w-fromPictureToTemp,
-	    			:type => :weather_picture,
-	    			:id => :weather,
-	    			:fontId => :weather,
-	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
-	    		}
-	    	);
-    	}
-		wWeatherBar += fields[:weather_picture][:w];
-		
-        fields[:weather_temp] = new SimpleField(
-    		{
-    			:x => fields[:weather_picture].x + fields[:weather_picture].w,
-    			:y => fields[:weather_picture].y,
-    			:h => h,
-    			:w => w+fromPictureToTemp,
-    			:type => :weather_temp,
-    			:id => :weather,
-    			:fontId => :medium,
-    			:justify => Graphics.TEXT_JUSTIFY_CENTER
-    		}
-    	);
-		wWeatherBar += fields[:weather_temp][:w];
-		
-		if (Application.Properties.getValue("WShowWindWidget")){
-	        fields[:weather_wind_widget] = new WindDWidget(
-	    		{
-	    			:x => fields[:weather_temp].x + fields[:weather_temp].w,
-	    			:y => fields[:weather_temp].y,
-	    			:h => fields[:weather_temp].h,
-	    			:w => fields[:weather_temp].w,
-	    			:type => :weather_wind_widget,
+	    			:w => wMulti*w,
+	    			:type => graphType,
 	    			:id => :weather,
 	    			:fontId => :small_letters,
 	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
 	    		}
-			);
-			wWeatherBar += fields[:weather_wind_widget][:w];
+	    	);
+	    	wWeatherBar += fields[:graphic][:w];
 		}
 		
 		///////////////////////////////////////////////////////////////////////
@@ -196,8 +233,8 @@ class WWFView extends WatchUi.WatchFace {
 		coord[5] = [x+2*(wPicture+wText),y + h];
 		
 		if (Application.Properties.getValue("ShowTopFields")){
-			coord.add([wWeatherBar, fields[:weather_picture][:y]]);
-			coord.add([wWeatherBar, fields[:weather_picture][:y] + h]);
+			coord.add([wWeatherBar, currentTop]);
+			coord.add([wWeatherBar, currentTop + h]);
 			wWeatherBar += wPicture+wText;
 		}
 		
@@ -237,11 +274,17 @@ class WWFView extends WatchUi.WatchFace {
 		///////////////////////////////////////////////////////////////////////
 		//MOVE WEATHER BAR
 		var shiftX = (dc.getWidth() - wWeatherBar)/2;
-		fields[:weather_picture][:x] += shiftX; 
-		fields[:weather_temp][:x] += shiftX;
-		if (Application.Properties.getValue("WShowWindWidget")){
-			fields[:weather_wind_widget][:x] += shiftX;
+		if (showWeather){
+			fields[:weather_picture][:x] += shiftX; 
+			fields[:weather_temp][:x] += shiftX;
+			if (Application.Properties.getValue("WShowWindWidget")){
+				fields[:weather_wind_widget][:x] += shiftX;
+			}
+		}else{
+			fields[:graphic][:x] += shiftX;
+			currentTop = fields[:graphic][:y];
 		}
+		
 		if (Application.Properties.getValue("ShowTopFields")){
 			fields["P6"][:x] += shiftX;
 			fields["F6"][:x] += shiftX;
@@ -256,7 +299,7 @@ class WWFView extends WatchUi.WatchFace {
         fields[:battery_picture] = new BatteryField(
     		{
     			:x => System.getDeviceSettings().screenWidth/2-w,
-    			:y => fields[:weather_picture].y -h,
+    			:y => currentTop - h,
     			:h => h,
     			:w => w,
     			:type => :battery_picture,
@@ -284,10 +327,10 @@ class WWFView extends WatchUi.WatchFace {
 
     	 fields[:moon] = new SimpleField(
     		{
-    			:x => (System.getDeviceSettings().screenWidth - fields[:weather_picture].h)/2,
+    			:x => (System.getDeviceSettings().screenWidth - 2*hDataField)/2,
     			:y => fields["F5"].y + fields["F5"].h,
-    			:h => fields[:weather_picture].h,
-    			:w => fields[:weather_picture].w,
+    			:h => 2*hDataField,
+    			:w => 2*hDataField,
     			:type => :moon,
     			:id => :moon,
     			:fontId => :weather,
@@ -339,7 +382,6 @@ class WWFView extends WatchUi.WatchFace {
 		if (memoryCache.oldValues[:isCharging] != null){
 			if (memoryCache.oldValues[:isCharging] && !isCharging){
 				memoryCache = new MemoryCache();
-				System.println("isCharging");
 			}
 		}
 		memoryCache.oldValues[:isCharging] = isCharging;

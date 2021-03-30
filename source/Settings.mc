@@ -279,6 +279,7 @@ module StorageSettings {
 	    res.add("BgndColor");
 	    res.add("TimeColor");
 	    res.add("DateColor");
+	    res.add("WType");
 	    res.add("WColor");
 	    res.add("WAutoColor");
 	    res.add("WShowWindWidget");

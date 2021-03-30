@@ -212,9 +212,37 @@ module Data{
 	 		}else{
 	 			res = oldValue;
 			}
+		
+		///////////////////////////////////////////////////////////////////////
+		//GRAPHICS
+		}else if (filedType == :getHeartRateHistory
+			|| filedType == :getOxygenSaturationHistory
+			|| filedType == :getTemperatureHistory
+			|| filedType == :getPressureHistory
+			|| filedType == :getElevationHistory){
+			getLastHistoryMoment(filedType);
 		}
 
 		return res;
+	}
+
+	///////////////////////////////////////////////////////////////////////////
+	function getLastHistoryMoment(method){
+		var value = "n/a";
+		if (Toybox has :SensorHistory){
+			if (Toybox.SensorHistory has method){
+				var iter = new Lang.Method(Toybox.SensorHistory, method).invoke({:period =>1, :order => SensorHistory.ORDER_NEWEST_FIRST});
+				if (iter != null){
+					var sample = iter.next();
+					if (sample != null){
+						if (sample.data != null){
+							value = sample.when;
+						}
+					}
+				}
+			}
+		}
+		return value;
 	}
 
 	///////////////////////////////////////////////////////////////////////////
@@ -342,9 +370,9 @@ module Data{
 		var value = null;
 		var info = Activity.getActivityInfo();
 		if (info != null){
-			if (info has :ambientPressure){
-				if (info.ambientPressure != null){
-					value = Tools.pressureToString(info.ambientPressure);
+			if (info has :meanSeaLevelPressure){
+				if (info.meanSeaLevelPressure != null){
+					value = Tools.pressureToString(info.meanSeaLevelPressure);
 				}
 			}
 		}

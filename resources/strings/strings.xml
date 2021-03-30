@@ -9,7 +9,16 @@
     <string id="BgndColor">Background Color</string>
     <string id="TimeColor">Time Color</string>
     <string id="DateColor" scope="foreground">Date Color</string>
-    <string id="WColor" scope="foreground">Weather widget color</string>
+    
+    <string id="WType" scope="foreground">Widget type</string>
+    <string id="WTypeWeather" scope="foreground">Weather</string>
+    <string id="WTypeTemperatureHistory" scope="foreground">Temperature History</string>
+    <string id="WTypePressureHistory" scope="foreground">Pressure History</string>
+    <string id="WTypeHeartRateHistory" scope="foreground">Heart rate history</string>
+    <string id="WTypeElevationHistory" scope="foreground">Elevation history</string>
+    <string id="WTypeSaturationHistory" scope="foreground">Saturation history</string>
+    
+    <string id="WColor" scope="foreground">Widget color</string>
     <string id="WAutoColor" scope="foreground">Use auto colors for weather widget</string>
     <string id="ShowTopFields" scope="foreground">Show top data fields</string>
     <string id="WShowWindWidget" scope="foreground">Show wind widget</string>
