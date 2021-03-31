@@ -8,7 +8,6 @@ class MenuSettings extends WatchUi.Menu2{
 
 	function initialize() {
 		Menu2.initialize({:title=>Application.loadResource(Rez.Strings.SettingsMenu)});
-		var set = Application.loadResource(Rez.Strings.SettingsSet);
         addItem(
             new ToggleMenuItem(
                 Application.loadResource(Rez.Strings.SwitchDayNight),
@@ -18,181 +17,79 @@ class MenuSettings extends WatchUi.Menu2{
                 {}
             )
         );
+        
+        addItem(
+            new MenuItem(
+                Application.loadResource(Rez.Strings.keyOW),
+                Application.Properties.getValue("keyOW"),
+                :apiKey,
+                {}
+            )
+        );
 
         addItem(
             new MenuItem(
-                Application.loadResource(Rez.Strings.SettingsSave),
-                Application.loadResource(Rez.Strings.SettingsSaveDescription),
-                :save,
+                Application.loadResource(Rez.Strings.SettingsGlobal),
+                null,
+                STORAGE_KEY_GLOBAL,
                 {}
             )
         );
         
         addItem(
             new MenuItem(
-                Application.loadResource(Rez.Strings.SettingsRemove)+"...",
+                Application.loadResource(Rez.Strings.SettingsDay),
                 null,
-                :remove,
+                STORAGE_KEY_DAY,
                 {}
             )
         );
-
-		var sublabel = null;
-		var momentValue = StorageSettings.getPeriodicSettingsId(STORAGE_KEY_GLOBAL);
-		if (momentValue != null){
-			sublabel = Tools.momentToDateTimeString(new Time.Moment(momentValue));
-		}
+        
         addItem(
             new MenuItem(
-                set+Application.loadResource(Rez.Strings.SettingsGlobal),
-                sublabel,
-                :global,
+                Application.loadResource(Rez.Strings.SettingsNight),
+                null,
+                STORAGE_KEY_NIGHT,
                 {}
             )
         );
-
-		sublabel = null;
-		momentValue = StorageSettings.getPeriodicSettingsId(STORAGE_KEY_DAY);
-		if (momentValue != null){
-			sublabel = Tools.momentToDateTimeString(new Time.Moment(momentValue));
-		}
-        addItem(
-            new MenuItem(
-                set+Application.loadResource(Rez.Strings.SettingsDay),
-                sublabel,
-                :day,
-                {}
-            )
-        );
- 
-		sublabel = null;
-		momentValue = StorageSettings.getPeriodicSettingsId(STORAGE_KEY_NIGHT);
-		if (momentValue != null){
-			sublabel = Tools.momentToDateTimeString(new Time.Moment(momentValue));
-		}
-        addItem(
-            new MenuItem(
-                set+Application.loadResource(Rez.Strings.SettingsNight),
-                sublabel,
-                :night,
-                {}
-            )
-        );
-
 	}
-	
-    function saveCurrentSettings(item){
-    	var moment = Time.now();
-    	StorageSettings.save(moment);
-    	item.setSubLabel(Tools.momentToDateTimeString(moment));
-    }
     
     function onSelect(item){
     	var id = item.getId();
-    	if (id == :save){
-    		saveCurrentSettings(item);
-    	}else if (id == :autoSwitch){
+    	if (id == :autoSwitch){
     		Application.Properties.setValue("SwitchDayNight", item.isEnabled());
     		memoryCache.reload();
-    	}else{
-    		var listMenu = null;
-    		var set = Application.loadResource(Rez.Strings.SettingsSet);
-	    	if(id == :remove){
-	    		listMenu = new MenuSettingsList(item, Application.loadResource(Rez.Strings.SettingsRemove));
-	    	}else if(id == :day){
-	    		listMenu = new MenuSettingsList(item, set+Application.loadResource(Rez.Strings.SettingsDay));
-	    	}else if(id == :night){
-	    		listMenu = new MenuSettingsList(item, set+Application.loadResource(Rez.Strings.SettingsNight));
-	    	}else if(id == :global){
-	    		listMenu = new MenuSettingsList(item, set+Application.loadResource(Rez.Strings.SettingsGlobal));
-    		}
-    		if (listMenu != null){
- 		    	WatchUi.pushView(listMenu, new MenuDelegate(listMenu), WatchUi.SLIDE_IMMEDIATE);
- 		    }
-
+    	}else if(id == STORAGE_KEY_GLOBAL){
+    		var menu = new MenuEditSettings(id, Application.loadResource(Rez.Strings.SettingsGlobal));
+    		WatchUi.pushView(menu, new MenuDelegate(menu), WatchUi.SLIDE_IMMEDIATE);
+    	}else if(id == STORAGE_KEY_DAY){
+    		var menu = new MenuEditSettings(id, Application.loadResource(Rez.Strings.SettingsDay));
+    		WatchUi.pushView(menu, new MenuDelegate(menu), WatchUi.SLIDE_IMMEDIATE);
+		}else if(id == STORAGE_KEY_NIGHT){
+    		var menu = new MenuEditSettings(id, Application.loadResource(Rez.Strings.SettingsNight));
+    		WatchUi.pushView(menu, new MenuDelegate(menu), WatchUi.SLIDE_IMMEDIATE);
     	}
     }
 }
 
-//*****************************************************************************
-class MenuSettingsList extends WatchUi.Menu2{
-	
-	protected var id, parentItem; 
-	
-	function initialize(item, title) {
-		self.parentItem = item;
-		self.id = item.getId();
-		Menu2.initialize({:title=>title});
-	   	
-	   	var idsSettings = Application.Storage.getValue(STORAGE_KEY_SETTINGS);
-    	if (idsSettings == null){
-    		idsSettings = [:empty];
-    	} else if (idsSettings.size() == 0){
-    		idsSettings = [:empty];
-    	}
-    	
-		for (var i = 0; i < idsSettings.size(); i++){
-			var label = "";
-			if (idsSettings[i] != :empty){
-				label = Tools.momentToDateTimeString(new Time.Moment(idsSettings[i]));
-			}
-			
-	        addItem(
-	            new MenuItem(
-	                label,
-	                null,
-	                idsSettings[i],
-	                {}
-	            )
-	        );
-		}
-	}
-			
-	function onSelect(item){
-		var itemId = item.getId();
-		if (itemId != :empty){
-			if(id == :remove){
-	    		StorageSettings.remove(itemId);
-	    	}else if(id == :day){
-	    		StorageSettings.setPeriodicSettings(STORAGE_KEY_DAY, itemId);
-	    		parentItem.setSubLabel(Tools.momentToDateTimeString(new Time.Moment(itemId)));
-	    	}else if(id == :night){
-	    		StorageSettings.setPeriodicSettings(STORAGE_KEY_NIGHT, itemId);
-	    		parentItem.setSubLabel(Tools.momentToDateTimeString(new Time.Moment(itemId)));
-	    	}else if(id == :global){
-	    		StorageSettings.setPeriodicSettings(STORAGE_KEY_GLOBAL, itemId);
-	    		parentItem.setSubLabel(Tools.momentToDateTimeString(new Time.Moment(itemId)));
-	    	}
-    	}	
-    	WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
-    }
-} 
-
-//*****************************************************************************
-class MenuDelegate extends WatchUi.Menu2InputDelegate{
-
-	var menu;
-	
-	function initialize(menu) {
-		self.menu = menu;
-		Menu2InputDelegate.initialize();
-	}
-	
-	function onSelect(item){
-		menu.onSelect(item);
-	}
-}
 
 //*****************************************************************************
 module StorageSettings {
 	
 	///////////////////////////////////////////////////////////////////////////
-    function save(moment){
-    	
-    	var idsSettings = Application.Storage.getValue(STORAGE_KEY_SETTINGS);
-    	if (idsSettings == null){
-    		idsSettings = [];
-    	}
+	function getStorageSettingsValue(typeSettingsKey, valueKey){
+		var res = null;
+		
+		var dictKeys = Application.Storage.getValue(typeSettingsKey);
+		if (dictKeys != null){
+			res = dictKeys[valueKey]; 
+		}
+		return res; 
+	}
+	
+	///////////////////////////////////////////////////////////////////////////
+    function save(key){
     	
     	var propKeys = StorageSettings.getPropertiesKeys();
     	var settings = {};
@@ -200,16 +97,13 @@ module StorageSettings {
 			settings.put(propKeys[i], Application.Properties.getValue(propKeys[i]));    		
     	}
     	
-    	var currentSettingsId = moment.value();
-    	Application.Storage.setValue(currentSettingsId, settings);
-    	idsSettings.add(currentSettingsId); 
-    	Application.Storage.setValue(STORAGE_KEY_SETTINGS, idsSettings);
+    	Application.Storage.setValue(key, settings);
     }
 
 	///////////////////////////////////////////////////////////////////////////
-	function load(currentSettingsId){
+	function load(key){
 		
-		var settings = Application.Storage.getValue(currentSettingsId);
+		var settings = Application.Storage.getValue(key);
 		if (settings == null){
 			return;
 		}
@@ -223,85 +117,143 @@ module StorageSettings {
 		}
 		memoryCache.reload();			
 	}
-		
-	///////////////////////////////////////////////////////////////////////////
-	function remove(currentSettingsId){
-		if (currentSettingsId == null){
-			return;
-		}
-		Application.Storage.deleteValue(currentSettingsId);
-		var idsSettings = Application.Storage.getValue(STORAGE_KEY_SETTINGS);
-		if (idsSettings != null){
-			if(idsSettings.remove(currentSettingsId)){
-				Application.Storage.setValue(STORAGE_KEY_SETTINGS, idsSettings);				
-			}
-		}
-		if (StorageSettings.getPeriodicSettingsId(STORAGE_KEY_DAY) == currentSettingsId){
-			setPeriodicSettings(STORAGE_KEY_DAY, null);
-		}
-		if (StorageSettings.getPeriodicSettingsId(STORAGE_KEY_NIGHT) == currentSettingsId){
-			setPeriodicSettings(STORAGE_KEY_NIGHT, null);
-		}
-		if (StorageSettings.getPeriodicSettingsId(STORAGE_KEY_GLOBAL) == currentSettingsId){
-			setPeriodicSettings(STORAGE_KEY_GLOBAL, null);
-		}
-	}
-	
-	///////////////////////////////////////////////////////////////////////////
-	function setPeriodicSettings(keyStorage, settingsId){
-		
-		if (settingsId == null){
-			Application.Storage.deleteValue(keyStorage);
-			return;
-		}
-		
-		var settings = Application.Storage.getValue(settingsId);
-		if (settings == null){
-			Application.Storage.deleteValue(keyStorage);
-			return;
-		}
-		Application.Storage.setValue(keyStorage, settingsId);
-	}
-	
-	///////////////////////////////////////////////////////////////////////////
-	function getPeriodicSettingsId(keyStorage){
-		var res = null;
-		res = Application.Storage.getValue(keyStorage);
-		return res;
-	}
 	
 	///////////////////////////////////////////////////////////////////////////
 	function getPropertiesKeys(){
 		var res = [];
-	    res.add("MilFt");
-		res.add("HFt01");
-		res.add("DF");
-	    res.add("BgndColor");
-	    res.add("TimeColor");
-	    res.add("DateColor");
-	    res.add("WType");
-	    res.add("WColor");
-	    res.add("WAutoColor");
-	    res.add("WShowWindWidget");
-	    res.add("ShowOWMIcons");
-	    res.add("WindArrowContour");
-	    res.add("ShowTopFields");
-	    
-	    res.add("BatColor");
-	    res.add("MoonColor");
-		res.add("WUpdInt");
-		res.add("PrU");
-		res.add("WU");
-		res.add("T1TZ");
-		for (var i = 0; i < FIELDS_COUNT; i++){
-			res.add("F"+i);
-			res.add("C"+i);
-		}
-		for (var i = 0; i < STATUS_FIELDS_COUNT; i++){
-			res.add("SF"+i);
-			res.add("SFC"+i);
+		var allProp = getFullPropertiesKeys();
+		for (var i = 0; i < allProp.size(); i++){
+			res.add(allProp[i][:title].toString());
 		}
 		return res;
 	}
 	
+	///////////////////////////////////////////////////////////////////////////
+	function getFullPropertiesKeys(){
+
+		var res = [];
+	    res.add({:type => :bool, :title => :MilFt});
+		res.add({:type => :bool, :title => :HFt01});
+		res.add({:type => :dateFormat, :title => :DF});
+	    res.add({:type => :color, :title => :BgndColor});
+	    res.add({:type => :color, :title => :TimeColor});
+	    res.add({:type => :color, :title => :DateColor});
+	    res.add({:type => :widgetType, :title => :WType});
+	    res.add({:type => :color, :title => :WColor});
+	    res.add({:type => :bool, :title => :WAutoColor});
+	    res.add({:type => :bool, :title => :WShowWindWidget});
+	    res.add({:type => :bool, :title => :ShowOWMIcons});
+	    res.add({:type => :bool, :title => :WindArrowContour});
+	    res.add({:type => :bool, :title => :ShowTopFields});
+	    
+	    res.add({:type => :color, :title => :BatColor});
+	    res.add({:type => :color, :title => :MoonColor});
+		res.add({:type => :number, :title => :WUpdInt});
+		res.add({:type => :pressureUnit, :title => :PrU});
+		res.add({:type => :windSpeedUnit, :title => :WU});
+		res.add({:type => :number, :title => :T1TZ});
+		
+		res.add({:type => :statusField, :title => :SF0});
+		res.add({:type => :color, :title => :SFC0});
+		res.add({:type => :statusField, :title => :SF1});
+		res.add({:type => :color, :title => :SFC1});
+		res.add({:type => :statusField, :title => :SF2});
+		res.add({:type => :color, :title => :SFC2});
+		res.add({:type => :statusField, :title => :SF3});
+		res.add({:type => :color, :title => :SFC3});
+		res.add({:type => :statusField, :title => :SF4});
+		res.add({:type => :color, :title => :SFC4});
+		res.add({:type => :statusField, :title => :SF5});
+		res.add({:type => :color, :title => :SFC5});
+		
+		res.add({:type => :field, :title => :F0});
+		res.add({:type => :color, :title => :C0});
+		res.add({:type => :field, :title => :F1});
+		res.add({:type => :color, :title => :C1});
+		res.add({:type => :field, :title => :F2});
+		res.add({:type => :color, :title => :C2});
+		res.add({:type => :field, :title => :F3});
+		res.add({:type => :color, :title => :C3});
+		res.add({:type => :field, :title => :F4});
+		res.add({:type => :color, :title => :C4});
+		res.add({:type => :field, :title => :F5});
+		res.add({:type => :color, :title => :C5});
+		res.add({:type => :field, :title => :F6});
+		res.add({:type => :color, :title => :C6});
+		res.add({:type => :field, :title => :F7});
+		res.add({:type => :color, :title => :C7});
+
+		return res;
+	
+	}
+	
+	function color(){
+		return {
+			0xFFFFFF => :COLOR_WHITE,
+			0x000000 => :COLOR_BLACK,
+			0xAAAAAA => :COLOR_LT_GRAY,
+			0x555555 => :COLOR_DK_GRAY,
+			0xFF0000 => :COLOR_RED,
+			0xAA0000 => :COLOR_DK_RED,
+			0xFF5500 => :COLOR_ORANGE,
+			0xFFAA00 => :COLOR_YELLOW,
+			0x00FF00 => :COLOR_GREEN,
+			0x00AA00 => :COLOR_DK_GREEN,
+			0x00AAFF => :COLOR_BLUE,
+			0x0000FF => :COLOR_DK_BLUE,
+			0xAA00FF => :COLOR_PURPLE,
+			0xFF00FF => :COLOR_PINK};
+	}
+	
+	function statusField(){
+		return {
+			18 => :FIELD_TYPE_CONNECTED,
+			19 => :FIELD_TYPE_NOTIFICATIONS,
+			24 => :FIELD_TYPE_NOTIFICATIONS_COUNT,
+			20 => :FIELD_TYPE_DND,
+			21 => :FIELD_TYPE_ALARMS,
+			25 => :FIELD_TYPE_ALARMS_COUNT,
+			22 => :FIELD_TYPE_AMPM,
+			23 => :FIELD_TYPE_SECONDS,
+			12 => :FIELD_TYPE_EMPTY};
+	}
+	
+	function field(){
+		return {
+			0 => :FIELD_TYPE_HR,
+			1 => :FIELD_TYPE_STEPS,
+			2 => :FIELD_TYPE_PRESSURE,
+			3 => :FIELD_TYPE_TEMPERATURE,
+			4 => :FIELD_TYPE_CALORIES,
+			5 => :FIELD_TYPE_DISTANCE,
+			6 => :FIELD_TYPE_FLOOR,
+			7 => :FIELD_TYPE_ELEVATION,
+			8 => :FIELD_TYPE_SUN_EVENT,
+			9 => :FIELD_TYPE_SUNRISE,
+			10 => :FIELD_TYPE_SUNSET,
+			11 => :FIELD_TYPE_TIME1,
+			13 => :FIELD_TYPE_ACTIVE_DAY,
+			14 => :FIELD_TYPE_ACTIVE_WEEK,
+			15 => :FIELD_TYPE_O2,
+			16 => :FIELD_TYPE_SOLAR_CHARGE,
+			17 => :FIELD_TYPE_WEIGHT,
+			26 => :FIELD_TYPE_WEATHER_PRESSURE,
+			27 => :FIELD_TYPE_WEATHER_HUM,
+			28 => :FIELD_TYPE_WEATHER_VISIBILITY,
+			29 => :FIELD_TYPE_WEATHER_WIND_SPEED,
+			30 => :FIELD_TYPE_WEATHER_WIND_DEG,
+			31 => :FIELD_TYPE_WEATHER_UVI,
+			32 => :FIELD_TYPE_WEATHER_DEW_POINT,
+			12 => :FIELD_TYPE_EMPTY};
+	}
+	
+	function widgetType(){
+		return{
+			0 => :WTypeWeather,
+			1 => :WTypeHeartRateHistory,
+			2 => :WTypeSaturationHistory,
+			3 => :WTypeTemperatureHistory,
+			4 => :WTypePressureHistory,
+			5 => :WTypeElevationHistory};
+	}
 }

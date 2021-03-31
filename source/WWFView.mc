@@ -398,19 +398,13 @@ class WWFView extends WatchUi.WatchFace {
 				}
 				
 				if (memoryCache.oldValues[:isNight] != isNight){
-					var idSettings = StorageSettings.getPeriodicSettingsId(isNight ? STORAGE_KEY_NIGHT : STORAGE_KEY_DAY);
-					if (idSettings != null){
-						StorageSettings.load(idSettings);
-					}
+					StorageSettings.load(isNight ? STORAGE_KEY_NIGHT : STORAGE_KEY_DAY);
 					memoryCache.oldValues[:isNight] = isNight;
 				}
 			}
 		}else{//dont switch day/night
 			if (memoryCache.oldValues[:isStarted] != true ){
-				var idSettings = StorageSettings.getPeriodicSettingsId(STORAGE_KEY_GLOBAL);
-				if (idSettings != null){
-					StorageSettings.load(idSettings);
-				}			
+				StorageSettings.load(STORAGE_KEY_GLOBAL);
 			}
 		}
 		

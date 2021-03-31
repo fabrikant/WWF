@@ -291,26 +291,21 @@ class MemoryCache {
 	}
 
 	function saveSettingsToStorage(){
+		
 		var settingsType = Application.Properties.getValue("SettingsType");
 		if (settingsType == 0){
 			return;
 		}
 
-		var keyPeriodicSettings = STORAGE_KEY_GLOBAL;
+		var key = STORAGE_KEY_GLOBAL;
 		if(settingsType == 2){
-			keyPeriodicSettings = STORAGE_KEY_DAY;
+			key = STORAGE_KEY_DAY;
 		}else if (settingsType == 3){
-			keyPeriodicSettings = STORAGE_KEY_NIGHT;
+			key = STORAGE_KEY_NIGHT;
 		}
-
-		var currentId = StorageSettings.getPeriodicSettingsId(keyPeriodicSettings);
-		if (currentId != null){
-			StorageSettings.remove(currentId);
-		}
-		var now = Time.now();
-		StorageSettings.save(now);
-		StorageSettings.setPeriodicSettings(keyPeriodicSettings, now.value());
-
+		
+		StorageSettings.save(key);
 		Application.Properties.setValue("SettingsType", 0);
+		
 	}
 }
