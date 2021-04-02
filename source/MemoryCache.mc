@@ -61,7 +61,7 @@ class MemoryCache {
 		settings[:windUnit] = Application.Properties.getValue("WU");
 		settings[:time1] = Application.Properties.getValue("T1TZ");
 
-		settings[:apiKey] = Application.Properties.getValue("keyOW");
+		settings[:keyOW] = Application.Properties.getValue("keyOW");
 		settings[:weatherUpdateInteval] = Application.Properties.getValue("WUpdInt");
 	}
 
@@ -304,7 +304,7 @@ class MemoryCache {
 			key = STORAGE_KEY_NIGHT;
 		}
 		
-		StorageSettings.save(key);
+		StorageSettings.PropertiesToStorage(key);
 		Application.Properties.setValue("SettingsType", 0);
 		
 	}

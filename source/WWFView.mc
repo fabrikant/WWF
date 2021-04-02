@@ -14,14 +14,8 @@ class WWFView extends WatchUi.WatchFace {
         WatchFace.initialize();
         memoryCache = new MemoryCache();
         Application.getApp().registerEvents();
-        fonts = {};
         fields = {};
-        fonts[:time] = Application.loadResource(Rez.Fonts.big);
-        fonts[:small] = Application.loadResource(Rez.Fonts.small);
-        fonts[:small_letters] = Graphics.FONT_SYSTEM_XTINY;
-        fonts[:medium] = Application.loadResource(Rez.Fonts.med);
-        fonts[:picture] = Application.loadResource(Rez.Fonts.images);
-        fonts[:weather] = Application.loadResource(Rez.Fonts.weather);
+        initFonts();
     }
 
     // Load your resources here
@@ -29,6 +23,14 @@ class WWFView extends WatchUi.WatchFace {
     	//createFields(dc);
 	}
 	
+	function initFonts(){
+        fonts = {};
+        fonts[:time] = Application.loadResource(Rez.Fonts.big);
+        fonts[:small] = Application.loadResource(Rez.Fonts.small);
+        fonts[:small_letters] = Graphics.FONT_SYSTEM_XTINY;
+        fonts[:medium] = Application.loadResource(Rez.Fonts.med);
+        fonts[:picture] = Application.loadResource(Rez.Fonts.images);
+	}
 	function createFields(dc){
 		
 		fields = {};
@@ -128,33 +130,18 @@ class WWFView extends WatchUi.WatchFace {
 		currentTop -= h;
 		if (showWeather){
 			var fromPictureToTemp = 5;
-			if (Application.Properties.getValue("ShowOWMIcons")){
-		        fields[:weather_picture] = new BitmapField(
-		    		{
-		    			:x => 0,
-		    			:y => currentTop,
-		    			:h => h,
-		    			:w => w-fromPictureToTemp,
-		    			:type => :weather_picture,
-		    			:id => :weather,
-		    			:fontId => :weather,
-		    			:justify => Graphics.TEXT_JUSTIFY_CENTER
-		    		}
-		    	);
-			}else{
-		        fields[:weather_picture] = new SimpleField(
-		    		{
-		    			:x => 0,
-		    			:y => currentTop,
-		    			:h => h,
-		    			:w => w-fromPictureToTemp,
-		    			:type => :weather_picture,
-		    			:id => :weather,
-		    			:fontId => :weather,
-		    			:justify => Graphics.TEXT_JUSTIFY_CENTER
-		    		}
-		    	);
-	    	}
+	        fields[:weather_picture] = new BitmapField(
+	    		{
+	    			:x => 0,
+	    			:y => currentTop,
+	    			:h => h,
+	    			:w => w-fromPictureToTemp,
+	    			:type => :weather_picture,
+	    			:id => :weather,
+	    			:fontId => :weather,
+	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
+	    		}
+	    	);
 			wWeatherBar += fields[:weather_picture][:w];
 			
 	        fields[:weather_temp] = new SimpleField(
@@ -325,18 +312,18 @@ class WWFView extends WatchUi.WatchFace {
 		///////////////////////////////////////////////////////////////////////
 		//Moon phase
 
-    	 fields[:moon] = new SimpleField(
-    		{
-    			:x => (System.getDeviceSettings().screenWidth - 2*hDataField)/2,
-    			:y => fields["F5"].y + fields["F5"].h,
-    			:h => 2*hDataField,
-    			:w => 2*hDataField,
-    			:type => :moon,
-    			:id => :moon,
-    			:fontId => :weather,
-    			:justify => Graphics.TEXT_JUSTIFY_CENTER
-    		}
-    	);
+//    	 fields[:moon] = new SimpleField(
+//    		{
+//    			:x => (System.getDeviceSettings().screenWidth - 2*hDataField)/2,
+//    			:y => fields["F5"].y + fields["F5"].h,
+//    			:h => 2*hDataField,
+//    			:w => 2*hDataField,
+//    			:type => :moon,
+//    			:id => :moon,
+//    			:fontId => :small,
+//    			:justify => Graphics.TEXT_JUSTIFY_CENTER
+//    		}
+//    	);
 
 
     }
@@ -345,6 +332,10 @@ class WWFView extends WatchUi.WatchFace {
     // the state of this View and prepare it to be shown. This includes
     // loading resources into memory.
     function onShow() {
+    
+    	if (fonts == null){
+    		initFonts();
+    	}
        	var location = Activity.getActivityInfo().currentLocation;
     	if (location != null) {
 			location = location.toDegrees();
@@ -398,13 +389,13 @@ class WWFView extends WatchUi.WatchFace {
 				}
 				
 				if (memoryCache.oldValues[:isNight] != isNight){
-					StorageSettings.load(isNight ? STORAGE_KEY_NIGHT : STORAGE_KEY_DAY);
+					StorageSettings.StorageToProperties(isNight ? STORAGE_KEY_NIGHT : STORAGE_KEY_DAY);
 					memoryCache.oldValues[:isNight] = isNight;
 				}
 			}
 		}else{//dont switch day/night
 			if (memoryCache.oldValues[:isStarted] != true ){
-				StorageSettings.load(STORAGE_KEY_GLOBAL);
+				StorageSettings.StorageToProperties(STORAGE_KEY_GLOBAL);
 			}
 		}
 		
@@ -416,9 +407,9 @@ class WWFView extends WatchUi.WatchFace {
 
 		memoryCache.checkWeatherActuality();
 		var ids = fields.keys();
-		for (var i = 0; i < ids.size(); i++){
+		for (var idsIndex = 0; idsIndex < ids.size(); idsIndex++){
 
-			var fieldId = ids[i];
+			var fieldId = ids[idsIndex];
 			var oldValue = memoryCache.oldValues[fieldId];
 			var value = Data.getValueByFieldType(fields[fieldId].type, oldValue);
 

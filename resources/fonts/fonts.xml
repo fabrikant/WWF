@@ -5,8 +5,6 @@
 		filename="rajdhani/rajdhani_digits_26.fnt" />
 	<font id="small" scope="foreground" antialias="true"
 		filename="rajdhani/rajdhani_digits_20.fnt" />
-	<font id="weather" scope="foreground"  antialias="true"
-		filename="weather-moon/weather_moon_32.fnt" />
 	<font id="images" scope="foreground" antialias="true"
 		filename="watch-face-images-05/watch-face-images-05-18.fnt" />
 </fonts>

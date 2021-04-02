@@ -165,11 +165,6 @@
 		<settingConfig type="boolean" />
 	</setting>
 
-	<setting propertyKey="@Properties.ShowOWMIcons"
-		title="@Strings.ShowOWMIcons">
-		<settingConfig type="boolean" />
-	</setting>
-
 	<setting propertyKey="@Properties.WShowWindWidget"
 		title="@Strings.WShowWindWidget">
 		<settingConfig type="boolean" />

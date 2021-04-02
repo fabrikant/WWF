@@ -4,77 +4,6 @@ using Toybox.System;
 using Toybox.Time;
 
 //*****************************************************************************
-class MenuSettings extends WatchUi.Menu2{
-
-	function initialize() {
-		Menu2.initialize({:title=>Application.loadResource(Rez.Strings.SettingsMenu)});
-        addItem(
-            new ToggleMenuItem(
-                Application.loadResource(Rez.Strings.SwitchDayNight),
-                null,
-                :autoSwitch,
-                Application.Properties.getValue("SwitchDayNight"),
-                {}
-            )
-        );
-        
-        addItem(
-            new MenuItem(
-                Application.loadResource(Rez.Strings.keyOW),
-                Application.Properties.getValue("keyOW"),
-                :apiKey,
-                {}
-            )
-        );
-
-        addItem(
-            new MenuItem(
-                Application.loadResource(Rez.Strings.SettingsGlobal),
-                null,
-                STORAGE_KEY_GLOBAL,
-                {}
-            )
-        );
-        
-        addItem(
-            new MenuItem(
-                Application.loadResource(Rez.Strings.SettingsDay),
-                null,
-                STORAGE_KEY_DAY,
-                {}
-            )
-        );
-        
-        addItem(
-            new MenuItem(
-                Application.loadResource(Rez.Strings.SettingsNight),
-                null,
-                STORAGE_KEY_NIGHT,
-                {}
-            )
-        );
-	}
-    
-    function onSelect(item){
-    	var id = item.getId();
-    	if (id == :autoSwitch){
-    		Application.Properties.setValue("SwitchDayNight", item.isEnabled());
-    		memoryCache.reload();
-    	}else if(id == STORAGE_KEY_GLOBAL){
-    		var menu = new MenuEditSettings(id, Application.loadResource(Rez.Strings.SettingsGlobal));
-    		WatchUi.pushView(menu, new MenuDelegate(menu), WatchUi.SLIDE_IMMEDIATE);
-    	}else if(id == STORAGE_KEY_DAY){
-    		var menu = new MenuEditSettings(id, Application.loadResource(Rez.Strings.SettingsDay));
-    		WatchUi.pushView(menu, new MenuDelegate(menu), WatchUi.SLIDE_IMMEDIATE);
-		}else if(id == STORAGE_KEY_NIGHT){
-    		var menu = new MenuEditSettings(id, Application.loadResource(Rez.Strings.SettingsNight));
-    		WatchUi.pushView(menu, new MenuDelegate(menu), WatchUi.SLIDE_IMMEDIATE);
-    	}
-    }
-}
-
-
-//*****************************************************************************
 module StorageSettings {
 	
 	///////////////////////////////////////////////////////////////////////////
@@ -89,19 +18,18 @@ module StorageSettings {
 	}
 	
 	///////////////////////////////////////////////////////////////////////////
-    function save(key){
+    function PropertiesToStorage(key){
     	
     	var propKeys = StorageSettings.getPropertiesKeys();
     	var settings = {};
     	for (var i = 0; i < propKeys.size(); i++){
 			settings.put(propKeys[i], Application.Properties.getValue(propKeys[i]));    		
     	}
-    	
     	Application.Storage.setValue(key, settings);
     }
 
 	///////////////////////////////////////////////////////////////////////////
-	function load(key){
+	function StorageToProperties(key){
 		
 		var settings = Application.Storage.getValue(key);
 		if (settings == null){
@@ -115,8 +43,25 @@ module StorageSettings {
 				Application.Properties.setValue(propKeys[i], value);
 			}			
 		}
-		memoryCache.reload();			
 	}
+
+	///////////////////////////////////////////////////////////////////////////
+    function getStorageSettingsDictonary(key){
+    	
+    	var res = Application.Storage.getValue(key);
+    	if (res == null){
+    		res = {};
+    	}
+    	
+    	var allProp = StorageSettings.getFullPropertiesKeys();
+    	
+     	for (var i=0; i<allProp.size(); i++){
+    		if (res[allProp[i][:title].toString()] == null){
+    			res[allProp[i][:title].toString()] = Application.Properties.getValue(allProp[i][:title].toString());
+    		}
+    	} 
+    	return res;    	
+    }
 	
 	///////////////////////////////////////////////////////////////////////////
 	function getPropertiesKeys(){
@@ -132,6 +77,7 @@ module StorageSettings {
 	function getFullPropertiesKeys(){
 
 		var res = [];
+	    
 	    res.add({:type => :bool, :title => :MilFt});
 		res.add({:type => :bool, :title => :HFt01});
 		res.add({:type => :dateFormat, :title => :DF});
@@ -142,7 +88,6 @@ module StorageSettings {
 	    res.add({:type => :color, :title => :WColor});
 	    res.add({:type => :bool, :title => :WAutoColor});
 	    res.add({:type => :bool, :title => :WShowWindWidget});
-	    res.add({:type => :bool, :title => :ShowOWMIcons});
 	    res.add({:type => :bool, :title => :WindArrowContour});
 	    res.add({:type => :bool, :title => :ShowTopFields});
 	    
@@ -185,6 +130,25 @@ module StorageSettings {
 
 		return res;
 	
+	}
+	
+	function pressureUnit(){
+		return {
+			0 => :PrUMmHg,
+			1 => :PrUPsi,
+			2 => :PrUInchHg,
+			3 => :PrUBar,
+			4 => :PrUKPa};
+	}
+	
+	function windSpeedUnit(){
+		return {
+			0 => :SpeedUnitMSec,
+			1 => :SpeedUnitKmH,
+			2 => :SpeedUnitMileH,
+			3 => :SpeedUnitFtSec,
+			4 => :SpeedUnitBof,
+			5 => :SpeedUnitKnots};
 	}
 	
 	function color(){

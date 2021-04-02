@@ -559,20 +559,11 @@ module Data{
 		return value;
 	}
 
-	///////////////////////////////////////////////////////////////////////////
+//	///////////////////////////////////////////////////////////////////////////
 	function getWeatherPicture(){
 		var value = "";
 		if (memoryCache.weather != null){
 			value = memoryCache.weather[STORAGE_KEY_ICON];
-			if (!Application.Properties.getValue("ShowOWMIcons")){
-				var dict = Refernce.weatherFontDictonary();
-				value = dict[value];
-				if (value == null){
-					value = "";
-				}else{
-					value = value.toChar();
-				}
-			}
 		}
 		return value;
 	}

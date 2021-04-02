@@ -16,7 +16,6 @@
     <property id="WColor" type="number">0xFFFFFF</property>
     <property id="WAutoColor" type="boolean">true</property>
     <property id="WShowWindWidget" type="boolean">true</property>
-    <property id="ShowOWMIcons" type="boolean">false</property>
     <property id="WindArrowContour" type="boolean">true</property>
     <property id="ShowTopFields" type="boolean">false</property>
     

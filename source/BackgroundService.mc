@@ -83,7 +83,7 @@ class BackgroundService extends System.ServiceDelegate {
 
 //		var lat = memoryCache.settings[:geoLocation][0];
 //		var lon = memoryCache.settings[:geoLocation][1];
-//		var appid = memoryCache.settings[:apiKey];
+//		var appid = memoryCache.settings[:keyOW];
 
 		//////////////////////////////////////////////////////////
 		//DEBUG
