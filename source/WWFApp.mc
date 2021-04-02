@@ -29,11 +29,12 @@ class WWFApp extends Application.AppBase {
 
     // New app settings have been received so trigger a UI update
     function onSettingsChanged() {
-     	memoryCache = new MemoryCache();
+     	//memoryCache = new MemoryCache();
+     	memoryCache.reload();
     	WatchUi.requestUpdate();
     	registerEvents();
     }
-
+	
 	function getSettingsView(){
 
 		var menu = new GeneralMenu();
@@ -41,6 +42,14 @@ class WWFApp extends Application.AppBase {
 
 	}
 
+	function onAppInstall(){
+		StorageSettings.initStorageSettings();
+	}
+	
+	function onAppUpdate(){
+		StorageSettings.initStorageSettings();
+	}
+	
 	///////////////////////////////////////////////////////////////////////////
 	// Background
 	function onBackgroundData(data) {
@@ -76,6 +85,9 @@ class WWFApp extends Application.AppBase {
 			return;
 		}
 		var geoLatLong = memoryCache.settings[:geoLocation];
+		if (geoLatLong == null){
+			return;
+		}
 		if (geoLatLong[0] == null || geoLatLong[1] == null){
 			return;
 		}

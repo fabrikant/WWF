@@ -31,6 +31,7 @@ class WWFView extends WatchUi.WatchFace {
         fonts[:medium] = Application.loadResource(Rez.Fonts.med);
         fonts[:picture] = Application.loadResource(Rez.Fonts.images);
 	}
+	
 	function createFields(dc){
 		
 		fields = {};
@@ -376,7 +377,7 @@ class WWFView extends WatchUi.WatchFace {
 			}
 		}
 		memoryCache.oldValues[:isCharging] = isCharging;
-				
+		
 		//Set day naght presets
 		if (memoryCache.settings[:switchDayNight]){
 			var sunrise = Tools.getSunEvent(SUNRISE, false);
@@ -390,12 +391,14 @@ class WWFView extends WatchUi.WatchFace {
 				
 				if (memoryCache.oldValues[:isNight] != isNight){
 					StorageSettings.StorageToProperties(isNight ? STORAGE_KEY_NIGHT : STORAGE_KEY_DAY);
+					memoryCache.reload();
 					memoryCache.oldValues[:isNight] = isNight;
 				}
 			}
 		}else{//dont switch day/night
 			if (memoryCache.oldValues[:isStarted] != true ){
 				StorageSettings.StorageToProperties(STORAGE_KEY_GLOBAL);
+				memoryCache.reload();
 			}
 		}
 		

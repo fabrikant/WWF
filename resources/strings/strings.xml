@@ -148,7 +148,7 @@
 
 	<!--Settings view -->
 	<string id="SettingsMenu" scope="foreground">Settings</string>
-	<string id="SettingsType" scope="foreground">Save settings as</string>
+	<string id="SettingsType" scope="foreground">Save as</string>
 	<string id="SwitchDayNight" scope="foreground">Auto switch day/night</string>
 	<string id="SettingsDontChange" scope="foreground">Dont change settings</string>
 

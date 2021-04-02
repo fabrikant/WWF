@@ -147,5 +147,12 @@
 	
 	<!--Settings view -->
 	<string id="SettingsMenu" scope="foreground">Настройки</string>
+	<string id="SettingsType" scope="foreground">Сохранить как</string>
+	<string id="SwitchDayNight" scope="foreground">Переключение день/ночь</string>
+	<string id="SettingsDontChange" scope="foreground">Не менять настройки</string>
+
+	<string id="SettingsGlobal" scope="foreground">Глобальные настройки</string>
+	<string id="SettingsDay" scope="foreground">Дневные настройки</string>
+	<string id="SettingsNight" scope="foreground">Ночные настройки</string>
 	
 </strings>

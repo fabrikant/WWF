@@ -8,10 +8,10 @@ class GeneralMenu extends WatchUi.Menu2{
 
 	function initialize() {
 		
-		Menu2.initialize({:title=>Application.loadResource(Rez.Strings.SettingsMenu)});
+		Menu2.initialize({:title=> Tools.getGlobalString(:SettingsMenu)});
         addItem(
             new ToggleMenuItem(
-                Application.loadResource(Rez.Strings.SwitchDayNight),
+                Tools.getGlobalString(:SwitchDayNight),
                 null,
                 :autoSwitch,
                 Application.Properties.getValue("SwitchDayNight"),
@@ -21,7 +21,7 @@ class GeneralMenu extends WatchUi.Menu2{
         
         addItem(
             new MenuItem(
-                Application.loadResource(Rez.Strings.keyOW),
+                Tools.getGlobalString(:keyOW),
                 Application.Properties.getValue("keyOW"),
                 :keyOW,
                 {}
@@ -30,7 +30,7 @@ class GeneralMenu extends WatchUi.Menu2{
 
         addItem(
             new MenuItem(
-                Application.loadResource(Rez.Strings.SettingsGlobal),
+                Tools.getGlobalString(:SettingsGlobal),
                 null,
                 STORAGE_KEY_GLOBAL,
                 {}
@@ -39,7 +39,7 @@ class GeneralMenu extends WatchUi.Menu2{
         
         addItem(
             new MenuItem(
-                Application.loadResource(Rez.Strings.SettingsDay),
+                Tools.getGlobalString(:SettingsDay),
                 null,
                 STORAGE_KEY_DAY,
                 {}
@@ -48,7 +48,7 @@ class GeneralMenu extends WatchUi.Menu2{
         
         addItem(
             new MenuItem(
-                Application.loadResource(Rez.Strings.SettingsNight),
+                Tools.getGlobalString(:SettingsNight),
                 null,
                 STORAGE_KEY_NIGHT,
                 {}
@@ -65,19 +65,19 @@ class GeneralMenu extends WatchUi.Menu2{
     			WatchUi.pushView(new WatchUi.TextPicker(item.getSubLabel()), new TextPickerDelegateMenuSettings(item), WatchUi.SLIDE_IMMEDIATE);
     		}
     	}else if(id == STORAGE_KEY_GLOBAL){
-    		var menu = new MenuEditSettings(id, Application.loadResource(Rez.Strings.SettingsGlobal));
+    		var menu = new MenuEditSettings(id, Tools.getGlobalString(:SettingsGlobal));
     		WatchUi.pushView(menu, new MenuDelegate(menu), WatchUi.SLIDE_IMMEDIATE);
     	}else if(id == STORAGE_KEY_DAY){
-    		var menu = new MenuEditSettings(id, Application.loadResource(Rez.Strings.SettingsDay));
+    		var menu = new MenuEditSettings(id, Tools.getGlobalString(:SettingsDay));
     		WatchUi.pushView(menu, new MenuDelegate(menu), WatchUi.SLIDE_IMMEDIATE);
 		}else if(id == STORAGE_KEY_NIGHT){
-    		var menu = new MenuEditSettings(id, Application.loadResource(Rez.Strings.SettingsNight));
+    		var menu = new MenuEditSettings(id, Tools.getGlobalString(:SettingsNight));
     		WatchUi.pushView(menu, new MenuDelegate(menu), WatchUi.SLIDE_IMMEDIATE);
     	}
     }
     
     function onShow(){
-		memoryCache = null;
+    	memoryCache = null;
 		fonts = null;
     }
 }
@@ -103,7 +103,7 @@ class MenuEditSettings extends WatchUi.Menu2{
 			if (allProp[i][:type] == :bool){
 		        addItem(
 		            new ToggleMenuItem(
-		                Application.loadResource(Rez.Strings[allProp[i][:title]]),
+		                Tools.getGlobalString(allProp[i][:title]),
 		                null,
 		                allProp[i][:title].toString(),
 		                value,
@@ -113,7 +113,7 @@ class MenuEditSettings extends WatchUi.Menu2{
 			}else if (allProp[i][:type] == :dateFormat){
 		        addItem(
 		            new MenuItemSettings(
-		                Application.loadResource(Rez.Strings[allProp[i][:title]]),
+		                Tools.getGlobalString(allProp[i][:title]),
 		                value.toString(),
 		                allProp[i][:title].toString(),
 		                {},
@@ -124,7 +124,7 @@ class MenuEditSettings extends WatchUi.Menu2{
 			}else if (allProp[i][:type] == :number){
 		        addItem(
 		            new MenuItemSettings(
-		                Application.loadResource(Rez.Strings[allProp[i][:title]]),
+		                Tools.getGlobalString(allProp[i][:title]),
 		                value.toString(),
 		                allProp[i][:title].toString(),
 		                {},
@@ -138,8 +138,8 @@ class MenuEditSettings extends WatchUi.Menu2{
 				}
 		        addItem(
 		            new MenuItemSettings(
-		                Application.loadResource(Rez.Strings[allProp[i][:title]]),
-		                Application.loadResource(Rez.Strings[dictOfListsTypes[allProp[i][:type]][value]]),
+		                Tools.getGlobalString(allProp[i][:title]),
+		                Tools.getGlobalString(dictOfListsTypes[allProp[i][:type]][value]),
 		                allProp[i][:title].toString(),
 		                {},
 		                allProp[i][:type],
@@ -191,6 +191,7 @@ class MenuEditSettings extends WatchUi.Menu2{
     
     function saveValues(){
     	Application.Storage.setValue(idKey, dictKeys);
+    	dictKeys = null;
     }
 }
 
@@ -227,7 +228,7 @@ class MenuSelectValue extends WatchUi.Menu2{
 		for (var i = 0; i < arrKeys.size(); i++){
 	        addItem(
 	            new MenuItem(
-	                Application.loadResource(Rez.Strings[dictKeys[arrKeys[i]]]),
+	                Tools.getGlobalString(dictKeys[arrKeys[i]]),
 	                null,
 	                arrKeys[i],
 	                {}
@@ -258,12 +259,15 @@ class MenuDelegate extends WatchUi.Menu2InputDelegate{
 	}
 	
 	function onBack(){
+		WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
+		WatchUi.requestUpdate();
 		if (menu instanceof MenuEditSettings){
 			menu.saveValues();
 		}else if(menu instanceof GeneralMenu){
-			System.exit();
+			globalStringsDictonary = null;
+			//System.exit();
 		}
-		WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
+		
 		menu = null;
 		self = null;
 	}

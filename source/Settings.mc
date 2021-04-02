@@ -3,8 +3,16 @@ using Toybox.WatchUi;
 using Toybox.System;
 using Toybox.Time;
 
+(:background)
 //*****************************************************************************
 module StorageSettings {
+
+	///////////////////////////////////////////////////////////////////////////
+	function initStorageSettings(){
+		StorageSettings.PropertiesToStorage(STORAGE_KEY_GLOBAL);
+		StorageSettings.PropertiesToStorage(STORAGE_KEY_DAY);
+		StorageSettings.PropertiesToStorage(STORAGE_KEY_NIGHT);
+	}
 	
 	///////////////////////////////////////////////////////////////////////////
 	function getStorageSettingsValue(typeSettingsKey, valueKey){

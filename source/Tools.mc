@@ -4,9 +4,24 @@ using Toybox.Math;
 using Toybox.System;
 using Toybox.Position;
 using Toybox.Lang;
+using Toybox.Application;
 
 module Tools {
 
+	///////////////////////////////////////////////////////////////////////////
+	function getGlobalString(key){
+		
+		if (globalStringsDictonary == null){
+			globalStringsDictonary = {};
+		}
+		var res = globalStringsDictonary[key];
+		if (res == null){
+			res = Application.loadResource(Rez.Strings[key]);
+			globalStringsDictonary[key] = res;
+		} 
+		return res;
+	}
+	
 	///////////////////////////////////////////////////////////////////////////
 	function windDirection(size, angle, leftTop, fieldSize){
 		
@@ -143,6 +158,9 @@ module Tools {
 	///////////////////////////////////////////////////////////////////////////
 	function getSunEvent(event, allowTomorrow){
 		var geoLatLong = memoryCache.settings[:geoLocation];
+		if (geoLatLong == null){
+			return null;
+		}
 		if (geoLatLong[0] == null || geoLatLong[1] == null){
 			return null;
 		}
