@@ -1,0 +1,4 @@
+<menu2 id="GeneralMenu" title="@Strings.SettingsMenu">
+<toggle-menu-item id="SwitchDayNight" label="@Strings.SwitchDayNight" subLabel=''></toggle-menu-item>
+<menu-item id="keyOW" label="@Strings.keyOW"></menu-item>
+</menu2>

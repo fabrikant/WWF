@@ -4,7 +4,7 @@ using Toybox.System;
 using Toybox.Graphics;
 
 //*****************************************************************************
-class GeneralMenu extends WatchUi.Menu2{
+class GeneralMenu1 extends WatchUi.Menu2{
 
 	function initialize() {
 		
