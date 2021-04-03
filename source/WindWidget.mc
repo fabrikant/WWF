@@ -10,7 +10,7 @@ class WindDWidget extends SimpleField{
 	function draw(dc, values){
 
 		clear(dc);
-		if (memoryCache.settings[:colors][id] == getBackgroundColor()){
+		if (memoryCache.settings[:colors][idForColor] == getBackgroundColor()){
 			return;
 		}
 		var ratio = 0.5;

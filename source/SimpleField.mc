@@ -2,11 +2,11 @@ using Toybox.System;
 
 class SimpleField {
 
-	var id, type, fontId, justify;
+	var idForColor, type, fontId, justify;
 	var x, y, w, h;
 
 	function initialize(params){
-		id = params[:idForColor];
+		idForColor = params[:idForColor];
 		x = params[:x];
 		y = params[:y];
 		w = params[:w];
@@ -16,14 +16,14 @@ class SimpleField {
 		justify = params[:justify];
 		
 		if (type == SECONDS || type == HR){
-			memoryCache.addEverySecondField(id);
+			memoryCache.addEverySecondField(idForColor);
 		}
 	}
 
 	function draw(dc, text){
 
 		clear(dc);
-		if (memoryCache.settings[:colors][id] == getBackgroundColor()){
+		if (memoryCache.settings[:colors][idForColor] == getBackgroundColor()){
 			return;
 		}
 		dc.setColor(getColor(), Graphics.COLOR_TRANSPARENT);
@@ -53,7 +53,7 @@ class SimpleField {
 	}
 
 	function getColor(){
-		var res =  memoryCache.settings[:colors][id];
+		var res =  memoryCache.settings[:colors][idForColor];
 		if (type == :weather_temp){
 			res = memoryCache.settings[:autoColors][:temp];
 		} else if (type == :weather_wind_dir || type == :weather_wind_speed || type == :weather_wind_speed_unit || type == :weather_wind_widget){

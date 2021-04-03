@@ -11,7 +11,7 @@ class WindDirectionField extends SimpleField{
 	function draw(dc, direction){
 
 		clear(dc);
-		if (memoryCache.settings[:colors][id] == getBackgroundColor()){
+		if (memoryCache.settings[:colors][idForColor] == getBackgroundColor()){
 			return;
 		}
 		if (direction != -1){

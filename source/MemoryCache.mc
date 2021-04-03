@@ -199,21 +199,6 @@ class MemoryCache {
 					}
 				}
 			}
-
-			//cloud
-			tmpValue = weather[STORAGE_KEY_ICON];
-			//tmpValue = "13d";
-			if (tmpValue != null){
-				if (tmpValue.equals("01d") || tmpValue.equals("01n")){
-					settings[:autoColors][:cloud] = Graphics.COLOR_ORANGE;
-				} else if (tmpValue.equals("13d") || tmpValue.equals("13n")){
-					if (backIsLight){
-						settings[:autoColors][:cloud] = Graphics.COLOR_DK_BLUE;
-					}else{
-						settings[:autoColors][:cloud] = Graphics.COLOR_BLUE;
-					}
-				}
-			}
 		}
 	}
 
