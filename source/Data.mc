@@ -41,7 +41,11 @@ module Data{
 			var now = Time.now();
 			var today = Gregorian.info(now, Time.FORMAT_SHORT);
 
-			if (oldValue == null || memoryCache.oldValues[:todayDay] == null || memoryCache.oldValues[:todayDay] != today.day){
+			if (oldValue == null || memoryCache.oldValues[:todayDay] == null || memoryCache.oldValues[:todayDay] != today.day
+				|| (memoryCache.weather != null && memoryCache.oldValues[STORAGE_KEY_WEATHER_DESCRIPTION] != memoryCache.weather[STORAGE_KEY_WEATHER_DESCRIPTION])){
+				if (memoryCache.weather != null){
+					memoryCache.oldValues[STORAGE_KEY_WEATHER_DESCRIPTION] = memoryCache.weather[STORAGE_KEY_WEATHER_DESCRIPTION];
+				}
 				memoryCache.oldValues[:todayDay] = today.day;
 				res = getDateString(now);
 	 		}else{

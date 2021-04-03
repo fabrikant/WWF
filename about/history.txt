@@ -1,3 +1,4 @@
+2.2.1 - Instead of a weather widget, you can choose a graph (heart rate, altitude, pressure, temperature, oxygen saturation). The device must support this sensor. Bug fix.
 2.1.11 - Bug fix
 2.1.10 - Bug fix
 2.1.8 - Add new key (%WD - weather description) for Date field.
