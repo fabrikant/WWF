@@ -6,7 +6,7 @@ class SimpleField {
 	var x, y, w, h;
 
 	function initialize(params){
-		id = params[:id];
+		id = params[:idForColor];
 		x = params[:x];
 		y = params[:y];
 		w = params[:w];

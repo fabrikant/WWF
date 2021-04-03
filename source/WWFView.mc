@@ -54,7 +54,7 @@ class WWFView extends WatchUi.WatchFace {
     			:h => h,
     			:w => w,
     			:type => :time,
-    			:id => :time,
+    			:idForColor => :time,
     			:fontId => :time,
     			:justify => Graphics.TEXT_JUSTIFY_CENTER
     		}
@@ -74,7 +74,7 @@ class WWFView extends WatchUi.WatchFace {
     			:h => h,
     			:w => w,
     			:type => :date,
-    			:id => :date,
+    			:idForColor => :date,
     			:fontId => :small_letters,
     			:justify => Graphics.TEXT_JUSTIFY_CENTER
     		}
@@ -110,7 +110,7 @@ class WWFView extends WatchUi.WatchFace {
 	    			:h => h,
 	    			:w => w,
 	    			:type =>type,
-	    			:id => id,
+	    			:idForColor => id,
 					:fontId =>  memoryCache.getFontByFieldType(type),
 	    			:justify => coord[i][2]
 	    		}
@@ -138,7 +138,7 @@ class WWFView extends WatchUi.WatchFace {
 	    			:h => h,
 	    			:w => w-fromPictureToTemp,
 	    			:type => :weather_picture,
-	    			:id => :weather,
+	    			:idForColor => :weather,
 	    			:fontId => :weather,
 	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
 	    		}
@@ -152,7 +152,7 @@ class WWFView extends WatchUi.WatchFace {
 	    			:h => h,
 	    			:w => w+fromPictureToTemp,
 	    			:type => :weather_temp,
-	    			:id => :weather,
+	    			:idForColor => :weather,
 	    			:fontId => :medium,
 	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
 	    		}
@@ -167,7 +167,7 @@ class WWFView extends WatchUi.WatchFace {
 		    			:h => fields[:weather_temp].h,
 		    			:w => fields[:weather_temp].w,
 		    			:type => :weather_wind_widget,
-		    			:id => :weather,
+		    			:idForColor => :weather,
 		    			:fontId => :small_letters,
 		    			:justify => Graphics.TEXT_JUSTIFY_CENTER
 		    		}
@@ -196,7 +196,7 @@ class WWFView extends WatchUi.WatchFace {
 	    			:h => h,
 	    			:w => wMulti*w,
 	    			:type => graphType,
-	    			:id => :weather,
+	    			:idForColor => :weather,
 	    			:fontId => :small_letters,
 	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
 	    		}
@@ -238,7 +238,7 @@ class WWFView extends WatchUi.WatchFace {
 	    			:h => h,
 	    			:w => wPicture,
 	    			:type => memoryCache.getPictureType(id),
-	    			:id => id,
+	    			:idForColor => id,
 					:fontId => :picture,
 	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
 	    		}
@@ -251,7 +251,7 @@ class WWFView extends WatchUi.WatchFace {
 	    			:h => h,
 	    			:w => wText,
 	    			:type => memoryCache.getFieldType(id),
-	    			:id => id,
+	    			:idForColor => id,
 					:fontId => :small,
 	    			:justify => Graphics.TEXT_JUSTIFY_LEFT
 	    		}
@@ -291,7 +291,7 @@ class WWFView extends WatchUi.WatchFace {
     			:h => h,
     			:w => w,
     			:type => :battery_picture,
-    			:id => :battery,
+    			:idForColor => :battery,
     			:fontId => :small,
     			:justify => Graphics.TEXT_JUSTIFY_LEFT
     		}
@@ -304,7 +304,7 @@ class WWFView extends WatchUi.WatchFace {
     			:h => h,
     			:w => w,
     			:type => :battery,
-    			:id => :battery,
+    			:idForColor => :battery,
     			:fontId => :small,
     			:justify => Graphics.TEXT_JUSTIFY_LEFT
     		}
@@ -320,7 +320,7 @@ class WWFView extends WatchUi.WatchFace {
 //    			:h => 2*hDataField,
 //    			:w => 2*hDataField,
 //    			:type => :moon,
-//    			:id => :moon,
+//    			:idForColor => :moon,
 //    			:fontId => :small,
 //    			:justify => Graphics.TEXT_JUSTIFY_CENTER
 //    		}
