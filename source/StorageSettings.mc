@@ -31,8 +31,7 @@ module StorageSettings {
     	var propKeys = StorageSettings.getPropertiesKeys();
     	var settings = {};
     	for (var i = 0; i < propKeys.size(); i++){
-    		System.println(propKeys[i].toString());
-    		Application.Storage.setValue(key.toString()+propKeys[i].toString(), Application.Properties.getValue(propKeys[i]));
+     		Application.Storage.setValue(key.toString()+propKeys[i].toString(), Application.Properties.getValue(propKeys[i]));
     	}
     	
     }
