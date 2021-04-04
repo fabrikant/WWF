@@ -21,7 +21,7 @@ class MemoryCache {
 		weather = null;
 		var view = Application.getApp().view;
 		if (view != null){
-			view.fields = {};
+			view.fields = null;
 		}
 
 		saveSettingsToStorage();

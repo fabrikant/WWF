@@ -14,7 +14,7 @@ class WWFView extends WatchUi.WatchFace {
         WatchFace.initialize();
         memoryCache = new MemoryCache();
         Application.getApp().registerEvents();
-        fields = {};
+        fields = null;
     }
 
     // Load your resources here
@@ -419,6 +419,8 @@ class WWFView extends WatchUi.WatchFace {
 			memoryCache.readSettings();
 			memoryCache.setWeatherAutoColors();
 			drawBackground(dc);
+			createFields(dc);
+		}else if(fields == null){
 			createFields(dc);
 		}
 		
