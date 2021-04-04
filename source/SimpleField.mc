@@ -2,11 +2,12 @@ using Toybox.System;
 
 class SimpleField {
 
-	var idForColor, type, fontId, justify;
+	var fieldColor, type, fontId, justify;
 	var x, y, w, h;
+	var oldValue;
 
 	function initialize(params){
-		idForColor = params[:idForColor];
+		fieldColor = params[:fieldColor];
 		x = params[:x];
 		y = params[:y];
 		w = params[:w];
@@ -14,16 +15,17 @@ class SimpleField {
 		type = params[:type];
 		fontId = params[:fontId];
 		justify = params[:justify];
+		oldValue = null;
 		
 		if (type == SECONDS || type == HR){
-			memoryCache.addEverySecondField(idForColor);
+			memoryCache.addEverySecondField(fieldColor);
 		}
 	}
 
 	function draw(dc, text){
 
 		clear(dc);
-		if (memoryCache.settings[:colors][idForColor] == getBackgroundColor()){
+		if (fieldColor == getBackgroundColor()){
 			return;
 		}
 		dc.setColor(getColor(), Graphics.COLOR_TRANSPARENT);
@@ -49,21 +51,65 @@ class SimpleField {
 	}
 
 	function getBackgroundColor(){
-		return memoryCache.settings[:colors][:backgroundColor];
+		return memoryCache.settings[:backgroundColor];
 	}
 
 	function getColor(){
-		var res =  memoryCache.settings[:colors][idForColor];
 		if (type == :weather_temp){
-			res = memoryCache.settings[:autoColors][:temp];
+			return memoryCache.settings[:autoColors][:temp];
 		} else if (type == :weather_wind_dir || type == :weather_wind_speed || type == :weather_wind_speed_unit || type == :weather_wind_widget){
-			res = memoryCache.settings[:autoColors][:wind];
-		} else if (type == :weather_picture){
-			res = memoryCache.settings[:autoColors][:cloud];
-		}
-		return res;
+			return memoryCache.settings[:autoColors][:wind];
+		}else{
+			return fieldColor;
+		}			
+		
+//		var res =  memoryCache.settings[:colors][fieldColor];
+//		if (type == :weather_temp){
+//			res = memoryCache.settings[:autoColors][:temp];
+//		} else if (type == :weather_wind_dir || type == :weather_wind_speed || type == :weather_wind_speed_unit || type == :weather_wind_widget){
+//			res = memoryCache.settings[:autoColors][:wind];
+//		} else if (type == :weather_picture){
+//			res = memoryCache.settings[:autoColors][:cloud];
+//		}
+//		return res;
 	}
 
+	function needUpdate(value){
+	
+		//Danger place.
+		var res = false;
+		if(value == null){
+			res = (value != oldValue);
+		}else if(value instanceof  Dictionary){
+			res = false;
+			if (oldValue instanceof  Dictionary){
+				var keys = value.keys();
+				for (var i = 0; i < keys.size(); i++){
+					if(value[keys[i]] has :equals){
+						if (!value[keys[i]].equals(oldValue[keys[i]])){
+							res = true;
+							break;
+						}
+					}else{
+						if (!value[keys[i]] != oldValue[keys[i]]){
+							res = true;
+							break;
+						}
+					}
+				}
+			}else{
+				res = true;
+			}
+		}else if(value has :equals){
+			res = !value.equals(oldValue);
+		}else{
+			res = (value != oldValue);
+		}
+	
+		oldValue = value;
+		return res;
+	}
+	
 	function drawBorder(dc){
 		return;
 		dc.setColor(getColor(), Graphics.COLOR_TRANSPARENT);

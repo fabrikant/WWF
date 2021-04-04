@@ -31,22 +31,17 @@ module StorageSettings {
     	var propKeys = StorageSettings.getPropertiesKeys();
     	var settings = {};
     	for (var i = 0; i < propKeys.size(); i++){
-			settings.put(propKeys[i], Application.Properties.getValue(propKeys[i]));    		
+    		Application.Storage.setValue(key.toString()+propKeys[i].toString(), Application.Properties.getValue(propKeys[i]));
     	}
-    	Application.Storage.setValue(key, settings);
+    	
     }
 
 	///////////////////////////////////////////////////////////////////////////
 	function StorageToProperties(key){
 		
-		var settings = Application.Storage.getValue(key);
-		if (settings == null){
-			return;
-		}
-		
 		var propKeys = StorageSettings.getPropertiesKeys();
 		for (var i = 0; i < propKeys.size(); i++){
-			var value = settings[propKeys[i]];
+			var value = Application.Storage.getValue(key.toString()+propKeys[i].toString());
 			if (value != null){
 				Application.Properties.setValue(propKeys[i], value);
 			}			

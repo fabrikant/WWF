@@ -11,186 +11,186 @@ using Toybox.UserProfile;
 
 module Data{
 
-	function getValueByFieldType(filedType, oldValue){
-
+	function getFieldValue(field){
+		
 		var res = "";
-		if (filedType == EMPTY){
+		if (field.type == EMPTY){
 			res = "";
 		
 		///////////////////////////////////////////////////////////////////////
 		//TIME
-		}else if (filedType == :time){
+		}else if (field.type == :time){
 
 			var clockTime = System.getClockTime();
 			res = getTimeString(clockTime);
 
 		///////////////////////////////////////////////////////////////////////
 		//SECONDS
-		}else if (filedType == SECONDS){
+		}else if (field.type == SECONDS){
 			res = getSeconds();
 
 		///////////////////////////////////////////////////////////////////////
 		//AM PM
-		}else if (filedType == AMPM){
+		}else if (field.type == AMPM){
 			res = getAmPm();
 
 		///////////////////////////////////////////////////////////////////////
 		//DATE
-		}else if (filedType == :date){
+		}else if (field.type == :date){
 
 			var now = Time.now();
 			var today = Gregorian.info(now, Time.FORMAT_SHORT);
 
-			if (oldValue == null || memoryCache.oldValues[:todayDay] == null || memoryCache.oldValues[:todayDay] != today.day
-				|| (memoryCache.weather != null && memoryCache.oldValues[STORAGE_KEY_WEATHER_DESCRIPTION] != memoryCache.weather[STORAGE_KEY_WEATHER_DESCRIPTION])){
+			if (field.oldValue == null || memoryCache.flags[:todayDay] == null || memoryCache.flags[:todayDay] != today.day
+				|| (memoryCache.weather != null && memoryCache.flags[STORAGE_KEY_WEATHER_DESCRIPTION] != memoryCache.weather[STORAGE_KEY_WEATHER_DESCRIPTION])){
 				if (memoryCache.weather != null){
-					memoryCache.oldValues[STORAGE_KEY_WEATHER_DESCRIPTION] = memoryCache.weather[STORAGE_KEY_WEATHER_DESCRIPTION];
+					memoryCache.flags[STORAGE_KEY_WEATHER_DESCRIPTION] = memoryCache.weather[STORAGE_KEY_WEATHER_DESCRIPTION];
 				}
-				memoryCache.oldValues[:todayDay] = today.day;
+				memoryCache.flags[:todayDay] = today.day;
 				res = getDateString(now);
 	 		}else{
-	 			res = oldValue;
+	 			res = field.oldValue;
 			}
 
 		///////////////////////////////////////////////////////////////////////
 		//STATUS FIELDS
-		}else if (filedType == CONNECTED){
+		}else if (field.type == CONNECTED){
 			res = System.getDeviceSettings().connectionAvailable ? "c" : "";
-		}else if (filedType == NOTIFICATIONS){
+		}else if (field.type == NOTIFICATIONS){
 			res = System.getDeviceSettings().notificationCount > 0 ? "i" : "";
-		}else if (filedType == NOTIFICATIONS_COUNT){
+		}else if (field.type == NOTIFICATIONS_COUNT){
 			res = System.getDeviceSettings().notificationCount;
 			res = res > 0 ? res : "";
-		}else if (filedType == DND){
+		}else if (field.type == DND){
 			res = System.getDeviceSettings().doNotDisturb ? "k" : "";
-		}else if (filedType == ALARMS){
+		}else if (field.type == ALARMS){
 			res = System.getDeviceSettings().alarmCount > 0 ? "a" : "";
-		}else if (filedType == ALARMS_COUNT){
+		}else if (field.type == ALARMS_COUNT){
 			res = System.getDeviceSettings().alarmCount;
 			res = res > 0 ? res : "";
 
 		///////////////////////////////////////////////////////////////////////
 		//DATA FIELDS
-		}else if (filedType == HR){
+		}else if (field.type == HR){
 			res = getHeartRate();
-		}else if (filedType == STEPS){
+		}else if (field.type == STEPS){
 			res = getSteps();
-		}else if (filedType == PRESSURE){
+		}else if (field.type == PRESSURE){
 			res = getPressure();
-		}else if (filedType == TEMPERATURE){
+		}else if (field.type == TEMPERATURE){
 			res = getTemperature();
-		}else if (filedType == CALORIES){
+		}else if (field.type == CALORIES){
 			res = getCalories();
-		}else if (filedType == DISTANCE){
+		}else if (field.type == DISTANCE){
 			res = getDistance();
-		}else if (filedType == FLOOR){
+		}else if (field.type == FLOOR){
 			res = getFloor();
-		}else if (filedType == ELEVATION){
+		}else if (field.type == ELEVATION){
 			res = getElevation();
-		}else if (filedType == SUN_EVENT){
+		}else if (field.type == SUN_EVENT){
 			res = getNextSunEvent();
-		}else if (filedType == SUNRISE_EVENT){
+		}else if (field.type == SUNRISE_EVENT){
 			res = getSunrise();
-		}else if (filedType == SUNSET_EVENT){
+		}else if (field.type == SUNSET_EVENT){
 			res = getSunset();
-		}else if (filedType == TIME1){
+		}else if (field.type == TIME1){
 			res = getSecondTime();
-		}else if (filedType == ACTIVE_DAY){
+		}else if (field.type == ACTIVE_DAY){
 			res = getActive(:activeMinutesDay);
-		}else if (filedType == ACTIVE_WEEK){
+		}else if (field.type == ACTIVE_WEEK){
 			res = getActive(:activeMinutesWeek);
-		}else if (filedType == O2){
+		}else if (field.type == O2){
 			res = getOxygenSaturation();
-		}else if (filedType == SOLAR_CHARGE){
+		}else if (field.type == SOLAR_CHARGE){
 			res = getSolarCharge();
-		}else if (filedType == WEIGHT){
+		}else if (field.type == WEIGHT){
 			res = getWeight();
 
 
-		}else if (filedType == WEATHER_PRESSURE){
+		}else if (field.type == WEATHER_PRESSURE){
 			res = getWeatherPressureString();
-		}else if (filedType == WEATHER_HUM){
+		}else if (field.type == WEATHER_HUM){
 			res = getWeatherHumidityString();
 
-		}else if (filedType == WEATHER_VISIBILITY){
+		}else if (field.type == WEATHER_VISIBILITY){
 			res = getWeatherVisibilityString();
-		}else if (filedType == WEATHER_WIND_SPEED){
+		}else if (field.type == WEATHER_WIND_SPEED){
 			res = getWeatherWindSpeed();
-		}else if (filedType == WEATHER_WIND_DEG){
+		}else if (field.type == WEATHER_WIND_DEG){
 			res = getWeatherWindDirectionString();
-		}else if (filedType == WEATHER_UVI){
+		}else if (field.type == WEATHER_UVI){
 			res = getWeatherUviString();
-		}else if (filedType == WEATHER_DEW_POINT){
+		}else if (field.type == WEATHER_DEW_POINT){
 			res = getWeatherWindDewPointString();
 
 		///////////////////////////////////////////////////////////////////////
 		//DATA FIELDS IMAGES
-		}else if (filedType == PICTURE + HR){
+		}else if (field.type == PICTURE + HR){
 			res = "g";
-		}else if (filedType == PICTURE + STEPS){
+		}else if (field.type == PICTURE + STEPS){
 			res = "l";
-		}else if (filedType == PICTURE + PRESSURE){
+		}else if (field.type == PICTURE + PRESSURE){
 			res = "b";
-		}else if (filedType == PICTURE + TEMPERATURE){
+		}else if (field.type == PICTURE + TEMPERATURE){
 			res = "p";
-		}else if (filedType == PICTURE + CALORIES){
+		}else if (field.type == PICTURE + CALORIES){
 			res = "d";
-		}else if (filedType == PICTURE + DISTANCE){
+		}else if (field.type == PICTURE + DISTANCE){
 			res = "e";
-		}else if (filedType == PICTURE + FLOOR){
+		}else if (field.type == PICTURE + FLOOR){
 			res = "f";
-		}else if (filedType == PICTURE + ELEVATION){
+		}else if (field.type == PICTURE + ELEVATION){
 			res = "j";
-		}else if (filedType == PICTURE + SUN_EVENT){
+		}else if (field.type == PICTURE + SUN_EVENT){
 			res = "m";
-		}else if (filedType == PICTURE + SUNRISE_EVENT){
+		}else if (field.type == PICTURE + SUNRISE_EVENT){
 			res = "n";
-		}else if (filedType == PICTURE + SUNSET_EVENT){
+		}else if (field.type == PICTURE + SUNSET_EVENT){
 			res = "o";
-		}else if (filedType == PICTURE + TIME1){
+		}else if (field.type == PICTURE + TIME1){
 			res = "q";
-		}else if (filedType == PICTURE + EMPTY){
+		}else if (field.type == PICTURE + EMPTY){
 			res = "";
-		}else if (filedType == PICTURE + ACTIVE_DAY){
+		}else if (field.type == PICTURE + ACTIVE_DAY){
 			res = "r";
-		}else if (filedType == PICTURE + ACTIVE_WEEK){
+		}else if (field.type == PICTURE + ACTIVE_WEEK){
 			res = "r";
-		}else if (filedType == PICTURE + O2){
+		}else if (field.type == PICTURE + O2){
 			res = "z";
-		}else if (filedType == PICTURE + SOLAR_CHARGE){
+		}else if (field.type == PICTURE + SOLAR_CHARGE){
 			res = "v";
-		}else if (filedType == PICTURE + WEIGHT){
+		}else if (field.type == PICTURE + WEIGHT){
 			res = "w";
-		}else if (filedType == PICTURE + WEATHER_PRESSURE){
+		}else if (field.type == PICTURE + WEATHER_PRESSURE){
 			res = "b";
-		}else if (filedType == PICTURE + WEATHER_HUM){
+		}else if (field.type == PICTURE + WEATHER_HUM){
 			res = "h";
-		}else if (filedType == PICTURE + WEATHER_DEW_POINT){
+		}else if (field.type == PICTURE + WEATHER_DEW_POINT){
 			res = "h";
-		}else if (filedType == PICTURE + WEATHER_VISIBILITY){
+		}else if (field.type == PICTURE + WEATHER_VISIBILITY){
 			res = "s";
-		}else if (filedType == PICTURE + WEATHER_WIND_SPEED){
+		}else if (field.type == PICTURE + WEATHER_WIND_SPEED){
 			//res = "t";
 			res = getWeatherWindDirection();
-		}else if (filedType == PICTURE + WEATHER_WIND_DEG){
+		}else if (field.type == PICTURE + WEATHER_WIND_DEG){
 			//res = "t";
 			res = getWeatherWindDirection();
-		}else if (filedType == PICTURE + WEATHER_UVI){
+		}else if (field.type == PICTURE + WEATHER_UVI){
 			res = "u";
 			
 		///////////////////////////////////////////////////////////////////////
 		//WEATHER
-		}else if (filedType == :weather_picture){
+		}else if (field.type == :weather_picture){
 			res = getWeatherPicture();
-		}else if (filedType == :weather_temp){
+		}else if (field.type == :weather_temp){
 			res = getWeatherTemperature();
-		}else if (filedType == :weather_wind_dir){
+		}else if (field.type == :weather_wind_dir){
 			res = getWeatherWindDirection();
-		}else if (filedType == :weather_wind_speed){
+		}else if (field.type == :weather_wind_speed){
 			res = getWeatherWindSpeed();
-		}else if (filedType == :weather_wind_speed_unit){
+		}else if (field.type == :weather_wind_speed_unit){
 			res = memoryCache.getSpeedUnitString();
-		}else if (filedType == :weather_wind_widget){
+		}else if (field.type == :weather_wind_widget){
 			res =  {
 				:weather_wind_dir => getWeatherWindDirection(),
 				:weather_wind_speed => getWeatherWindSpeed(),
@@ -198,33 +198,33 @@ module Data{
 			};
 		///////////////////////////////////////////////////////////////////////
 		//BATTERY
-		}else if (filedType == :battery){
+		}else if (field.type == :battery){
 			res = System.getSystemStats().battery.format("%d")+"%";
-		}else if (filedType == :battery_picture){
+		}else if (field.type == :battery_picture){
 			res = Math.round(System.getSystemStats().battery);
 
 		///////////////////////////////////////////////////////////////////////
 		//MOON
-		}else if (filedType == :moon){
+		}else if (field.type == :moon){
 
 			var now = Time.now();
 			var today = Gregorian.info(now, Time.FORMAT_SHORT);
 
-			if (oldValue == null || memoryCache.oldValues[:moonDay] == null || memoryCache.oldValues[:moonDay] != today.day){
-				memoryCache.oldValues[:moonDay] = today.day;
+			if (field.oldValue == null || memoryCache.flags[:moonDay] == null || memoryCache.flags[:moonDay] != today.day){
+				memoryCache.flags[:moonDay] = today.day;
 				res = moonPhaseString();
 	 		}else{
-	 			res = oldValue;
+	 			res = field.oldValue;
 			}
 		
 		///////////////////////////////////////////////////////////////////////
 		//GRAPHICS
-		}else if (filedType == :getHeartRateHistory
-			|| filedType == :getOxygenSaturationHistory
-			|| filedType == :getTemperatureHistory
-			|| filedType == :getPressureHistory
-			|| filedType == :getElevationHistory){
-			getLastHistoryMoment(filedType);
+		}else if (field.type == :getHeartRateHistory
+			|| field.type == :getOxygenSaturationHistory
+			|| field.type == :getTemperatureHistory
+			|| field.type == :getPressureHistory
+			|| field.type == :getElevationHistory){
+			getLastHistoryMoment(field.type);
 		}
 
 		return res;

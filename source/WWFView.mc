@@ -15,7 +15,6 @@ class WWFView extends WatchUi.WatchFace {
         memoryCache = new MemoryCache();
         Application.getApp().registerEvents();
         fields = {};
-        initFonts();
     }
 
     // Load your resources here
@@ -34,6 +33,7 @@ class WWFView extends WatchUi.WatchFace {
 	
 	function createFields(dc){
 		
+		var mode = memoryCache.mode.toString();
 		fields = {};
 		var hDataField = 22;
 		if (dc.getWidth() == 218){
@@ -54,7 +54,7 @@ class WWFView extends WatchUi.WatchFace {
     			:h => h,
     			:w => w,
     			:type => :time,
-    			:idForColor => :time,
+    			:fieldColor => Application.Storage.getValue(mode+"TimeColor"),
     			:fontId => :time,
     			:justify => Graphics.TEXT_JUSTIFY_CENTER
     		}
@@ -74,7 +74,7 @@ class WWFView extends WatchUi.WatchFace {
     			:h => h,
     			:w => w,
     			:type => :date,
-    			:idForColor => :date,
+    			:fieldColor => Application.Storage.getValue(mode+"DateColor"),
     			:fontId => :small_letters,
     			:justify => Graphics.TEXT_JUSTIFY_CENTER
     		}
@@ -110,7 +110,7 @@ class WWFView extends WatchUi.WatchFace {
 	    			:h => h,
 	    			:w => w,
 	    			:type =>type,
-	    			:idForColor => id,
+	    			:fieldColor => Application.Storage.getValue(mode+"SFC"+i.toString()),
 					:fontId =>  memoryCache.getFontByFieldType(type),
 	    			:justify => coord[i][2]
 	    		}
@@ -129,6 +129,7 @@ class WWFView extends WatchUi.WatchFace {
 		}
 		
 		currentTop -= h;
+		var wColor = Application.Storage.getValue(mode+"WColor");
 		if (showWeather){
 			var fromPictureToTemp = 5;
 	        fields[:weather_picture] = new BitmapField(
@@ -138,7 +139,7 @@ class WWFView extends WatchUi.WatchFace {
 	    			:h => h,
 	    			:w => w-fromPictureToTemp,
 	    			:type => :weather_picture,
-	    			:idForColor => :weather,
+	    			:fieldColor => wColor,
 	    			:fontId => :weather,
 	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
 	    		}
@@ -152,7 +153,7 @@ class WWFView extends WatchUi.WatchFace {
 	    			:h => h,
 	    			:w => w+fromPictureToTemp,
 	    			:type => :weather_temp,
-	    			:idForColor => :weather,
+	    			:fieldColor => wColor,
 	    			:fontId => :medium,
 	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
 	    		}
@@ -167,7 +168,7 @@ class WWFView extends WatchUi.WatchFace {
 		    			:h => fields[:weather_temp].h,
 		    			:w => fields[:weather_temp].w,
 		    			:type => :weather_wind_widget,
-		    			:idForColor => :weather,
+		    			:fieldColor => wColor,
 		    			:fontId => :small_letters,
 		    			:justify => Graphics.TEXT_JUSTIFY_CENTER
 		    		}
@@ -196,7 +197,7 @@ class WWFView extends WatchUi.WatchFace {
 	    			:h => h,
 	    			:w => wMulti*w,
 	    			:type => graphType,
-	    			:idForColor => :weather,
+	    			:fieldColor => wColor,
 	    			:fontId => :small_letters,
 	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
 	    		}
@@ -230,7 +231,8 @@ class WWFView extends WatchUi.WatchFace {
 
 			var idPicture = "P"+i;
 	        var id = "F"+i;
-
+			var color = Application.Storage.getValue(mode+"C"+i.toString());
+	        
 	        fields[idPicture] = new ImageField(
 	    		{
 	    			:x => coord[i][0],
@@ -238,7 +240,7 @@ class WWFView extends WatchUi.WatchFace {
 	    			:h => h,
 	    			:w => wPicture,
 	    			:type => memoryCache.getPictureType(id),
-	    			:idForColor => id,
+	    			:fieldColor => color,
 					:fontId => :picture,
 	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
 	    		}
@@ -251,7 +253,7 @@ class WWFView extends WatchUi.WatchFace {
 	    			:h => h,
 	    			:w => wText,
 	    			:type => memoryCache.getFieldType(id),
-	    			:idForColor => id,
+	    			:fieldColor => color,
 					:fontId => :small,
 	    			:justify => Graphics.TEXT_JUSTIFY_LEFT
 	    		}
@@ -284,6 +286,7 @@ class WWFView extends WatchUi.WatchFace {
 		//BATTERY
 		h = fields["F0"].h;
 		w = fields["F0"].w;
+		var bColor = Application.Storage.getValue(mode+"BatColor");
         fields[:battery_picture] = new BatteryField(
     		{
     			:x => System.getDeviceSettings().screenWidth/2-w,
@@ -291,7 +294,7 @@ class WWFView extends WatchUi.WatchFace {
     			:h => h,
     			:w => w,
     			:type => :battery_picture,
-    			:idForColor => :battery,
+    			:fieldColor => bColor,
     			:fontId => :small,
     			:justify => Graphics.TEXT_JUSTIFY_LEFT
     		}
@@ -304,7 +307,7 @@ class WWFView extends WatchUi.WatchFace {
     			:h => h,
     			:w => w,
     			:type => :battery,
-    			:idForColor => :battery,
+    			:fieldColor => bColor,
     			:fontId => :small,
     			:justify => Graphics.TEXT_JUSTIFY_LEFT
     		}
@@ -320,7 +323,7 @@ class WWFView extends WatchUi.WatchFace {
 //    			:h => 2*hDataField,
 //    			:w => 2*hDataField,
 //    			:type => :moon,
-//    			:idForColor => :moon,
+//    			:fieldColor => Application.Storage.getValue(mode+"MoonColor"),
 //    			:fontId => :small,
 //    			:justify => Graphics.TEXT_JUSTIFY_CENTER
 //    		}
@@ -342,6 +345,9 @@ class WWFView extends WatchUi.WatchFace {
 			location = location.toDegrees();
 			Application.Storage.setValue("Lat", location[0].toFloat());
 			Application.Storage.setValue("Lon", location[1].toFloat());
+			if (memoryCache != null){
+				memoryCache.sunEvents = {};
+			}
 		} else {
 			if (Application.Storage.getValue("Lat") == null || Application.Storage.getValue("Lon") == null){
 				if ( Toybox has :Weather){
@@ -352,6 +358,9 @@ class WWFView extends WatchUi.WatchFace {
 							location = location.toDegrees();
 							Application.Storage.setValue("Lat", location[0].toFloat());
 							Application.Storage.setValue("Lon", location[1].toFloat());
+							if (memoryCache != null){
+								memoryCache.sunEvents = {};
+							}
 						}
 					}
 				}
@@ -362,7 +371,8 @@ class WWFView extends WatchUi.WatchFace {
     }
 
 	function drawBackground(dc){
-		dc.setColor(memoryCache.settings[:colors][:backgroundColor], memoryCache.settings[:colors][:backgroundColor]);
+		var color = Application.Storage.getValue(memoryCache.mode.toString()+"BgndColor");
+		dc.setColor(color, color);
 		dc.setClip(0, 0, dc.getWidth(), dc.getHeight());
 		dc.fillRectangle(0, 0, dc.getWidth(), dc.getHeight());
 	}
@@ -370,13 +380,15 @@ class WWFView extends WatchUi.WatchFace {
     // Update the view
     function onUpdate(dc) {
 		
+		var reCreateFields = false;
+		
 		var isCharging = System.getSystemStats().charging;  
-		if (memoryCache.oldValues[:isCharging] != null){
-			if (memoryCache.oldValues[:isCharging] && !isCharging){
-				memoryCache = new MemoryCache();
+		if (memoryCache.flags[:isCharging] != null){
+			if (memoryCache.flags[:isCharging] && !isCharging){
+				reCreateFields = true;
 			}
 		}
-		memoryCache.oldValues[:isCharging] = isCharging;
+		memoryCache.flags[:isCharging] = isCharging;
 		
 		//Set day naght presets
 		if (memoryCache.settings[:switchDayNight]){
@@ -384,75 +396,45 @@ class WWFView extends WatchUi.WatchFace {
 			var sunset = Tools.getSunEvent(SUNSET, false);
 			if (sunrise != null && sunset != null){
 				var now = Time.now();
-				var isNight = true;
+				var newMode = STORAGE_KEY_NIGHT;
 				if(now.greaterThan(sunrise) && now.lessThan(sunset)){
-					isNight = false;
+					memoryCache.mode = STORAGE_KEY_DAY;
 				}
 				
-				if (memoryCache.oldValues[:isNight] != isNight){
-					StorageSettings.StorageToProperties(isNight ? STORAGE_KEY_NIGHT : STORAGE_KEY_DAY);
-					memoryCache.reload();
-					memoryCache.oldValues[:isNight] = isNight;
+				if (memoryCache.mode != newMode){
+					//StorageSettings.StorageToProperties(isNight ? STORAGE_KEY_NIGHT : STORAGE_KEY_DAY);
+					reCreateFields = true;
+					memoryCache.mode = newMode;
 				}
 			}
 		}else{//dont switch day/night
-			if (memoryCache.oldValues[:isStarted] != true ){
-				StorageSettings.StorageToProperties(STORAGE_KEY_GLOBAL);
-				memoryCache.reload();
+			if (memoryCache.mode != STORAGE_KEY_GLOBAL){
+				memoryCache.mode = STORAGE_KEY_GLOBAL;
+				//StorageSettings.StorageToProperties(STORAGE_KEY_GLOBAL);
+				reCreateFields = true;
 			}
 		}
 		
-		if (memoryCache.oldValues[:isStarted] != true){
+		if (reCreateFields){
+			memoryCache.readSettings();
+			memoryCache.setWeatherAutoColors();
 			drawBackground(dc);
 			createFields(dc);
-			memoryCache.oldValues[:isStarted] = false;
 		}
-
+		
 		memoryCache.checkWeatherActuality();
 		var ids = fields.keys();
 		for (var idsIndex = 0; idsIndex < ids.size(); idsIndex++){
 
 			var fieldId = ids[idsIndex];
-			var oldValue = memoryCache.oldValues[fieldId];
-			var value = Data.getValueByFieldType(fields[fieldId].type, oldValue);
+			var value = Data.getFieldValue(fields[fieldId]);
 
-			//Danger place.
-			var needUpdate = false;
-			if(value == null){
-				needUpdate = (value != oldValue);
-			}else if(value instanceof  Dictionary){
-				needUpdate = false;
-				if (oldValue instanceof  Dictionary){
-					var keys = value.keys();
-					for (var i = 0; i < keys.size(); i++){
-						if(value[keys[i]] has :equals){
-							if (!value[keys[i]].equals(oldValue[keys[i]])){
-								needUpdate = true;
-								break;
-							}
-						}else{
-							if (!value[keys[i]] != oldValue[keys[i]]){
-								needUpdate = true;
-								break;
-							}
-						}
-					}
-				}else{
-					needUpdate = true;
-				}
-			}else if(value has :equals){
-				needUpdate = !value.equals(oldValue);
-			}else{
-				needUpdate = (value != oldValue);
-			}
 
-			if (needUpdate){
+			if (fields[fieldId].needUpdate(value)){
 				fields[fieldId].draw(dc, value);
-				memoryCache.oldValues[fieldId] = value;
 			}
 		}
 
-		memoryCache.oldValues[:isStarted] = true;
 		dc.setClip(0, 0, 0, 0);//fix bug Vivoactive 4
     }
 
@@ -464,12 +446,8 @@ class WWFView extends WatchUi.WatchFace {
 		if (memoryCache.everySecondFields.size()>0){
 			for (var i = 0; i < memoryCache.everySecondFields.size(); i++){
 				var fieldId = memoryCache.everySecondFields[i];
-				var oldValue = memoryCache.oldValues[fieldId];
-				var value = Data.getValueByFieldType(fields[fieldId].type, oldValue);
-				if (!value.equals(oldValue)){
-					fields[fieldId].draw(dc, value);
-					memoryCache.oldValues[fieldId] = value;
-				}
+				var value = Data.getFieldValue(fields[fieldId]);
+				fields[fieldId].draw(dc, value);
 			}
 		}
 	}

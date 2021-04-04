@@ -175,19 +175,28 @@ module Tools {
 		    }
 		).toRadians();
 
-		var now = Time.now();
-		var d = now.value().toDouble() / Time.Gregorian.SECONDS_PER_DAY - 0.5 + 2440588 - 2451545;
-		if (memoryCache.oldValues[:sunCach][:day] == null){
+		var today = Time.today();
+		var tomorrow = today.add(new Time.Duration(Time.Gregorian.SECONDS_PER_DAY));
+		
+		if (memoryCache.sunEvents[tomorrow] == null){
 			var sunEventCalculator = new SunCalc();
-			sunEventCalculator.fillCache(now, myLocation[0],myLocation[1]);
-		}else if ( !(Math.round(memoryCache.oldValues[:sunCach][:day]).equals(Math.round(d)) && memoryCache.oldValues[:sunCach][:lat].equals(myLocation[0]) && memoryCache.oldValues[:sunCach][:lon].equals(myLocation[1]) )){
-			var sunEventCalculator = new SunCalc();
-			sunEventCalculator.fillCache(now, myLocation[0],myLocation[1]);
+			memoryCache.sunEvents = {
+				today => {
+					SUNRISE => sunEventCalculator.calculate(today, myLocation[0], myLocation[1], SUNRISE),
+					SUNSET => sunEventCalculator.calculate(today, myLocation[0], myLocation[1], SUNSET)
+					},
+				tomorrow => {
+					SUNRISE => sunEventCalculator.calculate(tomorrow, myLocation[0], myLocation[1], SUNRISE),
+					SUNSET => sunEventCalculator.calculate(tomorrow, myLocation[0], myLocation[1], SUNSET)
+				}
+			};
 		}
-		var eventMoment = memoryCache.oldValues[:sunCach][event][0];
-		if (eventMoment.value() < now.value() && allowTomorrow){
-			eventMoment = memoryCache.oldValues[:sunCach][event][1];
+		
+		var eventMoment = memoryCache.sunEvents[today][event];
+		if (eventMoment.value() < Time.now().value() && allowTomorrow){
+			eventMoment = memoryCache.sunEvents[tomorrow][event];
 		}
+
 		return eventMoment;
 	}
 

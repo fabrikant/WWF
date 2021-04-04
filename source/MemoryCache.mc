@@ -4,11 +4,12 @@ using Toybox.System;
 class MemoryCache {
 
 	var settings;
-	var oldValues;
 	var weather;
-	var backgroundY = [0,0];
 	var everySecondFields;
-
+	var flags;
+	var sunEvents;
+	var mode;// STORAGE_KEY_GLOBAL, STORAGE_KEY_DAY, STORAGE_KEY_NIGHT
+	
 	function initialize(){
 		reload();
 	}
@@ -27,49 +28,42 @@ class MemoryCache {
 		readSettings();
 		readGeolocation();
 		readWeather();
-		oldValues = {};
-		oldValues[:sunCach] = {};
+		flags = {};
+		sunEvents = {};
 	}
 
 	function readSettings(){
 
 		settings = {};
 		settings[:switchDayNight] = Application.Properties.getValue("SwitchDayNight");
-		settings[:colors] = {};
-		settings[:colors][:backgroundColor] = Application.Properties.getValue("BgndColor");
-		settings[:colors][:time] = Application.Properties.getValue("TimeColor");
-		settings[:colors][:date] = Application.Properties.getValue("DateColor");
-
-		settings[:colors][:weather] = Application.Properties.getValue("WColor");
-		settings[:colors][:weatherAutoColors] = Application.Properties.getValue("WAutoColor");
-
-		settings[:colors][:battery] = Application.Properties.getValue("BatColor");
-		settings[:colors][:moon] = Application.Properties.getValue("MoonColor");
-
-		for (var i = 0; i < FIELDS_COUNT; i++){
-			settings[:colors]["F"+i] = Application.Properties.getValue("C"+i);
+		
+		var currentMode;
+		if (mode == null){
+			currentMode = STORAGE_KEY_GLOBAL;
+		}else{
+			currentMode = mode;
 		}
-		for (var i = 0; i < STATUS_FIELDS_COUNT; i++){
-			settings[:colors]["SF"+i] = Application.Properties.getValue("SFC"+i);
-		}
-
+		settings[:backgroundColor] = Application.Storage.getValue(currentMode.toString()+"BgndColor");
+		settings[:weatherAutoColors] = Application.Storage.getValue(currentMode.toString()+"WAutoColor");
 		settings[:time] = {};
-		settings[:time][:military] = Application.Properties.getValue("MilFt");
-		settings[:time][:hours01] = Application.Properties.getValue("HFt01");
+		settings[:time][:military] = Application.Storage.getValue(currentMode.toString()+"MilFt");
+		settings[:time][:hours01] = Application.Storage.getValue(currentMode.toString()+"HFt01");
 
-		settings[:pressureUnit] = Application.Properties.getValue("PrU");
-		settings[:windUnit] = Application.Properties.getValue("WU");
-		settings[:time1] = Application.Properties.getValue("T1TZ");
+		settings[:pressureUnit] = Application.Storage.getValue(currentMode.toString()+"PrU");
+		settings[:windUnit] = Application.Storage.getValue(currentMode.toString()+"WU");
+		settings[:time1] = Application.Storage.getValue(currentMode.toString()+"T1TZ");
 
 		settings[:keyOW] = Application.Properties.getValue("keyOW");
-		settings[:weatherUpdateInteval] = Application.Properties.getValue("WUpdInt");
+		settings[:weatherUpdateInteval] = Application.Storage.getValue(currentMode.toString()+"WUpdInt");
+		readGeolocation();
 	}
 
 	function readGeolocation(){
 		//////////////////////////////////////////////////////////
 		//DEBUG
-//		Application.Storage.setValue("Lat", 55.03325);
-//		Application.Storage.setValue("Lon", 73.449715);
+		Application.Storage.setValue("Lat", 55.03325);
+		Application.Storage.setValue("Lon", 73.449715);
+		Application.Properties.setValue("keyOW", "69bcb8de48220cd2b2fb7a8400c68d1e");
 		//////////////////////////////////////////////////////////
 		settings[:geoLocation] = [Application.Storage.getValue("Lat"), Application.Storage.getValue("Lon")];
 	}
@@ -86,15 +80,21 @@ class MemoryCache {
 	}
 
 	function setWeatherAutoColors(){
-		var defColor = settings[:colors][:weather];
+	
+		var defColor;
+		if (mode == null){
+			defColor = Application.Storage.getValue(STORAGE_KEY_GLOBAL.toString()+"WColor");
+		}else{
+			defColor = Application.Storage.getValue(mode.toString()+"WColor");
+		}
+		
 		settings[:autoColors] = {
-			:cloud => defColor,
 			:temp => defColor,
 			:wind => defColor
 		};
 
-		if (settings[:colors][:weatherAutoColors] && weather != null){
-			var backgroundColor = settings[:colors][:backgroundColor];
+		if (settings[:weatherAutoColors] && weather != null){
+			var backgroundColor = settings[:backgroundColor];
 			
 			var backIsLight = false;
 			if (backgroundColor == Graphics.COLOR_WHITE 
@@ -226,7 +226,7 @@ class MemoryCache {
 	}
 
 	function getFieldType(id){
-		return Application.Properties.getValue(id);
+		return Application.Storage.getValue(mode.toString()+id.toString());
 	}
 
 	function getFontByFieldType(type){
