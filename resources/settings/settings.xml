@@ -9,6 +9,7 @@
 		<settingConfig type="boolean" />
 	</setting>
 
+<!-- 
 	<setting propertyKey="@Properties.SettingsType"
 		title="@Strings.SettingsType">
 		<settingConfig type="list">
@@ -19,11 +20,12 @@
 		</settingConfig>
 	</setting>
 
+	
 	<setting propertyKey="@Properties.WUpdInt" title="@Strings.WUpdInt">
 		<settingConfig type="numeric" min="10" max="120"/>
 	</setting>
 
-	<!--CLOCK SETTING -->
+
 	
 	<setting propertyKey="@Properties.MilFt"
 		title="@Strings.MilFt">
@@ -35,13 +37,13 @@
 		<settingConfig type="boolean" />
 	</setting>
 
-	<!--DATE FORMAT -->
+
 	<setting propertyKey="@Properties.DF"
 		title="@Strings.DF" prompt="@Strings.DFHELP">
 		<settingConfig type="alphaNumeric" />
 	</setting>
 
-	<!--UNIT PRESSURE -->
+
 	<setting propertyKey="@Properties.PrU"
 		title="@Strings.PrU">
 		<settingConfig type="list">
@@ -53,7 +55,7 @@
 		</settingConfig>
 	</setting>
 	
-	<!--UNIT WIND SPEED -->
+
 	<setting propertyKey="@Properties.WU"
 		title="@Strings.WU">
 		<settingConfig type="list">
@@ -127,7 +129,7 @@
         </settingConfig>
     </setting>
 	
-	<!--WEATHER -->
+
 	<setting propertyKey="@Properties.WType"
 		title="@Strings.WType">
 		<settingConfig type="list">
@@ -180,7 +182,6 @@
 		<settingConfig type="boolean" />
 	</setting>
 
-	<!--BATTERY -->
 	<setting propertyKey="@Properties.BatColor"
 		title="@Strings.BatColor">
 		<settingConfig type="list">
@@ -200,8 +201,6 @@
 			<listEntry value="0xFF00FF">@Strings.COLOR_PINK</listEntry>
 		</settingConfig>
 	</setting>
-
-	<!--STATUS -->
 
 	<setting propertyKey="@Properties.SF0"
 		title="@Strings.SF0">
@@ -413,7 +412,6 @@
 		</settingConfig>
 	</setting>
 
-	<!--FIELD TYPES -->
 	
 	<setting propertyKey="@Properties.F6"
 		title="@Strings.F6">
@@ -842,5 +840,6 @@
 			<listEntry value="0xFF00FF">@Strings.COLOR_PINK</listEntry>
 		</settingConfig>
 	</setting>
-
+ 
+ -->
 </settings>

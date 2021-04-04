@@ -23,7 +23,7 @@ class WindDWidget extends SimpleField{
 				dc.setAntiAlias(true);
 			}
 			
-			if (Application.Properties.getValue("WindArrowContour")){
+			if (StorageSettings.getSettingValue(memoryCache.mode+"WindArrowContour")){
 				dc.setPenWidth(2);
 				var arSize = windDirection.size();
 				for (var i = 1; i <= arSize; i++){

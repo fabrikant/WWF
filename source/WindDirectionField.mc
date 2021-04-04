@@ -21,7 +21,7 @@ class WindDirectionField extends SimpleField{
 			}
 			
 			var windDirection = Tools.windDirection(h*0.9, direction.toNumber(), [x, y], [w, h]);
-			if (Application.Properties.getValue("WindArrowContour")){
+			if (StorageSettings.getSettingValue(memoryCache.mode+"WindArrowContour")){
 				var arSize = windDirection.size();
 				for (var i = 1; i <= arSize; i++){
 					dc.drawLine(

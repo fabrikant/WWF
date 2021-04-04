@@ -23,8 +23,8 @@ class MemoryCache {
 		if (view != null){
 			view.fields = null;
 		}
-
-		saveSettingsToStorage();
+		
+		mode = STORAGE_KEY_GLOBAL;
 		readSettings();
 		readGeolocation();
 		readWeather();
@@ -43,18 +43,18 @@ class MemoryCache {
 		}else{
 			currentMode = mode;
 		}
-		settings[:backgroundColor] = Application.Storage.getValue(currentMode.toString()+"BgndColor");
-		settings[:weatherAutoColors] = Application.Storage.getValue(currentMode.toString()+"WAutoColor");
+		settings[:backgroundColor] = StorageSettings.getSettingValue(currentMode.toString()+"BgndColor");
+		settings[:weatherAutoColors] = StorageSettings.getSettingValue(currentMode.toString()+"WAutoColor");
 		settings[:time] = {};
-		settings[:time][:military] = Application.Storage.getValue(currentMode.toString()+"MilFt");
-		settings[:time][:hours01] = Application.Storage.getValue(currentMode.toString()+"HFt01");
+		settings[:time][:military] = StorageSettings.getSettingValue(currentMode.toString()+"MilFt");
+		settings[:time][:hours01] = StorageSettings.getSettingValue(currentMode.toString()+"HFt01");
 
-		settings[:pressureUnit] = Application.Storage.getValue(currentMode.toString()+"PrU");
-		settings[:windUnit] = Application.Storage.getValue(currentMode.toString()+"WU");
-		settings[:time1] = Application.Storage.getValue(currentMode.toString()+"T1TZ");
+		settings[:pressureUnit] = StorageSettings.getSettingValue(currentMode.toString()+"PrU");
+		settings[:windUnit] = StorageSettings.getSettingValue(currentMode.toString()+"WU");
+		settings[:time1] = StorageSettings.getSettingValue(currentMode.toString()+"T1TZ");
 
 		settings[:keyOW] = Application.Properties.getValue("keyOW");
-		settings[:weatherUpdateInteval] = Application.Storage.getValue(currentMode.toString()+"WUpdInt");
+		settings[:weatherUpdateInteval] = StorageSettings.getSettingValue(currentMode.toString()+"WUpdInt");
 		readGeolocation();
 	}
 
@@ -83,9 +83,9 @@ class MemoryCache {
 	
 		var defColor;
 		if (mode == null){
-			defColor = Application.Storage.getValue(STORAGE_KEY_GLOBAL.toString()+"WColor");
+			defColor = StorageSettings.getSettingValue(STORAGE_KEY_GLOBAL.toString()+"WColor");
 		}else{
-			defColor = Application.Storage.getValue(mode.toString()+"WColor");
+			defColor = StorageSettings.getSettingValue(mode.toString()+"WColor");
 		}
 		
 		settings[:autoColors] = {
@@ -225,10 +225,6 @@ class MemoryCache {
 		}
 	}
 
-	function getFieldType(id){
-		return Application.Storage.getValue(mode.toString()+id.toString());
-	}
-
 	function getFontByFieldType(type){
 		var res = :small;
 		if (type == CONNECTED || type == NOTIFICATIONS || type == DND ||type == ALARMS){
@@ -246,7 +242,7 @@ class MemoryCache {
 	}
 
 	function getPictureType(id){
-		return PICTURE+Application.Properties.getValue(id);
+		return PICTURE+StorageSettings.getSettingValue(mode+id);
 	}
 
 	function onWeatherUpdate(data){
@@ -264,33 +260,5 @@ class MemoryCache {
 				eraseWeather();
 			}
 		}
-	}
-
-	private function getStorageValue(key, defaultValue){
-		var value = Application.Storage.getValue(key);
-		if (value == null){
-			return defaultValue;
-		}else{
-			return value;
-		}
-	}
-
-	function saveSettingsToStorage(){
-		
-		var settingsType = Application.Properties.getValue("SettingsType");
-		if (settingsType == 0){
-			return;
-		}
-
-		var key = STORAGE_KEY_GLOBAL;
-		if(settingsType == 2){
-			key = STORAGE_KEY_DAY;
-		}else if (settingsType == 3){
-			key = STORAGE_KEY_NIGHT;
-		}
-		
-		StorageSettings.PropertiesToStorage(key);
-		Application.Properties.setValue("SettingsType", 0);
-		
 	}
 }

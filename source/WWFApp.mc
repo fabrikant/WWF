@@ -43,14 +43,6 @@ class WWFApp extends Application.AppBase {
 
 	}
 
-	function onAppInstall(){
-		StorageSettings.initStorageSettings();
-	}
-	
-	function onAppUpdate(){
-		StorageSettings.initStorageSettings();
-	}
-	
 	///////////////////////////////////////////////////////////////////////////
 	// Background
 	function onBackgroundData(data) {

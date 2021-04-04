@@ -8,63 +8,9 @@ using Toybox.Time;
 module StorageSettings {
 
 	///////////////////////////////////////////////////////////////////////////
-	function initStorageSettings(){
-		StorageSettings.PropertiesToStorage(STORAGE_KEY_GLOBAL);
-		StorageSettings.PropertiesToStorage(STORAGE_KEY_DAY);
-		StorageSettings.PropertiesToStorage(STORAGE_KEY_NIGHT);
+	function getSettingValue(key){
+		return Application.Properties.getValue(key); 
 	}
-	
-	///////////////////////////////////////////////////////////////////////////
-	function getStorageSettingsValue(typeSettingsKey, valueKey){
-		var res = null;
-		
-		var dictKeys = Application.Storage.getValue(typeSettingsKey);
-		if (dictKeys != null){
-			res = dictKeys[valueKey]; 
-		}
-		return res; 
-	}
-	
-	///////////////////////////////////////////////////////////////////////////
-    function PropertiesToStorage(key){
-    	
-    	var propKeys = StorageSettings.getPropertiesKeys();
-    	var settings = {};
-    	for (var i = 0; i < propKeys.size(); i++){
-     		Application.Storage.setValue(key.toString()+propKeys[i].toString(), Application.Properties.getValue(propKeys[i]));
-    	}
-    	
-    }
-
-	///////////////////////////////////////////////////////////////////////////
-	function StorageToProperties(key){
-		
-		var propKeys = StorageSettings.getPropertiesKeys();
-		for (var i = 0; i < propKeys.size(); i++){
-			var value = Application.Storage.getValue(key.toString()+propKeys[i].toString());
-			if (value != null){
-				Application.Properties.setValue(propKeys[i], value);
-			}			
-		}
-	}
-
-	///////////////////////////////////////////////////////////////////////////
-    function getStorageSettingsDictonary(key){
-    	
-    	var res = Application.Storage.getValue(key);
-    	if (res == null){
-    		res = {};
-    	}
-    	
-    	var allProp = StorageSettings.getFullPropertiesKeys();
-    	
-     	for (var i=0; i<allProp.size(); i++){
-    		if (res[allProp[i][:title].toString()] == null){
-    			res[allProp[i][:title].toString()] = Application.Properties.getValue(allProp[i][:title].toString());
-    		}
-    	} 
-    	return res;    	
-    }
 	
 	///////////////////////////////////////////////////////////////////////////
 	function getPropertiesKeys(){

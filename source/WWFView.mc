@@ -54,7 +54,7 @@ class WWFView extends WatchUi.WatchFace {
     			:h => h,
     			:w => w,
     			:type => :time,
-    			:fieldColor => Application.Storage.getValue(mode+"TimeColor"),
+    			:fieldColor => StorageSettings.getSettingValue(mode+"TimeColor"),
     			:fontId => :time,
     			:justify => Graphics.TEXT_JUSTIFY_CENTER
     		}
@@ -74,7 +74,7 @@ class WWFView extends WatchUi.WatchFace {
     			:h => h,
     			:w => w,
     			:type => :date,
-    			:fieldColor => Application.Storage.getValue(mode+"DateColor"),
+    			:fieldColor => StorageSettings.getSettingValue(mode+"DateColor"),
     			:fontId => :small_letters,
     			:justify => Graphics.TEXT_JUSTIFY_CENTER
     		}
@@ -102,7 +102,7 @@ class WWFView extends WatchUi.WatchFace {
 		for (var i = 0; i < STATUS_FIELDS_COUNT; i++){
 			
 			var id = "SF"+i;
-			var type = memoryCache.getFieldType(id); 
+			var type = StorageSettings.getSettingValue(mode+id); 
 	        fields[id] = new SimpleField(
 	    		{
 	    			:x => coord[i][0],
@@ -110,7 +110,7 @@ class WWFView extends WatchUi.WatchFace {
 	    			:h => h,
 	    			:w => w,
 	    			:type =>type,
-	    			:fieldColor => Application.Storage.getValue(mode+"SFC"+i.toString()),
+	    			:fieldColor => StorageSettings.getSettingValue(mode+"SFC"+i.toString()),
 					:fontId =>  memoryCache.getFontByFieldType(type),
 	    			:justify => coord[i][2]
 	    		}
@@ -123,13 +123,13 @@ class WWFView extends WatchUi.WatchFace {
 		h = hDataField*2;
 		w = h;
 		var showWeather = false;
-		var wType = Application.Properties.getValue("WType"); 
+		var wType = StorageSettings.getSettingValue(mode+"WType"); 
 		if (wType == 0){
 			showWeather = true;
 		}
 		
 		currentTop -= h;
-		var wColor = Application.Storage.getValue(mode+"WColor");
+		var wColor = StorageSettings.getSettingValue(mode+"WColor");
 		if (showWeather){
 			var fromPictureToTemp = 5;
 	        fields[:weather_picture] = new BitmapField(
@@ -160,7 +160,7 @@ class WWFView extends WatchUi.WatchFace {
 	    	);
 			wWeatherBar += fields[:weather_temp][:w];
 			
-			if (Application.Properties.getValue("WShowWindWidget")){
+			if (StorageSettings.getSettingValue(mode+"WShowWindWidget")){
 		        fields[:weather_wind_widget] = new WindDWidget(
 		    		{
 		    			:x => fields[:weather_temp].x + fields[:weather_temp].w,
@@ -178,7 +178,7 @@ class WWFView extends WatchUi.WatchFace {
 		}else{
 		
 			var wMulti = 3;
-			if (Application.Properties.getValue("ShowTopFields")){wMulti = 2;}
+			if (StorageSettings.getSettingValue(mode+"ShowTopFields")){wMulti = 2;}
 			var graphType = :getHeartRateHistory;
 			if (wType == 2){
 				graphType = :getOxygenSaturationHistory;
@@ -221,7 +221,7 @@ class WWFView extends WatchUi.WatchFace {
 		coord[4] = [x+(wPicture+wText),y + h];
 		coord[5] = [x+2*(wPicture+wText),y + h];
 		
-		if (Application.Properties.getValue("ShowTopFields")){
+		if (StorageSettings.getSettingValue(mode+"ShowTopFields")){
 			coord.add([wWeatherBar, currentTop]);
 			coord.add([wWeatherBar, currentTop + h]);
 			wWeatherBar += wPicture+wText;
@@ -231,7 +231,7 @@ class WWFView extends WatchUi.WatchFace {
 
 			var idPicture = "P"+i;
 	        var id = "F"+i;
-			var color = Application.Storage.getValue(mode+"C"+i.toString());
+			var color = StorageSettings.getSettingValue(mode+"C"+i.toString());
 	        
 	        fields[idPicture] = new ImageField(
 	    		{
@@ -252,7 +252,7 @@ class WWFView extends WatchUi.WatchFace {
 	    			:y => coord[i][1],
 	    			:h => h,
 	    			:w => wText,
-	    			:type => memoryCache.getFieldType(id),
+	    			:type => StorageSettings.getSettingValue(mode+id),
 	    			:fieldColor => color,
 					:fontId => :small,
 	    			:justify => Graphics.TEXT_JUSTIFY_LEFT
@@ -267,7 +267,7 @@ class WWFView extends WatchUi.WatchFace {
 		if (showWeather){
 			fields[:weather_picture][:x] += shiftX; 
 			fields[:weather_temp][:x] += shiftX;
-			if (Application.Properties.getValue("WShowWindWidget")){
+			if (StorageSettings.getSettingValue(mode+"WShowWindWidget")){
 				fields[:weather_wind_widget][:x] += shiftX;
 			}
 		}else{
@@ -275,7 +275,7 @@ class WWFView extends WatchUi.WatchFace {
 			currentTop = fields[:graphic][:y];
 		}
 		
-		if (Application.Properties.getValue("ShowTopFields")){
+		if (StorageSettings.getSettingValue(mode+"ShowTopFields")){
 			fields["P6"][:x] += shiftX;
 			fields["F6"][:x] += shiftX;
 			fields["P7"][:x] += shiftX;
@@ -286,7 +286,7 @@ class WWFView extends WatchUi.WatchFace {
 		//BATTERY
 		h = fields["F0"].h;
 		w = fields["F0"].w;
-		var bColor = Application.Storage.getValue(mode+"BatColor");
+		var bColor = StorageSettings.getSettingValue(mode+"BatColor");
         fields[:battery_picture] = new BatteryField(
     		{
     			:x => System.getDeviceSettings().screenWidth/2-w,
@@ -323,7 +323,7 @@ class WWFView extends WatchUi.WatchFace {
 //    			:h => 2*hDataField,
 //    			:w => 2*hDataField,
 //    			:type => :moon,
-//    			:fieldColor => Application.Storage.getValue(mode+"MoonColor"),
+//    			:fieldColor => StorageSettings.getSettingValue(mode+"MoonColor"),
 //    			:fontId => :small,
 //    			:justify => Graphics.TEXT_JUSTIFY_CENTER
 //    		}
@@ -371,7 +371,7 @@ class WWFView extends WatchUi.WatchFace {
     }
 
 	function drawBackground(dc){
-		var color = Application.Storage.getValue(memoryCache.mode.toString()+"BgndColor");
+		var color = StorageSettings.getSettingValue(memoryCache.mode.toString()+"BgndColor");
 		dc.setColor(color, color);
 		dc.setClip(0, 0, dc.getWidth(), dc.getHeight());
 		dc.fillRectangle(0, 0, dc.getWidth(), dc.getHeight());
@@ -402,7 +402,6 @@ class WWFView extends WatchUi.WatchFace {
 				}
 				
 				if (memoryCache.mode != newMode){
-					//StorageSettings.StorageToProperties(isNight ? STORAGE_KEY_NIGHT : STORAGE_KEY_DAY);
 					reCreateFields = true;
 					memoryCache.mode = newMode;
 				}
@@ -410,21 +409,22 @@ class WWFView extends WatchUi.WatchFace {
 		}else{//dont switch day/night
 			if (memoryCache.mode != STORAGE_KEY_GLOBAL){
 				memoryCache.mode = STORAGE_KEY_GLOBAL;
-				//StorageSettings.StorageToProperties(STORAGE_KEY_GLOBAL);
 				reCreateFields = true;
 			}
 		}
-		
+
 		if (reCreateFields){
 			memoryCache.readSettings();
 			memoryCache.setWeatherAutoColors();
 			drawBackground(dc);
 			createFields(dc);
 		}else if(fields == null){
+			drawBackground(dc);
 			createFields(dc);
 		}
 		
 		memoryCache.checkWeatherActuality();
+
 		var ids = fields.keys();
 		for (var idsIndex = 0; idsIndex < ids.size(); idsIndex++){
 
