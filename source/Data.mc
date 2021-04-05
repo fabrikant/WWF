@@ -303,7 +303,7 @@ module Data{
 			}
 		}
 		
-		var dateString = StorageSettings.getSettingValue(memoryCache.mode+"DF");
+		var dateString = StorageSettings.getSettingValue("DF");
 		dateString = Tools.stringReplace(dateString,"%WN",Tools.weekOfYear(now));
 		dateString = Tools.stringReplace(dateString,"%DN",dayOfYear);
 		dateString = Tools.stringReplace(dateString,"%WD",weatherDecription);

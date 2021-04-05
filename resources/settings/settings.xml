@@ -21,11 +21,6 @@
 	</setting>
 
 	
-	<setting propertyKey="@Properties.WUpdInt" title="@Strings.WUpdInt">
-		<settingConfig type="numeric" min="10" max="120"/>
-	</setting>
-
-
 	
 	<setting propertyKey="@Properties.MilFt"
 		title="@Strings.MilFt">

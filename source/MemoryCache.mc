@@ -43,19 +43,16 @@ class MemoryCache {
 		}else{
 			currentMode = mode;
 		}
-		System.println(currentMode+"BgndColor");
 		settings[:backgroundColor] = StorageSettings.getSettingValue(currentMode+"BgndColor");
 		settings[:weatherAutoColors] = StorageSettings.getSettingValue(currentMode+"WAutoColor");
 		settings[:time] = {};
 		settings[:time][:military] = StorageSettings.getSettingValue(currentMode+"MilFt");
 		settings[:time][:hours01] = StorageSettings.getSettingValue(currentMode+"HFt01");
 
-		settings[:pressureUnit] = StorageSettings.getSettingValue(currentMode+"PrU");
-		settings[:windUnit] = StorageSettings.getSettingValue(currentMode+"WU");
-		settings[:time1] = StorageSettings.getSettingValue(currentMode+"T1TZ");
-
+		settings[:pressureUnit] = StorageSettings.getSettingValue("PrU");
+		settings[:windUnit] = StorageSettings.getSettingValue("WU");
+		settings[:time1] = StorageSettings.getSettingValue("T1TZ");
 		settings[:keyOW] = Application.Properties.getValue("keyOW");
-		settings[:weatherUpdateInteval] = StorageSettings.getSettingValue(currentMode+"WUpdInt");
 		readGeolocation();
 	}
 

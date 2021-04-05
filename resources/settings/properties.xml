@@ -4,10 +4,19 @@
 	<property id="SwitchDayNight" type="boolean">false</property>
 	<property id="SettingsType" type="number">0</property>
 
+	<property id="DF" type="string">%W %D %M %Y</property>
+
+	<!--SECOND TIME -->
+	<property id="T1TZ" type="number">180</property>
+	<!--PRESSURE -->
+	<property id="PrU" type="number">0</property>
+	<!--WIND -->
+	<property id="WU" type="number">0</property>
+
+
 	<!-- **************************************************************************** -->	
     <property id="GMilFt" type="boolean">false</property>
 	<property id="GHFt01" type="boolean">true</property>
-	<property id="GDF" type="string">%W %D %M %Y</property>
 
     <property id="GBgndColor" type="number">0x000000</property>
     <property id="GTimeColor" type="number">0xFFFFFF</property>
@@ -35,18 +44,6 @@
 	<property id="GSFC4" type="number">0xFFFFFF</property>
 	<property id="GSF5" type="number">23</property>
 	<property id="GSFC5" type="number">0xFFFFFF</property>
-	
-	<!--WEATHER UPDATE INTERVAL -->
-	<property id="GWUpdInt" type="number">10</property>
-	
-	<!--PRESSURE -->
-	<property id="GPrU" type="number">0</property>
-
-	<!--WIND -->
-	<property id="GWU" type="number">0</property>
-
-	<!--SECOND TIME -->
-	<property id="GT1TZ" type="number">180</property>
 
 	<!--FIELSDS TYPES -->
 	<property id="GF0" type="number">9</property>
@@ -78,7 +75,6 @@
 	<!-- **************************************************************************** -->	
     <property id="DMilFt" type="boolean">false</property>
 	<property id="DHFt01" type="boolean">true</property>
-	<property id="DDF" type="string">%W %D %M %Y</property>
 
     <property id="DBgndColor" type="number">0x000000</property>
     <property id="DTimeColor" type="number">0xFFFFFF</property>
@@ -107,18 +103,6 @@
 	<property id="DSF5" type="number">23</property>
 	<property id="DSFC5" type="number">0xFFFFFF</property>
 	
-	<!--WEATHER UPDATE INTERVAL -->
-	<property id="DWUpdInt" type="number">10</property>
-	
-	<!--PRESSURE -->
-	<property id="DPrU" type="number">0</property>
-
-	<!--WIND -->
-	<property id="DWU" type="number">0</property>
-
-	<!--SECOND TIME -->
-	<property id="DT1TZ" type="number">180</property>
-
 	<!--FIELSDS TYPES -->
 	<property id="DF0" type="number">9</property>
 	<property id="DC0" type="number">0xFFFFFF</property>
@@ -147,7 +131,6 @@
 	<!-- **************************************************************************** -->	
     <property id="NMilFt" type="boolean">false</property>
 	<property id="NHFt01" type="boolean">true</property>
-	<property id="NDF" type="string">%W %D %M %Y</property>
 
     <property id="NBgndColor" type="number">0x000000</property>
     <property id="NTimeColor" type="number">0xFFFFFF</property>
@@ -176,18 +159,6 @@
 	<property id="NSF5" type="number">23</property>
 	<property id="NSFC5" type="number">0xFFFFFF</property>
 	
-	<!--WEATHER UPDATE INTERVAL -->
-	<property id="NWUpdInt" type="number">10</property>
-	
-	<!--PRESSURE -->
-	<property id="NPrU" type="number">0</property>
-
-	<!--WIND -->
-	<property id="NWU" type="number">0</property>
-
-	<!--SECOND TIME -->
-	<property id="NT1TZ" type="number">180</property>
-
 	<!--FIELSDS TYPES -->
 	<property id="NF0" type="number">9</property>
 	<property id="NC0" type="number">0xFFFFFF</property>

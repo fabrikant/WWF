@@ -101,7 +101,7 @@ class WWFApp extends Application.AppBase {
 			return;
 		}
 		var lastTime = Background.getLastTemporalEventTime();
-		var duration = new Time.Duration(memoryCache.settings[:weatherUpdateInteval]*60);
+		var duration = new Time.Duration(600);
 		var now = Time.now();
 		if (lastTime == null){
 			//////////////////////////////////////////////////////////
