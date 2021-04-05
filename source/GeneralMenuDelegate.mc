@@ -49,8 +49,8 @@ class GeneralMenuDelegate extends WatchUi.Menu2InputDelegate{
 	}
 	
 	function initialize(menu) {
-		fonts = null;
-		memoryCache = null;
+//		fonts = null;
+//		memoryCache = null;
 		self.menu = menu;
 		prepareMenu();
 		Menu2InputDelegate.initialize();
