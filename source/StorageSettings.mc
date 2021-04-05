@@ -17,7 +17,7 @@ module StorageSettings {
 		var res = [];
 		var allProp = getFullPropertiesKeys();
 		for (var i = 0; i < allProp.size(); i++){
-			res.add(allProp[i][:title].toString());
+			res.add(allProp[i][:title]);
 		}
 		return res;
 	}

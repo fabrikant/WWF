@@ -33,7 +33,7 @@ class WWFView extends WatchUi.WatchFace {
 	
 	function createFields(dc){
 		
-		var mode = memoryCache.mode.toString();
+		var mode = memoryCache.mode;
 		fields = {};
 		var hDataField = 22;
 		if (dc.getWidth() == 218){
@@ -110,7 +110,7 @@ class WWFView extends WatchUi.WatchFace {
 	    			:h => h,
 	    			:w => w,
 	    			:type =>type,
-	    			:fieldColor => StorageSettings.getSettingValue(mode+"SFC"+i.toString()),
+	    			:fieldColor => StorageSettings.getSettingValue(mode+"SFC"+i),
 					:fontId =>  memoryCache.getFontByFieldType(type),
 	    			:justify => coord[i][2]
 	    		}
@@ -231,7 +231,7 @@ class WWFView extends WatchUi.WatchFace {
 
 			var idPicture = "P"+i;
 	        var id = "F"+i;
-			var color = StorageSettings.getSettingValue(mode+"C"+i.toString());
+			var color = StorageSettings.getSettingValue(mode+"C"+i);
 	        
 	        fields[idPicture] = new ImageField(
 	    		{
@@ -371,7 +371,7 @@ class WWFView extends WatchUi.WatchFace {
     }
 
 	function drawBackground(dc){
-		var color = StorageSettings.getSettingValue(memoryCache.mode.toString()+"BgndColor");
+		var color = StorageSettings.getSettingValue(memoryCache.mode+"BgndColor");
 		dc.setColor(color, color);
 		dc.setClip(0, 0, dc.getWidth(), dc.getHeight());
 		dc.fillRectangle(0, 0, dc.getWidth(), dc.getHeight());

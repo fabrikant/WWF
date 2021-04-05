@@ -43,18 +43,19 @@ class MemoryCache {
 		}else{
 			currentMode = mode;
 		}
-		settings[:backgroundColor] = StorageSettings.getSettingValue(currentMode.toString()+"BgndColor");
-		settings[:weatherAutoColors] = StorageSettings.getSettingValue(currentMode.toString()+"WAutoColor");
+		System.println(currentMode+"BgndColor");
+		settings[:backgroundColor] = StorageSettings.getSettingValue(currentMode+"BgndColor");
+		settings[:weatherAutoColors] = StorageSettings.getSettingValue(currentMode+"WAutoColor");
 		settings[:time] = {};
-		settings[:time][:military] = StorageSettings.getSettingValue(currentMode.toString()+"MilFt");
-		settings[:time][:hours01] = StorageSettings.getSettingValue(currentMode.toString()+"HFt01");
+		settings[:time][:military] = StorageSettings.getSettingValue(currentMode+"MilFt");
+		settings[:time][:hours01] = StorageSettings.getSettingValue(currentMode+"HFt01");
 
-		settings[:pressureUnit] = StorageSettings.getSettingValue(currentMode.toString()+"PrU");
-		settings[:windUnit] = StorageSettings.getSettingValue(currentMode.toString()+"WU");
-		settings[:time1] = StorageSettings.getSettingValue(currentMode.toString()+"T1TZ");
+		settings[:pressureUnit] = StorageSettings.getSettingValue(currentMode+"PrU");
+		settings[:windUnit] = StorageSettings.getSettingValue(currentMode+"WU");
+		settings[:time1] = StorageSettings.getSettingValue(currentMode+"T1TZ");
 
 		settings[:keyOW] = Application.Properties.getValue("keyOW");
-		settings[:weatherUpdateInteval] = StorageSettings.getSettingValue(currentMode.toString()+"WUpdInt");
+		settings[:weatherUpdateInteval] = StorageSettings.getSettingValue(currentMode+"WUpdInt");
 		readGeolocation();
 	}
 
@@ -83,9 +84,9 @@ class MemoryCache {
 	
 		var defColor;
 		if (mode == null){
-			defColor = StorageSettings.getSettingValue(STORAGE_KEY_GLOBAL.toString()+"WColor");
+			defColor = StorageSettings.getSettingValue(STORAGE_KEY_GLOBAL+"WColor");
 		}else{
-			defColor = StorageSettings.getSettingValue(mode.toString()+"WColor");
+			defColor = StorageSettings.getSettingValue(mode+"WColor");
 		}
 		
 		settings[:autoColors] = {
