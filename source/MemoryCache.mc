@@ -43,11 +43,12 @@ class MemoryCache {
 		}else{
 			currentMode = mode;
 		}
-		settings[:backgroundColor] = StorageSettings.getSettingValue(currentMode+"BgndColor");
-		settings[:weatherAutoColors] = StorageSettings.getSettingValue(currentMode+"WAutoColor");
+		
+		settings[:theme] = StorageSettings.getSettingValue(mode+"Theme");
+		settings[:backgroundColor] = getBackgroundColor();
 		settings[:time] = {};
-		settings[:time][:military] = StorageSettings.getSettingValue(currentMode+"MilFt");
-		settings[:time][:hours01] = StorageSettings.getSettingValue(currentMode+"HFt01");
+		settings[:time][:military] = StorageSettings.getSettingValue("MilFt");
+		settings[:time][:hours01] = StorageSettings.getSettingValue("HFt01");
 
 		settings[:pressureUnit] = StorageSettings.getSettingValue("PrU");
 		settings[:windUnit] = StorageSettings.getSettingValue("WU");
@@ -77,21 +78,49 @@ class MemoryCache {
 		//////////////////////////////////////////////////////////
 	}
 
+	function getBackgroundColor(){
+	
+		var color = Graphics.COLOR_BLACK;
+		if (settings[:theme] == DARK){
+			color = Graphics.COLOR_BLACK;
+		}if (settings[:theme] == LIGHT){
+			color = Graphics.COLOR_WHITE;
+		}
+		return color;
+	}
+	
+	function getColorByFieldType(type){
+		var color = getColor();
+		if (type == CONNECTED){
+			if (settings[:theme] == DARK){
+				color = Graphics.COLOR_BLUE;
+			}if (settings[:theme] == LIGHT){
+				color = Graphics.COLOR_DK_BLUE;
+			}
+		}
+		return color;
+	}
+	
+	function getColor(){
+		var color = Graphics.COLOR_WHITE;
+		if (settings[:theme] == DARK){
+			color = Graphics.COLOR_WHITE;
+		}if (settings[:theme] == LIGHT){
+			color = Graphics.COLOR_BLACK;
+		}
+		return color;
+	}
+	
 	function setWeatherAutoColors(){
 	
-		var defColor;
-		if (mode == null){
-			defColor = StorageSettings.getSettingValue(STORAGE_KEY_GLOBAL+"WColor");
-		}else{
-			defColor = StorageSettings.getSettingValue(mode+"WColor");
-		}
+		var defColor = getColor();
 		
 		settings[:autoColors] = {
 			:temp => defColor,
 			:wind => defColor
 		};
 
-		if (settings[:weatherAutoColors] && weather != null){
+		if (weather != null){
 			var backgroundColor = settings[:backgroundColor];
 			
 			var backIsLight = false;

@@ -11,8 +11,7 @@ class GeneralMenuDelegate extends WatchUi.Menu2InputDelegate{
 		var item = subMenu.getItem(i);
 		
 		while (item != null){
-			System.println(item.getId().toString());
-			if (item.getId().toString().equals(idString)){
+			if (item.getId().toString().equals("id"+idString)){
 				return item.getLabel();
 			}
 			i++;
@@ -32,8 +31,7 @@ class GeneralMenuDelegate extends WatchUi.Menu2InputDelegate{
 				if (subMenu == null){
 					item.setSubLabel(value.toString());
 				}else{
-					//System.println(" "+itemId.toString()+" "+subMenu+" "+(subMenu==null));
-					item.setSubLabel(getLabelByIdString(subMenu, item.getId().toString()+value.toString()));
+					item.setSubLabel(getLabelByIdString(subMenu, value.toString()));
 				}
 			}
 		}
@@ -46,6 +44,8 @@ class GeneralMenuDelegate extends WatchUi.Menu2InputDelegate{
 		prepareItem(:T1TZ, null);
 		prepareItem(:PrU, new Rez.Menus.PrUressureUnitMenu());
 		prepareItem(:WU, new Rez.Menus.WUindSpeedUnitMenu());
+		prepareItem(:MilFt, new Rez.Menus.PrUressureUnitMenu());
+		prepareItem(:HFt01, new Rez.Menus.WUindSpeedUnitMenu());
 	}
 	
 	function initialize(menu) {
@@ -159,9 +159,9 @@ class ListMenuDelegate extends  WatchUi.Menu2InputDelegate{
 		Application.Properties.setValue(key, value.toNumber());
 		WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
 
-		System.println(parentItem.getId().toString());
-		System.println(item.getId().toString());
-		System.println(value);
+//		System.println(parentItem.getId().toString());
+//		System.println(item.getId().toString());
+//		System.println(value);
 	}
 	
 }

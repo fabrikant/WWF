@@ -12,176 +12,83 @@
 	<property id="PrU" type="number">0</property>
 	<!--WIND -->
 	<property id="WU" type="number">0</property>
+    <property id="MilFt" type="boolean">false</property>
+	<property id="HFt01" type="boolean">true</property>
 
 
 	<!-- **************************************************************************** -->	
-    <property id="GMilFt" type="boolean">false</property>
-	<property id="GHFt01" type="boolean">true</property>
+	<property id="GTheme" type="number">0</property>
 
-    <property id="GBgndColor" type="number">0x000000</property>
-    <property id="GTimeColor" type="number">0xFFFFFF</property>
-    <property id="GDateColor" type="number">0xFFFFFF</property>
     <property id="GWType" type="number">0</property>
-    <property id="GWColor" type="number">0xFFFFFF</property>
-    <property id="GWAutoColor" type="boolean">true</property>
     <property id="GWShowWindWidget" type="boolean">true</property>
-    <property id="GWindArrowContour" type="boolean">true</property>
     <property id="GShowTopFields" type="boolean">false</property>
     
-    <property id="GBatColor" type="number">0xFFFFFF</property>
-    <property id="GMoonColor" type="number">0xFF5500</property>
-	
 	<!--STATUS FIELDS -->
 	<property id="GSF0" type="number">18</property>
-	<property id="GSFC0" type="number">0xFFFFFF</property>
 	<property id="GSF1" type="number">20</property>
-	<property id="GSFC1" type="number">0xFFFFFF</property>
 	<property id="GSF2" type="number">21</property>
-	<property id="GSFC2" type="number">0xFFFFFF</property>
 	<property id="GSF3" type="number">19</property>
-	<property id="GSFC3" type="number">0xFFFFFF</property>
 	<property id="GSF4" type="number">24</property>
-	<property id="GSFC4" type="number">0xFFFFFF</property>
 	<property id="GSF5" type="number">23</property>
-	<property id="GSFC5" type="number">0xFFFFFF</property>
 
 	<!--FIELSDS TYPES -->
 	<property id="GF0" type="number">9</property>
-	<property id="GC0" type="number">0xFFFFFF</property>
-
 	<property id="GF1" type="number">0</property>
-	<property id="GC1" type="number">0xFFFFFF</property>
-
 	<property id="GF2" type="number">10</property>
-	<property id="GC2" type="number">0xFFFFFF</property>
-
 	<property id="GF3" type="number">4</property>
-	<property id="GC3" type="number">0xFFFFFF</property>
-
 	<property id="GF4" type="number">5</property>
-	<property id="GC4" type="number">0xFFFFFF</property>
-
 	<property id="GF5" type="number">1</property>
-	<property id="GC5" type="number">0xFFFFFF</property>
-
 	<property id="GF6" type="number">26</property>
-	<property id="GC6" type="number">0xFFFFFF</property>
-
 	<property id="GF7" type="number">27</property>
-	<property id="GC7" type="number">0xFFFFFF</property>
 
-<!-- **************************************************************************** -->	
-    <property id="DMilFt" type="boolean">false</property>
-	<property id="DHFt01" type="boolean">true</property>
+	<!-- **************************************************************************** -->	
+	<property id="DTheme" type="number">0</property>
 
-    <property id="DBgndColor" type="number">0x000000</property>
-    <property id="DTimeColor" type="number">0xFFFFFF</property>
-    <property id="DDateColor" type="number">0xFFFFFF</property>
     <property id="DWType" type="number">0</property>
-    <property id="DWColor" type="number">0xFFFFFF</property>
-    <property id="DWAutoColor" type="boolean">true</property>
     <property id="DWShowWindWidget" type="boolean">true</property>
-    <property id="DWindArrowContour" type="boolean">true</property>
     <property id="DShowTopFields" type="boolean">false</property>
     
-    <property id="DBatColor" type="number">0xFFFFFF</property>
-    <property id="DMoonColor" type="number">0xFF5500</property>
-	
 	<!--STATUS FIELDS -->
 	<property id="DSF0" type="number">18</property>
-	<property id="DSFC0" type="number">0xFFFFFF</property>
 	<property id="DSF1" type="number">20</property>
-	<property id="DSFC1" type="number">0xFFFFFF</property>
 	<property id="DSF2" type="number">21</property>
-	<property id="DSFC2" type="number">0xFFFFFF</property>
 	<property id="DSF3" type="number">19</property>
-	<property id="DSFC3" type="number">0xFFFFFF</property>
 	<property id="DSF4" type="number">24</property>
-	<property id="DSFC4" type="number">0xFFFFFF</property>
 	<property id="DSF5" type="number">23</property>
-	<property id="DSFC5" type="number">0xFFFFFF</property>
-	
+
 	<!--FIELSDS TYPES -->
 	<property id="DF0" type="number">9</property>
-	<property id="DC0" type="number">0xFFFFFF</property>
-
 	<property id="DF1" type="number">0</property>
-	<property id="DC1" type="number">0xFFFFFF</property>
-
 	<property id="DF2" type="number">10</property>
-	<property id="DC2" type="number">0xFFFFFF</property>
-
 	<property id="DF3" type="number">4</property>
-	<property id="DC3" type="number">0xFFFFFF</property>
-
 	<property id="DF4" type="number">5</property>
-	<property id="DC4" type="number">0xFFFFFF</property>
-
 	<property id="DF5" type="number">1</property>
-	<property id="DC5" type="number">0xFFFFFF</property>
-
 	<property id="DF6" type="number">26</property>
-	<property id="DC6" type="number">0xFFFFFF</property>
-
 	<property id="DF7" type="number">27</property>
-	<property id="DC7" type="number">0xFFFFFF</property>
+	
+	<!-- **************************************************************************** -->	
+	<property id="NTheme" type="number">0</property>
 
-<!-- **************************************************************************** -->	
-	 
-    <property id="NMilFt" type="boolean">false</property>
-	<property id="NHFt01" type="boolean">true</property>
-
-    <property id="NBgndColor" type="number">0x000000</property>
-    <property id="NTimeColor" type="number">0xFFFFFF</property>
-    <property id="NDateColor" type="number">0xFFFFFF</property>
     <property id="NWType" type="number">0</property>
-    <property id="NWColor" type="number">0xFFFFFF</property>
-    <property id="NWAutoColor" type="boolean">true</property>
     <property id="NWShowWindWidget" type="boolean">true</property>
-    <property id="NWindArrowContour" type="boolean">true</property>
     <property id="NShowTopFields" type="boolean">false</property>
     
-    <property id="NBatColor" type="number">0xFFFFFF</property>
-    <property id="NMoonColor" type="number">0xFF5500</property>
-	
 	<!--STATUS FIELDS -->
 	<property id="NSF0" type="number">18</property>
-	<property id="NSFC0" type="number">0xFFFFFF</property>
 	<property id="NSF1" type="number">20</property>
-	<property id="NSFC1" type="number">0xFFFFFF</property>
 	<property id="NSF2" type="number">21</property>
-	<property id="NSFC2" type="number">0xFFFFFF</property>
 	<property id="NSF3" type="number">19</property>
-	<property id="NSFC3" type="number">0xFFFFFF</property>
 	<property id="NSF4" type="number">24</property>
-	<property id="NSFC4" type="number">0xFFFFFF</property>
 	<property id="NSF5" type="number">23</property>
-	<property id="NSFC5" type="number">0xFFFFFF</property>
-	
+
 	<!--FIELSDS TYPES -->
 	<property id="NF0" type="number">9</property>
-	<property id="NC0" type="number">0xFFFFFF</property>
-
 	<property id="NF1" type="number">0</property>
-	<property id="NC1" type="number">0xFFFFFF</property>
-
 	<property id="NF2" type="number">10</property>
-	<property id="NC2" type="number">0xFFFFFF</property>
-
 	<property id="NF3" type="number">4</property>
-	<property id="NC3" type="number">0xFFFFFF</property>
-
 	<property id="NF4" type="number">5</property>
-	<property id="NC4" type="number">0xFFFFFF</property>
-
 	<property id="NF5" type="number">1</property>
-	<property id="NC5" type="number">0xFFFFFF</property>
-
 	<property id="NF6" type="number">26</property>
-	<property id="NC6" type="number">0xFFFFFF</property>
-
 	<property id="NF7" type="number">27</property>
-	<property id="NC7" type="number">0xFFFFFF</property>
-
 
 </properties>

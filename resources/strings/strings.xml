@@ -156,6 +156,8 @@
 	<string id="SettingsDay" scope="foreground">Day settings</string>
 	<string id="SettingsNight" scope="foreground">Night settings</string>
 	
-	
+	<string id="Theme" scope="foreground">Theme</string>
+	<string id="ThemeDark" scope="foreground">Dark</string>
+	<string id="ThemeLight" scope="foreground">Light</string>
 	
 </strings>

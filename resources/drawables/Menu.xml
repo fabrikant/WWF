@@ -7,6 +7,8 @@
 		<menu-item id="T1TZ" label="@Strings.T1TZ"></menu-item>
 		<menu-item id="PrU" label="@Strings.PrU"></menu-item>
 		<menu-item id="WU" label="@Strings.WU"></menu-item>
+	    <toggle-menu-item id="MilFt" label="@Strings.MilFt"></toggle-menu-item>
+		<toggle-menu-item id="HFt01" label="@Strings.HFt01"></toggle-menu-item>
 		
 		<menu-item id="G" label="@Strings.SettingsGlobal"></menu-item>
 		<menu-item id="D" label="@Strings.SettingsDay"></menu-item>
@@ -15,144 +17,100 @@
 	
 	<menu2 id="PropertiesMenu" title="@Strings.SettingsMenu">
 
-		    <toggle-menu-item id="MilFt" label="@Strings.MilFt"></toggle-menu-item>
-			<toggle-menu-item id="HFt01" label="@Strings.HFt01"></toggle-menu-item>
-			
-		    <menu-item id="BgndColor" label="@Strings.BgndColor"></menu-item>
-		    <menu-item id="TimeColor" label="@Strings.TimeColor"></menu-item>
-		    <menu-item id="DateColor" label="@Strings.DateColor"></menu-item>
+			<menu-item id="Theme" label="@Strings.Theme"></menu-item>
 		    <menu-item id="WType" label="@Strings.WType"></menu-item>
-		    <menu-item id="WColor" label="@Strings.WColor"></menu-item>
-		    <toggle-menu-item id="WAutoColor" label="@Strings.WAutoColor"></toggle-menu-item>
 		    <toggle-menu-item id="WShowWindWidget" label="@Strings.WShowWindWidget"></toggle-menu-item>
-		    <toggle-menu-item id="WindArrowContour" label="@Strings.WindArrowContour"></toggle-menu-item>
 		    <toggle-menu-item id="ShowTopFields" label="@Strings.ShowTopFields"></toggle-menu-item>
 		    
-		    <menu-item id="BatColor" label="@Strings.BatColor"></menu-item>
-		    <menu-item id="MoonColor" label="@Strings.MoonColor"></menu-item>
-			
 			<!--STATUS FIELDS -->
 			<menu-item id="SF0" label="@Strings.SF0"></menu-item>
-			<menu-item id="SFC0" label="@Strings.SFC0"></menu-item>
 			<menu-item id="SF1" label="@Strings.SF1"></menu-item>
-			<menu-item id="SFC1" label="@Strings.SFC1"></menu-item>
 			<menu-item id="SF2" label="@Strings.SF2"></menu-item>
-			<menu-item id="SFC2" label="@Strings.SFC2"></menu-item>
 			<menu-item id="SF3" label="@Strings.SF3"></menu-item>
-			<menu-item id="SFC3" label="@Strings.SFC3"></menu-item>
 			<menu-item id="SF4" label="@Strings.SF4"></menu-item>
-			<menu-item id="SFC4" label="@Strings.SFC4"></menu-item>
 			<menu-item id="SF5" label="@Strings.SF5"></menu-item>
-			<menu-item id="SFC5" label="@Strings.SFC5"></menu-item>
 			
 		
 			<!--FIELSDS TYPES -->
 			<menu-item id="F6" label="@Strings.F6"></menu-item>
-			<menu-item id="C6" label="@Strings.C6"></menu-item>
-		
 			<menu-item id="F7" label="@Strings.F7"></menu-item>
-			<menu-item id="C7" label="@Strings.C7"></menu-item>
-
 			<menu-item id="F0" label="@Strings.F0"></menu-item>
-			<menu-item id="C0" label="@Strings.C0"></menu-item>
-		
 			<menu-item id="F1" label="@Strings.F1"></menu-item>
-			<menu-item id="C1" label="@Strings.C1"></menu-item>
-		
 			<menu-item id="F2" label="@Strings.F2"></menu-item>
-			<menu-item id="C2" label="@Strings.C2"></menu-item>
-		
 			<menu-item id="F3" label="@Strings.F3"></menu-item>
-			<menu-item id="C3" label="@Strings.C3"></menu-item>
-		
 			<menu-item id="F4" label="@Strings.F4"></menu-item>
-			<menu-item id="C4" label="@Strings.C4"></menu-item>
-		
 			<menu-item id="F5" label="@Strings.F5"></menu-item>
-			<menu-item id="C5" label="@Strings.C5"></menu-item>
 	</menu2>
 	
-	<menu2 id="ColorMenu" title="">
-		<menu-item id="Color0xFFFFFF" label="@Strings.COLOR_WHITE" ></menu-item>
-		<menu-item id="Color0x000000" label="@Strings.COLOR_BLACK" ></menu-item>
-		<menu-item id="Color0xAAAAAA" label="@Strings.COLOR_LT_GRAY" ></menu-item>
-		<menu-item id="Color0x555555" label="@Strings.COLOR_DK_GRAY" ></menu-item>
-		<menu-item id="Color0xFF0000" label="@Strings.COLOR_RED" ></menu-item>
-		<menu-item id="Color0xAA0000" label="@Strings.COLOR_DK_RED" ></menu-item>
-		<menu-item id="Color0xFF5500" label="@Strings.COLOR_ORANGE" ></menu-item>
-		<menu-item id="Color0xFFAA00" label="@Strings.COLOR_YELLOW" ></menu-item>
-		<menu-item id="Color0x00FF00" label="@Strings.COLOR_GREEN" ></menu-item>
-		<menu-item id="Color0x00AA00" label="@Strings.COLOR_DK_GREEN" ></menu-item>
-		<menu-item id="Color0x00AAFF" label="@Strings.COLOR_BLUE" ></menu-item>
-		<menu-item id="Color0x0000FF" label="@Strings.COLOR_DK_BLUE" ></menu-item>
-		<menu-item id="Color0xAA00FF" label="@Strings.COLOR_PURPLE" ></menu-item>
-		<menu-item id="Color0xFF00FF" label="@Strings.COLOR_PINK" ></menu-item>
+	<menu2 id="ThemeMenu" title="">
+		<menu-item id="id0" label="@Strings.ThemeDark" ></menu-item>
+		<menu-item id="id1" label="@Strings.ThemeLight" ></menu-item>
 	</menu2>
 
 	<menu2 id="PrUressureUnitMenu" title="">
-		<menu-item id="PrU0" label="@Strings.PrUMmHg" ></menu-item>
-		<menu-item id="PrU1" label="@Strings.PrUPsi" ></menu-item>
-		<menu-item id="PrU2" label="@Strings.PrUInchHg" ></menu-item>
-		<menu-item id="PrU3" label="@Strings.PrUBar" ></menu-item>
-		<menu-item id="PrU4" label="@Strings.PrUKPa" ></menu-item>
+		<menu-item id="id0" label="@Strings.PrUMmHg" ></menu-item>
+		<menu-item id="id1" label="@Strings.PrUPsi" ></menu-item>
+		<menu-item id="id2" label="@Strings.PrUInchHg" ></menu-item>
+		<menu-item id="id3" label="@Strings.PrUBar" ></menu-item>
+		<menu-item id="id4" label="@Strings.PrUKPa" ></menu-item>
 	</menu2>
 
 	<menu2 id="WUindSpeedUnitMenu" title="">
-		<menu-item id="WU0" label="@Strings.SpeedUnitMSec" ></menu-item>
-		<menu-item id="WU1" label="@Strings.SpeedUnitKmH" ></menu-item>
-		<menu-item id="WU2" label="@Strings.SpeedUnitMileH" ></menu-item>
-		<menu-item id="WU3" label="@Strings.SpeedUnitFtSec" ></menu-item>
-		<menu-item id="WU4" label="@Strings.SpeedUnitBof" ></menu-item>
-		<menu-item id="WU5" label="@Strings.SpeedUnitKnots" ></menu-item>
+		<menu-item id="id0" label="@Strings.SpeedUnitMSec" ></menu-item>
+		<menu-item id="id1" label="@Strings.SpeedUnitKmH" ></menu-item>
+		<menu-item id="id2" label="@Strings.SpeedUnitMileH" ></menu-item>
+		<menu-item id="id3" label="@Strings.SpeedUnitFtSec" ></menu-item>
+		<menu-item id="id4" label="@Strings.SpeedUnitBof" ></menu-item>
+		<menu-item id="id5" label="@Strings.SpeedUnitKnots" ></menu-item>
 	</menu2>
 
 	<menu2 id="StatusFieldMenu" title="">
-		<menu-item id="F18" label="@Strings.FIELD_TYPE_CONNECTED" ></menu-item>
-		<menu-item id="F19" label="@Strings.FIELD_TYPE_NOTIFICATIONS" ></menu-item>
-		<menu-item id="F24" label="@Strings.FIELD_TYPE_NOTIFICATIONS_COUNT" ></menu-item>
-		<menu-item id="F20" label="@Strings.FIELD_TYPE_DND" ></menu-item>
-		<menu-item id="F21" label="@Strings.FIELD_TYPE_ALARMS" ></menu-item>
-		<menu-item id="F25" label="@Strings.FIELD_TYPE_ALARMS_COUNT" ></menu-item>
-		<menu-item id="F22" label="@Strings.FIELD_TYPE_AMPM" ></menu-item>
-		<menu-item id="F23" label="@Strings.FIELD_TYPE_SECONDS" ></menu-item>
-		<menu-item id="F12" label="@Strings.FIELD_TYPE_EMPTY" ></menu-item>
+		<menu-item id="id18" label="@Strings.FIELD_TYPE_CONNECTED" ></menu-item>
+		<menu-item id="id19" label="@Strings.FIELD_TYPE_NOTIFICATIONS" ></menu-item>
+		<menu-item id="id24" label="@Strings.FIELD_TYPE_NOTIFICATIONS_COUNT" ></menu-item>
+		<menu-item id="id20" label="@Strings.FIELD_TYPE_DND" ></menu-item>
+		<menu-item id="id21" label="@Strings.FIELD_TYPE_ALARMS" ></menu-item>
+		<menu-item id="id25" label="@Strings.FIELD_TYPE_ALARMS_COUNT" ></menu-item>
+		<menu-item id="id22" label="@Strings.FIELD_TYPE_AMPM" ></menu-item>
+		<menu-item id="id23" label="@Strings.FIELD_TYPE_SECONDS" ></menu-item>
+		<menu-item id="id12" label="@Strings.FIELD_TYPE_EMPTY" ></menu-item>
 	</menu2>
 
 	<menu2 id="FieldMenu" title="">
-		<menu-item id="F0" label="@Strings.FIELD_TYPE_HR"></menu-item>
-		<menu-item id="F1" label="@Strings.FIELD_TYPE_STEPS"></menu-item>
-		<menu-item id="F2" label="@Strings.FIELD_TYPE_PRESSURE"></menu-item>
-		<menu-item id="F3" label="@Strings.FIELD_TYPE_TEMPERATURE"></menu-item>
-		<menu-item id="F4" label="@Strings.FIELD_TYPE_CALORIES"></menu-item>
-		<menu-item id="F5" label="@Strings.FIELD_TYPE_DISTANCE"></menu-item>
-		<menu-item id="F6" label="@Strings.FIELD_TYPE_FLOOR"></menu-item>
-		<menu-item id="F7" label="@Strings.FIELD_TYPE_ELEVATION"></menu-item>
-		<menu-item id="F8" label="@Strings.FIELD_TYPE_SUN_EVENT"></menu-item>
-		<menu-item id="F9" label="@Strings.FIELD_TYPE_SUNRISE"></menu-item>
-		<menu-item id="F10" label="@Strings.FIELD_TYPE_SUNSET"></menu-item>
-		<menu-item id="F11" label="@Strings.FIELD_TYPE_TIME1"></menu-item>
-		<menu-item id="F13" label="@Strings.FIELD_TYPE_ACTIVE_DAY"></menu-item>
-		<menu-item id="F14" label="@Strings.FIELD_TYPE_ACTIVE_WEEK"></menu-item>
-		<menu-item id="F15" label="@Strings.FIELD_TYPE_O2"></menu-item>
-		<menu-item id="F16" label="@Strings.FIELD_TYPE_SOLAR_CHARGE"></menu-item>
-		<menu-item id="F17" label="@Strings.FIELD_TYPE_WEIGHT"></menu-item>
-		<menu-item id="F26" label="@Strings.FIELD_TYPE_WEATHER_PRESSURE"></menu-item>
-		<menu-item id="F27" label="@Strings.FIELD_TYPE_WEATHER_HUM"></menu-item>
-		<menu-item id="F28" label="@Strings.FIELD_TYPE_WEATHER_VISIBILITY"></menu-item>
-		<menu-item id="F29" label="@Strings.FIELD_TYPE_WEATHER_WIND_SPEED"></menu-item>
-		<menu-item id="F30" label="@Strings.FIELD_TYPE_WEATHER_WIND_DEG"></menu-item>
-		<menu-item id="F31" label="@Strings.FIELD_TYPE_WEATHER_UVI"></menu-item>
-		<menu-item id="F32" label="@Strings.FIELD_TYPE_WEATHER_DEW_POINT"></menu-item>
-		<menu-item id="F12" label="@Strings.FIELD_TYPE_EMPTY"></menu-item>
+		<menu-item id="id0" label="@Strings.FIELD_TYPE_HR"></menu-item>
+		<menu-item id="id1" label="@Strings.FIELD_TYPE_STEPS"></menu-item>
+		<menu-item id="id2" label="@Strings.FIELD_TYPE_PRESSURE"></menu-item>
+		<menu-item id="id3" label="@Strings.FIELD_TYPE_TEMPERATURE"></menu-item>
+		<menu-item id="id4" label="@Strings.FIELD_TYPE_CALORIES"></menu-item>
+		<menu-item id="id5" label="@Strings.FIELD_TYPE_DISTANCE"></menu-item>
+		<menu-item id="id6" label="@Strings.FIELD_TYPE_FLOOR"></menu-item>
+		<menu-item id="id7" label="@Strings.FIELD_TYPE_ELEVATION"></menu-item>
+		<menu-item id="id8" label="@Strings.FIELD_TYPE_SUN_EVENT"></menu-item>
+		<menu-item id="id9" label="@Strings.FIELD_TYPE_SUNRISE"></menu-item>
+		<menu-item id="id10" label="@Strings.FIELD_TYPE_SUNSET"></menu-item>
+		<menu-item id="id11" label="@Strings.FIELD_TYPE_TIME1"></menu-item>
+		<menu-item id="id13" label="@Strings.FIELD_TYPE_ACTIVE_DAY"></menu-item>
+		<menu-item id="id14" label="@Strings.FIELD_TYPE_ACTIVE_WEEK"></menu-item>
+		<menu-item id="id15" label="@Strings.FIELD_TYPE_O2"></menu-item>
+		<menu-item id="id16" label="@Strings.FIELD_TYPE_SOLAR_CHARGE"></menu-item>
+		<menu-item id="id17" label="@Strings.FIELD_TYPE_WEIGHT"></menu-item>
+		<menu-item id="id26" label="@Strings.FIELD_TYPE_WEATHER_PRESSURE"></menu-item>
+		<menu-item id="id27" label="@Strings.FIELD_TYPE_WEATHER_HUM"></menu-item>
+		<menu-item id="id28" label="@Strings.FIELD_TYPE_WEATHER_VISIBILITY"></menu-item>
+		<menu-item id="id29" label="@Strings.FIELD_TYPE_WEATHER_WIND_SPEED"></menu-item>
+		<menu-item id="id30" label="@Strings.FIELD_TYPE_WEATHER_WIND_DEG"></menu-item>
+		<menu-item id="id31" label="@Strings.FIELD_TYPE_WEATHER_UVI"></menu-item>
+		<menu-item id="id32" label="@Strings.FIELD_TYPE_WEATHER_DEW_POINT"></menu-item>
+		<menu-item id="id12" label="@Strings.FIELD_TYPE_EMPTY"></menu-item>
 	</menu2>
 
 	<menu2 id="WidgetTypeMenu" title="">
-		<menu-item id="T0" label="@Strings.WTypeWeather"></menu-item>
-		<menu-item id="T1" label="@Strings.WTypeHeartRateHistory"></menu-item>
-		<menu-item id="T2" label="@Strings.WTypeSaturationHistory"></menu-item>
-		<menu-item id="T3" label="@Strings.WTypeTemperatureHistory"></menu-item>
-		<menu-item id="T4" label="@Strings.WTypePressureHistory"></menu-item>
-		<menu-item id="T5" label="@Strings.WTypeElevationHistory"></menu-item>
+		<menu-item id="id0" label="@Strings.WTypeWeather"></menu-item>
+		<menu-item id="id1" label="@Strings.WTypeHeartRateHistory"></menu-item>
+		<menu-item id="id2" label="@Strings.WTypeSaturationHistory"></menu-item>
+		<menu-item id="id3" label="@Strings.WTypeTemperatureHistory"></menu-item>
+		<menu-item id="id4" label="@Strings.WTypePressureHistory"></menu-item>
+		<menu-item id="id5" label="@Strings.WTypeElevationHistory"></menu-item>
 	</menu2>
 
 </menus>

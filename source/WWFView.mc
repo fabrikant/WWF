@@ -53,7 +53,6 @@ class WWFView extends WatchUi.WatchFace {
     			:h => h,
     			:w => w,
     			:type => :time,
-    			:fieldColor => StorageSettings.getSettingValue(mode+"TimeColor"),
     			:fontId => :time,
     			:justify => Graphics.TEXT_JUSTIFY_CENTER
     		}
@@ -73,7 +72,6 @@ class WWFView extends WatchUi.WatchFace {
     			:h => h,
     			:w => w,
     			:type => :date,
-    			:fieldColor => StorageSettings.getSettingValue(mode+"DateColor"),
     			:fontId => :small_letters,
     			:justify => Graphics.TEXT_JUSTIFY_CENTER
     		}
@@ -109,7 +107,6 @@ class WWFView extends WatchUi.WatchFace {
 	    			:h => h,
 	    			:w => w,
 	    			:type =>type,
-	    			:fieldColor => StorageSettings.getSettingValue(mode+"SFC"+i),
 					:fontId =>  memoryCache.getFontByFieldType(type),
 	    			:justify => coord[i][2]
 	    		}
@@ -128,7 +125,6 @@ class WWFView extends WatchUi.WatchFace {
 		}
 		
 		currentTop -= h;
-		var wColor = StorageSettings.getSettingValue(mode+"WColor");
 		if (showWeather){
 			var fromPictureToTemp = 5;
 	        fields[:weather_picture] = new BitmapField(
@@ -138,7 +134,6 @@ class WWFView extends WatchUi.WatchFace {
 	    			:h => h,
 	    			:w => w-fromPictureToTemp,
 	    			:type => :weather_picture,
-	    			:fieldColor => wColor,
 	    			:fontId => :weather,
 	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
 	    		}
@@ -152,7 +147,6 @@ class WWFView extends WatchUi.WatchFace {
 	    			:h => h,
 	    			:w => w+fromPictureToTemp,
 	    			:type => :weather_temp,
-	    			:fieldColor => wColor,
 	    			:fontId => :medium,
 	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
 	    		}
@@ -167,7 +161,6 @@ class WWFView extends WatchUi.WatchFace {
 		    			:h => fields[:weather_temp].h,
 		    			:w => fields[:weather_temp].w,
 		    			:type => :weather_wind_widget,
-		    			:fieldColor => wColor,
 		    			:fontId => :small_letters,
 		    			:justify => Graphics.TEXT_JUSTIFY_CENTER
 		    		}
@@ -196,7 +189,6 @@ class WWFView extends WatchUi.WatchFace {
 	    			:h => h,
 	    			:w => wMulti*w,
 	    			:type => graphType,
-	    			:fieldColor => wColor,
 	    			:fontId => :small_letters,
 	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
 	    		}
@@ -230,7 +222,6 @@ class WWFView extends WatchUi.WatchFace {
 
 			var idPicture = "P"+i;
 	        var id = "F"+i;
-			var color = StorageSettings.getSettingValue(mode+"C"+i);
 	        
 	        fields[idPicture] = new ImageField(
 	    		{
@@ -239,7 +230,6 @@ class WWFView extends WatchUi.WatchFace {
 	    			:h => h,
 	    			:w => wPicture,
 	    			:type => memoryCache.getPictureType(id),
-	    			:fieldColor => color,
 					:fontId => :picture,
 	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
 	    		}
@@ -252,7 +242,6 @@ class WWFView extends WatchUi.WatchFace {
 	    			:h => h,
 	    			:w => wText,
 	    			:type => StorageSettings.getSettingValue(mode+id),
-	    			:fieldColor => color,
 					:fontId => :small,
 	    			:justify => Graphics.TEXT_JUSTIFY_LEFT
 	    		}
@@ -285,7 +274,6 @@ class WWFView extends WatchUi.WatchFace {
 		//BATTERY
 		h = fields["F0"].h;
 		w = fields["F0"].w;
-		var bColor = StorageSettings.getSettingValue(mode+"BatColor");
         fields[:battery_picture] = new BatteryField(
     		{
     			:x => System.getDeviceSettings().screenWidth/2-w,
@@ -293,7 +281,6 @@ class WWFView extends WatchUi.WatchFace {
     			:h => h,
     			:w => w,
     			:type => :battery_picture,
-    			:fieldColor => bColor,
     			:fontId => :small,
     			:justify => Graphics.TEXT_JUSTIFY_LEFT
     		}
@@ -306,7 +293,6 @@ class WWFView extends WatchUi.WatchFace {
     			:h => h,
     			:w => w,
     			:type => :battery,
-    			:fieldColor => bColor,
     			:fontId => :small,
     			:justify => Graphics.TEXT_JUSTIFY_LEFT
     		}
@@ -322,11 +308,20 @@ class WWFView extends WatchUi.WatchFace {
     			:h => 2*hDataField,
     			:w => 2*hDataField,
     			:type => :moon,
-    			:fieldColor => StorageSettings.getSettingValue(mode+"MoonColor"),
     			:fontId => :small,
     			:justify => Graphics.TEXT_JUSTIFY_CENTER
     		}
     	);
+		
+		var keys = fields.keys();
+		for (var i = 0; i < keys.size(); i++){
+//			System.println(keys[i].toString());
+//			System.println(fields[keys[i]]);
+//			var type = fields[keys[i]]["type"];
+//			if (fields[keys[i]].type == SECONDS || fields[keys[i]].type == HR){
+//				memoryCache.addEverySecondField(type);
+//			}
+		}
 
 
     }
@@ -370,7 +365,7 @@ class WWFView extends WatchUi.WatchFace {
     }
 
 	function drawBackground(dc){
-		var color = StorageSettings.getSettingValue(memoryCache.mode+"BgndColor");
+		var color = memoryCache.getBackgroundColor();
 		dc.setColor(color, color);
 		dc.setClip(0, 0, dc.getWidth(), dc.getHeight());
 		dc.fillRectangle(0, 0, dc.getWidth(), dc.getHeight());

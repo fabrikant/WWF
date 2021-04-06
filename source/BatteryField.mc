@@ -10,7 +10,7 @@ class BatteryField extends SimpleField{
 
 	function draw(dc, value){
 		clear(dc);
-		if (fieldColor == getBackgroundColor()){
+		if (getColor() == getBackgroundColor()){
 			return;
 		}
 		drawBattery(dc, value);
@@ -39,7 +39,6 @@ class BatteryField extends SimpleField{
 
 		//Заполнение
 		if (value > 20){
-			//dc.setColor(memoryCache.settings[:colors][fieldColor], Graphics.COLOR_TRANSPARENT);
 			dc.setColor(Graphics.COLOR_DK_GREEN, Graphics.COLOR_TRANSPARENT);
 		}else{
 			dc.setColor(Graphics.COLOR_DK_RED, Graphics.COLOR_TRANSPARENT);

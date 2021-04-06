@@ -10,7 +10,8 @@ class WindDWidget extends SimpleField{
 	function draw(dc, values){
 
 		clear(dc);
-		if (fieldColor == getBackgroundColor()){
+		var color = getColor();
+		if (color == getBackgroundColor()){
 			return;
 		}
 		var ratio = 0.5;
@@ -18,26 +19,12 @@ class WindDWidget extends SimpleField{
 		var direction = values[:weather_wind_dir];
 		if (direction != -1){
 			var windDirection = Tools.windDirection(h*ratio*0.9, direction.toNumber(), [x, y], [w*ratio, h*ratio]);
-			dc.setColor(getColor(), Graphics.COLOR_TRANSPARENT);
+			dc.setColor(color, Graphics.COLOR_TRANSPARENT);
 			if (dc has :setAntiAlias){
 				dc.setAntiAlias(true);
 			}
 			
-			if (StorageSettings.getSettingValue(memoryCache.mode+"WindArrowContour")){
-				dc.setPenWidth(2);
-				var arSize = windDirection.size();
-				for (var i = 1; i <= arSize; i++){
-					dc.drawLine(
-						windDirection[i%arSize][0], 
-						windDirection[i%arSize][1], 
-						windDirection[(i+1)%arSize][0], 
-						windDirection[(i+1)%arSize][1]
-					);
-				}
-				dc.setPenWidth(1);
-			}else{
-				dc.fillPolygon(windDirection);
-			}
+			dc.fillPolygon(windDirection);
 		}
 		
 		//text

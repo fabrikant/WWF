@@ -11,7 +11,7 @@ class WindDirectionField extends SimpleField{
 	function draw(dc, direction){
 
 		clear(dc);
-		if (memoryCache.settings[:colors][fieldColor] == getBackgroundColor()){
+		if (getColor() == getBackgroundColor()){
 			return;
 		}
 		if (direction != -1){
@@ -21,18 +21,9 @@ class WindDirectionField extends SimpleField{
 			}
 			
 			var windDirection = Tools.windDirection(h*0.9, direction.toNumber(), [x, y], [w, h]);
-			if (StorageSettings.getSettingValue(memoryCache.mode+"WindArrowContour")){
-				var arSize = windDirection.size();
-				for (var i = 1; i <= arSize; i++){
-					dc.drawLine(
-						windDirection[i%arSize][0], 
-						windDirection[i%arSize][1], 
-						windDirection[(i+1)%arSize][0], 
-						windDirection[(i+1)%arSize][1]
-					);
-				}
-			}else{
-				dc.fillPolygon(windDirection);
+			dc.fillPolygon(windDirection);
+			if (dc has :setAntiAlias){
+				dc.setAntiAlias(false);
 			}
 		}
 		drawBorder(dc);

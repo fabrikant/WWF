@@ -59,6 +59,8 @@ enum{
 	STORAGE_KEY_GLOBAL = "G",
 	STORAGE_KEY_DAY = "D",
 	STORAGE_KEY_NIGHT = "N",
+	DARK = 0,
+	LIGHT = 1,
 }
 
 const FIELDS_COUNT = 8;
