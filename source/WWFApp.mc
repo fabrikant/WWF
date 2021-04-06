@@ -29,19 +29,18 @@ class WWFApp extends Application.AppBase {
 
     // New app settings have been received so trigger a UI update
     function onSettingsChanged() {
-     	//memoryCache = new MemoryCache();
      	memoryCache.reload();
     	WatchUi.requestUpdate();
     	registerEvents();
     }
 	
-//	function getSettingsView(){
-//
-//		//var menu = new GeneralMenu();
-//		var menu = new Rez.Menus.GeneralMenu();
-//		return [ menu, new GeneralMenuDelegate(menu)];
-//
-//	}
+	function getSettingsView(){
+
+		//var menu = new GeneralMenu();
+		var menu = new Rez.Menus.GeneralMenu();
+		return [ menu, new GeneralMenuDelegate(menu)];
+
+	}
 
 	///////////////////////////////////////////////////////////////////////////
 	// Background

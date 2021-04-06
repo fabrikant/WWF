@@ -313,16 +313,14 @@ class WWFView extends WatchUi.WatchFace {
     		}
     	);
 		
+		memoryCache.everySecondFields = null;
 		var keys = fields.keys();
 		for (var i = 0; i < keys.size(); i++){
-//			System.println(keys[i].toString());
-//			System.println(fields[keys[i]]);
-//			var type = fields[keys[i]]["type"];
-//			if (fields[keys[i]].type == SECONDS || fields[keys[i]].type == HR){
-//				memoryCache.addEverySecondField(type);
-//			}
+			var type = fields[keys[i]].type;
+			if (type == SECONDS || type == HR){
+				memoryCache.addEverySecondField(fields[keys[i]]);
+			}
 		}
-
 
     }
 
@@ -441,9 +439,10 @@ class WWFView extends WatchUi.WatchFace {
 		}
 		if (memoryCache.everySecondFields.size()>0){
 			for (var i = 0; i < memoryCache.everySecondFields.size(); i++){
-				var fieldId = memoryCache.everySecondFields[i];
-				var value = Data.getFieldValue(fields[fieldId]);
-				fields[fieldId].draw(dc, value);
+				if (memoryCache.everySecondFields[i] instanceof SimpleField){
+					var value = Data.getFieldValue(memoryCache.everySecondFields[i]);
+					memoryCache.everySecondFields[i].draw(dc, value);
+				}
 			}
 		}
 	}

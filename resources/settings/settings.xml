@@ -9,6 +9,15 @@
 		<settingConfig type="boolean" />
 	</setting>
 
+	<setting propertyKey="@Properties.DF"
+		title="@Strings.DF" prompt="@Strings.DFHELP">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+
+  	<setting propertyKey="@Properties.T1TZ" title="@Strings.T1TZ">
+		<settingConfig type="numeric" min="-720" max="840"/>
+	</setting>
+
 <!-- 
 	<setting propertyKey="@Properties.SettingsType"
 		title="@Strings.SettingsType">
@@ -33,10 +42,6 @@
 	</setting>
 
 
-	<setting propertyKey="@Properties.DF"
-		title="@Strings.DF" prompt="@Strings.DFHELP">
-		<settingConfig type="alphaNumeric" />
-	</setting>
 
 
 	<setting propertyKey="@Properties.PrU"
@@ -63,9 +68,6 @@
 		</settingConfig>
 	</setting>
 
-  	<setting propertyKey="@Properties.T1TZ" title="@Strings.T1TZ">
-		<settingConfig type="numeric" min="-720" max="840"/>
-	</setting>
   
     <setting propertyKey="@Properties.BgndColor" title="@Strings.BgndColor">
         <settingConfig type="list">
