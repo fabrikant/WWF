@@ -212,7 +212,8 @@ module Data{
 
 			if (field.oldValue == null || memoryCache.flags[:moonDay] == null || memoryCache.flags[:moonDay] != today.day){
 				memoryCache.flags[:moonDay] = today.day;
-				res = moonPhaseString();
+				res = Tools.moonPhase(now);
+				//System.println("res "+Tools.moonPhase(now));
 	 		}else{
 	 			res = field.oldValue;
 			}

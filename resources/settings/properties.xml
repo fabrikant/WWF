@@ -70,9 +70,7 @@
 	<property id="GF7" type="number">27</property>
 	<property id="GC7" type="number">0xFFFFFF</property>
 
-
-
-	<!-- **************************************************************************** -->	
+<!-- **************************************************************************** -->	
     <property id="DMilFt" type="boolean">false</property>
 	<property id="DHFt01" type="boolean">true</property>
 
@@ -128,7 +126,8 @@
 	<property id="DF7" type="number">27</property>
 	<property id="DC7" type="number">0xFFFFFF</property>
 
-	<!-- **************************************************************************** -->	
+<!-- **************************************************************************** -->	
+	 
     <property id="NMilFt" type="boolean">false</property>
 	<property id="NHFt01" type="boolean">true</property>
 
@@ -183,5 +182,6 @@
 
 	<property id="NF7" type="number">27</property>
 	<property id="NC7" type="number">0xFFFFFF</property>
+
 
 </properties>

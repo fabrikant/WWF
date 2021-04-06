@@ -62,16 +62,6 @@ class SimpleField {
 		}else{
 			return fieldColor;
 		}			
-		
-//		var res =  memoryCache.settings[:colors][fieldColor];
-//		if (type == :weather_temp){
-//			res = memoryCache.settings[:autoColors][:temp];
-//		} else if (type == :weather_wind_dir || type == :weather_wind_speed || type == :weather_wind_speed_unit || type == :weather_wind_widget){
-//			res = memoryCache.settings[:autoColors][:wind];
-//		} else if (type == :weather_picture){
-//			res = memoryCache.settings[:autoColors][:cloud];
-//		}
-//		return res;
 	}
 
 	function needUpdate(value){

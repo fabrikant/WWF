@@ -19,7 +19,6 @@ class WWFView extends WatchUi.WatchFace {
 
     // Load your resources here
     function onLayout(dc) {
-    	//createFields(dc);
 	}
 	
 	function initFonts(){
@@ -316,18 +315,18 @@ class WWFView extends WatchUi.WatchFace {
 		///////////////////////////////////////////////////////////////////////
 		//Moon phase
 
-//    	 fields[:moon] = new SimpleField(
-//    		{
-//    			:x => (System.getDeviceSettings().screenWidth - 2*hDataField)/2,
-//    			:y => fields["F5"].y + fields["F5"].h,
-//    			:h => 2*hDataField,
-//    			:w => 2*hDataField,
-//    			:type => :moon,
-//    			:fieldColor => StorageSettings.getSettingValue(mode+"MoonColor"),
-//    			:fontId => :small,
-//    			:justify => Graphics.TEXT_JUSTIFY_CENTER
-//    		}
-//    	);
+    	 fields[:moon] = new MoonField(
+    		{
+    			:x => (System.getDeviceSettings().screenWidth - 2*hDataField)/2,
+    			:y => fields["F5"].y + fields["F5"].h,
+    			:h => 2*hDataField,
+    			:w => 2*hDataField,
+    			:type => :moon,
+    			:fieldColor => StorageSettings.getSettingValue(mode+"MoonColor"),
+    			:fontId => :small,
+    			:justify => Graphics.TEXT_JUSTIFY_CENTER
+    		}
+    	);
 
 
     }

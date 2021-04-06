@@ -35,13 +35,13 @@ class WWFApp extends Application.AppBase {
     	registerEvents();
     }
 	
-	function getSettingsView(){
-
-		//var menu = new GeneralMenu();
-		var menu = new Rez.Menus.GeneralMenu();
-		return [ menu, new GeneralMenuDelegate(menu)];
-
-	}
+//	function getSettingsView(){
+//
+//		//var menu = new GeneralMenu();
+//		var menu = new Rez.Menus.GeneralMenu();
+//		return [ menu, new GeneralMenuDelegate(menu)];
+//
+//	}
 
 	///////////////////////////////////////////////////////////////////////////
 	// Background

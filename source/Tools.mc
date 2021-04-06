@@ -362,7 +362,8 @@ module Tools {
 	    IP1 = normalize( ( JD1 - 2451550.1 ) / 29.530588853 );
 	    var AG1 = IP1*29.53;
 
-		return AG1.toNumber();
+		//return AG1.toNumber();
+		return IP1;
 
     }
 
