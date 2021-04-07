@@ -38,11 +38,11 @@ class GeneralMenuDelegate extends WatchUi.Menu2InputDelegate{
 		}
 	}
 	
-	function getSubMenu(itemIdString){
+	function getSubMenu(itemId){
 		var res = null;
-		if (itemIdString.equals("PrU")){
+		if (itemId == :PrU){
 			res = new Rez.Menus.PrUressureUnitMenu();
-		}else if (itemIdString.equals("WU")){
+		}else if (itemId == :WU){
 			res = new Rez.Menus.WUindSpeedUnitMenu();
 		}
 		return res;
@@ -53,8 +53,8 @@ class GeneralMenuDelegate extends WatchUi.Menu2InputDelegate{
 		prepareItem(:keyOW, null);
 		prepareItem(:DF, null);
 		prepareItem(:T1TZ, null);
-		prepareItem(:PrU, new Rez.Menus.PrUressureUnitMenu());
-		prepareItem(:WU, new Rez.Menus.WUindSpeedUnitMenu());
+		prepareItem(:PrU, getSubMenu(:PrU));
+		prepareItem(:WU, getSubMenu(:WU));
 		prepareItem(:MilFt, null);
 		prepareItem(:HFt01, null);
 	}
@@ -66,16 +66,17 @@ class GeneralMenuDelegate extends WatchUi.Menu2InputDelegate{
 	}
 	
 	function onSelect(item){
-		var itemIdString = item.getId().toString();
+		var itemId = item.getId();
+		var itemIdString = itemId.toString();
 		if (item instanceof WatchUi.ToggleMenuItem){
 			Application.Properties.setValue(itemIdString, item.isEnabled());
 		}else{
-			if (itemIdString.equals("keyOW")){
-			}else if (itemIdString.equals("DF")){
-			}else if (itemIdString.equals("T1TZ")){
-			}else if (itemIdString.equals("DF")){
-			}else if (itemIdString.equals("PrU") || itemIdString.equals("WU")){
-				var subMenu = getSubMenu(itemIdString);
+			if (itemId == :keyOW){
+			}else if (itemId == :DF){
+			}else if (itemId == :T1TZ){
+			}else if (itemId == :DF){
+			}else if (itemId == :PrU || itemId == :WU){
+				var subMenu = getSubMenu(itemId);
 				subMenu.setTitle(item.getLabel());
 				WatchUi.pushView(subMenu, new ListMenuDelegate(item, ""), WatchUi.SLIDE_IMMEDIATE);
 			}else{
@@ -92,15 +93,15 @@ class PropertiesMenuDelegate extends GeneralMenuDelegate{
 
 	var mode;
 	
-	function getSubMenu(itemIdString){
+	function getSubMenu(itemId){
 		var res = null;
-		if (itemIdString.equals("WType")){
+		if (itemId == :WType){
 			res = new Rez.Menus.WidgetTypeMenu();
-		}else if (itemIdString.equals("Theme")){
+		}else if (itemId == :Theme){
 			res = new Rez.Menus.ThemeMenu();
-		}else if (itemIdString.substring(0, 2).equals("SF")){
+		}else if (itemId == :SF0 || itemId == :SF1 || itemId == :SF2 || itemId == :SF3 || itemId == :SF4 || itemId == :SF5){
 			res = new Rez.Menus.StatusFieldMenu();
-		}else if (itemIdString.substring(0, 1).equals("F")){
+		}else if ((itemId == :F0 || itemId == :F1 || itemId == :F2 || itemId == :F3 || itemId == :F4 || itemId == :F5 || itemId == :F6 || itemId == :F7)){
 			res = new Rez.Menus.FieldMenu();
 		}
 		return res;
@@ -115,8 +116,9 @@ class PropertiesMenuDelegate extends GeneralMenuDelegate{
 			if (item instanceof WatchUi.ToggleMenuItem){
 				item.setEnabled(value);
 			}else if (item instanceof WatchUi.MenuItem){
-				var itemIdString = item.getId().toString();
-				var subMenu = getSubMenu(itemIdString);
+				var itemId = item.getId();
+				var itemIdString = itemId.toString();
+				var subMenu = getSubMenu(itemId);
 				if (subMenu != null){
 					item.setSubLabel(getLabelByIdString(subMenu, value));
 				}else{
@@ -134,11 +136,12 @@ class PropertiesMenuDelegate extends GeneralMenuDelegate{
 	}
 	
 	function onSelect(item){
-		var itemIdString = item.getId().toString();
+		var itemId = item.getId();
+		var itemIdString = itemId.toString();
 		if (item instanceof WatchUi.ToggleMenuItem){
 			Application.Properties.setValue(mode+itemIdString, item.isEnabled());
 		}else{
-			var subMenu = getSubMenu(itemIdString);
+			var subMenu = getSubMenu(itemId);
 			if (subMenu != null){
 				subMenu.setTitle(item.getLabel());
 				WatchUi.pushView(subMenu, new ListMenuDelegate(item, mode), WatchUi.SLIDE_IMMEDIATE);
