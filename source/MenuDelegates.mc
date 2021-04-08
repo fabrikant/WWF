@@ -14,14 +14,24 @@ class GeneralMenuDelegate extends WatchUi.Menu2InputDelegate{
 	}
 	
 	private function prepareMenu(){
-		prepareItem(:SwitchDayNight, null);
-		prepareItem(:keyOW, null);
-		prepareItem(:DF, null);
-		prepareItem(:T1TZ, null);
-		prepareItem(:PrU, getSubMenu(:PrU));
-		prepareItem(:WU, getSubMenu(:WU));
-		prepareItem(:MilFt, null);
-		prepareItem(:HFt01, null);
+		var i=0;
+		var item = menu.getItem(i);
+		while (item != null){
+			var itemId = item.getId();
+			if (itemId != :G && itemId != :D && itemId != :N){
+				var itemIdString = itemId.toString();
+				var value = Application.Properties.getValue(itemIdString);
+				if (itemIsTogle(itemId)){
+					item.setEnabled(value);
+				}else {
+					item.setSubLabel(StorageSettings.propertyDescription(itemIdString, value));
+				}
+			}
+			i++;
+			item = menu.getItem(i);
+		}		 
+
+
 	}
 
 	function getLabelByIdString(subMenu, searchString){
@@ -120,14 +130,7 @@ class PropertiesMenuDelegate extends GeneralMenuDelegate{
 			if (itemIsTogle(itemId)){
 				item.setEnabled(value);
 			}else {
-				var subMenu = getSubMenu(itemId);
-				if (subMenu != null){
-//					System.println(mode+itemIdString);
-//					System.println(value);
-					item.setSubLabel(getLabelByIdString(subMenu, "id"+value.toString()));
-				}else{
-					item.setSubLabel(value.toString());
-				}
+				item.setSubLabel(StorageSettings.propertyDescription(itemIdString, value));
 			}
 			i++;
 			item = menu.getItem(i);

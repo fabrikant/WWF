@@ -17,29 +17,29 @@
 	
 	<menu2 id="PropertiesMenu" title="@Strings.SettingsMenu">
 
-			<menu-item id="Theme" label="@Strings.Theme"></menu-item>
-		    <menu-item id="WType" label="@Strings.WType"></menu-item>
-		    <toggle-menu-item id="WShowWindWidget" label="@Strings.WShowWindWidget"></toggle-menu-item>
-		    <toggle-menu-item id="ShowTopFields" label="@Strings.ShowTopFields"></toggle-menu-item>
-		    
-			<!--STATUS FIELDS -->
-			<menu-item id="SF0" label="@Strings.SF0"></menu-item>
-			<menu-item id="SF1" label="@Strings.SF1"></menu-item>
-			<menu-item id="SF2" label="@Strings.SF2"></menu-item>
-			<menu-item id="SF3" label="@Strings.SF3"></menu-item>
-			<menu-item id="SF4" label="@Strings.SF4"></menu-item>
-			<menu-item id="SF5" label="@Strings.SF5"></menu-item>
-			
+		<menu-item id="Theme" label="@Strings.Theme"></menu-item>
+		<menu-item id="WType" label="@Strings.WType"></menu-item>
+		<toggle-menu-item id="WShowWindWidget" label="@Strings.WShowWindWidget"></toggle-menu-item>
+		<toggle-menu-item id="ShowTopFields" label="@Strings.ShowTopFields"></toggle-menu-item>
+		   
+		<!--STATUS FIELDS -->
+		<menu-item id="SF0" label="@Strings.SF0"></menu-item>
+		<menu-item id="SF1" label="@Strings.SF1"></menu-item>
+		<menu-item id="SF2" label="@Strings.SF2"></menu-item>
+		<menu-item id="SF3" label="@Strings.SF3"></menu-item>
+		<menu-item id="SF4" label="@Strings.SF4"></menu-item>
+		<menu-item id="SF5" label="@Strings.SF5"></menu-item>
 		
-			<!--FIELSDS TYPES -->
-			<menu-item id="F6" label="@Strings.F6"></menu-item>
-			<menu-item id="F7" label="@Strings.F7"></menu-item>
-			<menu-item id="F0" label="@Strings.F0"></menu-item>
-			<menu-item id="F1" label="@Strings.F1"></menu-item>
-			<menu-item id="F2" label="@Strings.F2"></menu-item>
-			<menu-item id="F3" label="@Strings.F3"></menu-item>
-			<menu-item id="F4" label="@Strings.F4"></menu-item>
-			<menu-item id="F5" label="@Strings.F5"></menu-item>
+		
+		<!--FIELSDS TYPES -->
+		<menu-item id="F6" label="@Strings.F6"></menu-item>
+		<menu-item id="F7" label="@Strings.F7"></menu-item>
+		<menu-item id="F0" label="@Strings.F0"></menu-item>
+		<menu-item id="F1" label="@Strings.F1"></menu-item>
+		<menu-item id="F2" label="@Strings.F2"></menu-item>
+		<menu-item id="F3" label="@Strings.F3"></menu-item>
+		<menu-item id="F4" label="@Strings.F4"></menu-item>
+		<menu-item id="F5" label="@Strings.F5"></menu-item>
 	</menu2>
 	
 	<menu2 id="ThemeMenu" title="">
@@ -114,3 +114,6 @@
 	</menu2>
 
 </menus>
+
+
+
