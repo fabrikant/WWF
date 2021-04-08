@@ -6,49 +6,14 @@ using Toybox.Application;
 class GeneralMenuDelegate extends WatchUi.Menu2InputDelegate{
 
 	var menu;
-	
-	hidden function getLabelByIdString(subMenu, idString){
-		var i=0;
-		var item = subMenu.getItem(i);
-		
-		while (item != null){
-			if (item.getId().toString().equals("id"+idString)){
-				return item.getLabel();
-			}
-			i++;
-			item = subMenu.getItem(i);
-		}		 
-	}
-	
-	hidden function prepareItem(itemId, subMenu){
-		var itemIdx = menu.findItemById(itemId);
-		if (itemIdx > -1){
-			var item = menu.getItem(itemIdx);
-			var value = Application.Properties.getValue(itemId.toString());
-			if (item instanceof WatchUi.ToggleMenuItem){
-				item.setEnabled(value);
-			}else if (item instanceof WatchUi.MenuItem){
-				
-				if (subMenu == null){
-					item.setSubLabel(value.toString());
-				}else{
-					item.setSubLabel(getLabelByIdString(subMenu, value.toString()));
-				}
-			}
-		}
-	}
-	
-	function getSubMenu(itemId){
-		var res = null;
-		if (itemId == :PrU){
-			res = new Rez.Menus.PrUressureUnitMenu();
-		}else if (itemId == :WU){
-			res = new Rez.Menus.WUindSpeedUnitMenu();
-		}
-		return res;
-	}
 
-	function prepareMenu(){
+	function initialize(menu) {
+		self.menu = menu;
+		prepareMenu();
+		Menu2InputDelegate.initialize();
+	}
+	
+	private function prepareMenu(){
 		prepareItem(:SwitchDayNight, null);
 		prepareItem(:keyOW, null);
 		prepareItem(:DF, null);
@@ -58,44 +23,50 @@ class GeneralMenuDelegate extends WatchUi.Menu2InputDelegate{
 		prepareItem(:MilFt, null);
 		prepareItem(:HFt01, null);
 	}
-	
-	function initialize(menu) {
-		Menu2InputDelegate.initialize();
-		self.menu = menu;
-		//prepareMenu();
+
+	function getLabelByIdString(subMenu, searchString){
+		var i=0;
+		var item = subMenu.getItem(i);
+		
+		while (item != null){
+			if (item.getId().toString().equals(searchString)){
+				return item.getLabel();
+			}
+			i++;
+			item = subMenu.getItem(i);
+		}		 
 	}
 	
-	function onSelect(item){
-		var itemId = item.getId();
-		var itemIdString = itemId.toString();
-		if (item instanceof WatchUi.ToggleMenuItem){
-			Application.Properties.setValue(itemIdString, item.isEnabled());
-		}else{
-			if (itemId == :keyOW){
-			}else if (itemId == :DF){
-			}else if (itemId == :T1TZ){
-			}else if (itemId == :DF){
-			}else if (itemId == :PrU || itemId == :WU){
-				var subMenu = getSubMenu(itemId);
-				subMenu.setTitle(item.getLabel());
-				WatchUi.pushView(subMenu, new ListMenuDelegate(item, ""), WatchUi.SLIDE_IMMEDIATE);
+	function prepareItem(itemId, subMenu){
+		var itemIdx = menu.findItemById(itemId);
+		if (itemIdx > -1){
+			var item = menu.getItem(itemIdx);
+			var value = Application.Properties.getValue(itemId.toString());
+			if (itemIsTogle(itemId)){
+				item.setEnabled(value);
 			}else{
-				var menu = new Rez.Menus.PropertiesMenu();
-				menu.setTitle(item.getLabel());
-				WatchUi.pushView(menu, new PropertiesMenuDelegate(menu, itemIdString), WatchUi.SLIDE_IMMEDIATE);				
-			} 
+				if (subMenu == null){
+					item.setSubLabel(value.toString());
+				}else{
+//					System.println(itemId.toString());
+//					System.println("id"+value.toString());
+					item.setSubLabel(getLabelByIdString(subMenu, "id"+value.toString()));
+				}
+			}
 		}
 	}
-}
-
-//*****************************************************************************
-class PropertiesMenuDelegate extends GeneralMenuDelegate{
-
-	var mode;
 	
+	hidden function itemIsTogle(itemId){
+		return itemId == :SwitchDayNight || itemId == :MilFt || itemId == :HFt01 || itemId == :WShowWindWidget || itemId == :ShowTopFields;
+	}
+
 	function getSubMenu(itemId){
 		var res = null;
-		if (itemId == :WType){
+		if (itemId == :PrU){
+			res = new Rez.Menus.PrUressureUnitMenu();
+		}else if (itemId == :WU){
+			res = new Rez.Menus.WUindSpeedUnitMenu();
+		}else if (itemId == :WType){
 			res = new Rez.Menus.WidgetTypeMenu();
 		}else if (itemId == :Theme){
 			res = new Rez.Menus.ThemeMenu();
@@ -107,20 +78,53 @@ class PropertiesMenuDelegate extends GeneralMenuDelegate{
 		return res;
 	}
 	
-	function prepareMenu(){
+	function onSelect(item){
+		var itemId = item.getId();
+		if (itemIsTogle(itemId)){
+			Application.Properties.setValue(itemId.toString(), item.isEnabled());
+		}else if (itemId == :keyOW){
+		}else if (itemId == :DF){
+		}else if (itemId == :T1TZ){
+		}else if (itemId == :DF){
+		}else if (itemId == :PrU || itemId == :WU){
+			var subMenu = getSubMenu(itemId);
+			subMenu.setTitle(item.getLabel());
+			WatchUi.pushView(subMenu, new ListMenuDelegate(item, ""), WatchUi.SLIDE_IMMEDIATE);
+		}else{
+			var menu = new Rez.Menus.PropertiesMenu();
+			menu.setTitle(item.getLabel());
+			WatchUi.pushView(menu, new PropertiesMenuDelegate(menu, itemId.toString()), WatchUi.SLIDE_IMMEDIATE);				
+		} 
+	}
+}
+
+//*****************************************************************************
+class PropertiesMenuDelegate extends GeneralMenuDelegate{
+
+	var mode;
+
+	function initialize(menu, mode) {
+		self.mode = mode;
+		self.menu = menu;
+		prepareMenu();
+		Menu2InputDelegate.initialize();
+	}
+	
+	private function prepareMenu(){
 		var i=0;
 		var item = menu.getItem(i);
 		while (item != null){
-
-			var value = Application.Properties.getValue(mode+item.getId().toString());
-			if (item instanceof WatchUi.ToggleMenuItem){
+			var itemId = item.getId(); 
+			var itemIdString = itemId.toString();
+			var value = Application.Properties.getValue(mode+itemIdString);
+			if (itemIsTogle(itemId)){
 				item.setEnabled(value);
-			}else if (item instanceof WatchUi.MenuItem){
-				var itemId = item.getId();
-				var itemIdString = itemId.toString();
+			}else {
 				var subMenu = getSubMenu(itemId);
 				if (subMenu != null){
-					item.setSubLabel(getLabelByIdString(subMenu, value));
+//					System.println(mode+itemIdString);
+//					System.println(value);
+					item.setSubLabel(getLabelByIdString(subMenu, "id"+value.toString()));
 				}else{
 					item.setSubLabel(value.toString());
 				}
@@ -130,15 +134,10 @@ class PropertiesMenuDelegate extends GeneralMenuDelegate{
 		}		 
 	}
 	
-	function initialize(menu, mode) {
-		self.mode = mode;
-		GeneralMenuDelegate.initialize(menu);
-	}
-	
 	function onSelect(item){
 		var itemId = item.getId();
 		var itemIdString = itemId.toString();
-		if (item instanceof WatchUi.ToggleMenuItem){
+		if (itemIsTogle(itemId)){
 			Application.Properties.setValue(mode+itemIdString, item.isEnabled());
 		}else{
 			var subMenu = getSubMenu(itemId);
@@ -152,7 +151,7 @@ class PropertiesMenuDelegate extends GeneralMenuDelegate{
 }
 
 //*****************************************************************************
-class ListMenuDelegate extends  WatchUi.Menu2InputDelegate{
+class ListMenuDelegate extends  GeneralMenuDelegate{
 
 	var parentItem;
 	var mode;
@@ -164,17 +163,13 @@ class ListMenuDelegate extends  WatchUi.Menu2InputDelegate{
 	}
 	
 	function onSelect(item){
-		
+		var value = item.getId().toString();
 		var key = mode+parentItem.getId().toString();
-		if (item instanceof WatchUi.ToggleMenuItem){
-			Application.Properties.setValue(key, item.isEnabled());
-		}else{
-			var value = item.getId().toString();
-			value = value.substring(2, value.length()).toNumber();
-			parentItem.setSubLabel(item.getLabel());
-			Application.Properties.setValue(key, value.toNumber());
-			WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
-		}
+		value = value.substring(2, value.length()).toNumber();
+//		System.println("Set "+key+" "+value);
+		Application.Properties.setValue(key, value);
+		parentItem.setSubLabel(item.getLabel());
+		WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
 	}
 	
 }
