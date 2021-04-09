@@ -38,13 +38,6 @@
 	<string id="T1TZ" scope="foreground">Time zone ±UTC (minutes)</string>
 	
 	<!--Status -->
-	<string id="SFC0" scope="foreground">Status field left 1 color</string>
-	<string id="SFC1" scope="foreground">Status field left 2 color</string>
-	<string id="SFC2" scope="foreground">Status field left 3 color</string>
-	<string id="SFC3" scope="foreground">Status field right 1 color</string>
-	<string id="SFC4" scope="foreground">Status field right 2 color</string>
-	<string id="SFC5" scope="foreground">Status field right 3 color</string>
-
 	<string id="SF0" scope="foreground">Status field left 1</string>
 	<string id="SF1" scope="foreground">Status field left 2</string>
 	<string id="SF2" scope="foreground">Status field left 3</string>
@@ -52,22 +45,6 @@
 	<string id="SF4" scope="foreground">Status field right 2</string>
 	<string id="SF5" scope="foreground">Status field right 3</string>
 	 
-	<!--COLORS -->
-	<string id="COLOR_WHITE" scope="foreground">White</string>
-	<string id="COLOR_LT_GRAY" scope="foreground">Lt Gray</string>
-	<string id="COLOR_DK_GRAY" scope="foreground">Dk Gray</string>
-	<string id="COLOR_BLACK" scope="foreground">Black</string>
-	<string id="COLOR_RED" scope="foreground">Red</string>
-	<string id="COLOR_DK_RED" scope="foreground">Dk Red</string>
-	<string id="COLOR_ORANGE" scope="foreground">Orange</string>
-	<string id="COLOR_YELLOW" scope="foreground">Yellow</string>
-	<string id="COLOR_GREEN" scope="foreground">Green</string>
-	<string id="COLOR_DK_GREEN" scope="foreground">Dk Green</string>
-	<string id="COLOR_BLUE" scope="foreground">Blue</string>
-	<string id="COLOR_DK_BLUE" scope="foreground">Dk Blue</string>
-	<string id="COLOR_PURPLE" scope="foreground">Purple</string>
-	<string id="COLOR_PINK" scope="foreground">Pink</string>
-
 	<!--FIELD TYPES -->
 	<string id="FIELD_TYPE_EMPTY" scope="foreground">Empty</string>
 	<string id="FIELD_TYPE_HR" scope="foreground">Heart rate</string>
@@ -105,24 +82,14 @@
 	
 	
 	<!--FIELD NAMES -->
-	<string id="F0" scope="foreground">Field 1</string>
-	<string id="F1" scope="foreground">Field 2</string>
-	<string id="F2" scope="foreground">Field 3</string>
-	<string id="F3" scope="foreground">Field 4</string>
-	<string id="F4" scope="foreground">Field 5</string>
-	<string id="F5" scope="foreground">Field 6</string>
-	<string id="F6" scope="foreground">Top field 1</string>
-	<string id="F7" scope="foreground">Top field 2</string>
-
-	<!--FIELD COLORS -->
-	<string id="C0" scope="foreground">Field 1 Color</string>
-	<string id="C1" scope="foreground">Field 2 Color</string>
-	<string id="C2" scope="foreground">Field 3 Color</string>
-	<string id="C3" scope="foreground">Field 4 Color</string>
-	<string id="C4" scope="foreground">Field 5 Color</string>
-	<string id="C5" scope="foreground">Field 6 Color</string>
-	<string id="C6" scope="foreground">Top field 1 Color</string>
-	<string id="C7" scope="foreground">Top field 2 Color</string>
+	<string id="F0" scope="foreground">Top field 1</string>
+	<string id="F1" scope="foreground">Top field 2</string>
+	<string id="F2" scope="foreground">Field 1</string>
+	<string id="F3" scope="foreground">Field 2</string>
+	<string id="F4" scope="foreground">Field 3</string>
+	<string id="F5" scope="foreground">Field 4</string>
+	<string id="F6" scope="foreground">Field 5</string>
+	<string id="F7" scope="foreground">Field 6</string>
 
 	<!--Pressure -->
 	<string id="PrU" scope="foreground">Pressure Unit</string>

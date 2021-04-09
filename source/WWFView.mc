@@ -204,22 +204,24 @@ class WWFView extends WatchUi.WatchFace {
 		y = fields[:time].y+fields[:time].h;
 		x = (dc.getWidth() - 3*(wPicture+wText))/2;
 		
-		coord = new [FIELDS_COUNT-2];
-		coord[0] = [x,y];
-		coord[1] = [x+(wPicture+wText),y];
-		coord[2] = [x+2*(wPicture+wText),y];
-		coord[3] = [x,y + h];
-		coord[4] = [x+(wPicture+wText),y + h];
-		coord[5] = [x+2*(wPicture+wText),y + h];
-		
+		coord = new [FIELDS_COUNT];
 		if (StorageSettings.getSettingValue(mode+"ShowTopFields")){
-			coord.add([wWeatherBar, currentTop]);
-			coord.add([wWeatherBar, currentTop + h]);
+			coord[0] = [wWeatherBar, currentTop];
+			coord[1] = [wWeatherBar, currentTop + h];
 			wWeatherBar += wPicture+wText;
 		}
+		coord[2] = [x,y];
+		coord[3] = [x+(wPicture+wText),y];
+		coord[4] = [x+2*(wPicture+wText),y];
+		coord[5] = [x,y + h];
+		coord[6] = [x+(wPicture+wText),y + h];
+		coord[7] = [x+2*(wPicture+wText),y + h];
+		
 		
 		for (var i = 0; i < coord.size(); i++){
-
+			if (coord[i] == null){
+				continue;
+			}
 			var idPicture = "P"+i;
 	        var id = "F"+i;
 	        
@@ -264,16 +266,16 @@ class WWFView extends WatchUi.WatchFace {
 		}
 		
 		if (StorageSettings.getSettingValue(mode+"ShowTopFields")){
-			fields["P6"][:x] += shiftX;
-			fields["F6"][:x] += shiftX;
-			fields["P7"][:x] += shiftX;
-			fields["F7"][:x] += shiftX;
+			fields["P0"][:x] += shiftX;
+			fields["F0"][:x] += shiftX;
+			fields["P1"][:x] += shiftX;
+			fields["F1"][:x] += shiftX;
 		} 
 
 		///////////////////////////////////////////////////////////////////////
 		//BATTERY
-		h = fields["F0"].h;
-		w = fields["F0"].w;
+		h = fields["F2"].h;
+		w = fields["F2"].w;
         fields[:battery_picture] = new BatteryField(
     		{
     			:x => System.getDeviceSettings().screenWidth/2-w,

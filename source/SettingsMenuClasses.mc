@@ -22,33 +22,102 @@ class GeneralMenu extends WatchUi.Menu2{
 //*****************************************************************************
 class SubMenu extends WatchUi.Menu2{
 	
-	function initialize(modeString) {
+	function initialize(mode) {
 		
 		Menu2.initialize({:title=> Application.loadResource(Rez.Strings.SettingsMenu)});
-		addItem(new Item(:SF0, "GSF0", Rez.Strings.SF0, null));
-		addItem(new Item(:SF1, "GSF1", Rez.Strings.SF1, null));
 
-		
-//		addItem(new Item(:Theme, modeString+"Theme", Rez.Strings.Theme, :theme));
-//		addItem(new Item(:WType, modeString + "WType", Rez.Strings.WType, :widgetType));
-//		addItem(new TogleItem(:WShowWindWidget, modeString + "WShowWindWidget", Rez.Strings.WShowWindWidget));
-//		addItem(new TogleItem(:ShowTopFields, modeString + "ShowTopFields", Rez.Strings.ShowTopFields));
+		var dictNames = getAppNames(mode);
+
+		addItem(new Item(:Theme, dictNames[:Theme], Rez.Strings.Theme, :theme));
+		addItem(new Item(:WType, dictNames[:WType], Rez.Strings.WType, :widgetType));
+		addItem(new TogleItem(:WShowWindWidget, dictNames[:WShowWindWidget], Rez.Strings.WShowWindWidget));
+		addItem(new TogleItem(:ShowTopFields, dictNames[:ShowTopFields], Rez.Strings.ShowTopFields));
 		   
-//		addItem(new Item(:SF0, modeString + "SF0", Rez.Strings.SF0, :statusField));
-//		addItem(new Item(:SF1, modeString + "SF1", Rez.Strings.SF1, :statusField));
-//		addItem(new Item(:SF2, modeString + "SF2", Rez.Strings.SF2, :statusField));
-//		addItem(new Item(:SF3, modeString + "SF3", Rez.Strings.SF3, :statusField));
-//		addItem(new Item(:SF4, modeString + "SF4", Rez.Strings.SF4, :statusField));
-//		addItem(new Item(:SF5, modeString + "SF5", Rez.Strings.SF5, :statusField));
-//
-//		addItem(new Item(:F6, modeString + "F6", Rez.Strings.F0, :field));
-//		addItem(new Item(:F7, modeString + "F7", Rez.Strings.F1, :field));
-//		addItem(new Item(:F0, modeString + "F0", Rez.Strings.F2, :field));
-//		addItem(new Item(:F1, modeString + "F1", Rez.Strings.F3, :field));
-//		addItem(new Item(:F2, modeString + "F2", Rez.Strings.F4, :field));
-//		addItem(new Item(:F3, modeString + "F3", Rez.Strings.F5, :field));
-//		addItem(new Item(:F4, modeString + "F4", Rez.Strings.F6, :field));
-//		addItem(new Item(:F5, modeString + "F5", Rez.Strings.F7, :field));		
+		addItem(new Item(:SF0, dictNames[:SF0], Rez.Strings.SF0, :statusField));
+		addItem(new Item(:SF1, dictNames[:SF1], Rez.Strings.SF1, :statusField));
+		addItem(new Item(:SF2, dictNames[:SF2], Rez.Strings.SF2, :statusField));
+		addItem(new Item(:SF3, dictNames[:SF3], Rez.Strings.SF3, :statusField));
+		addItem(new Item(:SF4, dictNames[:SF4], Rez.Strings.SF4, :statusField));
+		addItem(new Item(:SF5, dictNames[:SF5], Rez.Strings.SF5, :statusField));
+
+		addItem(new Item(:F0, dictNames[:F0], Rez.Strings.F2, :field));
+		addItem(new Item(:F1, dictNames[:F1], Rez.Strings.F3, :field));
+		addItem(new Item(:F2, dictNames[:F2], Rez.Strings.F4, :field));
+		addItem(new Item(:F3, dictNames[:F3], Rez.Strings.F5, :field));
+		addItem(new Item(:F4, dictNames[:F4], Rez.Strings.F6, :field));
+		addItem(new Item(:F5, dictNames[:F5], Rez.Strings.F7, :field));		
+		addItem(new Item(:F6, dictNames[:F6], Rez.Strings.F0, :field));
+		addItem(new Item(:F7, dictNames[:F7], Rez.Strings.F1, :field));
+		
+	}
+	
+	//concat Strings is not work in real device
+	function getAppNames(mode){
+		var dict;
+		if (mode == :G){
+			dict = {
+				:Theme => "GTheme",
+				:WType => "GWType",
+				:WShowWindWidget => "GWShowWindWidget",
+				:ShowTopFields => "GShowTopFields",
+				:SF0 => "GSF0",
+				:SF1 => "GSF1",
+				:SF2 => "GSF2",
+				:SF3 => "GSF3",
+				:SF4 => "GSF4",
+				:SF5 => "GSF5",
+				:F6 => "GF6",
+				:F7 => "GF7",
+				:F0 => "GF0",
+				:F1 => "GF1",
+				:F2 => "GF2",
+				:F3 => "GF3",
+				:F4 => "GF4",
+				:F5 => "GF5"};
+		}else if (mode == :D ){
+			dict = {
+				:Theme => "DTheme",
+				:WType => "DWType",
+				:WShowWindWidget => "DWShowWindWidget",
+				:ShowTopFields => "DShowTopFields",
+				:SF0 => "DSF0",
+				:SF1 => "DSF1",
+				:SF2 => "DSF2",
+				:SF3 => "DSF3",
+				:SF4 => "DSF4",
+				:SF5 => "DSF5",
+				:F6 => "DF6",
+				:F7 => "DF7",
+				:F0 => "DF0",
+				:F1 => "DF1",
+				:F2 => "DF2",
+				:F3 => "DF3",
+				:F4 => "DF4",
+				:F5 => "DF5"};
+		}else{
+			dict = {
+				:Theme => "NTheme",
+				:WType => "NWType",
+				:WShowWindWidget => "NWShowWindWidget",
+				:ShowTopFields => "NShowTopFields",
+				:SF0 => "NSF0",
+				:SF1 => "NSF1",
+				:SF2 => "NSF2",
+				:SF3 => "NSF3",
+				:SF4 => "NSF4",
+				:SF5 => "NSF5",
+				:F6 => "NF6",
+				:F7 => "NF7",
+				:F0 => "NF0",
+				:F1 => "NF1",
+				:F2 => "NF2",
+				:F3 => "NF3",
+				:F4 => "NF4",
+				:F5 => "NF5"};
+		}
+		
+		return dict;
+		
 	}
 }
 
@@ -77,19 +146,19 @@ class Item extends WatchUi.MenuItem{
 		self.subMenuDictonarySymbol = descriptionMethodSymbol;
 		 		
 		var label = Application.loadResource(labelRes);
-		var subLabel = null; 
-//		if (propName != null){
-//			subLabel = Application.Properties.getValue(propName);
-//		}else{
-//			subLabel = "";
-//		}
-//				
-//		if (descriptionMethodSymbol == null){
-//			subLabel = subLabel.toString();
-//		}else{
-//			var descrSymbol = getDescriptionStringSymbol(subLabel);
-//			subLabel = Application.loadResource(Rez.Strings[descrSymbol]);			
-//		}
+		var subLabel; 
+		if (propName != null){
+			subLabel = Application.Properties.getValue(propName);
+		}else{
+			subLabel = "";
+		}
+				
+		if (descriptionMethodSymbol == null){
+			subLabel = subLabel.toString();
+		}else{
+			var descrSymbol = getDescriptionStringSymbol(subLabel);
+			subLabel = Application.loadResource(Rez.Strings[descrSymbol]);			
+		}
 		MenuItem.initialize(label, subLabel, identifier, {});
 	}
 
@@ -98,7 +167,7 @@ class Item extends WatchUi.MenuItem{
 			var subMenu = new SelectMenu(getLabel(), method(subMenuDictonarySymbol).invoke(), propName, self.weak());
 			WatchUi.pushView(subMenu, new GeneralMenuDelegate(), WatchUi.SLIDE_IMMEDIATE);
 		}else if (propName == null){
-			var subMenu = new SubMenu(getId().toString());
+			var subMenu = new SubMenu(getId());
 			WatchUi.pushView(subMenu, new GeneralMenuDelegate(), WatchUi.SLIDE_IMMEDIATE);
 		}
 	}	
