@@ -102,6 +102,9 @@
 
 	<bitmap id="l10n" filename="owm/10n.png">
 		<palette disableTransparency="false">
+			<color>555555</color>
+			<color>AAAAAA</color>
+			<color>000000</color>
 		</palette>
 	</bitmap>
 

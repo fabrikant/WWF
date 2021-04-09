@@ -96,11 +96,13 @@ class Item extends WatchUi.MenuItem{
 
 	function onSelect(){
 		if (subMenuDictonarySymbol != null){
-			var subMenu = new SelectMenu(getLabel(), method(subMenuDictonarySymbol).invoke(), propName, self.weak());
+			var subMenu = new SelectMenu(getLabel(), new Toybox.Lang.Method(SettingsReference, subMenuDictonarySymbol).invoke(), propName, self.weak());
 			WatchUi.pushView(subMenu, new GeneralMenuDelegate(), WatchUi.SLIDE_IMMEDIATE);
 		}else if (propName == null){
 			var subMenu = new SubMenu(getId());
 			WatchUi.pushView(subMenu, new GeneralMenuDelegate(), WatchUi.SLIDE_IMMEDIATE);
+		}else if (getId() == :T1TZ){
+			WatchUi.pushView(new TimeZonePicker(), new TextPickerDelegate(), WatchUi.SLIDE_IMMEDIATE);
 		}
 	}	
 	
@@ -311,4 +313,5 @@ module SettingsReference{
 			4 => :WTypePressureHistory,
 			5 => :WTypeElevationHistory};
 	}	
+	
 }

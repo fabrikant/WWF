@@ -1,24 +1,52 @@
-//using Toybox.WatchUi;
-//using Toybox.Graphics;
-//using Toybox.System;
-//
+using Toybox.WatchUi;
+using Toybox.Graphics;
+using Toybox.System;
+
+
+class NumberFactory extends WatchUi.PickerFactory{
+
+	function getDrawable(item, isSelected) {
+		return new WatchUi.Text({:text=>item.toString(),:color=>Graphics.COLOR_GREEN});
+	}
+	
+	function getSize(){
+		return 10;
+	}
+
+	function getValue(item){
+		return item;
+	}
+}
+
 ////*****************************************************************************
-//class TextPickerDelegate extends WatchUi.TextPickerDelegate {
-//
-//	hidden var item;
-//	
-//    function initialize(item) {
-//    	self.item = item;
-//        TextPickerDelegate.initialize();
-//    }
-//
-//    function onTextEntered(text, changed) {
-//		if (changed){
-//			item.setSubLabel(text);
-//			item.parent.setNewValue(item.getId(), text);
-//		}
-//    }
-//}
+class TextPickerDelegate extends WatchUi.TextPickerDelegate {
+
+	function onAccept(values){
+		WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
+	}
+
+    function onCancel() {
+		System.println("onCancel");
+		WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
+    }
+}
+
+class TimeZonePicker extends WatchUi.Picker{
+	
+	function initialize(){
+	
+		var settings = {
+			:title => new WatchUi.Text({:text=>Application.loadResource(Rez.Strings.T1TZ),:color=>Graphics.COLOR_GREEN}),
+			:pattern => [new NumberFactory(), new NumberFactory(), new NumberFactory()]
+		};
+		Picker.initialize(settings);
+	}
+	
+	function onLayout(dc){
+		dc.setColor(Graphics.COLOR_DK_GREEN, Graphics.COLOR_GREEN);
+		dc.clear();
+	}
+}
 //
 ////*****************************************************************************
 //class TextPickerDelegateMenuSettings extends WatchUi.TextPickerDelegate {
