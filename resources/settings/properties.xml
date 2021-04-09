@@ -1,7 +1,7 @@
 <properties>
 
 	<property id="keyOW" type="string"></property>
-	<property id="SwitchDayNight" type="boolean">false</property>
+	<property id="SwitchDayNight" type="boolean">true</property>
 	<property id="SettingsType" type="number">0</property>
 
 	<property id="DF" type="string">%W %D %M %Y</property>
@@ -67,7 +67,7 @@
 	<property id="DF7" type="number">1</property>
 	
 	<!-- **************************************************************************** -->	
-	<property id="NTheme" type="number">0</property>
+	<property id="NTheme" type="number">1</property>
 
     <property id="NWType" type="number">0</property>
     <property id="NWShowWindWidget" type="boolean">true</property>

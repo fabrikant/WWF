@@ -26,7 +26,7 @@ class SubMenu extends WatchUi.Menu2{
 		
 		Menu2.initialize({:title=> Application.loadResource(Rez.Strings.SettingsMenu)});
 
-		var dictNames = getAppNames(mode);
+		var dictNames = SettingsReference.getAppPropertyNames(mode);
 
 		addItem(new Item(:Theme, dictNames[:Theme], Rez.Strings.Theme, :theme));
 		addItem(new Item(:WType, dictNames[:WType], Rez.Strings.WType, :widgetType));
@@ -51,8 +51,123 @@ class SubMenu extends WatchUi.Menu2{
 		
 	}
 	
+}
+
+//*****************************************************************************
+class SelectMenu extends WatchUi.Menu2{
+
+	function initialize(title, itemsDictonary, propName, parentItemWeak){
+		Menu2.initialize({:title=> title});
+		var keys = itemsDictonary.keys();
+		for (var i=0; i<keys.size(); i++){
+			addItem(new SelectItem(itemsDictonary[keys[i]], propName, keys[i], parentItemWeak));
+		}
+	}
+}
+
+
+//*****************************************************************************
+class Item extends WatchUi.MenuItem{
+
+	var propName;
+	var subMenuDictonarySymbol;
+	
+	function initialize(identifier, propName, labelRes, descriptionMethodSymbol) {
+		
+		self.propName = propName;
+		self.subMenuDictonarySymbol = descriptionMethodSymbol;
+		 		
+		var label = Application.loadResource(labelRes);
+		var subLabel; 
+		if (propName != null){
+			subLabel = Application.Properties.getValue(propName);
+		}else{
+			subLabel = "";
+		}
+				
+		if (descriptionMethodSymbol == null){
+			subLabel = subLabel.toString();
+		}else{
+			var descrSymbol = getDescriptionStringSymbol(subLabel);
+			subLabel = Application.loadResource(Rez.Strings[descrSymbol]);			
+		}
+		MenuItem.initialize(label, subLabel, identifier, {});
+	}
+
+	function onSelect(){
+		if (subMenuDictonarySymbol != null){
+			var subMenu = new SelectMenu(getLabel(), method(subMenuDictonarySymbol).invoke(), propName, self.weak());
+			WatchUi.pushView(subMenu, new GeneralMenuDelegate(), WatchUi.SLIDE_IMMEDIATE);
+		}else if (propName == null){
+			var subMenu = new SubMenu(getId());
+			WatchUi.pushView(subMenu, new GeneralMenuDelegate(), WatchUi.SLIDE_IMMEDIATE);
+		}
+	}	
+	
+	function getDescriptionStringSymbol(value){
+		var dict = new Toybox.Lang.Method(SettingsReference, subMenuDictonarySymbol).invoke();
+		return dict[value];
+	}
+}
+
+//*****************************************************************************
+class TogleItem extends WatchUi.ToggleMenuItem{
+	
+	var propName;
+	
+	function initialize(identifier, propName, labelRes) {
+		self.propName = propName;
+		var label = Application.loadResource(labelRes);
+		var enabled = Application.Properties.getValue(propName);
+		ToggleMenuItem.initialize(label, null, identifier, enabled, {});
+	}
+
+	function onSelect(){
+		Application.Properties.setValue(propName, isEnabled());
+	}	
+}
+
+//*****************************************************************************
+class SelectItem extends WatchUi.MenuItem{
+	
+	var value;
+	var propName;
+	var parentItemWeak;
+	
+	function initialize(identifier, propName, value, parentItemWeak) {
+		self.value = value;
+		self.propName = propName;
+		self.parentItemWeak = parentItemWeak;
+		MenuItem.initialize(Application.loadResource(Rez.Strings[identifier]), null, identifier, {});
+	}
+
+	function onSelect(){
+		Application.Properties.setValue(propName, value);
+		if (parentItemWeak.stillAlive()){
+			var parent = parentItemWeak.get();
+			parent.setSubLabel(getLabel()); 
+		}
+		WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
+	}
+}
+
+//*****************************************************************************
+class GeneralMenuDelegate extends WatchUi.Menu2InputDelegate{
+	
+	 function initialize() {
+        Menu2InputDelegate.initialize();
+    }
+    
+	function onSelect(item){
+		item.onSelect();
+	}
+}
+
+
+module SettingsReference{
+
 	//concat Strings is not work in real device
-	function getAppNames(mode){
+	function getAppPropertyNames(mode){
 		var dict;
 		if (mode == :G){
 			dict = {
@@ -117,66 +232,8 @@ class SubMenu extends WatchUi.Menu2{
 		}
 		
 		return dict;
-		
-	}
-}
-
-//*****************************************************************************
-class SelectMenu extends WatchUi.Menu2{
-
-	function initialize(title, itemsDictonary, propName, parentItemWeak){
-		Menu2.initialize({:title=> title});
-		var keys = itemsDictonary.keys();
-		for (var i=0; i<keys.size(); i++){
-			addItem(new SelectItem(itemsDictonary[keys[i]], propName, keys[i], parentItemWeak));
-		}
-	}
-}
-
-
-//*****************************************************************************
-class Item extends WatchUi.MenuItem{
-
-	var propName;
-	var subMenuDictonarySymbol;
-	
-	function initialize(identifier, propName, labelRes, descriptionMethodSymbol) {
-		
-		self.propName = propName;
-		self.subMenuDictonarySymbol = descriptionMethodSymbol;
-		 		
-		var label = Application.loadResource(labelRes);
-		var subLabel; 
-		if (propName != null){
-			subLabel = Application.Properties.getValue(propName);
-		}else{
-			subLabel = "";
-		}
-				
-		if (descriptionMethodSymbol == null){
-			subLabel = subLabel.toString();
-		}else{
-			var descrSymbol = getDescriptionStringSymbol(subLabel);
-			subLabel = Application.loadResource(Rez.Strings[descrSymbol]);			
-		}
-		MenuItem.initialize(label, subLabel, identifier, {});
 	}
 
-	function onSelect(){
-		if (subMenuDictonarySymbol != null){
-			var subMenu = new SelectMenu(getLabel(), method(subMenuDictonarySymbol).invoke(), propName, self.weak());
-			WatchUi.pushView(subMenu, new GeneralMenuDelegate(), WatchUi.SLIDE_IMMEDIATE);
-		}else if (propName == null){
-			var subMenu = new SubMenu(getId());
-			WatchUi.pushView(subMenu, new GeneralMenuDelegate(), WatchUi.SLIDE_IMMEDIATE);
-		}
-	}	
-	
-	function getDescriptionStringSymbol(value){
-		var dict = method(subMenuDictonarySymbol).invoke();
-		return dict[value];
-	}
-	
 	function theme(){
 		return {
 			0 => :ThemeDark,
@@ -254,57 +311,4 @@ class Item extends WatchUi.MenuItem{
 			4 => :WTypePressureHistory,
 			5 => :WTypeElevationHistory};
 	}	
-}
-
-//*****************************************************************************
-class TogleItem extends WatchUi.ToggleMenuItem{
-	
-	var propName;
-	
-	function initialize(identifier, propName, labelRes) {
-		self.propName = propName;
-		var label = Application.loadResource(labelRes);
-		var enabled = Application.Properties.getValue(propName);
-		ToggleMenuItem.initialize(label, null, identifier, enabled, {});
-	}
-
-	function onSelect(){
-		Application.Properties.setValue(propName, isEnabled());
-	}	
-}
-
-//*****************************************************************************
-class SelectItem extends WatchUi.MenuItem{
-	
-	var value;
-	var propName;
-	var parentItemWeak;
-	
-	function initialize(identifier, propName, value, parentItemWeak) {
-		self.value = value;
-		self.propName = propName;
-		self.parentItemWeak = parentItemWeak;
-		MenuItem.initialize(Application.loadResource(Rez.Strings[identifier]), null, identifier, {});
-	}
-
-	function onSelect(){
-		Application.Properties.setValue(propName, value);
-		if (parentItemWeak.stillAlive()){
-			var parent = parentItemWeak.get();
-			parent.setSubLabel(getLabel()); 
-		}
-		WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
-	}
-}
-
-//*****************************************************************************
-class GeneralMenuDelegate extends WatchUi.Menu2InputDelegate{
-	
-	 function initialize() {
-        Menu2InputDelegate.initialize();
-    }
-    
-	function onSelect(item){
-		item.onSelect();
-	}
 }
