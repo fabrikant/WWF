@@ -9,20 +9,6 @@ using Toybox.Application;
 module Tools {
 
 	///////////////////////////////////////////////////////////////////////////
-	function getGlobalString(key){
-		
-		if (globalStringsDictonary == null){
-			globalStringsDictonary = {};
-		}
-		var res = globalStringsDictonary[key];
-		if (res == null){
-			res = Application.loadResource(Rez.Strings[key]);
-			globalStringsDictonary[key] = res;
-		} 
-		return res;
-	}
-	
-	///////////////////////////////////////////////////////////////////////////
 	function windDirection(size, angle, leftTop, fieldSize){
 		
 		var angleRad = Math.toRadians(angle);

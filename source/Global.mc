@@ -1,6 +1,5 @@
 var memoryCache;
 var fonts;
-var globalStringsDictonary;
 
 enum{
 	HR,

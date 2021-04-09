@@ -36,7 +36,7 @@ class WWFApp extends Application.AppBase {
 	
 	function getSettingsView(){
 		var menu = new Rez.Menus.GeneralMenu();
-		return [menu, new GeneralMenuDelegate(menu)];
+		return [new GeneralMenu(), new GeneralMenuDelegate()];
 	}
 
 	///////////////////////////////////////////////////////////////////////////
