@@ -18,7 +18,7 @@
 	<property id="GDF" type="string">%W %D %M %Y</property>
 	<property id="GTheme" type="number">0</property>
 
-    <property id="GWTypeTop" type="number">0</property>
+    <property id="GWTypeTop" type="number">1</property>
     <property id="GWTypeBottom" type="number">8</property>
 
 	<!--STATUS FIELDS -->
@@ -43,7 +43,7 @@
 	<property id="DDF" type="string">%W %D %M %Y</property>
 	<property id="DTheme" type="number">0</property>
 
-    <property id="DWTypeTop" type="number">0</property>
+    <property id="DWTypeTop" type="number">1</property>
     <property id="DWTypeBottom" type="number">8</property>
     
 	<!--STATUS FIELDS -->
@@ -68,7 +68,7 @@
 	<property id="NDF" type="string">%W %D %M %Y</property>
 	<property id="NTheme" type="number">1</property>
 
-    <property id="NWTypeTop" type="number">0</property>
+    <property id="NWTypeTop" type="number">1</property>
     <property id="NWTypeBottom" type="number">8</property>
     
 	<!--STATUS FIELDS -->

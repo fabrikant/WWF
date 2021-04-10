@@ -97,10 +97,10 @@ class WWFView extends WatchUi.WatchFace {
 
         fields[:date] = new SimpleField(
     		{
-    			:x => x,
+    			:x => 0,
     			:y => y,
     			:h => h,
-    			:w => w,
+    			:w => dc.getWidth(),
     			:type => :date,
     			:fontId => :small_letters,
     			:justify => Graphics.TEXT_JUSTIFY_CENTER
@@ -188,7 +188,7 @@ class WWFView extends WatchUi.WatchFace {
 	    			:x => 0,
 	    			:y => currentTop,
 	    			:h => h,
-	    			:w => 3*w,
+	    			:w => 4*w,
 	    			:type => graphType,
 	    			:fontId => :small_letters,
 	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
