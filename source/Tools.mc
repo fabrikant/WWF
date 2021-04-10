@@ -161,7 +161,7 @@ module Tools {
 		    }
 		).toRadians();
 
-		var today = Time.today();
+		var today = Time.today().add(new Time.Duration(12 * Gregorian.SECONDS_PER_HOUR));
 		var tomorrow = today.add(new Time.Duration(Time.Gregorian.SECONDS_PER_DAY));
 		
 		if (memoryCache.sunEvents[tomorrow] == null){

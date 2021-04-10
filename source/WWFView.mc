@@ -392,9 +392,8 @@ class WWFView extends WatchUi.WatchFace {
 				var now = Time.now();
 				var newMode = STORAGE_KEY_NIGHT;
 				if(now.greaterThan(sunrise) && now.lessThan(sunset)){
-					memoryCache.mode = STORAGE_KEY_DAY;
+					newMode = STORAGE_KEY_DAY;
 				}
-				
 				if (memoryCache.mode != newMode){
 					reCreateFields = true;
 					memoryCache.mode = newMode;
@@ -407,6 +406,7 @@ class WWFView extends WatchUi.WatchFace {
 			}
 		}
 
+		
 		if (reCreateFields){
 			memoryCache.readSettings();
 			memoryCache.setWeatherAutoColors();
