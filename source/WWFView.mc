@@ -120,7 +120,7 @@ class WWFView extends WatchUi.WatchFace {
 		w = h;
 		var showWeather = false;
 		var wType = StorageSettings.getSettingValue(mode+"WType"); 
-		if (wType == 0){
+		if (wType == WIDGET_TYPE_WATHER){
 			showWeather = true;
 		}
 		
@@ -172,13 +172,13 @@ class WWFView extends WatchUi.WatchFace {
 			var wMulti = 3;
 			if (StorageSettings.getSettingValue(mode+"ShowTopFields")){wMulti = 2;}
 			var graphType = :getHeartRateHistory;
-			if (wType == 2){
+			if (wType == WIDGET_TYPE_SATURATION){
 				graphType = :getOxygenSaturationHistory;
-			}else if (wType == 3){
+			}else if (wType == WIDGET_TYPE_TEMPERATURE){
 				graphType = :getTemperatureHistory;
-			}else if (wType == 4){
+			}else if (wType == WIDGET_TYPE_PRESSURE){
 				graphType = :getPressureHistory;
-			}else if (wType == 5){
+			}else if (wType == WIDGET_TYPE_ELEVATION){
 				graphType = :getElevationHistory;
 			}
 			

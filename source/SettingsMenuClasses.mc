@@ -40,14 +40,14 @@ class SubMenu extends WatchUi.Menu2{
 		addItem(new Item(:SF4, dictNames[:SF4], Rez.Strings.SF4, :statusField));
 		addItem(new Item(:SF5, dictNames[:SF5], Rez.Strings.SF5, :statusField));
 
-		addItem(new Item(:F0, dictNames[:F0], Rez.Strings.F2, :field));
-		addItem(new Item(:F1, dictNames[:F1], Rez.Strings.F3, :field));
-		addItem(new Item(:F2, dictNames[:F2], Rez.Strings.F4, :field));
-		addItem(new Item(:F3, dictNames[:F3], Rez.Strings.F5, :field));
-		addItem(new Item(:F4, dictNames[:F4], Rez.Strings.F6, :field));
-		addItem(new Item(:F5, dictNames[:F5], Rez.Strings.F7, :field));		
-		addItem(new Item(:F6, dictNames[:F6], Rez.Strings.F0, :field));
-		addItem(new Item(:F7, dictNames[:F7], Rez.Strings.F1, :field));
+		addItem(new Item(:F0, dictNames[:F0], Rez.Strings.F0, :field));
+		addItem(new Item(:F1, dictNames[:F1], Rez.Strings.F1, :field));
+		addItem(new Item(:F2, dictNames[:F2], Rez.Strings.F2, :field));
+		addItem(new Item(:F3, dictNames[:F3], Rez.Strings.F3, :field));
+		addItem(new Item(:F4, dictNames[:F4], Rez.Strings.F4, :field));
+		addItem(new Item(:F5, dictNames[:F5], Rez.Strings.F5, :field));		
+		addItem(new Item(:F6, dictNames[:F6], Rez.Strings.F6, :field));
+		addItem(new Item(:F7, dictNames[:F7], Rez.Strings.F7, :field));
 		
 	}
 	
@@ -238,80 +238,80 @@ module SettingsReference{
 
 	function theme(){
 		return {
-			0 => :ThemeDark,
-			1 => :ThemeLight
+			DARK  => :ThemeDark,
+			LIGHT => :ThemeLight
 		};
 	}
 	
 	function pressureUnit(){
 		return {
-			0 => :PrUMmHg,
-			1 => :PrUPsi,
-			2 => :PrUInchHg,
-			3 => :PrUBar,
-			4 => :PrUKPa};
+			UNIT_PRESSURE_MM_HG => :PrUMmHg,
+			UNIT_PRESSURE_PSI => :PrUPsi,
+			UNIT_PRESSURE_INCH_HG => :PrUInchHg,
+			UNIT_PRESSURE_BAR => :PrUBar,
+			UNIT_PRESSURE_KPA => :PrUKPa};
 	}
 	
 	function windSpeedUnit(){
 		return {
-			0 => :SpeedUnitMSec,
-			1 => :SpeedUnitKmH,
-			2 => :SpeedUnitMileH,
-			3 => :SpeedUnitFtSec,
-			4 => :SpeedUnitBof,
-			5 => :SpeedUnitKnots};
+			UNIT_SPEED_MS => :SpeedUnitMSec,
+			UNIT_SPEED_KMH => :SpeedUnitKmH,
+			UNIT_SPEED_MLH => :SpeedUnitMileH,
+			UNIT_SPEED_FTS => :SpeedUnitFtSec,
+			UNIT_SPEED_BOF => :SpeedUnitBof,
+			UNIT_SPEED_KNOTS => :SpeedUnitKnots};
 	}
 	
 	function statusField(){
 		return {
-			18 => :FIELD_TYPE_CONNECTED,
-			19 => :FIELD_TYPE_NOTIFICATIONS,
-			24 => :FIELD_TYPE_NOTIFICATIONS_COUNT,
-			20 => :FIELD_TYPE_DND,
-			21 => :FIELD_TYPE_ALARMS,
-			25 => :FIELD_TYPE_ALARMS_COUNT,
-			22 => :FIELD_TYPE_AMPM,
-			23 => :FIELD_TYPE_SECONDS,
-			12 => :FIELD_TYPE_EMPTY};
+			CONNECTED 			=> :FIELD_TYPE_CONNECTED,
+			NOTIFICATIONS 		=> :FIELD_TYPE_NOTIFICATIONS,
+			NOTIFICATIONS_COUNT => :FIELD_TYPE_NOTIFICATIONS_COUNT,
+			DND 				=> :FIELD_TYPE_DND,
+			ALARMS 				=> :FIELD_TYPE_ALARMS,
+			ALARMS_COUNT 		=> :FIELD_TYPE_ALARMS_COUNT,
+			AMPM 				=> :FIELD_TYPE_AMPM,
+			SECONDS 			=> :FIELD_TYPE_SECONDS,
+			EMPTY 				=> :FIELD_TYPE_EMPTY};
 	}
 	
 	function field(){
 		return {
-			0 => :FIELD_TYPE_HR,
-			1 => :FIELD_TYPE_STEPS,
-			2 => :FIELD_TYPE_PRESSURE,
-			3 => :FIELD_TYPE_TEMPERATURE,
-			4 => :FIELD_TYPE_CALORIES,
-			5 => :FIELD_TYPE_DISTANCE,
-			6 => :FIELD_TYPE_FLOOR,
-			7 => :FIELD_TYPE_ELEVATION,
-			8 => :FIELD_TYPE_SUN_EVENT,
-			9 => :FIELD_TYPE_SUNRISE,
-			10 => :FIELD_TYPE_SUNSET,
-			11 => :FIELD_TYPE_TIME1,
-			13 => :FIELD_TYPE_ACTIVE_DAY,
-			14 => :FIELD_TYPE_ACTIVE_WEEK,
-			15 => :FIELD_TYPE_O2,
-			16 => :FIELD_TYPE_SOLAR_CHARGE,
-			17 => :FIELD_TYPE_WEIGHT,
-			26 => :FIELD_TYPE_WEATHER_PRESSURE,
-			27 => :FIELD_TYPE_WEATHER_HUM,
-			28 => :FIELD_TYPE_WEATHER_VISIBILITY,
-			29 => :FIELD_TYPE_WEATHER_WIND_SPEED,
-			30 => :FIELD_TYPE_WEATHER_WIND_DEG,
-			31 => :FIELD_TYPE_WEATHER_UVI,
-			32 => :FIELD_TYPE_WEATHER_DEW_POINT,
-			12 => :FIELD_TYPE_EMPTY};
+			HR 					=> :FIELD_TYPE_HR,
+			STEPS 				=> :FIELD_TYPE_STEPS,
+			PRESSURE 			=> :FIELD_TYPE_PRESSURE,
+			TEMPERATURE 		=> :FIELD_TYPE_TEMPERATURE,
+			CALORIES 			=> :FIELD_TYPE_CALORIES,
+			DISTANCE 			=> :FIELD_TYPE_DISTANCE,
+			FLOOR 				=> :FIELD_TYPE_FLOOR,
+			ELEVATION 			=> :FIELD_TYPE_ELEVATION,
+			SUN_EVENT 			=> :FIELD_TYPE_SUN_EVENT,
+			SUNRISE_EVENT 		=> :FIELD_TYPE_SUNRISE,
+			SUNSET_EVENT 		=> :FIELD_TYPE_SUNSET,
+			TIME1 				=> :FIELD_TYPE_TIME1,
+			ACTIVE_DAY 			=> :FIELD_TYPE_ACTIVE_DAY,
+			ACTIVE_WEEK 		=> :FIELD_TYPE_ACTIVE_WEEK,
+			O2 					=> :FIELD_TYPE_O2,
+			SOLAR_CHARGE 		=> :FIELD_TYPE_SOLAR_CHARGE,
+			WEIGHT 				=> :FIELD_TYPE_WEIGHT,
+			WEATHER_PRESSURE 	=> :FIELD_TYPE_WEATHER_PRESSURE,
+			WEATHER_HUM 		=> :FIELD_TYPE_WEATHER_HUM,
+			WEATHER_VISIBILITY 	=> :FIELD_TYPE_WEATHER_VISIBILITY,
+			WEATHER_WIND_SPEED 	=> :FIELD_TYPE_WEATHER_WIND_SPEED,
+			WEATHER_WIND_DEG 	=> :FIELD_TYPE_WEATHER_WIND_DEG,
+			WEATHER_UVI 		=> :FIELD_TYPE_WEATHER_UVI,
+			WEATHER_DEW_POINT 	=> :FIELD_TYPE_WEATHER_DEW_POINT,
+			EMPTY 				=> :FIELD_TYPE_EMPTY};
 	}
 	
 	function widgetType(){
 		return{
-			0 => :WTypeWeather,
-			1 => :WTypeHeartRateHistory,
-			2 => :WTypeSaturationHistory,
-			3 => :WTypeTemperatureHistory,
-			4 => :WTypePressureHistory,
-			5 => :WTypeElevationHistory};
+			WIDGET_TYPE_WATHER 		=> :WTypeWeather,
+			WIDGET_TYPE_HR 			=> :WTypeHeartRateHistory,
+			WIDGET_TYPE_SATURATION 	=> :WTypeSaturationHistory,
+			WIDGET_TYPE_TEMPERATURE => :WTypeTemperatureHistory,
+			WIDGET_TYPE_PRESSURE 	=> :WTypePressureHistory,
+			WIDGET_TYPE_ELEVATION 	=> :WTypeElevationHistory};
 	}	
 	
 }

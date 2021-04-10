@@ -71,15 +71,15 @@ module Tools {
 	function speedToString(rawData){
 		var value = rawData;//meters/sec
 		var unit =  memoryCache.settings[:windUnit];
-		if (unit == 1){ /*km/h*/
+		if (unit == UNIT_SPEED_KMH){ /*km/h*/
 			value = rawData*3.6;
-		}else if (unit == 2){ /*mile/h*/
+		}else if (unit == UNIT_SPEED_MLH){ /*mile/h*/
 			value = rawData*2.237;
-		}else if (unit == 3){ /*ft/s*/
+		}else if (unit == UNIT_SPEED_FTS){ /*ft/s*/
 			value = rawData*3.281;
-		}else if (unit == 4){ /*Beaufort*/
+		}else if (unit == UNIT_SPEED_BOF){ /*Beaufort*/
 			value = getBeaufort(rawData);
-		}else if (unit == 5){ /*knots*/
+		}else if (unit == UNIT_SPEED_KNOTS){ /*knots*/
 			value = rawData*1.94384;
 		}
 		return value.format("%d");
@@ -215,15 +215,15 @@ module Tools {
 	function pressureToString(rawData){
 		var value = rawData; /*Pa */
 		var unit  = memoryCache.settings[:pressureUnit];
-		if (unit == 0){ /*MmHg*/
+		if (unit == UNIT_PRESSURE_MM_HG){ /*MmHg*/
 			value = Math.round(rawData/133.322).format("%d");
-		}else if (unit == 1){ /*Psi*/
+		}else if (unit == UNIT_PRESSURE_PSI){ /*Psi*/
 			value = (rawData.toFloat()/6894.757).format("%.2f");
-		}else if (unit == 2){ /*InchHg*/
+		}else if (unit == UNIT_PRESSURE_INCH_HG){ /*InchHg*/
 			value = (rawData.toFloat()/3386.389).format("%.2f");
-		}else if (unit == 3){ /*miliBar*/
+		}else if (unit == UNIT_PRESSURE_BAR){ /*miliBar*/
 			value = (rawData/100).format("%d");
-		}else if (unit == 4){ /*kPa*/
+		}else if (unit == UNIT_PRESSURE_KPA){ /*kPa*/
 			value = (rawData/1000).format("%d");
 		}
 		return value;
