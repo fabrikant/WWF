@@ -10,14 +10,18 @@
      <string id="TimeColor">Цвет времени</string>
     <string id="DateColor" scope="foreground">Цвет даты</string>
 
-    <string id="WType" scope="foreground">Тип виджета</string>
+    <string id="WTypeTop" scope="foreground">Тип верхнего виджета</string>
+    <string id="WTypeBottom" scope="foreground">Тип нижнего виджета</string>
     <string id="WTypeWeather" scope="foreground">Погода</string>
+    <string id="WTypeWeatherWind" scope="foreground">Погода и ветер</string>
+    <string id="WTypeWeatherFields" scope="foreground">Погода и данные</string>
     <string id="WTypeTemperatureHistory" scope="foreground">График температуры</string>
     <string id="WTypePressureHistory" scope="foreground">График давления</string>
     <string id="WTypeHeartRateHistory" scope="foreground">График ЧСС</string>
     <string id="WTypeElevationHistory" scope="foreground">График высоты</string>
     <string id="WTypeSaturationHistory" scope="foreground">График насыщения кислородом</string>
- 
+	<string id="WTypeMoon" scope="foreground">Луна</string> 
+	
     <string id="WColor" scope="foreground">Цвет виджета</string>
     <string id="WAutoColor" scope="foreground">Использовать автоцвета для погодного виджета</string>
     <string id="ShowTopFields" scope="foreground">Показывать верхние поля данных</string>

@@ -10,13 +10,17 @@
     <string id="TimeColor">Time Color</string>
     <string id="DateColor" scope="foreground">Date Color</string>
     
-    <string id="WType" scope="foreground">Widget type</string>
+    <string id="WTypeTop" scope="foreground">Top widget type</string>
+    <string id="WTypeBottom" scope="foreground">Bottom widget type</string>
     <string id="WTypeWeather" scope="foreground">Weather</string>
+    <string id="WTypeWeatherWind" scope="foreground">Weather and wind</string>
+    <string id="WTypeWeatherFields" scope="foreground">Weather and fields</string>
     <string id="WTypeTemperatureHistory" scope="foreground">Temperature History</string>
     <string id="WTypePressureHistory" scope="foreground">Pressure History</string>
     <string id="WTypeHeartRateHistory" scope="foreground">Heart rate history</string>
     <string id="WTypeElevationHistory" scope="foreground">Elevation history</string>
     <string id="WTypeSaturationHistory" scope="foreground">Saturation history</string>
+    <string id="WTypeMoon" scope="foreground">Moon</string>
     
     <string id="WColor" scope="foreground">Widget color</string>
     <string id="WAutoColor" scope="foreground">Use auto colors for weather widget</string>

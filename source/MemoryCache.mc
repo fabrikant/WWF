@@ -8,7 +8,7 @@ class MemoryCache {
 	var everySecondFields;
 	var flags;
 	var sunEvents;
-	var mode;// STORAGE_KEY_GLOBAL, STORAGE_KEY_DAY, STORAGE_KEY_NIGHT
+	var mode;// :G, :D, :N
 	
 	function initialize(){
 		reload();
@@ -24,7 +24,7 @@ class MemoryCache {
 			view.fields = null;
 		}
 		
-		mode = STORAGE_KEY_GLOBAL;
+		mode = :G;
 		readSettings();
 		readGeolocation();
 		readWeather();
@@ -37,22 +37,15 @@ class MemoryCache {
 		settings = {};
 		settings[:switchDayNight] = Application.Properties.getValue("SwitchDayNight");
 		
-		var currentMode;
-		if (mode == null){
-			currentMode = STORAGE_KEY_GLOBAL;
-		}else{
-			currentMode = mode;
-		}
-		
-		settings[:theme] = StorageSettings.getSettingValue(mode+"Theme");
+		settings[:theme] = Application.Properties.getValue(modeAsString()+"Theme");
 		settings[:backgroundColor] = getBackgroundColor();
 		settings[:time] = {};
-		settings[:time][:military] = StorageSettings.getSettingValue("MilFt");
-		settings[:time][:hours01] = StorageSettings.getSettingValue("HFt01");
+		settings[:time][:military] = Application.Properties.getValue("MilFt");
+		settings[:time][:hours01] = Application.Properties.getValue("HFt01");
 
-		settings[:pressureUnit] = StorageSettings.getSettingValue("PrU");
-		settings[:windUnit] = StorageSettings.getSettingValue("WU");
-		settings[:time1] = StorageSettings.getSettingValue("T1TZ");
+		settings[:pressureUnit] = Application.Properties.getValue("PrU");
+		settings[:windUnit] = Application.Properties.getValue("WU");
+		settings[:time1] = Application.Properties.getValue("T1TZ");
 		settings[:keyOW] = Application.Properties.getValue("keyOW");
 		readGeolocation();
 	}
@@ -269,7 +262,7 @@ class MemoryCache {
 	}
 
 	function getPictureType(id){
-		return PICTURE+StorageSettings.getSettingValue(mode+id);
+		return PICTURE+Application.Properties.getValue(modeAsString()+id);
 	}
 
 	function onWeatherUpdate(data){
@@ -287,5 +280,15 @@ class MemoryCache {
 				eraseWeather();
 			}
 		}
+	}
+	
+	function modeAsString(){
+		var res = "G";
+		if (mode == :D){
+			res = "D";
+		}else if (mode == :N){
+			res = "N";	
+		}
+		return res;
 	}
 }

@@ -19,10 +19,13 @@
 	<!-- **************************************************************************** -->	
 	<property id="GTheme" type="number">0</property>
 
-    <property id="GWType" type="number">0</property>
+    <property id="GWTypeTop" type="number">0</property>
+    <property id="GWTypeBottom" type="number">8</property>
+<!-- 
     <property id="GWShowWindWidget" type="boolean">true</property>
     <property id="GShowTopFields" type="boolean">false</property>
-    
+ -->    
+     
 	<!--STATUS FIELDS -->
 	<property id="GSF0" type="number">18</property>
 	<property id="GSF1" type="number">20</property>
@@ -44,9 +47,8 @@
 	<!-- **************************************************************************** -->	
 	<property id="DTheme" type="number">0</property>
 
-    <property id="DWType" type="number">0</property>
-    <property id="DWShowWindWidget" type="boolean">true</property>
-    <property id="DShowTopFields" type="boolean">false</property>
+    <property id="DWTypeTop" type="number">0</property>
+    <property id="DWTypeBottom" type="number">8</property>
     
 	<!--STATUS FIELDS -->
 	<property id="DSF0" type="number">18</property>
@@ -69,9 +71,8 @@
 	<!-- **************************************************************************** -->	
 	<property id="NTheme" type="number">1</property>
 
-    <property id="NWType" type="number">0</property>
-    <property id="NWShowWindWidget" type="boolean">true</property>
-    <property id="NShowTopFields" type="boolean">false</property>
+    <property id="NWTypeTop" type="number">0</property>
+    <property id="NWTypeBottom" type="number">8</property>
     
 	<!--STATUS FIELDS -->
 	<property id="NSF0" type="number">18</property>

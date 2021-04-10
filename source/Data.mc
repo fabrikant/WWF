@@ -304,7 +304,7 @@ module Data{
 			}
 		}
 		
-		var dateString = StorageSettings.getSettingValue("DF");
+		var dateString = Application.Properties.getValue("DF");
 		dateString = Tools.stringReplace(dateString,"%WN",Tools.weekOfYear(now));
 		dateString = Tools.stringReplace(dateString,"%DN",dayOfYear);
 		dateString = Tools.stringReplace(dateString,"%WD",weatherDecription);

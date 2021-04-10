@@ -29,9 +29,8 @@ class SubMenu extends WatchUi.Menu2{
 		var dictNames = SettingsReference.getAppPropertyNames(mode);
 
 		addItem(new Item(:Theme, dictNames[:Theme], Rez.Strings.Theme, :theme));
-		addItem(new Item(:WType, dictNames[:WType], Rez.Strings.WType, :widgetType));
-		addItem(new TogleItem(:WShowWindWidget, dictNames[:WShowWindWidget], Rez.Strings.WShowWindWidget));
-		addItem(new TogleItem(:ShowTopFields, dictNames[:ShowTopFields], Rez.Strings.ShowTopFields));
+		addItem(new Item(:WTypeTop, dictNames[:WTypeTop], Rez.Strings.WTypeTop, :widgetTypeTop));
+		addItem(new Item(:WTypeBottom, dictNames[:WTypeBottom], Rez.Strings.WTypeBottom, :widgetTypeBottom));
 		   
 		addItem(new Item(:SF0, dictNames[:SF0], Rez.Strings.SF0, :statusField));
 		addItem(new Item(:SF1, dictNames[:SF1], Rez.Strings.SF1, :statusField));
@@ -174,7 +173,8 @@ module SettingsReference{
 		if (mode == :G){
 			dict = {
 				:Theme => "GTheme",
-				:WType => "GWType",
+				:WTypeTop => "GWTypeTop",
+				:WTypeBottom => "GWTypeBottom",
 				:WShowWindWidget => "GWShowWindWidget",
 				:ShowTopFields => "GShowTopFields",
 				:SF0 => "GSF0",
@@ -194,7 +194,8 @@ module SettingsReference{
 		}else if (mode == :D ){
 			dict = {
 				:Theme => "DTheme",
-				:WType => "DWType",
+				:WTypeTop => "DWTypeTop",
+				:WTypeBottom => "DWTypeBottom",
 				:WShowWindWidget => "DWShowWindWidget",
 				:ShowTopFields => "DShowTopFields",
 				:SF0 => "DSF0",
@@ -214,8 +215,9 @@ module SettingsReference{
 		}else{
 			dict = {
 				:Theme => "NTheme",
-				:WType => "NWType",
+				:WTypeTop => "NWTypeTop",
 				:WShowWindWidget => "NWShowWindWidget",
+				:WTypeBottom => "NWTypeBottom",
 				:ShowTopFields => "NShowTopFields",
 				:SF0 => "NSF0",
 				:SF1 => "NSF1",
@@ -304,14 +306,22 @@ module SettingsReference{
 			EMPTY 				=> :FIELD_TYPE_EMPTY};
 	}
 	
-	function widgetType(){
+	function widgetTypeTop(){
 		return{
-			WIDGET_TYPE_WATHER 		=> :WTypeWeather,
-			WIDGET_TYPE_HR 			=> :WTypeHeartRateHistory,
-			WIDGET_TYPE_SATURATION 	=> :WTypeSaturationHistory,
-			WIDGET_TYPE_TEMPERATURE => :WTypeTemperatureHistory,
-			WIDGET_TYPE_PRESSURE 	=> :WTypePressureHistory,
-			WIDGET_TYPE_ELEVATION 	=> :WTypeElevationHistory};
+			WIDGET_TYPE_WEATHER 		=> :WTypeWeather,
+			WIDGET_TYPE_WEATHER_WIND 	=> :WTypeWeatherWind,
+			WIDGET_TYPE_WEATHER_FIELDS 	=> :WTypeWeatherFields,
+			WIDGET_TYPE_HR 				=> :WTypeHeartRateHistory,
+			WIDGET_TYPE_SATURATION 		=> :WTypeSaturationHistory,
+			WIDGET_TYPE_TEMPERATURE 	=> :WTypeTemperatureHistory,
+			WIDGET_TYPE_PRESSURE 		=> :WTypePressureHistory,
+			WIDGET_TYPE_ELEVATION 		=> :WTypeElevationHistory};
+	}	
+	
+	function widgetTypeBottom(){
+		return {
+			WIDGET_TYPE_WEATHER => :WTypeWeather,
+			WIDGET_TYPE_MOON 	=> :WTypeMoon};
 	}	
 	
 }
