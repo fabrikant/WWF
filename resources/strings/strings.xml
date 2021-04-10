@@ -127,6 +127,10 @@
 	<string id="SettingsGlobal" scope="foreground">Global settings</string>
 	<string id="SettingsDay" scope="foreground">Day settings</string>
 	<string id="SettingsNight" scope="foreground">Night settings</string>
+
+	<string id="GDF" scope="foreground">Global settings date format</string>
+	<string id="DDF" scope="foreground">Day settings  date format</string>
+	<string id="NDF" scope="foreground">Night settings  date format</string>
 	
 	<string id="Theme" scope="foreground">Theme</string>
 	<string id="ThemeDark" scope="foreground">Dark</string>

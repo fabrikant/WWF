@@ -4,8 +4,6 @@
 	<property id="SwitchDayNight" type="boolean">true</property>
 	<property id="SettingsType" type="number">0</property>
 
-	<property id="DF" type="string">%W %D %M %Y</property>
-
 	<!--SECOND TIME -->
 	<property id="T1TZ" type="number">180</property>
 	<!--PRESSURE -->
@@ -17,6 +15,7 @@
 
 
 	<!-- **************************************************************************** -->	
+	<property id="GDF" type="string">%W %D %M %Y</property>
 	<property id="GTheme" type="number">0</property>
 
     <property id="GWTypeTop" type="number">0</property>
@@ -41,6 +40,7 @@
 	<property id="GF7" type="number">1</property>
 
 	<!-- **************************************************************************** -->	
+	<property id="DDF" type="string">%W %D %M %Y</property>
 	<property id="DTheme" type="number">0</property>
 
     <property id="DWTypeTop" type="number">0</property>
@@ -65,6 +65,7 @@
 	<property id="DF7" type="number">1</property>
 	
 	<!-- **************************************************************************** -->	
+	<property id="NDF" type="string">%W %D %M %Y</property>
 	<property id="NTheme" type="number">1</property>
 
     <property id="NWTypeTop" type="number">0</property>

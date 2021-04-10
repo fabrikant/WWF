@@ -9,14 +9,25 @@
 		<settingConfig type="boolean" />
 	</setting>
 
-	<setting propertyKey="@Properties.DF"
-		title="@Strings.DF" prompt="@Strings.DFHELP">
-		<settingConfig type="alphaNumeric" />
-	</setting>
-
   	<setting propertyKey="@Properties.T1TZ" title="@Strings.T1TZ">
 		<settingConfig type="numeric" min="-720" max="840"/>
 	</setting>
+
+
+	<setting propertyKey="@Properties.GDF"
+		title="@Strings.GDF" prompt="@Strings.DFHELP">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+	<setting propertyKey="@Properties.DDF"
+		title="@Strings.DDF" prompt="@Strings.DFHELP">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+	<setting propertyKey="@Properties.NDF"
+		title="@Strings.NDF" prompt="@Strings.DFHELP">
+		<settingConfig type="alphaNumeric" />
+	</setting>
+
+
 
 <!-- 
 	<setting propertyKey="@Properties.SettingsType"

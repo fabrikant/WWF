@@ -130,4 +130,8 @@
 	<string id="ThemeDark" scope="foreground">Темная</string>
 	<string id="ThemeLight" scope="foreground">Светлая</string>
 	
+	<string id="GDF" scope="foreground">Глобальный формат даты</string>
+	<string id="DDF" scope="foreground">Дневной формат даты </string>
+	<string id="NDF" scope="foreground">Ночной формат даты</string>
+	
 </strings>

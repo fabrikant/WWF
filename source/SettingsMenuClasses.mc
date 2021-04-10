@@ -12,7 +12,6 @@ class GeneralMenu extends WatchUi.Menu2{
 		addItem(new Item(:D, null, Rez.Strings.SettingsDay, null));
 		addItem(new Item(:N, null, Rez.Strings.SettingsNight, null));
 		addItem(new Item(:T1TZ, "T1TZ", Rez.Strings.T1TZ, null));
-		addItem(new Item(:DF, "DF", Rez.Strings.DF, null));
 		addItem(new Item(:keyOW, "keyOW", Rez.Strings.keyOW, null));
 		addItem(new Item(:PrU, "PrU", Rez.Strings.PrU, :pressureUnit));
 		addItem(new Item(:WU, "WU", Rez.Strings.WU, :windSpeedUnit));
@@ -32,13 +31,6 @@ class SubMenu extends WatchUi.Menu2{
 		addItem(new Item(:WTypeTop, dictNames[:WTypeTop], Rez.Strings.WTypeTop, :widgetTypeTop));
 		addItem(new Item(:WTypeBottom, dictNames[:WTypeBottom], Rez.Strings.WTypeBottom, :widgetTypeBottom));
 		   
-		addItem(new Item(:SF0, dictNames[:SF0], Rez.Strings.SF0, :statusField));
-		addItem(new Item(:SF1, dictNames[:SF1], Rez.Strings.SF1, :statusField));
-		addItem(new Item(:SF2, dictNames[:SF2], Rez.Strings.SF2, :statusField));
-		addItem(new Item(:SF3, dictNames[:SF3], Rez.Strings.SF3, :statusField));
-		addItem(new Item(:SF4, dictNames[:SF4], Rez.Strings.SF4, :statusField));
-		addItem(new Item(:SF5, dictNames[:SF5], Rez.Strings.SF5, :statusField));
-
 		addItem(new Item(:F0, dictNames[:F0], Rez.Strings.F0, :field));
 		addItem(new Item(:F1, dictNames[:F1], Rez.Strings.F1, :field));
 		addItem(new Item(:F2, dictNames[:F2], Rez.Strings.F2, :field));
@@ -48,6 +40,14 @@ class SubMenu extends WatchUi.Menu2{
 		addItem(new Item(:F6, dictNames[:F6], Rez.Strings.F6, :field));
 		addItem(new Item(:F7, dictNames[:F7], Rez.Strings.F7, :field));
 		
+		addItem(new Item(:SF0, dictNames[:SF0], Rez.Strings.SF0, :statusField));
+		addItem(new Item(:SF1, dictNames[:SF1], Rez.Strings.SF1, :statusField));
+		addItem(new Item(:SF2, dictNames[:SF2], Rez.Strings.SF2, :statusField));
+		addItem(new Item(:SF3, dictNames[:SF3], Rez.Strings.SF3, :statusField));
+		addItem(new Item(:SF4, dictNames[:SF4], Rez.Strings.SF4, :statusField));
+		addItem(new Item(:SF5, dictNames[:SF5], Rez.Strings.SF5, :statusField));
+		
+		addItem(new Item(:DF, dictNames[:DF], Rez.Strings.DF, null));
 	}
 	
 }
@@ -178,8 +178,7 @@ module SettingsReference{
 				:Theme => "GTheme",
 				:WTypeTop => "GWTypeTop",
 				:WTypeBottom => "GWTypeBottom",
-				:WShowWindWidget => "GWShowWindWidget",
-				:ShowTopFields => "GShowTopFields",
+				:DF => "GDF",
 				:SF0 => "GSF0",
 				:SF1 => "GSF1",
 				:SF2 => "GSF2",
@@ -199,8 +198,7 @@ module SettingsReference{
 				:Theme => "DTheme",
 				:WTypeTop => "DWTypeTop",
 				:WTypeBottom => "DWTypeBottom",
-				:WShowWindWidget => "DWShowWindWidget",
-				:ShowTopFields => "DShowTopFields",
+				:DF => "DDF",
 				:SF0 => "DSF0",
 				:SF1 => "DSF1",
 				:SF2 => "DSF2",
@@ -219,9 +217,8 @@ module SettingsReference{
 			dict = {
 				:Theme => "NTheme",
 				:WTypeTop => "NWTypeTop",
-				:WShowWindWidget => "NWShowWindWidget",
 				:WTypeBottom => "NWTypeBottom",
-				:ShowTopFields => "NShowTopFields",
+				:DF => "NDF",
 				:SF0 => "NSF0",
 				:SF1 => "NSF1",
 				:SF2 => "NSF2",
@@ -332,7 +329,7 @@ module SettingsReference{
 		if (idSymbol == :T1TZ){
 			return "-1234567890";
 		}else if(idSymbol == :DF){
-			return "ABCDEFGHIJKLMNOPQRSTUVWXYZ%#./- ";
+			return "%dDmMNyYwW#./- ";
 		}else if(idSymbol == :keyOW){
 			return "0123456789abcdef";	
 		}else{

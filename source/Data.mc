@@ -307,7 +307,8 @@ module Data{
 			}
 		}
 		
-		var dateString = Application.Properties.getValue("DF");
+		var propNames = SettingsReference.getAppPropertyNames(memoryCache.mode);
+		var dateString = Application.Properties.getValue(propNames[:DF]);
 		dateString = Tools.stringReplace(dateString,"%WN",Tools.weekOfYear(now));
 		dateString = Tools.stringReplace(dateString,"%DN",dayOfYear);
 		dateString = Tools.stringReplace(dateString,"%WD",weatherDecription);
