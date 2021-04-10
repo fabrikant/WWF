@@ -100,8 +100,11 @@ class Item extends WatchUi.MenuItem{
 		}else if (propName == null){
 			var subMenu = new SubMenu(getId());
 			WatchUi.pushView(subMenu, new GeneralMenuDelegate(), WatchUi.SLIDE_IMMEDIATE);
-		}else if (getId() == :T1TZ){
-			WatchUi.pushView(new TimeZonePicker(), new TextPickerDelegate(), WatchUi.SLIDE_IMMEDIATE);
+		}else if (getId() == :T1TZ || getId() == :keyOW || getId() == :DF){
+			if (WatchUi has :Picker){
+				var picker = new StringPicker(self, SettingsReference.getCharsString(getId()));
+				WatchUi.pushView(picker, new StringPickerDelegate(picker), WatchUi.SLIDE_IMMEDIATE);
+			}
 		}
 	}	
 	
@@ -325,4 +328,15 @@ module SettingsReference{
 			WIDGET_TYPE_MOON 	=> :WTypeMoon};
 	}	
 	
+	function getCharsString(idSymbol){
+		if (idSymbol == :T1TZ){
+			return "-1234567890";
+		}else if(idSymbol == :DF){
+			return "ABCDEFGHIJKLMNOPQRSTUVWXYZ%#./- ";
+		}else if(idSymbol == :keyOW){
+			return "0123456789abcdef";	
+		}else{
+			return "";	
+		}
+	}
 }
