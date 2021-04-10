@@ -20,7 +20,7 @@ class GraphicsField extends SimpleField{
 			}
 		}
 		if(na){
-			SimpleField.draw(dc, "n/a");
+			SimpleField.draw(dc, NA);
 		}else{
 			drawGraphic(dc);
 			drawBorder(dc);

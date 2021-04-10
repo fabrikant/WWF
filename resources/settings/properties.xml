@@ -21,27 +21,23 @@
 
     <property id="GWTypeTop" type="number">0</property>
     <property id="GWTypeBottom" type="number">8</property>
-<!-- 
-    <property id="GWShowWindWidget" type="boolean">true</property>
-    <property id="GShowTopFields" type="boolean">false</property>
- -->    
-     
+
 	<!--STATUS FIELDS -->
-	<property id="GSF0" type="number">18</property>
-	<property id="GSF1" type="number">20</property>
-	<property id="GSF2" type="number">21</property>
-	<property id="GSF3" type="number">19</property>
-	<property id="GSF4" type="number">24</property>
-	<property id="GSF5" type="number">23</property>
+	<property id="GSF0" type="number">26</property>
+	<property id="GSF1" type="number">28</property>
+	<property id="GSF2" type="number">29</property>
+	<property id="GSF3" type="number">27</property>
+	<property id="GSF4" type="number">32</property>
+	<property id="GSF5" type="number">31</property>
 
 	<!--FIELSDS TYPES -->
-	<property id="GF0" type="number">26</property>
-	<property id="GF1" type="number">27</property>
-	<property id="GF2" type="number">9</property>
+	<property id="GF0" type="number">19</property>
+	<property id="GF1" type="number">22</property>
+	<property id="GF2" type="number">10</property>
 	<property id="GF3" type="number">0</property>
-	<property id="GF4" type="number">10</property>
-	<property id="GF5" type="number">4</property>
-	<property id="GF6" type="number">5</property>
+	<property id="GF4" type="number">11</property>
+	<property id="GF5" type="number">2</property>
+	<property id="GF6" type="number">3</property>
 	<property id="GF7" type="number">1</property>
 
 	<!-- **************************************************************************** -->	
@@ -51,21 +47,21 @@
     <property id="DWTypeBottom" type="number">8</property>
     
 	<!--STATUS FIELDS -->
-	<property id="DSF0" type="number">18</property>
-	<property id="DSF1" type="number">20</property>
-	<property id="DSF2" type="number">21</property>
-	<property id="DSF3" type="number">19</property>
-	<property id="DSF4" type="number">24</property>
-	<property id="DSF5" type="number">23</property>
+	<property id="DSF0" type="number">26</property>
+	<property id="DSF1" type="number">28</property>
+	<property id="DSF2" type="number">29</property>
+	<property id="DSF3" type="number">27</property>
+	<property id="DSF4" type="number">32</property>
+	<property id="DSF5" type="number">31</property>
 
 	<!--FIELSDS TYPES -->
-	<property id="DF0" type="number">26</property>
-	<property id="DF1" type="number">27</property>
-	<property id="DF2" type="number">9</property>
+	<property id="DF0" type="number">19</property>
+	<property id="DF1" type="number">22</property>
+	<property id="DF2" type="number">10</property>
 	<property id="DF3" type="number">0</property>
-	<property id="DF4" type="number">10</property>
-	<property id="DF5" type="number">4</property>
-	<property id="DF6" type="number">5</property>
+	<property id="DF4" type="number">11</property>
+	<property id="DF5" type="number">2</property>
+	<property id="DF6" type="number">3</property>
 	<property id="DF7" type="number">1</property>
 	
 	<!-- **************************************************************************** -->	
@@ -75,21 +71,21 @@
     <property id="NWTypeBottom" type="number">8</property>
     
 	<!--STATUS FIELDS -->
-	<property id="NSF0" type="number">18</property>
-	<property id="NSF1" type="number">20</property>
-	<property id="NSF2" type="number">21</property>
-	<property id="NSF3" type="number">19</property>
-	<property id="NSF4" type="number">24</property>
-	<property id="NSF5" type="number">23</property>
+	<property id="NSF0" type="number">26</property>
+	<property id="NSF1" type="number">28</property>
+	<property id="NSF2" type="number">29</property>
+	<property id="NSF3" type="number">27</property>
+	<property id="NSF4" type="number">32</property>
+	<property id="NSF5" type="number">31</property>
 
 	<!--FIELSDS TYPES -->
-	<property id="NF0" type="number">26</property>
-	<property id="NF1" type="number">27</property>
-	<property id="NF2" type="number">9</property>
+	<property id="NF0" type="number">19</property>
+	<property id="NF1" type="number">22</property>
+	<property id="NF2" type="number">10</property>
 	<property id="NF3" type="number">0</property>
-	<property id="NF4" type="number">10</property>
-	<property id="NF5" type="number">4</property>
-	<property id="NF6" type="number">5</property>
+	<property id="NF4" type="number">11</property>
+	<property id="NF5" type="number">2</property>
+	<property id="NF6" type="number">3</property>
 	<property id="NF7" type="number">1</property>
 
 </properties>

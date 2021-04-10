@@ -109,9 +109,10 @@ module Data{
 
 		}else if (field.type == WEATHER_PRESSURE){
 			res = getWeatherPressureString();
+		}else if (field.type == WEATHER_TEMPERATURE){
+			res = getWeatherTemperature();
 		}else if (field.type == WEATHER_HUM){
 			res = getWeatherHumidityString();
-
 		}else if (field.type == WEATHER_VISIBILITY){
 			res = getWeatherVisibilityString();
 		}else if (field.type == WEATHER_WIND_SPEED){
@@ -132,6 +133,8 @@ module Data{
 		}else if (field.type == PICTURE + PRESSURE){
 			res = "b";
 		}else if (field.type == PICTURE + TEMPERATURE){
+			res = "p";
+		}else if (field.type == PICTURE + WEATHER_TEMPERATURE){
 			res = "p";
 		}else if (field.type == PICTURE + CALORIES){
 			res = "d";
@@ -233,7 +236,7 @@ module Data{
 
 	///////////////////////////////////////////////////////////////////////////
 	function getLastHistoryMoment(method){
-		var value = "n/a";
+		var value = NA;
 		if (Toybox has :SensorHistory){
 			if (Toybox.SensorHistory has method){
 				var iter = new Lang.Method(Toybox.SensorHistory, method).invoke({:period =>1, :order => SensorHistory.ORDER_NEWEST_FIRST});
@@ -739,13 +742,13 @@ module Data{
 		if (min != null){
 			res = min.total;
 		}
-		return Tools.minutesToString(res);
+		return res;//Tools.minutesToString(res);
 	}
 	
 	///////////////////////////////////////////////////////////////////////////
 	function getSolarCharge(){
-		var res = "n/a";
-		if ( System.Stats has :solarIntensity){
+		var res = NA;
+		if (System.Stats has :solarIntensity){
 			var stats = System.getSystemStats().solarIntensity;
 			if (stats != null){
 				res = stats.format("%d")+"%"; 
@@ -784,7 +787,7 @@ module Data{
 		}
 		
 		if (value == null){
-			value = "n/a";
+			value = NA;
 		}
 		return value;
 	}

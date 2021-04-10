@@ -52,8 +52,8 @@
 	<string id="FIELD_TYPE_EMPTY" scope="foreground">Пусто</string>
 	<string id="FIELD_TYPE_HR" scope="foreground">Частота пульса</string>
 	<string id="FIELD_TYPE_STEPS" scope="foreground">Шаги</string>
-	<string id="FIELD_TYPE_PRESSURE" scope="foreground">Атм. давление (внутренний сенсор)</string>
-	<string id="FIELD_TYPE_TEMPERATURE" scope="foreground">Температура (внутренний сенсор)</string>
+	<string id="FIELD_TYPE_PRESSURE" scope="foreground">Атм. давление (сенсор)</string>
+	<string id="FIELD_TYPE_TEMPERATURE" scope="foreground">Температура (сенсор)</string>
 	<string id="FIELD_TYPE_CALORIES" scope="foreground">Калории</string>
 	<string id="FIELD_TYPE_DISTANCE" scope="foreground">Расстояние</string>
 	<string id="FIELD_TYPE_FLOOR" scope="foreground">Этажи</string>
@@ -75,13 +75,14 @@
 	<string id="FIELD_TYPE_SECONDS" scope="foreground">Секунды</string>
 	<string id="FIELD_TYPE_NOTIFICATIONS_COUNT" scope="foreground">Количество уведомлений</string>
 	<string id="FIELD_TYPE_ALARMS_COUNT" scope="foreground">Количество будильников</string>
-	<string id="FIELD_TYPE_WEATHER_PRESSURE" scope="foreground">Давление (погода)</string>
+	<string id="FIELD_TYPE_WEATHER_PRESSURE" scope="foreground">Атмосферное давление (погода)</string>
 	<string id="FIELD_TYPE_WEATHER_HUM" scope="foreground">Влажность (погода)</string>
 	<string id="FIELD_TYPE_WEATHER_VISIBILITY" scope="foreground">Видимость</string>
 	<string id="FIELD_TYPE_WEATHER_WIND_SPEED" scope="foreground">Скорость ветра</string>
 	<string id="FIELD_TYPE_WEATHER_WIND_DEG" scope="foreground">Направление ветра</string>
 	<string id="FIELD_TYPE_WEATHER_UVI" scope="foreground">УФ индекс</string>
 	<string id="FIELD_TYPE_WEATHER_DEW_POINT" scope="foreground">Точка росы</string>
+	<string id="FIELD_TYPE_WEATHER_TEMPERATURE" scope="foreground">Температура (погода)</string>
 
 	<!--FIELD NAMES -->
 	<string id="F0" scope="foreground">Верхнее поле 1</string>

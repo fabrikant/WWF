@@ -224,22 +224,8 @@ class MemoryCache {
 
 	function getSpeedUnitString(){
 		if (memoryCache.weather != null){
-			if (settings[:spped_unti_string] == null){
-				settings[:spped_unti_string] = Application.loadResource(Rez.Strings.SpeedUnitMSec);//meters/sec
-				var unit =  settings[:windUnit];
-				if (unit == 1){ /*km/h*/
-					settings[:spped_unti_string] = Application.loadResource(Rez.Strings.SpeedUnitKmH);
-				}else if (unit == 2){ /*mile/h*/
-					settings[:spped_unti_string] = Application.loadResource(Rez.Strings.SpeedUnitMileH);
-				}else if (unit == 3){ /*ft/s*/
-					settings[:spped_unti_string] = Application.loadResource(Rez.Strings.SpeedUnitFtSec);
-				}else if (unit == 4){ /*ft/s*/
-					settings[:spped_unti_string] = Application.loadResource(Rez.Strings.SpeedUnitBof);
-				}else if (unit == 5){ /*knots*/
-					settings[:spped_unti_string] = Application.loadResource(Rez.Strings.SpeedUnitKnots);
-				}
-			}
-			return settings[:spped_unti_string];
+			var dict = SettingsReference.windSpeedUnit();
+			return Application.loadResource(Rez.Strings[dict[settings[:windUnit]]]);
 		}else{
 			return "";
 		}
