@@ -74,9 +74,9 @@ class MemoryCache {
 	function getBackgroundColor(){
 	
 		var color = Graphics.COLOR_BLACK;
-		if (settings[:theme] == DARK){
+		if (settings[:theme] == DARK || settings[:theme] == DARK_MONOCHROME){
 			color = Graphics.COLOR_BLACK;
-		}if (settings[:theme] == LIGHT){
+		}if (settings[:theme] == LIGHT || settings[:theme] == LIGHT_MONOCHROME){
 			color = Graphics.COLOR_WHITE;
 		}
 		return color;
@@ -90,15 +90,21 @@ class MemoryCache {
 			}if (settings[:theme] == LIGHT){
 				color = Graphics.COLOR_DK_BLUE;
 			}
+		}else if(type == :moon){
+			if (settings[:theme] == DARK){
+				color = Graphics.COLOR_ORANGE;
+			}if (settings[:theme] == LIGHT){
+				color = Graphics.COLOR_ORANGE;
+			}
 		}
 		return color;
 	}
 	
 	function getColor(){
 		var color = Graphics.COLOR_WHITE;
-		if (settings[:theme] == DARK){
+		if (settings[:theme] == DARK || settings[:theme] == DARK_MONOCHROME){
 			color = Graphics.COLOR_WHITE;
-		}if (settings[:theme] == LIGHT){
+		}if (settings[:theme] == LIGHT || settings[:theme] == LIGHT_MONOCHROME){
 			color = Graphics.COLOR_BLACK;
 		}
 		return color;
@@ -112,7 +118,10 @@ class MemoryCache {
 			:temp => defColor,
 			:wind => defColor
 		};
-
+		
+		if (settings[:theme] == LIGHT_MONOCHROME || settings[:theme] == DARK_MONOCHROME){
+			return;
+		}
 		if (weather != null){
 			var backgroundColor = settings[:backgroundColor];
 			

@@ -36,12 +36,16 @@ class BatteryField extends SimpleField{
 		dc.fillRoundedRectangle(external[0]+3, external[1] + (external[3]-hContact)/2-1, wContact, hContact, 3);
 		dc.setColor(getBackgroundColor(), Graphics.COLOR_TRANSPARENT);
 		dc.fillRectangle(external[0]+1, external[1]+1, external[2]-2, external[3]-2);
-
-		//Заполнение
-		if (value > 20){
-			dc.setColor(Graphics.COLOR_DK_GREEN, Graphics.COLOR_TRANSPARENT);
+		
+		if (memoryCache.settings[:theme] != DARK_MONOCHROME && memoryCache.settings[:theme] != LIGHT_MONOCHROME){
+			//Заполнение
+			if (value > 20){
+				dc.setColor(Graphics.COLOR_DK_GREEN, Graphics.COLOR_TRANSPARENT);
+			}else{
+				dc.setColor(Graphics.COLOR_DK_RED, Graphics.COLOR_TRANSPARENT);
+			}
 		}else{
-			dc.setColor(Graphics.COLOR_DK_RED, Graphics.COLOR_TRANSPARENT);
+			dc.setColor(getColor(), Graphics.COLOR_TRANSPARENT);
 		}
 		var inner = [external[0]+2,external[1]+2,external[2]-4,external[3]-4];
 		dc.fillRectangle(inner[0], inner[1], inner[2]*value/100, inner[3]);

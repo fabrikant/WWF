@@ -64,9 +64,5 @@ class MoonField extends SimpleField{
 		}
 	        
 	}
-	
-	function getColor(){
-		return Graphics.COLOR_ORANGE;
-	}
 }
 

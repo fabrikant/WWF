@@ -302,7 +302,7 @@ class WWFView extends WatchUi.WatchFace {
     	);
 
 		///////////////////////////////////////////////////////////////////////
-		//Moon phase
+		//Bottom widget
 		wType = Application.Properties.getValue(propNames[:WTypeBottom]);
 		if (wType == WIDGET_TYPE_MOON){
 	    	fields[:moon] = new MoonField(

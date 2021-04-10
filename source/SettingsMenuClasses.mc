@@ -240,8 +240,10 @@ module SettingsReference{
 
 	function theme(){
 		return {
-			DARK  => :ThemeDark,
-			LIGHT => :ThemeLight
+			DARK  			 => :ThemeDark,
+			DARK_MONOCHROME	 => :ThemeDarkMonochrome,
+			LIGHT  			 => :ThemeLight,
+			LIGHT_MONOCHROME => :ThemeLightMonochrome,
 		};
 	}
 	

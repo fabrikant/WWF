@@ -134,6 +134,8 @@
 	
 	<string id="Theme" scope="foreground">Theme</string>
 	<string id="ThemeDark" scope="foreground">Dark</string>
+	<string id="ThemeDarkMonochrome" scope="foreground">Dark monochrome</string>
 	<string id="ThemeLight" scope="foreground">Light</string>
+	<string id="ThemeLightMonochrome" scope="foreground">Light monochrome</string>
 	
 </strings>
