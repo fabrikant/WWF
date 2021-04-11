@@ -30,7 +30,7 @@ class GraphicsField extends SimpleField{
 
 	function drawGraphic(dc){
 		
-		var textW = dc.getTextWidthInPixels("9999", fonts[fontId]);
+		var textW = dc.getTextWidthInPixels("99999", fonts[fontId]);
     	var iterParam = {:period => w-textW, :order => SensorHistory.ORDER_NEWEST_FIRST};
     	var iter = new Lang.Method(Toybox.SensorHistory, type).invoke(iterParam);
 
