@@ -20,6 +20,7 @@ class GraphicsField extends SimpleField{
 			}
 		}
 		if(na){
+			fontId = :small_letters;
 			SimpleField.draw(dc, NA);
 		}else{
 			drawGraphic(dc);
@@ -29,7 +30,8 @@ class GraphicsField extends SimpleField{
 
 	function drawGraphic(dc){
 		
-    	var iterParam = {:period => w, :order => SensorHistory.ORDER_NEWEST_FIRST};
+		var textW = dc.getTextWidthInPixels("9999", fonts[fontId]);
+    	var iterParam = {:period => w-textW, :order => SensorHistory.ORDER_NEWEST_FIRST};
     	var iter = new Lang.Method(Toybox.SensorHistory, type).invoke(iterParam);
 
    		var min = iter.getMin();
@@ -40,8 +42,16 @@ class GraphicsField extends SimpleField{
 		var data;
 		var lastData = null;
 		dc.setPenWidth(2);
-		var xPoint = x+w; 
-
+		var xPoint = x+w-textW; 
+	
+		var yMax = y + h/4;
+		var yMin = yMax + h/2;
+		var xMinMax = xPoint+textW/2;
+		
+		dc.setColor(getColor(), Graphics.COLOR_TRANSPARENT);
+		dc.drawText(xMinMax, yMax, fonts[fontId], getMinMaxString(max), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+		dc.drawText(xMinMax, yMin, fonts[fontId], getMinMaxString(min), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+	
 		while (sample != null){
 
 			data = sample.data;
@@ -64,8 +74,25 @@ class GraphicsField extends SimpleField{
 			xPoint -= 1;
 			sample = iter.next();
 		}
-
-		
+	}
+	
+	function getMinMaxString(value){
+		var res = "";
+		if (value != null){
+			res = value;
+			if (type == :getHeartRateHistory){
+				res = value.format("%d");
+			}else if (type == :getOxygenSaturationHistory){
+				res = value.format("%d")+"%";
+			}else if (type == :getTemperatureHistory){
+				res = Tools.temperatureToString(value)+"°";
+			}else if (type == :getPressureHistory){
+				res = Tools.pressureToString(value);
+			}else if (type == :getElevationHistory){
+				res = Tools.elevationToString(value);
+			}
+		}
+		return res;
 	}
 
 }

@@ -190,7 +190,7 @@ class WWFView extends WatchUi.WatchFace {
 	    			:h => h,
 	    			:w => 4*w,
 	    			:type => graphType,
-	    			:fontId => :small_letters,
+	    			:fontId => :small,
 	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
 	    		}
 	    	);
