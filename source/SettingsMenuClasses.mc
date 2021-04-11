@@ -57,9 +57,13 @@ class SelectMenu extends WatchUi.Menu2{
 
 	function initialize(title, itemsDictonary, propName, parentItemWeak){
 		Menu2.initialize({:title=> title});
+		var propValue = Application.Properties.getValue(propName);
 		var keys = itemsDictonary.keys();
 		for (var i=0; i<keys.size(); i++){
 			addItem(new SelectItem(itemsDictonary[keys[i]], propName, keys[i], parentItemWeak));
+			if (propValue == keys[i]){
+				setFocus(i);
+			}
 		}
 	}
 }
