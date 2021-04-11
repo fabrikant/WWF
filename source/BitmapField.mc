@@ -14,11 +14,9 @@ class BitmapField extends SimpleField{
 		if (value != null){
 			var backgroundColor = memoryCache.settings[:backgroundColor];
 			
-			var pref = "d";
-			if (backgroundColor == Graphics.COLOR_WHITE 
-				|| backgroundColor == Graphics.COLOR_LT_GRAY 
-				|| backgroundColor == Graphics.COLOR_YELLOW){
-				pref = "l";
+			var pref = "l";
+			if (memoryCache.themeIsDark()){
+				pref = "d";
 			}
 			var iRez = bitmapID(pref+value);
 			if (iRez != null){

@@ -71,13 +71,40 @@ class MemoryCache {
 		//////////////////////////////////////////////////////////
 	}
 
+	function themeIsDark(){
+		var res = false;
+		if (settings[:theme] == DARK || settings[:theme] == DARK_MONOCHROME){
+			res = true;
+		}
+		return res;
+	}
+	
+	function themeIsMonochrome(){
+		var res = false;
+		if (settings[:theme] == DARK_MONOCHROME || settings[:theme] == LIGHT_MONOCHROME){
+			res = true;
+		}
+		return res;
+	}
+	
 	function getBackgroundColor(){
 	
 		var color = Graphics.COLOR_BLACK;
-		if (settings[:theme] == DARK || settings[:theme] == DARK_MONOCHROME){
+		if (themeIsDark()){
 			color = Graphics.COLOR_BLACK;
-		}if (settings[:theme] == LIGHT || settings[:theme] == LIGHT_MONOCHROME){
+		}else{
 			color = Graphics.COLOR_WHITE;
+		}
+		return color;
+	}
+	
+	
+	function getColor(){
+		var color = Graphics.COLOR_WHITE;
+		if (themeIsDark()){
+			color = Graphics.COLOR_WHITE;
+		}else{
+			color = Graphics.COLOR_BLACK;
 		}
 		return color;
 	}
@@ -99,17 +126,7 @@ class MemoryCache {
 		}
 		return color;
 	}
-	
-	function getColor(){
-		var color = Graphics.COLOR_WHITE;
-		if (settings[:theme] == DARK || settings[:theme] == DARK_MONOCHROME){
-			color = Graphics.COLOR_WHITE;
-		}if (settings[:theme] == LIGHT || settings[:theme] == LIGHT_MONOCHROME){
-			color = Graphics.COLOR_BLACK;
-		}
-		return color;
-	}
-	
+
 	function setWeatherAutoColors(){
 	
 		var defColor = getColor();
@@ -119,7 +136,7 @@ class MemoryCache {
 			:wind => defColor
 		};
 		
-		if (settings[:theme] == LIGHT_MONOCHROME || settings[:theme] == DARK_MONOCHROME){
+		if (themeIsMonochrome()){
 			return;
 		}
 		if (weather != null){

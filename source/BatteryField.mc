@@ -37,7 +37,7 @@ class BatteryField extends SimpleField{
 		dc.setColor(getBackgroundColor(), Graphics.COLOR_TRANSPARENT);
 		dc.fillRectangle(external[0]+1, external[1]+1, external[2]-2, external[3]-2);
 		
-		if (memoryCache.settings[:theme] != DARK_MONOCHROME && memoryCache.settings[:theme] != LIGHT_MONOCHROME){
+		if (!memoryCache.themeIsMonochrome()){
 			//Заполнение
 			if (value > 20){
 				dc.setColor(Graphics.COLOR_DK_GREEN, Graphics.COLOR_TRANSPARENT);
