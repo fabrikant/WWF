@@ -53,9 +53,9 @@ class MemoryCache {
 	function readGeolocation(){
 		//////////////////////////////////////////////////////////
 		//DEBUG
-		Application.Storage.setValue("Lat", 55.03325);
-		Application.Storage.setValue("Lon", 73.449715);
-		Application.Properties.setValue("keyOW", "69bcb8de48220cd2b2fb7a8400c68d1e");
+//		Application.Storage.setValue("Lat", 55.03325);
+//		Application.Storage.setValue("Lon", 73.449715);
+//		Application.Properties.setValue("keyOW", "69bcb8de48220cd2b2fb7a8400c68d1e");
 		//////////////////////////////////////////////////////////
 		settings[:geoLocation] = [Application.Storage.getValue("Lat"), Application.Storage.getValue("Lon")];
 	}
