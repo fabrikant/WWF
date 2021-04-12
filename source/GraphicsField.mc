@@ -2,6 +2,8 @@ using Toybox.System;
 using Toybox.Application;
 using Toybox.System;
 using Toybox.SensorHistory;
+using Toybox.Time.Gregorian;
+
 
 class GraphicsField extends SimpleField{
 
@@ -40,7 +42,6 @@ class GraphicsField extends SimpleField{
 		var oldX = null;
 		var oldY = null;
 		var data;
-		var lastData = null;
 		dc.setPenWidth(2);
 		var xPoint = x+w-textW; 
 	
@@ -48,10 +49,16 @@ class GraphicsField extends SimpleField{
 		var yMin = yMax + h/2;
 		var xMinMax = xPoint+textW/2;
 		
+		var when = null;
+		var hourDur = new Time.Duration(Gregorian.SECONDS_PER_HOUR);
+		
 		dc.setColor(getColor(), Graphics.COLOR_TRANSPARENT);
 		dc.drawText(xMinMax, yMax, fonts[fontId], getMinMaxString(max), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(xMinMax, yMin, fonts[fontId], getMinMaxString(min), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
 	
+		dc.drawLine(x, y+h, x+w-textW, y+h);
+		dc.drawLine(x, y, x, y+h);
+		
 		while (sample != null){
 
 			data = sample.data;
@@ -66,8 +73,18 @@ class GraphicsField extends SimpleField{
 				}
 				oldX = xPoint;
 				oldY = yPoint;
-				if (lastData == null){
-					lastData = data;
+			}else{
+				oldX = null;
+				oldY = null;
+			}	
+
+			if (sample.when != null){
+				if (when == null){
+					when = sample.when;
+				}
+				if(!sample.when.add(hourDur).greaterThan(when)){
+					when = sample.when;
+					dc.drawLine(xPoint, y + h-8, xPoint, y + h);
 				}
 			}
 

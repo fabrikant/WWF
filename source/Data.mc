@@ -228,7 +228,7 @@ module Data{
 			|| field.type == :getTemperatureHistory
 			|| field.type == :getPressureHistory
 			|| field.type == :getElevationHistory){
-			getLastHistoryMoment(field.type);
+			res = getLastHistoryMoment(field.type);
 		}
 
 		return res;
