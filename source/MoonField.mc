@@ -1,7 +1,5 @@
 using Toybox.System;
 using Toybox.Application;
-using Toybox.System;
-using Toybox.SensorHistory;
 
 class MoonField extends SimpleField{
 

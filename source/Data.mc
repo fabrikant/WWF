@@ -220,7 +220,11 @@ module Data{
 	 		}else{
 	 			res = field.oldValue;
 			}
-		
+
+		///////////////////////////////////////////////////////////////////////
+		//Solar
+		}else if (field.type == :solar){
+			res = getSunrise();
 		///////////////////////////////////////////////////////////////////////
 		//GRAPHICS
 		}else if (field.type == :getHeartRateHistory

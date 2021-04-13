@@ -328,7 +328,8 @@ module SettingsReference{
 	function widgetTypeBottom(){
 		return {
 			WIDGET_TYPE_WEATHER => :WTypeWeather,
-			WIDGET_TYPE_MOON 	=> :WTypeMoon};
+			WIDGET_TYPE_MOON 	=> :WTypeMoon,
+			WIDGET_TYPE_SOLAR 	=> :WTypeSolar};
 	}	
 	
 	function getCharsString(idSymbol){

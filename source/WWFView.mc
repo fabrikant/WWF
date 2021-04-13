@@ -326,6 +326,19 @@ class WWFView extends WatchUi.WatchFace {
 			shiftX = (dc.getWidth() - bottomBarWidth)/2;
 			fields[:weather_picture_bottom][:x] += shiftX; 
 			fields[:weather_temp_bottom][:x] += shiftX;
+    	}else if (wType == WIDGET_TYPE_SOLAR){
+    	
+	    	fields[:solar] = new SolarField(
+				{
+					:x => (System.getDeviceSettings().screenWidth - 6*hDataField)/2,
+					:y => fields["F5"].y + fields["F5"].h,
+					:h => 2*hDataField,
+					:w => 6*hDataField,
+					:type => :solar,
+					:fontId => :small,
+					:justify => Graphics.TEXT_JUSTIFY_CENTER
+				}
+	    	);
     			
     	}
 		

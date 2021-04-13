@@ -20,7 +20,8 @@
     <string id="WTypeHeartRateHistory" scope="foreground">График ЧСС</string>
     <string id="WTypeElevationHistory" scope="foreground">График высоты</string>
     <string id="WTypeSaturationHistory" scope="foreground">График насыщения кислородом</string>
-	<string id="WTypeMoon" scope="foreground">Луна</string> 
+	<string id="WTypeMoon" scope="foreground">Луна</string>
+	<string id="WTypeSolar" scope="foreground">Солнце</string> 
 	
     <string id="WColor" scope="foreground">Цвет виджета</string>
     <string id="WAutoColor" scope="foreground">Использовать автоцвета для погодного виджета</string>
