@@ -327,9 +327,14 @@ module SettingsReference{
 	
 	function widgetTypeBottom(){
 		return {
-			WIDGET_TYPE_WEATHER => :WTypeWeather,
-			WIDGET_TYPE_MOON 	=> :WTypeMoon,
-			WIDGET_TYPE_SOLAR 	=> :WTypeSolar};
+			WIDGET_TYPE_WEATHER 	=> :WTypeWeather,
+			WIDGET_TYPE_MOON 		=> :WTypeMoon,
+			WIDGET_TYPE_SOLAR 		=> :WTypeSolar,
+			WIDGET_TYPE_HR 			=> :WTypeHeartRateHistory,
+			WIDGET_TYPE_SATURATION 	=> :WTypeSaturationHistory,
+			WIDGET_TYPE_TEMPERATURE => :WTypeTemperatureHistory,
+			WIDGET_TYPE_PRESSURE 	=> :WTypePressureHistory,
+			WIDGET_TYPE_ELEVATION 	=> :WTypeElevationHistory};
 	}	
 	
 	function getCharsString(idSymbol){

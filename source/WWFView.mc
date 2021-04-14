@@ -328,7 +328,7 @@ class WWFView extends WatchUi.WatchFace {
 			fields[:weather_temp_bottom][:x] += shiftX;
     	}else if (wType == WIDGET_TYPE_SOLAR){
     	
-	    	fields[:solar] = new SolarField(
+	    	fields[:solar_bottom] = new SolarField(
 				{
 					:x => (System.getDeviceSettings().screenWidth - 6*hDataField)/2,
 					:y => fields["F5"].y + fields["F5"].h,
@@ -339,7 +339,33 @@ class WWFView extends WatchUi.WatchFace {
 					:justify => Graphics.TEXT_JUSTIFY_CENTER
 				}
 	    	);
-    			
+		}else{
+		
+			var graphType = :getHeartRateHistory;
+			if (wType == WIDGET_TYPE_SATURATION){
+				graphType = :getOxygenSaturationHistory;
+			}else if (wType == WIDGET_TYPE_TEMPERATURE){
+				graphType = :getTemperatureHistory;
+			}else if (wType == WIDGET_TYPE_PRESSURE){
+				graphType = :getPressureHistory;
+			}else if (wType == WIDGET_TYPE_ELEVATION){
+				graphType = :getElevationHistory;
+			}
+			
+			w = 5*hDataField;
+			h = 1.8*hDataField;
+	        fields[:graphic_bottom] = new GraphicsField(
+	    		{
+					:x => (System.getDeviceSettings().screenWidth - w)/2,
+					:y => fields["F5"].y + fields["F5"].h,
+					:h => h,
+					:w => w,
+	    			:type => graphType,
+	    			:fontId => :small,
+	    			:justify => Graphics.TEXT_JUSTIFY_CENTER,
+	    			:showMinMax => false,
+	    		}
+	    	);
     	}
 		
 		///////////////////////////////////////////////////////////////////////

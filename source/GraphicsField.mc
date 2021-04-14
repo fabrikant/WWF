@@ -7,8 +7,14 @@ using Toybox.Time.Gregorian;
 
 class GraphicsField extends SimpleField{
 
+	var showMinMax;
 
 	function initialize(params){
+		if (params[:showMinMax] == null){
+			showMinMax = true;
+		}else{
+			showMinMax = params[:showMinMax]; 
+		}
 		SimpleField.initialize(params);
 	}
 
@@ -32,7 +38,10 @@ class GraphicsField extends SimpleField{
 
 	function drawGraphic(dc){
 		
-		var textW = dc.getTextWidthInPixels("99999", fonts[fontId]);
+		var textW = 0;
+		if (showMinMax){		
+			textW = dc.getTextWidthInPixels("99999", fonts[fontId]);
+		}
     	var iterParam = {:period => w-textW, :order => SensorHistory.ORDER_NEWEST_FIRST};
     	var iter = new Lang.Method(Toybox.SensorHistory, type).invoke(iterParam);
 
@@ -53,11 +62,15 @@ class GraphicsField extends SimpleField{
 		var hourDur = new Time.Duration(Gregorian.SECONDS_PER_HOUR);
 		
 		dc.setColor(getColor(), Graphics.COLOR_TRANSPARENT);
-		dc.drawText(xMinMax, yMax, fonts[fontId], getMinMaxString(max), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-		dc.drawText(xMinMax, yMin, fonts[fontId], getMinMaxString(min), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-	
-		dc.drawLine(x, y+h, x+w-textW, y+h);
 		dc.drawLine(x, y, x, y+h);
+		if (showMinMax){
+			dc.drawText(xMinMax, yMax, fonts[fontId], getMinMaxString(max), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+			dc.drawText(xMinMax, yMin, fonts[fontId], getMinMaxString(min), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+			dc.drawLine(x, y+h, x+w-textW, y+h);
+		}else{
+			dc.drawLine(x, y, x+w-textW, y);
+		}
+		
 		
 		while (sample != null){
 
@@ -77,14 +90,18 @@ class GraphicsField extends SimpleField{
 				oldX = null;
 				oldY = null;
 			}	
-
+			
 			if (sample.when != null){
 				if (when == null){
 					when = sample.when;
 				}
 				if(!sample.when.add(hourDur).greaterThan(when)){
 					when = sample.when;
-					dc.drawLine(xPoint, y + h-8, xPoint, y + h);
+					if (showMinMax){
+						dc.drawLine(xPoint, y+h-8, xPoint, y+h);
+					}else{
+						dc.drawLine(xPoint, y+8, xPoint, y);
+					}
 				}
 			}
 

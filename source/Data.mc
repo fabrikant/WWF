@@ -225,6 +225,7 @@ module Data{
 		//Solar
 		}else if (field.type == :solar){
 			res = getSunrise();
+
 		///////////////////////////////////////////////////////////////////////
 		//GRAPHICS
 		}else if (field.type == :getHeartRateHistory
