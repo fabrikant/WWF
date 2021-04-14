@@ -57,7 +57,7 @@ class SolarField extends SimpleField{
 		dc.fillCircle(xCenter, yCenter, radius);
 		
 		dc.setColor(backgroundColor, backgroundColor);
-		dc.fillRectangle(xCenter-ray-1, yCenter, 2*ray+2, y+h-yCenter);
+		dc.fillRectangle(xCenter-ray-1, yCenter, 2*ray+2, y+h-yCenter+1);
 		
 		if (dc has :setAntiAlias){
 			dc.setAntiAlias(false);

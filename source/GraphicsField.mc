@@ -59,7 +59,11 @@ class GraphicsField extends SimpleField{
 		var xMinMax = xPoint+textW/2;
 		
 		var when = null;
-		var hourDur = new Time.Duration(Gregorian.SECONDS_PER_HOUR);
+		
+		var dur = new Time.Duration(Gregorian.SECONDS_PER_HOUR);
+		if (type == :getOxygenSaturationHistory){
+			dur = new Time.Duration(Gregorian.SECONDS_PER_DAY);
+		}
 		
 		dc.setColor(getColor(), Graphics.COLOR_TRANSPARENT);
 		dc.drawLine(x, y, x, y+h);
@@ -95,7 +99,7 @@ class GraphicsField extends SimpleField{
 				if (when == null){
 					when = sample.when;
 				}
-				if(!sample.when.add(hourDur).greaterThan(when)){
+				if(!sample.when.add(dur).greaterThan(when)){
 					when = sample.when;
 					if (showMinMax){
 						dc.drawLine(xPoint, y+h-8, xPoint, y+h);

@@ -1,6 +1,6 @@
 <strings>
 
-    <string id="AppName">WWF</string>
+    <string id="AppName">WWF 3</string>
 
 	<string id="keyOW" scope="foreground">API key for weather</string>
 	<string id="KeyOWPrompt" scope="foreground">get it for free</string>
