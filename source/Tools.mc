@@ -178,6 +178,15 @@ module Tools {
 			};
 		}
 		
+		if (memoryCache.sunEvents == null){
+			return null;
+		}
+		if (memoryCache.sunEvents[today] == null){
+			return null;
+		}
+		if (memoryCache.sunEvents[today][event] == null){
+			return null;
+		}
 		var eventMoment = memoryCache.sunEvents[today][event];
 		if (eventMoment.value() < Time.now().value() && allowTomorrow){
 			eventMoment = memoryCache.sunEvents[tomorrow][event];
