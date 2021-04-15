@@ -11,6 +11,7 @@ class GeneralMenu extends WatchUi.Menu2{
 		addItem(new Item(:G, null, Rez.Strings.SettingsGlobal, null));
 		addItem(new Item(:D, null, Rez.Strings.SettingsDay, null));
 		addItem(new Item(:N, null, Rez.Strings.SettingsNight, null));
+		addItem(new TogleItem(:DNDisNight, "DNDisNight", Rez.Strings.DNDisNight));
 		addItem(new Item(:T1TZ, "T1TZ", Rez.Strings.T1TZ, null));
 		addItem(new Item(:keyOW, "keyOW", Rez.Strings.keyOW, null));
 		addItem(new Item(:PrU, "PrU", Rez.Strings.PrU, :pressureUnit));

@@ -4,12 +4,8 @@
 
 	<string id="keyOW" scope="foreground">API key for weather</string>
 	<string id="KeyOWPrompt" scope="foreground">get it for free</string>
-	<string id="WUpdInt" scope="foreground">Weather update inteval (minutes)</string>
+	<string id="DNDisNight" scope="foreground">DND is the night mode</string>
 
-    <string id="BgndColor">Background Color</string>
-    <string id="TimeColor">Time Color</string>
-    <string id="DateColor" scope="foreground">Date Color</string>
-    
     <string id="WTypeTop" scope="foreground">Top widget type</string>
     <string id="WTypeBottom" scope="foreground">Bottom widget type</string>
     <string id="WTypeWeather" scope="foreground">Weather</string>
@@ -22,18 +18,8 @@
     <string id="WTypeSaturationHistory" scope="foreground">Saturation history</string>
     <string id="WTypeMoon" scope="foreground">Moon</string>
     <string id="WTypeSolar" scope="foreground">Solar</string>
-    
-    <string id="WColor" scope="foreground">Widget color</string>
-    <string id="WAutoColor" scope="foreground">Use auto colors for weather widget</string>
-    <string id="ShowTopFields" scope="foreground">Show top data fields</string>
-    <string id="WShowWindWidget" scope="foreground">Show wind widget</string>
-    <string id="WindArrowContour" scope="foreground">Wind arrow as a contour</string>
-    
-    <string id="BatColor" scope="foreground">Battery color</string>
-    <string id="MoonColor" scope="foreground">Moon color</string>
-    
- 	<string id="MilFt" scope="foreground">Military Format for 24 Hour
-		Time</string>
+ 
+ 	<string id="MilFt" scope="foreground">Military Format</string>
 	<string id="HFt01" scope="foreground">Use format 01 for horse</string>
 
 	<string id="DF" scope="foreground">Date format</string>
@@ -121,7 +107,6 @@
 
 	<!--Settings view -->
 	<string id="SettingsMenu" scope="foreground">Settings</string>
-	<string id="SettingsType" scope="foreground">Save as</string>
 	<string id="SwitchDayNight" scope="foreground">Auto switch day/night</string>
 	<string id="SettingsDontChange" scope="foreground">Dont change settings</string>
 

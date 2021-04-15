@@ -441,19 +441,30 @@ class WWFView extends WatchUi.WatchFace {
 		
 		//Set day naght presets
 		if (memoryCache.settings[:switchDayNight]){
-			var sunrise = Tools.getSunEvent(SUNRISE, false);
-			var sunset = Tools.getSunEvent(SUNSET, false);
-			if (sunrise != null && sunset != null){
-				var now = Time.now();
-				var newMode = :N;
-				if(now.greaterThan(sunrise) && now.lessThan(sunset)){
-					newMode = :D;
-				}
-				if (memoryCache.mode != newMode){
-					reCreateFields = true;
-					memoryCache.mode = newMode;
+			
+			var newMode = :N;
+			var itsDNDNight = false;
+			if (memoryCache.settings[:DNDisNight]){
+				if (System.getDeviceSettings().doNotDisturb){
+					itsDNDNight = true;
 				}
 			}
+
+			if (!itsDNDNight){						
+				var sunrise = Tools.getSunEvent(SUNRISE, false);
+				var sunset = Tools.getSunEvent(SUNSET, false);
+				if (sunrise != null && sunset != null){
+					var now = Time.now();
+					if(now.greaterThan(sunrise) && now.lessThan(sunset)){
+						newMode = :D;
+					}
+				}
+			}
+			if (memoryCache.mode != newMode){
+				reCreateFields = true;
+				memoryCache.mode = newMode;
+			}
+			
 		}else{//dont switch day/night
 			if (memoryCache.mode != :G){
 				memoryCache.mode = :G;

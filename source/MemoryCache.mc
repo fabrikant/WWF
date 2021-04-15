@@ -36,6 +36,7 @@ class MemoryCache {
 
 		settings = {};
 		settings[:switchDayNight] = Application.Properties.getValue("SwitchDayNight");
+		settings[:DNDisNight] = Application.Properties.getValue("DNDisNight");
 		
 		var propName = "GTheme";
 		if (mode == :D){
