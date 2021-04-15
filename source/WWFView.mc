@@ -322,7 +322,7 @@ class WWFView extends WatchUi.WatchFace {
     			2*hDataField, 
     			2*hDataField, 
     			[:weather_picture_bottom, :weather_temp_bottom]);
-			shiftFields([:weather_picture_bottom, :weather_temp_bottom], (dc.getWidth() - bottomBarWidth));    			
+			shiftFields([:weather_picture_bottom, :weather_temp_bottom], (dc.getWidth() - bottomBarWidth)/2);    			
     	}else if (wType == WIDGET_TYPE_SOLAR){
     	
 	    	fields[:solar_bottom] = new SolarField(
