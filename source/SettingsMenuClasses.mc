@@ -247,8 +247,10 @@ module SettingsReference{
 		return {
 			DARK  			 => :ThemeDark,
 			DARK_MONOCHROME	 => :ThemeDarkMonochrome,
+			DARK_COLOR  	 => :ThemeDarkColor,
 			LIGHT  			 => :ThemeLight,
 			LIGHT_MONOCHROME => :ThemeLightMonochrome,
+			LIGHT_COLOR 	 => :ThemeLightColor,
 		};
 	}
 	

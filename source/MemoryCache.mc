@@ -80,7 +80,9 @@ class MemoryCache {
 
 	function themeIsDark(){
 		var res = false;
-		if (settings[:theme] == DARK || settings[:theme] == DARK_MONOCHROME){
+		if (settings[:theme] == DARK 
+			|| settings[:theme] == DARK_MONOCHROME
+			|| settings[:theme] == DARK_COLOR){
 			res = true;
 		}
 		return res;
@@ -118,17 +120,36 @@ class MemoryCache {
 	
 	function getColorByFieldType(type){
 		var color = getColor();
-		if (type == CONNECTED){
-			if (settings[:theme] == DARK){
-				color = Graphics.COLOR_BLUE;
-			}if (settings[:theme] == LIGHT){
-				color = Graphics.COLOR_DK_BLUE;
+		
+		var dictColors = {
+			CONNECTED => {	DARK => Graphics.COLOR_BLUE, 
+						  	LIGHT => Graphics.COLOR_DK_BLUE,
+						  	DARK_COLOR => Graphics.COLOR_BLUE,
+						  	LIGHT_COLOR => Graphics.COLOR_DK_BLUE},
+			:moon	  => {	DARK => Graphics.COLOR_ORANGE, 
+							LIGHT => Graphics.COLOR_ORANGE,
+							DARK_COLOR => Graphics.COLOR_ORANGE,
+						  	LIGHT_COLOR => Graphics.COLOR_ORANGE},
+			HR	=> {DARK_COLOR => 0xFF55AA,
+					LIGHT_COLOR => 0xAA0000},
+			STEPS => {DARK_COLOR => Graphics.COLOR_ORANGE,
+					LIGHT_COLOR =>Graphics.COLOR_ORANGE},
+			CALORIES => {DARK_COLOR => 0xFFFFAA,
+					LIGHT_COLOR => 0xAA5500},
+			DISTANCE => {DARK_COLOR => 0xAAFFFF,
+					LIGHT_COLOR => 0x5500AA},		
+		};
+		
+		var fType = type;
+		if (fType instanceof Number){
+			if (fType > PICTURE){
+				fType -= PICTURE;
 			}
-		}else if(type == :moon){
-			if (settings[:theme] == DARK){
-				color = Graphics.COLOR_ORANGE;
-			}if (settings[:theme] == LIGHT){
-				color = Graphics.COLOR_ORANGE;
+		}
+		if (dictColors[type] != null){
+			var _color = dictColors[type][settings[:theme]]; 
+			if (_color != null){
+				color = _color;
 			}
 		}
 		return color;

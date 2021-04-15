@@ -118,6 +118,8 @@
 	<string id="ThemeDarkMonochrome" scope="foreground">Темная монохромная</string>
 	<string id="ThemeLight" scope="foreground">Светлая</string>
 	<string id="ThemeLightMonochrome" scope="foreground">Светлая монохромная</string>
+	<string id="ThemeDarkColor" scope="foreground">Темная цветная</string>
+	<string id="ThemeLightColor" scope="foreground">Светлая цветная</string>
 	
 	<string id="GDF" scope="foreground">Глобальный формат даты</string>
 	<string id="DDF" scope="foreground">Дневной формат даты </string>
