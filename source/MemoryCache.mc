@@ -280,10 +280,6 @@ class MemoryCache {
 		}
 	}
 
-	function getPictureType(id){
-		return PICTURE+Application.Properties.getValue(modeAsString()+id);
-	}
-
 	function onWeatherUpdate(data){
 		Application.Storage.setValue(STORAGE_KEY_WEATHER, data);
 		readWeather();

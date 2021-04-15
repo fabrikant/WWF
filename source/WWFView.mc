@@ -60,6 +60,49 @@ class WWFView extends WatchUi.WatchFace {
 		
 	}
 	
+	function createDataField(pId, fId, x, y, h, wPicture, wText){
+		
+		var res = 0;
+		var propName = SettingsReference.getAppPropertyNames(memoryCache.mode)[fId];
+		var type = Application.Properties.getValue(propName);
+		if (type != EMPTY){
+	        fields[pId] = new ImageField(
+	    		{
+	    			:x => x,
+	    			:y => y,
+	    			:h => h,
+	    			:w => wPicture,
+	    			:type => PICTURE+type,
+					:fontId => :picture,
+	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
+	    		}
+	    	);
+	
+	        fields[fId] = new SimpleField(
+	    		{
+	    			:x => x + wPicture,
+	    			:y => y,
+	    			:h => h,
+	    			:w => wText,
+	    			:type => type,
+					:fontId => :small,
+	    			:justify => Graphics.TEXT_JUSTIFY_LEFT
+	    		}
+	    	);
+	    	
+	    	res = wPicture+wText;
+    	}
+		return res;
+	}
+	
+	function shiftFields(idsArray, shiftX){
+		for (var i = 0; i < idsArray.size(); i++){
+			if (fields[idsArray[i]] != null){
+				fields[idsArray[i]][:x] += shiftX;
+			}
+		}
+	}
+	
 	function createFields(dc){
 		
 		var propNames = SettingsReference.getAppPropertyNames(memoryCache.mode);
@@ -202,87 +245,44 @@ class WWFView extends WatchUi.WatchFace {
 		h = hDataField;
 		var wPicture = hDataField;
 		var wText = dc.getTextWidthInPixels("00:00", fonts[:small]);
+		if ( wType == WIDGET_TYPE_WEATHER_FIELDS){
+			topBarWidth += Tools.max(
+				createDataField(:P0, :F0, topBarWidth, currentTop, h, wPicture, wText), 
+				createDataField(:P1, :F1, topBarWidth, currentTop + h, h, wPicture, wText)
+			);
+		}
+
 		y = fields[:time].y+fields[:time].h;
 		x = (dc.getWidth() - 3*(wPicture+wText))/2;
 		
-		coord = new [FIELDS_COUNT];
-		if (wType == WIDGET_TYPE_WEATHER_FIELDS){
-			coord[0] = [topBarWidth, currentTop];
-			coord[1] = [topBarWidth, currentTop + h];
-			topBarWidth += wPicture+wText;
-		}
-		coord[2] = [x,y];
-		coord[3] = [x+(wPicture+wText),y];
-		coord[4] = [x+2*(wPicture+wText),y];
-		coord[5] = [x,y + h];
-		coord[6] = [x+(wPicture+wText),y + h];
-		coord[7] = [x+2*(wPicture+wText),y + h];
+		var fieldsBarWidth = 0;
+		fieldsBarWidth += createDataField(:P2, :F2, fieldsBarWidth, y, h, wPicture, wText);
+		fieldsBarWidth += createDataField(:P3, :F3, fieldsBarWidth, y, h, wPicture, wText);
+		fieldsBarWidth += createDataField(:P4, :F4, fieldsBarWidth, y, h, wPicture, wText);
+		shiftFields([:P2, :F2, :P3, :F3, :P4, :F4], (dc.getWidth() - fieldsBarWidth)/2);
 		
+		fieldsBarWidth = 0;
+		y += h;
+		fieldsBarWidth += createDataField(:P5, :F5, fieldsBarWidth, y, h, wPicture, wText);
+		fieldsBarWidth += createDataField(:P6, :F6, fieldsBarWidth, y, h, wPicture, wText);
+		fieldsBarWidth += createDataField(:P7, :F7, fieldsBarWidth, y, h, wPicture, wText);
+		shiftFields([:P5, :F5, :P6, :F6, :P7, :F7], (dc.getWidth() - fieldsBarWidth)/2);
+		y += h;
 		
-		for (var i = 0; i < coord.size(); i++){
-			if (coord[i] == null){
-				continue;
-			}
-			var idPicture = "P"+i;
-	        var id = "F"+i;
-	        
-	        fields[idPicture] = new ImageField(
-	    		{
-	    			:x => coord[i][0],
-	    			:y => coord[i][1],
-	    			:h => h,
-	    			:w => wPicture,
-	    			:type => memoryCache.getPictureType(id),
-					:fontId => :picture,
-	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
-	    		}
-	    	);
-
-	        fields[id] = new SimpleField(
-	    		{
-	    			:x => coord[i][0] + wPicture,
-	    			:y => coord[i][1],
-	    			:h => h,
-	    			:w => wText,
-	    			:type => Application.Properties.getValue(modeString+id),
-					:fontId => :small,
-	    			:justify => Graphics.TEXT_JUSTIFY_LEFT
-	    		}
-	    	);
-		}
-		
-
 		///////////////////////////////////////////////////////////////////////
 		//MOVE WEATHER BAR
-		var shiftX = (dc.getWidth() - topBarWidth)/2;
-		if (wType == WIDGET_TYPE_WEATHER || wType == WIDGET_TYPE_WEATHER_WIND || wType == WIDGET_TYPE_WEATHER_FIELDS){
-			fields[:weather_picture][:x] += shiftX; 
-			fields[:weather_temp][:x] += shiftX;
-			if (wType == WIDGET_TYPE_WEATHER_WIND){
-				fields[:weather_wind_widget][:x] += shiftX;
-			}
-		}else{
-			fields[:graphic][:x] += shiftX;
-			currentTop = fields[:graphic][:y];
-		}
+		shiftFields(
+			[:weather_picture, :weather_temp, :weather_wind_widget, :graphic, :P0, :F0, :P1, :F1], 
+			(dc.getWidth() - topBarWidth)/2);
 		
-		if (wType == WIDGET_TYPE_WEATHER_FIELDS){
-			fields["P0"][:x] += shiftX;
-			fields["F0"][:x] += shiftX;
-			fields["P1"][:x] += shiftX;
-			fields["F1"][:x] += shiftX;
-		} 
-
 		///////////////////////////////////////////////////////////////////////
 		//BATTERY
-		h = fields["F2"].h;
-		w = fields["F2"].w;
         fields[:battery_picture] = new BatteryField(
     		{
-    			:x => System.getDeviceSettings().screenWidth/2-w,
+    			:x => System.getDeviceSettings().screenWidth/2-wText,
     			:y => currentTop - h,
     			:h => h,
-    			:w => w,
+    			:w => wText,
     			:type => :battery_picture,
     			:fontId => :small,
     			:justify => Graphics.TEXT_JUSTIFY_LEFT
@@ -294,7 +294,7 @@ class WWFView extends WatchUi.WatchFace {
     			:x => System.getDeviceSettings().screenWidth/2,
     			:y => fields[:battery_picture].y,
     			:h => h,
-    			:w => w,
+    			:w => wText,
     			:type => :battery,
     			:fontId => :small,
     			:justify => Graphics.TEXT_JUSTIFY_LEFT
@@ -308,7 +308,7 @@ class WWFView extends WatchUi.WatchFace {
 	    	fields[:moon] = new MoonField(
 				{
 					:x => (System.getDeviceSettings().screenWidth - 2*hDataField)/2,
-					:y => fields["F5"].y + fields["F5"].h,
+					:y => y,
 					:h => 2*hDataField,
 					:w => 2*hDataField,
 					:type => :moon,
@@ -318,20 +318,17 @@ class WWFView extends WatchUi.WatchFace {
 	    	);
     	}else if (wType == WIDGET_TYPE_WEATHER){
     		var bottomBarWidth = createWeatherFields(
-    			fields["F5"].y + fields["F5"].h, 
+    			y, 
     			2*hDataField, 
     			2*hDataField, 
     			[:weather_picture_bottom, :weather_temp_bottom]);
-    			
-			shiftX = (dc.getWidth() - bottomBarWidth)/2;
-			fields[:weather_picture_bottom][:x] += shiftX; 
-			fields[:weather_temp_bottom][:x] += shiftX;
+			shiftFields([:weather_picture_bottom, :weather_temp_bottom], (dc.getWidth() - bottomBarWidth));    			
     	}else if (wType == WIDGET_TYPE_SOLAR){
     	
 	    	fields[:solar_bottom] = new SolarField(
 				{
 					:x => (System.getDeviceSettings().screenWidth - 6*hDataField)/2,
-					:y => fields["F5"].y + fields["F5"].h,
+					:y => y,
 					:h => 2*hDataField,
 					:w => 6*hDataField,
 					:type => :solar,
@@ -357,7 +354,7 @@ class WWFView extends WatchUi.WatchFace {
 	        fields[:graphic_bottom] = new GraphicsField(
 	    		{
 					:x => (System.getDeviceSettings().screenWidth - w)/2,
-					:y => fields["F5"].y + fields["F5"].h,
+					:y => y,
 					:h => h,
 					:w => w,
 	    			:type => graphType,
