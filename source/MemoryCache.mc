@@ -119,35 +119,92 @@ class MemoryCache {
 	}
 	
 	function getColorByFieldType(type){
+		
 		var color = getColor();
 		
 		var dictColors = {
-			CONNECTED => {	DARK => Graphics.COLOR_BLUE, 
-						  	LIGHT => Graphics.COLOR_DK_BLUE,
-						  	DARK_COLOR => Graphics.COLOR_BLUE,
-						  	LIGHT_COLOR => Graphics.COLOR_DK_BLUE},
-			:moon	  => {	DARK => Graphics.COLOR_ORANGE, 
-							LIGHT => Graphics.COLOR_ORANGE,
-							DARK_COLOR => Graphics.COLOR_ORANGE,
-						  	LIGHT_COLOR => Graphics.COLOR_ORANGE},
-			HR	=> {DARK_COLOR => 0xFF55AA,
-					LIGHT_COLOR => 0xAA0000},
-			STEPS => {DARK_COLOR => Graphics.COLOR_ORANGE,
-					LIGHT_COLOR =>Graphics.COLOR_ORANGE},
-			CALORIES => {DARK_COLOR => 0xFFFFAA,
-					LIGHT_COLOR => 0xAA5500},
-			DISTANCE => {DARK_COLOR => 0xAAFFFF,
-					LIGHT_COLOR => 0x5500AA},		
-		};
+			CONNECTED => {DARK => Graphics.COLOR_BLUE, 
+						LIGHT => Graphics.COLOR_DK_BLUE},
+			:moon	  => {DARK => Graphics.COLOR_ORANGE, 
+						LIGHT => Graphics.COLOR_ORANGE}};		
 		
+		if (settings[:theme] == DARK_COLOR || settings[:theme] == LIGHT_COLOR){
+			dictColors = {
+				CONNECTED => {DARK_COLOR => Graphics.COLOR_BLUE,
+							  LIGHT_COLOR => Graphics.COLOR_DK_BLUE},
+				:moon	  => {DARK_COLOR => Graphics.COLOR_ORANGE,
+							  LIGHT_COLOR => Graphics.COLOR_ORANGE},
+				HR	=> {DARK_COLOR => 0xFF55FF,
+						LIGHT_COLOR => 0xFF0000},
+				:getHeartRateHistory	=> {DARK_COLOR => 0xFF55FF,
+						LIGHT_COLOR => 0xFF0000},
+				STEPS => {DARK_COLOR => Graphics.COLOR_ORANGE,
+						LIGHT_COLOR =>Graphics.COLOR_ORANGE},
+				CALORIES => {DARK_COLOR => 0xFFFFAA,
+						LIGHT_COLOR => 0xAA5500},
+				DISTANCE => {DARK_COLOR => 0xAAFFFF,
+						LIGHT_COLOR => 0x5500AA},		
+				FLOOR => {DARK_COLOR => 0xFFFF55,
+						LIGHT_COLOR => 0xAA5500},		
+				ACTIVE_DAY => {DARK_COLOR => 0xAAFFAA,
+						LIGHT_COLOR => 0x555500},		
+				ACTIVE_WEEK => {DARK_COLOR => 0xAAFFAA,
+						LIGHT_COLOR => 0x555500},		
+				WEIGHT => {DARK_COLOR => 0xAAFFFF,
+						LIGHT_COLOR => 0x0000FF},		
+				O2 => {DARK_COLOR => 0xAAFFFF,
+						LIGHT_COLOR => 0x0000AA},		
+				:getOxygenSaturationHistory => {DARK_COLOR => 0xAAFFFF,
+						LIGHT_COLOR => 0x0000AA},		
+				SUN_EVENT => {DARK_COLOR => 0xFFAAFF,
+						LIGHT_COLOR => 0xAA0000},		
+				SUNRISE_EVENT => {DARK_COLOR => 0xFFAAFF,
+						LIGHT_COLOR => 0xAA0000},		
+				SUNSET_EVENT => {DARK_COLOR => 0xFFAAFF,
+						LIGHT_COLOR => 0xAA0000},		
+				:solar => {DARK_COLOR => 0xFFAAFF,
+						LIGHT_COLOR => 0xAA0000},		
+				PRESSURE => {DARK_COLOR => 0xFFFFAA,
+						LIGHT_COLOR => 0xAA5500},		
+				:getPressureHistory => {DARK_COLOR => 0xFFFFAA,
+						LIGHT_COLOR => 0xAA5500},		
+				TEMPERATURE => {DARK_COLOR => 0xFFFFAA,
+						LIGHT_COLOR => 0xAA5500},		
+				:getTemperatureHistory => {DARK_COLOR => 0xFFFFAA,
+						LIGHT_COLOR => 0xAA5500},		
+				ELEVATION => {DARK_COLOR => 0xAAFFFF,
+						LIGHT_COLOR => 0x0000AA},		
+				:getElevationHistory => {DARK_COLOR => 0xAAFFFF,
+						LIGHT_COLOR => 0x0000AA},		
+				SOLAR_CHARGE => {DARK_COLOR => 0xFFAAFF,
+						LIGHT_COLOR => 0x5500AA},		
+				WEATHER_TEMPERATURE => {DARK_COLOR => settings[:autoColors][:temp],
+						LIGHT_COLOR => settings[:autoColors][:temp]},		
+				WEATHER_PRESSURE => {DARK_COLOR => 0xFFFFAA,
+						LIGHT_COLOR => 0xAA5500},		
+				WEATHER_WIND_SPEED => {DARK_COLOR => settings[:autoColors][:wind],
+						LIGHT_COLOR => settings[:autoColors][:wind]},		
+				WEATHER_WIND_DEG => {DARK_COLOR => settings[:autoColors][:wind],
+						LIGHT_COLOR => settings[:autoColors][:wind]},		
+				WEATHER_HUM => {DARK_COLOR => 0x00FFFF,
+						LIGHT_COLOR => 0x0000AA},		
+				WEATHER_VISIBILITY => {DARK_COLOR => 0xAAFFFF,
+						LIGHT_COLOR => 0x550055},		
+				WEATHER_UVI => {DARK_COLOR => 0xFFAAFF,
+						LIGHT_COLOR => 0x5500AA},		
+				WEATHER_DEW_POINT => {DARK_COLOR => 0x00FFFF,
+						LIGHT_COLOR => 0x0000AA},		
+			};
+		}
 		var fType = type;
-		if (fType instanceof Number){
-			if (fType > PICTURE){
+		if (fType instanceof Toybox.Lang.Number){
+			if (fType >= PICTURE){
 				fType -= PICTURE;
 			}
 		}
-		if (dictColors[type] != null){
-			var _color = dictColors[type][settings[:theme]]; 
+		
+		if (dictColors[fType] != null){
+			var _color = dictColors[fType][settings[:theme]]; 
 			if (_color != null){
 				color = _color;
 			}

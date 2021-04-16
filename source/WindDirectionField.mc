@@ -11,11 +11,12 @@ class WindDirectionField extends SimpleField{
 	function draw(dc, direction){
 
 		clear(dc);
-		if (getColor() == getBackgroundColor()){
+		var currentColor = getColor();
+		if (currentColor == getBackgroundColor()){
 			return;
 		}
 		if (direction != -1){
-			dc.setColor(getColor(), Graphics.COLOR_TRANSPARENT);
+			dc.setColor(currentColor, Graphics.COLOR_TRANSPARENT);
 			if (dc has :setAntiAlias){
 				dc.setAntiAlias(true);
 			}

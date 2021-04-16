@@ -8,7 +8,8 @@ using Toybox.Time.Gregorian;
 class GraphicsField extends SimpleField{
 
 	var showMinMax;
-
+	private var currentColor;
+	
 	function initialize(params){
 		if (params[:showMinMax] == null){
 			showMinMax = true;
@@ -19,6 +20,8 @@ class GraphicsField extends SimpleField{
 	}
 
 	function draw(dc, value){
+		
+		currentColor = getColor();
 		clear(dc);
 		
 		var na = true;
@@ -65,7 +68,7 @@ class GraphicsField extends SimpleField{
 			dur = new Time.Duration(Gregorian.SECONDS_PER_DAY);
 		}
 		
-		dc.setColor(getColor(), Graphics.COLOR_TRANSPARENT);
+		dc.setColor(currentColor, Graphics.COLOR_TRANSPARENT);
 		dc.drawLine(x, y, x, y+h);
 		if (showMinMax){
 			dc.drawText(xMinMax, yMax, fonts[fontId], getMinMaxString(max), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
@@ -85,7 +88,7 @@ class GraphicsField extends SimpleField{
 					yPoint -= (data - min)*h/(max-min);
 				}
 				if (oldX != null){
-					dc.setColor(getColor(), Graphics.COLOR_TRANSPARENT);
+					dc.setColor(currentColor, Graphics.COLOR_TRANSPARENT);
 					dc.drawLine(xPoint, yPoint, oldX, oldY);
 				}
 				oldX = xPoint;

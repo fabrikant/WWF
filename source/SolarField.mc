@@ -5,16 +5,17 @@ using Toybox.Math;
 
 class SolarField extends SimpleField{
 
-
+	private var currentColor;
+	
 	function initialize(params){
 		SimpleField.initialize(params);
 	}
 
 	function draw(dc, value){
 		clear(dc);
-		
+		currentColor = getColor();
 		drawSun(dc);
-		dc.setColor(getColor(), Graphics.COLOR_TRANSPARENT);
+		dc.setColor(currentColor, Graphics.COLOR_TRANSPARENT);
 		var textY = y+h*0.33;
 		dc.drawText(x, textY, fonts[fontId], Data.getSunrise(), Graphics.TEXT_JUSTIFY_LEFT|Graphics.TEXT_JUSTIFY_VCENTER);
 		dc.drawText(x+w-1, textY, fonts[fontId], Data.getSunset(), Graphics.TEXT_JUSTIFY_RIGHT|Graphics.TEXT_JUSTIFY_VCENTER);
@@ -24,7 +25,7 @@ class SolarField extends SimpleField{
 
 	function drawSun(dc){
 	
-		var color = getColor();
+		var color = currentColor;
 		var backgroundColor = getBackgroundColor();
 		
 		if (!memoryCache.themeIsMonochrome()){
