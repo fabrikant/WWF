@@ -8,6 +8,7 @@ class MemoryCache {
 	var everySecondFields;
 	var flags;
 	var sunEvents;
+	var moonPhase;
 	var mode;// :G, :D, :N
 	
 	function initialize(){
@@ -30,6 +31,7 @@ class MemoryCache {
 		readWeather();
 		flags = {};
 		sunEvents = {};
+		moonPhase = {};
 	}
 
 	function readSettings(){
@@ -133,6 +135,8 @@ class MemoryCache {
 				CONNECTED => {DARK_COLOR => Graphics.COLOR_BLUE,
 							  LIGHT_COLOR => Graphics.COLOR_DK_BLUE},
 				:moon	  => {DARK_COLOR => Graphics.COLOR_ORANGE,
+							  LIGHT_COLOR => Graphics.COLOR_ORANGE},
+				MOON	  => {DARK_COLOR => Graphics.COLOR_ORANGE,
 							  LIGHT_COLOR => Graphics.COLOR_ORANGE},
 				HR	=> {DARK_COLOR => 0xFF55FF,
 						LIGHT_COLOR => 0xFF0000},

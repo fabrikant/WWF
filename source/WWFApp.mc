@@ -20,7 +20,7 @@ class WWFApp extends Application.AppBase {
     // onStop() is called when your application is exiting
     function onStop(state) {
     }
-
+	
     // Return the initial view of your application here
     function getInitialView() {
     	view = new WWFView();

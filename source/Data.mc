@@ -105,7 +105,8 @@ module Data{
 			res = getSolarCharge();
 		}else if (field.type == WEIGHT){
 			res = getWeight();
-
+		}else if (field.type == MOON){
+			res = getMoon()[:AG1];
 
 		}else if (field.type == WEATHER_PRESSURE){
 			res = getWeatherPressureString();
@@ -180,6 +181,8 @@ module Data{
 			res = getWeatherWindDirection();
 		}else if (field.type == PICTURE + WEATHER_UVI){
 			res = "u";
+		}else if (field.type == PICTURE + MOON){
+			res = getMoon()[:IP1];
 			
 		///////////////////////////////////////////////////////////////////////
 		//WEATHER
@@ -209,17 +212,7 @@ module Data{
 		///////////////////////////////////////////////////////////////////////
 		//MOON
 		}else if (field.type == :moon){
-
-			var now = Time.now();
-			var today = Gregorian.info(now, Time.FORMAT_SHORT);
-
-			if (field.oldValue == null || memoryCache.flags[:moonDay] == null || memoryCache.flags[:moonDay] != today.day){
-				memoryCache.flags[:moonDay] = today.day;
-				res = Tools.moonPhase(now);
-				//System.println("res "+Tools.moonPhase(now));
-	 		}else{
-	 			res = field.oldValue;
-			}
+			res = getMoon()[:IP1];
 
 		///////////////////////////////////////////////////////////////////////
 		//Solar
@@ -239,6 +232,27 @@ module Data{
 		return res;
 	}
 
+	///////////////////////////////////////////////////////////////////////////
+	function getMoon(){
+		
+		var now = Time.today();
+		
+		if (memoryCache.moonPhase[:day] != now.value()){
+			memoryCache.moonPhase = Tools.moonPhase(now);
+			memoryCache.moonPhase[:day] = now.value();
+		}
+		
+		
+//		if (field.oldValue == null || memoryCache.flags[:moonDay] == null || memoryCache.flags[:moonDay] != today.day){
+//			memoryCache.flags[:moonDay] = today.day;
+//			res = Tools.moonPhase(now);
+// 		}else{
+// 			res = field.oldValue;
+//		}
+		
+		return memoryCache.moonPhase;
+	}
+	
 	///////////////////////////////////////////////////////////////////////////
 	function getLastHistoryMoment(method){
 		var value = NA;
@@ -717,22 +731,6 @@ module Data{
 			value = str;
 		}
 		return value;
-	}
-
-	///////////////////////////////////////////////////////////////////////////
-	function moonPhaseString(){
-		var res = "";
-		var day = Tools.moonPhase(Time.now());
-		if (day == 29){
-			day = 28;
-		}
-		if (day < 16){
-			res = (61660+day).toChar();
-		}else{
-			res = (61632+day).toChar();
-		}
-		//res = (61676-day).toChar();
-		return res;
 	}
 	
 	///////////////////////////////////////////////////////////////////////////

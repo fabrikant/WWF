@@ -147,6 +147,7 @@ class SelectItem extends WatchUi.MenuItem{
 		self.value = value;
 		self.propName = propName;
 		self.parentItemWeak = parentItemWeak;
+		System.println("!"+propName+" "+identifier.toString());
 		MenuItem.initialize(Application.loadResource(Rez.Strings[identifier]), null, identifier, {});
 	}
 
@@ -299,6 +300,7 @@ module SettingsReference{
 			SUN_EVENT 			=> :FIELD_TYPE_SUN_EVENT,
 			SUNRISE_EVENT 		=> :FIELD_TYPE_SUNRISE,
 			SUNSET_EVENT 		=> :FIELD_TYPE_SUNSET,
+			//MOON			 	=> :WTypeMoon,
 			TIME1 				=> :FIELD_TYPE_TIME1,
 			ACTIVE_DAY 			=> :FIELD_TYPE_ACTIVE_DAY,
 			ACTIVE_WEEK 		=> :FIELD_TYPE_ACTIVE_WEEK,

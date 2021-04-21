@@ -16,8 +16,8 @@
     <string id="WTypeHeartRateHistory" scope="foreground">График ЧСС</string>
     <string id="WTypeElevationHistory" scope="foreground">График высоты</string>
     <string id="WTypeSaturationHistory" scope="foreground">График насыщения кислородом</string>
-	<string id="WTypeMoon" scope="foreground">Луна</string>
-	<string id="WTypeSolar" scope="foreground">Солнце</string> 
+	<string id="WTypeMoon" scope="foreground">Фаза луны</string>
+	<string id="WTypeSolar" scope="foreground">Восход/закат</string> 
 
  	<string id="MilFt" scope="foreground">Военный формат времени</string>
 	<string id="HFt01" scope="foreground">Выводить лидирующий ноль в часах</string>

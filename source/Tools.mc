@@ -315,9 +315,9 @@ module Tools {
 	}
 
 	///////////////////////////////////////////////////////////////////////////
-    function moonPhase(now){
+    function moonPhase(d){
     	//var now = Time.now();
-        var date = Time.Gregorian.info(now, Time.FORMAT_SHORT);
+        var date = Time.Gregorian.info(d, Time.FORMAT_SHORT);
         // date.month, date.day date.year
 
 		var n0 = 0;
@@ -358,7 +358,7 @@ module Tools {
 	    var AG1 = IP1*29.53;
 
 		//return AG1.toNumber();
-		return IP1;
+		return {:IP1 => IP1, :AG1 => AG1.toNumber().toString()};
 
     }
 

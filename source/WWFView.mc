@@ -66,17 +66,24 @@ class WWFView extends WatchUi.WatchFace {
 		var propName = SettingsReference.getAppPropertyNames(memoryCache.mode)[fId];
 		var type = Application.Properties.getValue(propName);
 		if (type != EMPTY){
-	        fields[pId] = new ImageField(
-	    		{
+		
+			var pictureOptions = {
 	    			:x => x,
 	    			:y => y,
 	    			:h => h,
 	    			:w => wPicture,
 	    			:type => PICTURE+type,
 					:fontId => :picture,
-	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
-	    		}
-	    	);
+	    			:justify => Graphics.TEXT_JUSTIFY_CENTER};
+	    			
+	    	if (type == WEATHER_WIND_SPEED || type == WEATHER_WIND_DEG){
+	    		fields[pId] = new WindDirectionField(pictureOptions);
+	    	}else if (type == MOON){
+	    		fields[pId] = new MoonField(pictureOptions);
+	    	}else{
+	    		fields[pId] = new SimpleField(pictureOptions);
+	    	}
+	        
 	
 	        fields[fId] = new SimpleField(
 	    		{

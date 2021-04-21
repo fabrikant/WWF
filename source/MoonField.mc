@@ -22,18 +22,11 @@ class MoonField extends SimpleField{
 	    var rPos;
 	    var xPos, xPos1, xPos2;
 		var shift = w/2;
-		var r = (0.55*shift);
-		
+		var r = (0.8*shift);
 		
 		if (dc has :setAntiAlias){
 			dc.setAntiAlias(true);
-			dc.setPenWidth(3);
-		}else{
-			dc.setPenWidth(2);
 		}
-		dc.setColor(color, color);
-		dc.drawCircle(x+shift, y+shift, r);
-		dc.setPenWidth(1);
 		
 	    for (var yPos=0; yPos<= r; yPos++){
 	        xPos = (Math.sqrt(r*r - yPos*yPos));
@@ -56,6 +49,9 @@ class MoonField extends SimpleField{
 			dc.drawLine(x+shift-xPos1, y+shift-yPos, x+xPos2+shift, y+shift-yPos);               
 	       
 	    }
+		
+		dc.setColor(color, color);
+		dc.drawCircle(x+shift, y+shift, r);
 	    
 	    if (dc has :setAntiAlias){
 			dc.setAntiAlias(false);

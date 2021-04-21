@@ -16,8 +16,8 @@
     <string id="WTypeHeartRateHistory" scope="foreground">Heart rate history</string>
     <string id="WTypeElevationHistory" scope="foreground">Elevation history</string>
     <string id="WTypeSaturationHistory" scope="foreground">Saturation history</string>
-    <string id="WTypeMoon" scope="foreground">Moon</string>
-    <string id="WTypeSolar" scope="foreground">Solar</string>
+    <string id="WTypeMoon" scope="foreground">Moon phase</string>
+    <string id="WTypeSolar" scope="foreground">Sunrise/sunset</string>
  
  	<string id="MilFt" scope="foreground">Military Format</string>
 	<string id="HFt01" scope="foreground">Use format 01 for horse</string>
