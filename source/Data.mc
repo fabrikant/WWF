@@ -235,21 +235,17 @@ module Data{
 	///////////////////////////////////////////////////////////////////////////
 	function getMoon(){
 		
-		var now = Time.today();
-		
-		if (memoryCache.moonPhase[:day] != now.value()){
-			memoryCache.moonPhase = Tools.moonPhase(now);
-			memoryCache.moonPhase[:day] = now.value();
+		var now = Time.now();
+		var needUpdate = false;
+		if (memoryCache.moonPhase[:day] == null){
+			needUpdate = true;
+		}else if (memoryCache.moonPhase[:day].add(new Time.Duration(Time.Gregorian.SECONDS_PER_HOUR)).lessThan(now)){
+			needUpdate = true;
 		}
-		
-		
-//		if (field.oldValue == null || memoryCache.flags[:moonDay] == null || memoryCache.flags[:moonDay] != today.day){
-//			memoryCache.flags[:moonDay] = today.day;
-//			res = Tools.moonPhase(now);
-// 		}else{
-// 			res = field.oldValue;
-//		}
-		
+		if (needUpdate){
+			memoryCache.moonPhase = Tools.moonPhase(now);
+			memoryCache.moonPhase[:day] = now;
+		}
 		return memoryCache.moonPhase;
 	}
 	

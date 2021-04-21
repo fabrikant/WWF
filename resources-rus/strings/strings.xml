@@ -16,7 +16,6 @@
     <string id="WTypeHeartRateHistory" scope="foreground">График ЧСС</string>
     <string id="WTypeElevationHistory" scope="foreground">График высоты</string>
     <string id="WTypeSaturationHistory" scope="foreground">График насыщения кислородом</string>
-	<string id="WTypeMoon" scope="foreground">Фаза луны</string>
 	<string id="WTypeSolar" scope="foreground">Восход/закат</string> 
 
  	<string id="MilFt" scope="foreground">Военный формат времени</string>
@@ -71,6 +70,7 @@
 	<string id="FIELD_TYPE_WEATHER_UVI" scope="foreground">УФ индекс</string>
 	<string id="FIELD_TYPE_WEATHER_DEW_POINT" scope="foreground">Точка росы</string>
 	<string id="FIELD_TYPE_WEATHER_TEMPERATURE" scope="foreground">Температура (погода)</string>
+	<string id="FIELD_TYPE_MOON" scope="foreground">Фаза луны</string>
 
 	<!--FIELD NAMES -->
 	<string id="F0" scope="foreground">Верхнее поле 1</string>
