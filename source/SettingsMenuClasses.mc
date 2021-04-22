@@ -2,6 +2,8 @@ using Toybox.Application;
 using Toybox.WatchUi;
 using Toybox.System;
 using Toybox.Graphics;
+using Toybox.Activity;
+using Toybox.ActivityMonitor;
 
 //*****************************************************************************
 class GeneralMenu extends WatchUi.Menu2{
@@ -299,15 +301,7 @@ module SettingsReference{
 	}
 	
 	function field(){
-		return {
-			HR 					=> :FIELD_TYPE_HR,
-			STEPS 				=> :FIELD_TYPE_STEPS,
-			PRESSURE 			=> :FIELD_TYPE_PRESSURE,
-			TEMPERATURE 		=> :FIELD_TYPE_TEMPERATURE,
-			CALORIES 			=> :FIELD_TYPE_CALORIES,
-			DISTANCE 			=> :FIELD_TYPE_DISTANCE,
-			FLOOR 				=> :FIELD_TYPE_FLOOR,
-			ELEVATION 			=> :FIELD_TYPE_ELEVATION,
+		var res = {
 			SUN_EVENT 			=> :FIELD_TYPE_SUN_EVENT,
 			SUNRISE_EVENT 		=> :FIELD_TYPE_SUNRISE,
 			SUNSET_EVENT 		=> :FIELD_TYPE_SUNSET,
@@ -315,8 +309,6 @@ module SettingsReference{
 			TIME1 				=> :FIELD_TYPE_TIME1,
 			ACTIVE_DAY 			=> :FIELD_TYPE_ACTIVE_DAY,
 			ACTIVE_WEEK 		=> :FIELD_TYPE_ACTIVE_WEEK,
-			O2 					=> :FIELD_TYPE_O2,
-			SOLAR_CHARGE 		=> :FIELD_TYPE_SOLAR_CHARGE,
 			WEIGHT 				=> :FIELD_TYPE_WEIGHT,
 			WEATHER_TEMPERATURE => :FIELD_TYPE_WEATHER_TEMPERATURE,
 			WEATHER_PRESSURE 	=> :FIELD_TYPE_WEATHER_PRESSURE,
@@ -327,30 +319,86 @@ module SettingsReference{
 			WEATHER_UVI 		=> :FIELD_TYPE_WEATHER_UVI,
 			WEATHER_DEW_POINT 	=> :FIELD_TYPE_WEATHER_DEW_POINT,
 			EMPTY 				=> :FIELD_TYPE_EMPTY};
+			
+		var info = Activity.Info;		
+		if (info != null){
+			if (info has :currentOxygenSaturation){
+				res[O2] = :FIELD_TYPE_O2;				
+			}
+			if (info has :currentHeartRate){
+				res[HR] = :FIELD_TYPE_HR;
+			}
+			if (info has :meanSeaLevelPressure){
+				res[PRESSURE] = :FIELD_TYPE_PRESSURE;
+			}
+			if (info has :altitude){
+				res[ELEVATION] = :FIELD_TYPE_ELEVATION;
+			}
+		}
+		info = ActivityMonitor.Info;
+		if (info has :floorsClimbed){
+			res[FLOOR] = :FIELD_TYPE_FLOOR;
+		}
+		if (info has :steps){
+			res[STEPS] = :FIELD_TYPE_STEPS;
+		}
+		if (info has :calories){
+			res[CALORIES] = :FIELD_TYPE_CALORIES;
+		}
+		if (info has :distance){
+			res[DISTANCE] = :FIELD_TYPE_DISTANCE;
+		}		
+		if (System.Stats has :solarIntensity){
+			var stats = System.getSystemStats().solarIntensity;
+			if (stats != null){
+				res[SOLAR_CHARGE] = :FIELD_TYPE_SOLAR_CHARGE;
+			}
+		}
+		if (Toybox has :SensorHistory){
+			if (Toybox.SensorHistory has :getTemperatureHistory){
+				res[TEMPERATURE] = :FIELD_TYPE_TEMPERATURE;
+			}
+		}		
+		return res;	
+	}
+	
+	function addHistoryItems(dict){
+	
+		if (Toybox has :SensorHistory){
+			if (Toybox.SensorHistory has :getHeartRateHistory){
+				dict[WIDGET_TYPE_HR] = :WTypeHeartRateHistory;
+			}
+			if (Toybox.SensorHistory has :getElevationHistory){
+				dict[WIDGET_TYPE_ELEVATION] = :WTypeElevationHistory;
+			}
+			if (Toybox.SensorHistory has :getOxygenSaturationHistory){
+				dict[WIDGET_TYPE_SATURATION] = :WTypeSaturationHistory;
+			}
+			if (Toybox.SensorHistory has :getPressureHistory){
+				dict[WIDGET_TYPE_PRESSURE] = :WTypePressureHistory;
+			}
+			if (Toybox.SensorHistory has :getTemperatureHistory){
+				dict[WIDGET_TYPE_TEMPERATURE] = :WTypeTemperatureHistory;
+			}
+		}
 	}
 	
 	function widgetTypeTop(){
-		return{
+		var res = {
 			WIDGET_TYPE_WEATHER 		=> :WTypeWeather,
 			WIDGET_TYPE_WEATHER_WIND 	=> :WTypeWeatherWind,
-			WIDGET_TYPE_WEATHER_FIELDS 	=> :WTypeWeatherFields,
-			WIDGET_TYPE_HR 				=> :WTypeHeartRateHistory,
-			WIDGET_TYPE_SATURATION 		=> :WTypeSaturationHistory,
-			WIDGET_TYPE_TEMPERATURE 	=> :WTypeTemperatureHistory,
-			WIDGET_TYPE_PRESSURE 		=> :WTypePressureHistory,
-			WIDGET_TYPE_ELEVATION 		=> :WTypeElevationHistory};
+			WIDGET_TYPE_WEATHER_FIELDS 	=> :WTypeWeatherFields};
+		addHistoryItems(res);	
+		return res;
 	}	
 	
 	function widgetTypeBottom(){
-		return {
+		var res = {
 			WIDGET_TYPE_WEATHER 	=> :WTypeWeather,
 			WIDGET_TYPE_MOON 		=> :FIELD_TYPE_MOON,
-			WIDGET_TYPE_SOLAR 		=> :WTypeSolar,
-			WIDGET_TYPE_HR 			=> :WTypeHeartRateHistory,
-			WIDGET_TYPE_SATURATION 	=> :WTypeSaturationHistory,
-			WIDGET_TYPE_TEMPERATURE => :WTypeTemperatureHistory,
-			WIDGET_TYPE_PRESSURE 	=> :WTypePressureHistory,
-			WIDGET_TYPE_ELEVATION 	=> :WTypeElevationHistory};
+			WIDGET_TYPE_SOLAR 		=> :WTypeSolar};
+		addHistoryItems(res);
+		return res;
 	}	
 	
 	function getCharsString(idSymbol){
