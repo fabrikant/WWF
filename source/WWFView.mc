@@ -241,7 +241,9 @@ class WWFView extends WatchUi.WatchFace {
 	    			:w => 4*w,
 	    			:type => graphType,
 	    			:fontId => :small,
-	    			:justify => Graphics.TEXT_JUSTIFY_CENTER
+	    			:justify => Graphics.TEXT_JUSTIFY_CENTER,
+	    			:showMinMax => true,
+	    			:graphOffset => true
 	    		}
 	    	);
 	    	topBarWidth += fields[:graphic][:w];
@@ -368,6 +370,7 @@ class WWFView extends WatchUi.WatchFace {
 	    			:fontId => :small,
 	    			:justify => Graphics.TEXT_JUSTIFY_CENTER,
 	    			:showMinMax => false,
+	    			:graphOffset => false
 	    		}
 	    	);
     	}

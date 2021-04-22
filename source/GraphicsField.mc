@@ -8,6 +8,7 @@ using Toybox.Time.Gregorian;
 class GraphicsField extends SimpleField{
 
 	var showMinMax;
+	var graphOffset;
 	private var currentColor;
 	
 	function initialize(params){
@@ -15,6 +16,11 @@ class GraphicsField extends SimpleField{
 			showMinMax = true;
 		}else{
 			showMinMax = params[:showMinMax]; 
+		}
+		if (params[:graphOffset] == null){
+			graphOffset = false;
+		}else{
+			graphOffset = params[:graphOffset]; 
 		}
 		SimpleField.initialize(params);
 	}
@@ -43,9 +49,16 @@ class GraphicsField extends SimpleField{
 		
 		var textW = 0;
 		if (showMinMax){		
-			textW = dc.getTextWidthInPixels("99999", fonts[fontId]);
+			textW = dc.getTextWidthInPixels("9999.", fonts[fontId]);
 		}
-    	var iterParam = {:period => w-textW, :order => SensorHistory.ORDER_NEWEST_FIRST};
+
+		var period = w;
+		var xPoint = x+w;
+		if (graphOffset){
+			period -= textW;
+			xPoint -= textW;
+		}
+    	var iterParam = {:period => period, :order => SensorHistory.ORDER_NEWEST_FIRST};
     	var iter = new Lang.Method(Toybox.SensorHistory, type).invoke(iterParam);
 
    		var min = iter.getMin();
@@ -55,11 +68,10 @@ class GraphicsField extends SimpleField{
 		var oldY = null;
 		var data;
 		dc.setPenWidth(2);
-		var xPoint = x+w-textW; 
 	
 		var yMax = y + h/4;
 		var yMin = yMax + h/2;
-		var xMinMax = xPoint+textW/2;
+		var xMinMax = x+w-textW/2;
 		
 		var when = null;
 		
@@ -70,15 +82,6 @@ class GraphicsField extends SimpleField{
 		
 		dc.setColor(currentColor, Graphics.COLOR_TRANSPARENT);
 		dc.drawLine(x, y, x, y+h);
-		if (showMinMax){
-			dc.drawText(xMinMax, yMax, fonts[fontId], getMinMaxString(max), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-			dc.drawText(xMinMax, yMin, fonts[fontId], getMinMaxString(min), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
-			dc.drawLine(x, y+h, x+w-textW, y+h);
-		}else{
-			dc.drawLine(x, y, x+w-textW, y);
-		}
-		
-		
 		while (sample != null){
 
 			data = sample.data;
@@ -115,6 +118,15 @@ class GraphicsField extends SimpleField{
 			xPoint -= 1;
 			sample = iter.next();
 		}
+		
+		if (showMinMax){
+			dc.drawText(xMinMax, yMax, fonts[fontId], getMinMaxString(max), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+			dc.drawText(xMinMax, yMin, fonts[fontId], getMinMaxString(min), Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER);
+			dc.drawLine(x, y+h, x+w-textW, y+h);
+		}else{
+			dc.drawLine(x, y, x+w-textW, y);
+		}
+		
 	}
 	
 	function getMinMaxString(value){
