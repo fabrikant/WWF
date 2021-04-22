@@ -56,12 +56,12 @@ class SubMenu extends WatchUi.Menu2{
 //*****************************************************************************
 class SelectMenu extends WatchUi.Menu2{
 
-	function initialize(title, itemsDictonary, propName, parentItemWeak){
+	function initialize(title, itemsDictonary, propName){
 		Menu2.initialize({:title=> title});
 		var propValue = Application.Properties.getValue(propName);
 		var keys = itemsDictonary.keys();
 		for (var i=0; i<keys.size(); i++){
-			addItem(new SelectItem(itemsDictonary[keys[i]], propName, keys[i], parentItemWeak));
+			addItem(new SelectItem(itemsDictonary[keys[i]], keys[i]));
 			if (propValue == keys[i]){
 				setFocus(i);
 			}
@@ -100,8 +100,8 @@ class Item extends WatchUi.MenuItem{
 
 	function onSelect(){
 		if (subMenuDictonarySymbol != null){
-			var subMenu = new SelectMenu(getLabel(), new Toybox.Lang.Method(SettingsReference, subMenuDictonarySymbol).invoke(), propName, self.weak());
-			WatchUi.pushView(subMenu, new GeneralMenuDelegate(), WatchUi.SLIDE_IMMEDIATE);
+			var subMenu = new SelectMenu(getLabel(), new Toybox.Lang.Method(SettingsReference, subMenuDictonarySymbol).invoke(), propName);
+			WatchUi.pushView(subMenu, new SelectMenuDelegate(self.weak(), propName), WatchUi.SLIDE_IMMEDIATE);
 		}else if (propName == null){
 			var subMenu = new SubMenu(getId());
 			WatchUi.pushView(subMenu, new GeneralMenuDelegate(), WatchUi.SLIDE_IMMEDIATE);
@@ -140,17 +140,13 @@ class TogleItem extends WatchUi.ToggleMenuItem{
 class SelectItem extends WatchUi.MenuItem{
 	
 	var value;
-	var propName;
-	var parentItemWeak;
 	
-	function initialize(identifier, propName, value, parentItemWeak) {
+	function initialize(identifier, value) {
 		self.value = value;
-		self.propName = propName;
-		self.parentItemWeak = parentItemWeak;
 		MenuItem.initialize(Application.loadResource(Rez.Strings[identifier]), null, identifier, {});
 	}
 
-	function onSelect(){
+	function onSelect(parentItemWeak, propName){
 		Application.Properties.setValue(propName, value);
 		if (parentItemWeak.stillAlive()){
 			var parent = parentItemWeak.get();
@@ -172,6 +168,22 @@ class GeneralMenuDelegate extends WatchUi.Menu2InputDelegate{
 	}
 }
 
+//*****************************************************************************
+class SelectMenuDelegate extends WatchUi.Menu2InputDelegate{
+	
+	var parentItemWeak;
+	var propName;
+	
+	function initialize(parentItemWeak, propName) {
+		self.parentItemWeak = parentItemWeak;
+		self.propName = propName;
+	    Menu2InputDelegate.initialize();
+	}
+	
+	function onSelect(item){
+		item.onSelect(parentItemWeak, propName);
+	}
+}
 
 module SettingsReference{
 
