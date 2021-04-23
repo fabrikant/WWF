@@ -26,14 +26,6 @@
 	
 	<!--SECOND TIME -->
 	<string id="T1TZ" scope="foreground">Сдвиг от UTC в минутах для второго ч. пояса</string>
-	
-	<!--Status -->
-	<string id="SF0" scope="foreground">Индикатор левый 1</string>
-	<string id="SF1" scope="foreground">Индикатор левый 2</string>
-	<string id="SF2" scope="foreground">Индикатор левый 3</string>
-	<string id="SF3" scope="foreground">Индикатор правый 1</string>
-	<string id="SF4" scope="foreground">Индикатор правый 2</string>
-	<string id="SF5" scope="foreground">Индикатор правый 3</string>
 
 	<!--FIELD TYPES -->
 	<string id="FIELD_TYPE_EMPTY" scope="foreground">Пусто</string>
@@ -72,7 +64,17 @@
 	<string id="FIELD_TYPE_WEATHER_TEMPERATURE" scope="foreground">Температура (погода)</string>
 	<string id="FIELD_TYPE_MOON" scope="foreground">Фаза луны</string>
 
+	<!--Status -->
+	<string id="SFS" scope="foreground">Индикаторы</string>
+	<string id="SF0" scope="foreground">Индикатор левый 1</string>
+	<string id="SF1" scope="foreground">Индикатор левый 2</string>
+	<string id="SF2" scope="foreground">Индикатор левый 3</string>
+	<string id="SF3" scope="foreground">Индикатор правый 1</string>
+	<string id="SF4" scope="foreground">Индикатор правый 2</string>
+	<string id="SF5" scope="foreground">Индикатор правый 3</string>
+
 	<!--FIELD NAMES -->
+	<string id="FS" scope="foreground">Поля</string>
 	<string id="F0" scope="foreground">Верхнее поле 1</string>
 	<string id="F1" scope="foreground">Верхнее поле 2</string>
 	<string id="F2" scope="foreground">Поле 1</string>

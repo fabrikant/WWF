@@ -27,14 +27,6 @@
 	<!--SECOND TIME -->
 	<string id="T1TZ" scope="foreground">Time zone ±UTC (minutes)</string>
 	
-	<!--Status -->
-	<string id="SF0" scope="foreground">Status field left 1</string>
-	<string id="SF1" scope="foreground">Status field left 2</string>
-	<string id="SF2" scope="foreground">Status field left 3</string>
-	<string id="SF3" scope="foreground">Status field right 1</string>
-	<string id="SF4" scope="foreground">Status field right 2</string>
-	<string id="SF5" scope="foreground">Status field right 3</string>
-	 
 	<!--FIELD TYPES -->
 	<string id="FIELD_TYPE_EMPTY" scope="foreground">Empty</string>
 	<string id="FIELD_TYPE_HR" scope="foreground">Heart rate</string>
@@ -72,8 +64,17 @@
 	<string id="FIELD_TYPE_WEATHER_TEMPERATURE" scope="foreground">Temperature (weather)</string>
     <string id="FIELD_TYPE_MOON" scope="foreground">Moon phase</string>
 	
+	<!--Status -->
+	<string id="SFS" scope="foreground">Status fields</string>
+	<string id="SF0" scope="foreground">Status field left 1</string>
+	<string id="SF1" scope="foreground">Status field left 2</string>
+	<string id="SF2" scope="foreground">Status field left 3</string>
+	<string id="SF3" scope="foreground">Status field right 1</string>
+	<string id="SF4" scope="foreground">Status field right 2</string>
+	<string id="SF5" scope="foreground">Status field right 3</string>
 	
 	<!--FIELD NAMES -->
+	<string id="FS" scope="foreground">Fields</string>
 	<string id="F0" scope="foreground">Top field 1</string>
 	<string id="F1" scope="foreground">Top field 2</string>
 	<string id="F2" scope="foreground">Field 1</string>

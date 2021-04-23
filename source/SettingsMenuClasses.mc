@@ -33,26 +33,41 @@ class SubMenu extends WatchUi.Menu2{
 		addItem(new Item(:Theme, dictNames[:Theme], Rez.Strings.Theme, :theme));
 		addItem(new Item(:WTypeTop, dictNames[:WTypeTop], Rez.Strings.WTypeTop, :widgetTypeTop));
 		addItem(new Item(:WTypeBottom, dictNames[:WTypeBottom], Rez.Strings.WTypeBottom, :widgetTypeBottom));
-		   
-		addItem(new Item(:F0, dictNames[:F0], Rez.Strings.F0, :field));
-		addItem(new Item(:F1, dictNames[:F1], Rez.Strings.F1, :field));
-		addItem(new Item(:F2, dictNames[:F2], Rez.Strings.F2, :field));
-		addItem(new Item(:F3, dictNames[:F3], Rez.Strings.F3, :field));
-		addItem(new Item(:F4, dictNames[:F4], Rez.Strings.F4, :field));
-		addItem(new Item(:F5, dictNames[:F5], Rez.Strings.F5, :field));		
-		addItem(new Item(:F6, dictNames[:F6], Rez.Strings.F6, :field));
-		addItem(new Item(:F7, dictNames[:F7], Rez.Strings.F7, :field));
 		
-		addItem(new Item(:SF0, dictNames[:SF0], Rez.Strings.SF0, :statusField));
-		addItem(new Item(:SF1, dictNames[:SF1], Rez.Strings.SF1, :statusField));
-		addItem(new Item(:SF2, dictNames[:SF2], Rez.Strings.SF2, :statusField));
-		addItem(new Item(:SF3, dictNames[:SF3], Rez.Strings.SF3, :statusField));
-		addItem(new Item(:SF4, dictNames[:SF4], Rez.Strings.SF4, :statusField));
-		addItem(new Item(:SF5, dictNames[:SF5], Rez.Strings.SF5, :statusField));
+		addItem(new Item(:FS, null, Rez.Strings.FS, null));
+		addItem(new Item(:SFS, null, Rez.Strings.SFS, null));
 		
 		addItem(new Item(:DF, dictNames[:DF], Rez.Strings.DF, null));
 	}
+}
+
+//*****************************************************************************
+class MenuFieldsList extends WatchUi.Menu2{
 	
+	function initialize(listId, mode, title) {
+		
+		Menu2.initialize({:title=> title});
+
+		var dictNames = SettingsReference.getAppPropertyNames(mode);
+
+		if (listId == :FS){
+			addItem(new Item(:F0, dictNames[:F0], Rez.Strings.F0, :field));
+			addItem(new Item(:F1, dictNames[:F1], Rez.Strings.F1, :field));
+			addItem(new Item(:F2, dictNames[:F2], Rez.Strings.F2, :field));
+			addItem(new Item(:F3, dictNames[:F3], Rez.Strings.F3, :field));
+			addItem(new Item(:F4, dictNames[:F4], Rez.Strings.F4, :field));
+			addItem(new Item(:F5, dictNames[:F5], Rez.Strings.F5, :field));		
+			addItem(new Item(:F6, dictNames[:F6], Rez.Strings.F6, :field));
+			addItem(new Item(:F7, dictNames[:F7], Rez.Strings.F7, :field));
+		}else if (listId == :SFS){
+			addItem(new Item(:SF0, dictNames[:SF0], Rez.Strings.SF0, :statusField));
+			addItem(new Item(:SF1, dictNames[:SF1], Rez.Strings.SF1, :statusField));
+			addItem(new Item(:SF2, dictNames[:SF2], Rez.Strings.SF2, :statusField));
+			addItem(new Item(:SF3, dictNames[:SF3], Rez.Strings.SF3, :statusField));
+			addItem(new Item(:SF4, dictNames[:SF4], Rez.Strings.SF4, :statusField));
+			addItem(new Item(:SF5, dictNames[:SF5], Rez.Strings.SF5, :statusField));
+		}
+	}
 }
 
 //*****************************************************************************
@@ -70,7 +85,6 @@ class SelectMenu extends WatchUi.Menu2{
 		}
 	}
 }
-
 
 //*****************************************************************************
 class Item extends WatchUi.MenuItem{
@@ -100,13 +114,20 @@ class Item extends WatchUi.MenuItem{
 		MenuItem.initialize(label, subLabel, identifier, {});
 	}
 
-	function onSelect(){
+	//*****************************************************************************
+	function onSelect(mode){
 		if (subMenuDictonarySymbol != null){
 			var subMenu = new SelectMenu(getLabel(), new Toybox.Lang.Method(SettingsReference, subMenuDictonarySymbol).invoke(), propName);
 			WatchUi.pushView(subMenu, new SelectMenuDelegate(self.weak(), propName), WatchUi.SLIDE_IMMEDIATE);
 		}else if (propName == null){
-			var subMenu = new SubMenu(getId());
-			WatchUi.pushView(subMenu, new GeneralMenuDelegate(), WatchUi.SLIDE_IMMEDIATE);
+			var itemId = getId();
+			if (itemId == :G || itemId == :D ||itemId == :N){
+				var subMenu = new SubMenu(itemId);
+				WatchUi.pushView(subMenu, new GeneralMenuDelegate(itemId), WatchUi.SLIDE_IMMEDIATE);
+			}else{
+				var subMenu = new MenuFieldsList(itemId, mode, getLabel());
+				WatchUi.pushView(subMenu, new GeneralMenuDelegate(itemId), WatchUi.SLIDE_IMMEDIATE);
+			}
 		}else if (getId() == :T1TZ || getId() == :keyOW || getId() == :DF){
 			if (WatchUi has :Picker){
 				var picker = new StringPicker(self, SettingsReference.getCharsString(getId()));
@@ -115,6 +136,7 @@ class Item extends WatchUi.MenuItem{
 		}
 	}	
 	
+	//*****************************************************************************
 	function getDescriptionStringSymbol(value){
 		var dict = new Toybox.Lang.Method(SettingsReference, subMenuDictonarySymbol).invoke();
 		return dict[value];
@@ -161,12 +183,15 @@ class SelectItem extends WatchUi.MenuItem{
 //*****************************************************************************
 class GeneralMenuDelegate extends WatchUi.Menu2InputDelegate{
 	
-	 function initialize() {
+	var mode;
+	
+	function initialize(mode) {
+		self.mode = mode;
         Menu2InputDelegate.initialize();
     }
     
 	function onSelect(item){
-		item.onSelect();
+		item.onSelect(mode);
 	}
 }
 
@@ -187,6 +212,7 @@ class SelectMenuDelegate extends WatchUi.Menu2InputDelegate{
 	}
 }
 
+//*****************************************************************************
 module SettingsReference{
 
 	//concat Strings is not work in real device
@@ -257,6 +283,7 @@ module SettingsReference{
 		return dict;
 	}
 
+	//*****************************************************************************
 	function theme(){
 		return {
 			DARK  			 => :ThemeDark,
@@ -268,6 +295,7 @@ module SettingsReference{
 		};
 	}
 	
+	//*****************************************************************************
 	function pressureUnit(){
 		return {
 			UNIT_PRESSURE_MM_HG => :PrUMmHg,
@@ -277,6 +305,7 @@ module SettingsReference{
 			UNIT_PRESSURE_KPA => :PrUKPa};
 	}
 	
+	//*****************************************************************************
 	function windSpeedUnit(){
 		return {
 			UNIT_SPEED_MS => :SpeedUnitMSec,
@@ -287,6 +316,7 @@ module SettingsReference{
 			UNIT_SPEED_KNOTS => :SpeedUnitKnots};
 	}
 	
+	//*****************************************************************************
 	function statusField(){
 		return {
 			CONNECTED 			=> :FIELD_TYPE_CONNECTED,
@@ -300,6 +330,7 @@ module SettingsReference{
 			EMPTY 				=> :FIELD_TYPE_EMPTY};
 	}
 	
+	//*****************************************************************************
 	function field(){
 		var res = {
 			SUN_EVENT 			=> :FIELD_TYPE_SUN_EVENT,
@@ -358,10 +389,13 @@ module SettingsReference{
 			if (Toybox.SensorHistory has :getTemperatureHistory){
 				res[TEMPERATURE] = :FIELD_TYPE_TEMPERATURE;
 			}
-		}		
+		}	
+		
+		//System.println( System.getSystemStats().freeMemory);
 		return res;	
 	}
 	
+	//*****************************************************************************
 	function addHistoryItems(dict){
 	
 		if (Toybox has :SensorHistory){
@@ -383,6 +417,7 @@ module SettingsReference{
 		}
 	}
 	
+	//*****************************************************************************
 	function widgetTypeTop(){
 		var res = {
 			WIDGET_TYPE_WEATHER 		=> :WTypeWeather,
@@ -392,6 +427,7 @@ module SettingsReference{
 		return res;
 	}	
 	
+	//*****************************************************************************
 	function widgetTypeBottom(){
 		var res = {
 			WIDGET_TYPE_WEATHER 	=> :WTypeWeather,
@@ -401,6 +437,7 @@ module SettingsReference{
 		return res;
 	}	
 	
+	//*****************************************************************************
 	function getCharsString(idSymbol){
 		if (idSymbol == :T1TZ){
 			return "-1234567890";
