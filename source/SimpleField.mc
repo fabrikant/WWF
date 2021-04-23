@@ -29,15 +29,22 @@ class SimpleField {
 
 		var _x = x;
 		var _y = y + h/2;
-
+		var font = fonts[fontId];
+		var currentJustify = justify; 
+		
 		if (justify == Graphics.TEXT_JUSTIFY_CENTER){
-			_x += w/2;
+			var textW = dc.getTextWidthInPixels(text, font);
+			if (textW > w){
+				currentJustify = Graphics.TEXT_JUSTIFY_LEFT; 
+			}else{
+				_x += w/2;
+			}
 		} else if (justify == Graphics.TEXT_JUSTIFY_RIGHT){
 			_x += w;
 		}
 
-		var font = fonts[fontId];
-		dc.drawText(_x, _y, font, text, justify | Graphics.TEXT_JUSTIFY_VCENTER);
+		
+		dc.drawText(_x, _y, font, text, currentJustify | Graphics.TEXT_JUSTIFY_VCENTER);
 		drawBorder(dc);
 	}
 
@@ -98,7 +105,7 @@ class SimpleField {
 	}
 	
 	function drawBorder(dc){
-		return;
+		//return;
 		dc.setColor(getColor(), Graphics.COLOR_TRANSPARENT);
 		dc.drawRectangle(x, y, w, h);
 	}

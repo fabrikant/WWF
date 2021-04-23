@@ -117,15 +117,18 @@ class BackgroundService extends System.ServiceDelegate {
 		 
 		if (responseCode == 200) {
 			var weatherDesription = data["current"]["weather"][0]["description"];
-			if (weatherDesription instanceof Toybox.Lang.String){
-				var spaceInd = weatherDesription.find(" ");
-				if (spaceInd != null){
-					weatherDesription = weatherDesription.substring(0, spaceInd);
-				} 
-				weatherDesription = weatherDesription.substring(0, 11);
-			}else{
+			if (weatherDesription == null){
 				weatherDesription = "";
 			}
+//			if (weatherDesription instanceof Toybox.Lang.String){
+//				var spaceInd = weatherDesription.find(" ");
+//				if (spaceInd != null){
+//					weatherDesription = weatherDesription.substring(0, spaceInd);
+//				} 
+//				weatherDesription = weatherDesription.substring(0, 11);
+//			}else{
+//				weatherDesription = "";
+//			}
 			 
 			backgroundData = {
 				STORAGE_KEY_RESPONCE_CODE => responseCode,

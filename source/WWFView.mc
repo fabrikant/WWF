@@ -4,11 +4,13 @@ using Toybox.System;
 using Toybox.Lang;
 using Toybox.Application;
 using Toybox.Activity;
+using Toybox.Math;
 
 class WWFView extends WatchUi.WatchFace {
 
 	var fields;
 	
+	///////////////////////////////////////////////////////////////////////////
     function initialize() {
 
         WatchFace.initialize();
@@ -17,10 +19,12 @@ class WWFView extends WatchUi.WatchFace {
         fields = null;
     }
 
+	///////////////////////////////////////////////////////////////////////////
     // Load your resources here
     function onLayout(dc) {
 	}
 	
+	///////////////////////////////////////////////////////////////////////////
 	function initFonts(){
         fonts = {};
         fonts[:time] = Application.loadResource(Rez.Fonts.big);
@@ -30,6 +34,7 @@ class WWFView extends WatchUi.WatchFace {
         fonts[:picture] = Application.loadResource(Rez.Fonts.images);
 	}
 	
+	///////////////////////////////////////////////////////////////////////////
 	function createWeatherFields(top, h, w, fieldsIds){
 	
 		var fromPictureToTemp = 5;
@@ -60,6 +65,7 @@ class WWFView extends WatchUi.WatchFace {
 		
 	}
 	
+	///////////////////////////////////////////////////////////////////////////
 	function createDataField(pId, fId, x, y, h, wPicture, wText){
 		
 		var res = 0;
@@ -102,6 +108,7 @@ class WWFView extends WatchUi.WatchFace {
 		return res;
 	}
 	
+	///////////////////////////////////////////////////////////////////////////
 	function shiftFields(idsArray, shiftX){
 		for (var i = 0; i < idsArray.size(); i++){
 			if (fields[idsArray[i]] != null){
@@ -110,6 +117,13 @@ class WWFView extends WatchUi.WatchFace {
 		}
 	}
 	
+	function getWidthForY(y, dc){
+		var r = dc.getWidth()/2;
+		var absY = Tools.abs(r-y);
+		return 2*Math.sqrt(r*r-absY*absY).toNumber();
+	}
+	
+	///////////////////////////////////////////////////////////////////////////
 	function createFields(dc){
 		
 		var propNames = SettingsReference.getAppPropertyNames(memoryCache.mode);
@@ -144,13 +158,13 @@ class WWFView extends WatchUi.WatchFace {
     	font = fonts[:small];
     	h = ((fields[:time].h)/3).toNumber()+2;
     	y = y - h;
-
+		w = getWidthForY(y, dc);
         fields[:date] = new SimpleField(
     		{
-    			:x => 0,
+    			:x => (dc.getWidth()-w)/2,
     			:y => y,
     			:h => h,
-    			:w => dc.getWidth(),
+    			:w => w,
     			:type => :date,
     			:fontId => :small_letters,
     			:justify => Graphics.TEXT_JUSTIFY_CENTER
@@ -238,7 +252,7 @@ class WWFView extends WatchUi.WatchFace {
 	    			:x => 0,
 	    			:y => currentTop,
 	    			:h => h,
-	    			:w => 4*w,
+	    			:w => getWidthForY(currentTop+hDataField/2, dc),
 	    			:type => graphType,
 	    			:fontId => :small,
 	    			:justify => Graphics.TEXT_JUSTIFY_CENTER,
@@ -388,6 +402,7 @@ class WWFView extends WatchUi.WatchFace {
 
     }
 
+	///////////////////////////////////////////////////////////////////////////
     // Called when this View is brought to the foreground. Restore
     // the state of this View and prepare it to be shown. This includes
     // loading resources into memory.
@@ -426,6 +441,7 @@ class WWFView extends WatchUi.WatchFace {
     	memoryCache = new MemoryCache();
     }
 
+	///////////////////////////////////////////////////////////////////////////
 	function drawBackground(dc){
 		var color = memoryCache.getBackgroundColor();
 		dc.setColor(color, color);
@@ -433,6 +449,7 @@ class WWFView extends WatchUi.WatchFace {
 		dc.fillRectangle(0, 0, dc.getWidth(), dc.getHeight());
 	}
 
+	///////////////////////////////////////////////////////////////////////////
     // Update the view
     function onUpdate(dc) {
 		
@@ -507,6 +524,7 @@ class WWFView extends WatchUi.WatchFace {
 		dc.setClip(0, 0, 0, 0);//fix bug Vivoactive 4
     }
 
+	///////////////////////////////////////////////////////////////////////////
 	function onPartialUpdate(dc){
 		
 		if (memoryCache.everySecondFields == null){
@@ -522,15 +540,18 @@ class WWFView extends WatchUi.WatchFace {
 		}
 	}
 
+	///////////////////////////////////////////////////////////////////////////
     function onHide() {
     	memoryCache = new MemoryCache();
     }
 
+	///////////////////////////////////////////////////////////////////////////
     // The user has just looked at their watch. Timers and animations may be started here.
     function onExitSleep() {
     	memoryCache = new MemoryCache();
     }
 
+ 	///////////////////////////////////////////////////////////////////////////
     // Terminate any active timers and prepare for slow updates.
     function onEnterSleep() {
     }

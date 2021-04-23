@@ -363,12 +363,20 @@ module Tools {
     }
 
 	///////////////////////////////////////////////////////////////////////////
-    function normalize( v ){
+    function normalize(v){
 	    v = v - v.toNumber();
 	    if( v < 0 ) {
 	        v = v + 1;
 		}
 	    return v;
 	}
-
+	
+	///////////////////////////////////////////////////////////////////////////
+	function abs(v){
+		if (v < 0){
+			return -v;
+		}else{
+			return v;
+		}
+	}
 }
