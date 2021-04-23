@@ -17,15 +17,15 @@ class WindDirectionField extends SimpleField{
 		}
 		if (direction != -1){
 			dc.setColor(currentColor, Graphics.COLOR_TRANSPARENT);
-			if (dc has :setAntiAlias){
-				dc.setAntiAlias(true);
-			}
+//			if (dc has :setAntiAlias){
+//				dc.setAntiAlias(true);
+//			}
 			
 			var windDirection = Tools.windDirection(h*0.9, direction.toNumber(), [x, y], [w, h]);
 			dc.fillPolygon(windDirection);
-			if (dc has :setAntiAlias){
-				dc.setAntiAlias(false);
-			}
+//			if (dc has :setAntiAlias){
+//				dc.setAntiAlias(false);
+//			}
 		}
 		drawBorder(dc);
 	}

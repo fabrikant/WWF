@@ -40,9 +40,9 @@ class SolarField extends SimpleField{
 		var diagonal = Math.sqrt(ray*ray/2);
 		var breakRaduis = 1.35*radius; 
 		
-		if (dc has :setAntiAlias){
-			dc.setAntiAlias(true);
-		}
+//		if (dc has :setAntiAlias){
+//			dc.setAntiAlias(true);
+//		}
 		
 		dc.setPenWidth(3);
 		dc.drawLine(xCenter-ray, yCenter-2, xCenter+ray, yCenter-2);
@@ -60,9 +60,9 @@ class SolarField extends SimpleField{
 		dc.setColor(backgroundColor, backgroundColor);
 		dc.fillRectangle(xCenter-ray-1, yCenter, 2*ray+2, y+h-yCenter+1);
 		
-		if (dc has :setAntiAlias){
-			dc.setAntiAlias(false);
-		}
+//		if (dc has :setAntiAlias){
+//			dc.setAntiAlias(false);
+//		}
 	}
 
 }

@@ -20,9 +20,9 @@ class WindDWidget extends SimpleField{
 		if (direction != -1){
 			var windDirection = Tools.windDirection(h*ratio*0.9, direction.toNumber(), [x, y], [w*ratio, h*ratio]);
 			dc.setColor(color, Graphics.COLOR_TRANSPARENT);
-			if (dc has :setAntiAlias){
-				dc.setAntiAlias(true);
-			}
+//			if (dc has :setAntiAlias){
+//				dc.setAntiAlias(true);
+//			}
 			
 			dc.fillPolygon(windDirection);
 		}

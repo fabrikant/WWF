@@ -27,9 +27,9 @@ class BitmapField extends SimpleField{
 					yOffset = -5;
 					xOffset -= 3;
 				}
-				if (dc has :setAntiAlias){
-					dc.setAntiAlias(true);
-				}
+//				if (dc has :setAntiAlias){
+//					dc.setAntiAlias(true);
+//				}
 				dc.drawBitmap(x+xOffset, y+yOffset, image);
 			}
 		}		

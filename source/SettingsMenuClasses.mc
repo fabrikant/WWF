@@ -10,14 +10,15 @@ class GeneralMenu extends WatchUi.Menu2{
 	function initialize() {
 		Menu2.initialize({:title=> Application.loadResource(Rez.Strings.SettingsMenu)});
 		addItem(new TogleItem(:SwitchDayNight, "SwitchDayNight", Rez.Strings.SwitchDayNight));
-		addItem(new Item(:G, null, Rez.Strings.SettingsGlobal, null));
-		addItem(new Item(:D, null, Rez.Strings.SettingsDay, null));
-		addItem(new Item(:N, null, Rez.Strings.SettingsNight, null));
+		addItem(new Item(:G, null, Rez.Strings.SettingsGlobal, null, null));
+		addItem(new Item(:D, null, Rez.Strings.SettingsDay, null, null));
+		addItem(new Item(:N, null, Rez.Strings.SettingsNight, null, null));
 		addItem(new TogleItem(:DNDisNight, "DNDisNight", Rez.Strings.DNDisNight));
-		addItem(new Item(:T1TZ, "T1TZ", Rez.Strings.T1TZ, null));
-		addItem(new Item(:keyOW, "keyOW", Rez.Strings.keyOW, null));
-		addItem(new Item(:PrU, "PrU", Rez.Strings.PrU, :pressureUnit));
-		addItem(new Item(:WU, "WU", Rez.Strings.WU, :windSpeedUnit));
+		addItem(new Item(:T1TZ, "T1TZ", Rez.Strings.T1TZ, null, Application.Properties.getValue("T1TZ").toString()));
+		addItem(new Item(:keyOW, "keyOW", Rez.Strings.keyOW, null, Application.Properties.getValue("keyOW")));
+		
+		addItem(new Item(:PrU, "PrU", Rez.Strings.PrU, :pressureUnit, SettingsReference.getSublabelForField(SettingsReference.pressureUnit(),"PrU")));
+		addItem(new Item(:WU, "WU", Rez.Strings.WU, :windSpeedUnit, SettingsReference.getSublabelForField(SettingsReference.windSpeedUnit(),"WU")));
 	}
 }
 
@@ -30,14 +31,14 @@ class SubMenu extends WatchUi.Menu2{
 
 		var dictNames = SettingsReference.getAppPropertyNames(mode);
 
-		addItem(new Item(:Theme, dictNames[:Theme], Rez.Strings.Theme, :theme));
-		addItem(new Item(:WTypeTop, dictNames[:WTypeTop], Rez.Strings.WTypeTop, :widgetTypeTop));
-		addItem(new Item(:WTypeBottom, dictNames[:WTypeBottom], Rez.Strings.WTypeBottom, :widgetTypeBottom));
+		addItem(new Item(:Theme, dictNames[:Theme], Rez.Strings.Theme, :theme, SettingsReference.getSublabelForField(SettingsReference.theme(),dictNames[:Theme])));
+		addItem(new Item(:WTypeTop, dictNames[:WTypeTop], Rez.Strings.WTypeTop, :widgetTypeTop, SettingsReference.getSublabelForField(SettingsReference.widgetTypeTop(),dictNames[:WTypeTop])));
+		addItem(new Item(:WTypeBottom, dictNames[:WTypeBottom], Rez.Strings.WTypeBottom, :widgetTypeBottom, SettingsReference.getSublabelForField(SettingsReference.widgetTypeBottom(),dictNames[:WTypeBottom])));
 		
-		addItem(new Item(:FS, null, Rez.Strings.FS, null));
-		addItem(new Item(:SFS, null, Rez.Strings.SFS, null));
+		addItem(new Item(:FS, null, Rez.Strings.FS, null, null));
+		addItem(new Item(:SFS, null, Rez.Strings.SFS, null, null));
 		
-		addItem(new Item(:DF, dictNames[:DF], Rez.Strings.DF, null));
+		addItem(new Item(:DF, dictNames[:DF], Rez.Strings.DF, null, Application.Properties.getValue(dictNames[:DF])));
 	}
 }
 
@@ -51,22 +52,34 @@ class MenuFieldsList extends WatchUi.Menu2{
 		var dictNames = SettingsReference.getAppPropertyNames(mode);
 
 		if (listId == :FS){
-			addItem(new Item(:F0, dictNames[:F0], Rez.Strings.F0, :field));
-			addItem(new Item(:F1, dictNames[:F1], Rez.Strings.F1, :field));
-			addItem(new Item(:F2, dictNames[:F2], Rez.Strings.F2, :field));
-			addItem(new Item(:F3, dictNames[:F3], Rez.Strings.F3, :field));
-			addItem(new Item(:F4, dictNames[:F4], Rez.Strings.F4, :field));
-			addItem(new Item(:F5, dictNames[:F5], Rez.Strings.F5, :field));		
-			addItem(new Item(:F6, dictNames[:F6], Rez.Strings.F6, :field));
-			addItem(new Item(:F7, dictNames[:F7], Rez.Strings.F7, :field));
+			var dictValues = SettingsReference.field();
+			addItem(createItem(:F0, Rez.Strings.F0, :field, dictNames, dictValues));
+			addItem(createItem(:F1, Rez.Strings.F1, :field, dictNames, dictValues));
+			addItem(createItem(:F2, Rez.Strings.F2, :field, dictNames, dictValues));
+			addItem(createItem(:F3, Rez.Strings.F3, :field, dictNames, dictValues));
+			addItem(createItem(:F4, Rez.Strings.F4, :field, dictNames, dictValues));
+			addItem(createItem(:F5, Rez.Strings.F5, :field, dictNames, dictValues));
+			addItem(createItem(:F6, Rez.Strings.F6, :field, dictNames, dictValues));
+			addItem(createItem(:F7, Rez.Strings.F7, :field, dictNames, dictValues));
 		}else if (listId == :SFS){
-			addItem(new Item(:SF0, dictNames[:SF0], Rez.Strings.SF0, :statusField));
-			addItem(new Item(:SF1, dictNames[:SF1], Rez.Strings.SF1, :statusField));
-			addItem(new Item(:SF2, dictNames[:SF2], Rez.Strings.SF2, :statusField));
-			addItem(new Item(:SF3, dictNames[:SF3], Rez.Strings.SF3, :statusField));
-			addItem(new Item(:SF4, dictNames[:SF4], Rez.Strings.SF4, :statusField));
-			addItem(new Item(:SF5, dictNames[:SF5], Rez.Strings.SF5, :statusField));
+			var dictValues = SettingsReference.statusField();
+			addItem(createItem(:SF0, Rez.Strings.SF0, :statusField, dictNames, dictValues));
+			addItem(createItem(:SF1, Rez.Strings.SF1, :statusField, dictNames, dictValues));
+			addItem(createItem(:SF2, Rez.Strings.SF2, :statusField, dictNames, dictValues));
+			addItem(createItem(:SF3, Rez.Strings.SF3, :statusField, dictNames, dictValues));
+			addItem(createItem(:SF4, Rez.Strings.SF4, :statusField, dictNames, dictValues));
+			addItem(createItem(:SF5, Rez.Strings.SF5, :statusField, dictNames, dictValues));
 		}
+	}
+	
+	function createItem(id, labelSymb, methodSymb, dictNames, dictValues){
+		return new Item(
+			id, 
+			dictNames[id], 
+			labelSymb, 
+			methodSymb, 
+			SettingsReference.getSublabelForField(dictValues, dictNames[id])
+		); 
 	}
 }
 
@@ -92,25 +105,14 @@ class Item extends WatchUi.MenuItem{
 	var propName;
 	var subMenuDictonarySymbol;
 	
-	function initialize(identifier, propName, labelRes, descriptionMethodSymbol) {
+	function initialize(identifier, propName, labelRes, descriptionMethodSymbol, subLabel) {
 		
 		self.propName = propName;
 		self.subMenuDictonarySymbol = descriptionMethodSymbol;
-		 		
+		if (subLabel instanceof Toybox.Lang.Symbol){
+			subLabel = Application.loadResource(subLabel);
+		} 		
 		var label = Application.loadResource(labelRes);
-		var subLabel; 
-		if (propName != null){
-			subLabel = Application.Properties.getValue(propName);
-		}else{
-			subLabel = "";
-		}
-				
-		if (descriptionMethodSymbol == null){
-			subLabel = subLabel.toString();
-		}else{
-			var descrSymbol = getDescriptionStringSymbol(subLabel);
-			subLabel = Application.loadResource(Rez.Strings[descrSymbol]);			
-		}
 		MenuItem.initialize(label, subLabel, identifier, {});
 	}
 
@@ -136,11 +138,6 @@ class Item extends WatchUi.MenuItem{
 		}
 	}	
 	
-	//*****************************************************************************
-	function getDescriptionStringSymbol(value){
-		var dict = new Toybox.Lang.Method(SettingsReference, subMenuDictonarySymbol).invoke();
-		return dict[value];
-	}
 }
 
 //*****************************************************************************
@@ -155,7 +152,7 @@ class TogleItem extends WatchUi.ToggleMenuItem{
 		ToggleMenuItem.initialize(label, null, identifier, enabled, {});
 	}
 
-	function onSelect(){
+	function onSelect(mode){
 		Application.Properties.setValue(propName, isEnabled());
 	}	
 }
@@ -448,5 +445,11 @@ module SettingsReference{
 		}else{
 			return "";	
 		}
+	}
+	
+	//*****************************************************************************
+	function getSublabelForField(dict, propName){
+		var prop = Application.Properties.getValue(propName);
+		return  Rez.Strings[dict[prop]];
 	}
 }
