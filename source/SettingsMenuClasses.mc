@@ -419,7 +419,8 @@ module SettingsReference{
 		var res = {
 			WIDGET_TYPE_WEATHER 		=> :WTypeWeather,
 			WIDGET_TYPE_WEATHER_WIND 	=> :WTypeWeatherWind,
-			WIDGET_TYPE_WEATHER_FIELDS 	=> :WTypeWeatherFields};
+			WIDGET_TYPE_WEATHER_FIELDS 	=> :WTypeWeatherFields,
+			EMPTY 						=> :FIELD_TYPE_EMPTY};
 		addHistoryItems(res);	
 		return res;
 	}	
@@ -429,7 +430,8 @@ module SettingsReference{
 		var res = {
 			WIDGET_TYPE_WEATHER 	=> :WTypeWeather,
 			WIDGET_TYPE_MOON 		=> :FIELD_TYPE_MOON,
-			WIDGET_TYPE_SOLAR 		=> :WTypeSolar};
+			WIDGET_TYPE_SOLAR 		=> :WTypeSolar,
+			EMPTY 					=> :FIELD_TYPE_EMPTY};
 		addHistoryItems(res);
 		return res;
 	}	

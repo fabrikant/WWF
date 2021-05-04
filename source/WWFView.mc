@@ -214,8 +214,9 @@ class WWFView extends WatchUi.WatchFace {
 		w = h;
 		var wType = Application.Properties.getValue(propNames[:WTypeTop]); 
 		currentTop -= h;
-		
-		if (wType == WIDGET_TYPE_WEATHER || wType == WIDGET_TYPE_WEATHER_WIND || wType == WIDGET_TYPE_WEATHER_FIELDS){
+		if (wType == EMPTY){
+			//do nothing
+		}else if (wType == WIDGET_TYPE_WEATHER || wType == WIDGET_TYPE_WEATHER_WIND || wType == WIDGET_TYPE_WEATHER_FIELDS){
 			
 			topBarWidth += createWeatherFields(currentTop, h, w, [:weather_picture, :weather_temp]);
 			
@@ -233,9 +234,7 @@ class WWFView extends WatchUi.WatchFace {
 				);
 				topBarWidth += fields[:weather_wind_widget][:w];
 			}
-			
 		}else{
-		
 			var graphType = :getHeartRateHistory;
 			if (wType == WIDGET_TYPE_SATURATION){
 				graphType = :getOxygenSaturationHistory;
@@ -327,7 +326,9 @@ class WWFView extends WatchUi.WatchFace {
 		///////////////////////////////////////////////////////////////////////
 		//Bottom widget
 		wType = Application.Properties.getValue(propNames[:WTypeBottom]);
-		if (wType == WIDGET_TYPE_MOON){
+		if (wType == EMPTY){
+			//do nothing
+		}else if (wType == WIDGET_TYPE_MOON){
 	    	fields[:moon] = new MoonField(
 				{
 					:x => (System.getDeviceSettings().screenWidth - 2*hDataField)/2,
