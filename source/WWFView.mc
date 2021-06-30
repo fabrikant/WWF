@@ -9,6 +9,7 @@ using Toybox.Math;
 class WWFView extends WatchUi.WatchFace {
 
 	var fields;
+	var itsOnShow; 
 	
 	///////////////////////////////////////////////////////////////////////////
     function initialize() {
@@ -17,6 +18,7 @@ class WWFView extends WatchUi.WatchFace {
         memoryCache = new MemoryCache();
         Application.getApp().registerEvents();
         fields = null;
+        itsOnShow = false;
     }
 
 	///////////////////////////////////////////////////////////////////////////
@@ -439,7 +441,8 @@ class WWFView extends WatchUi.WatchFace {
 			}
 		}
     	Application.getApp().registerEvents();
-    	memoryCache = new MemoryCache();
+    	itsOnShow = true;
+    	//memoryCache = new MemoryCache();
     }
 
 	///////////////////////////////////////////////////////////////////////////
@@ -455,6 +458,11 @@ class WWFView extends WatchUi.WatchFace {
     function onUpdate(dc) {
 		
 		var reCreateFields = false;
+		
+		if (itsOnShow){
+			reCreateFields = true;
+			itsOnShow = false;
+		}
 		
 		var isCharging = System.getSystemStats().charging;  
 		if (memoryCache.flags[:isCharging] != null){
