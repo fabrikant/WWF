@@ -3,6 +3,7 @@ using Toybox.Application;
 using Toybox.System;
 using Toybox.SensorHistory;
 using Toybox.Time.Gregorian;
+using Toybox.Time;
 
 
 class GraphicsField extends SimpleField{
@@ -59,7 +60,7 @@ class GraphicsField extends SimpleField{
 			xPoint -= textW;
 		}
     	var iterParam = {:period => period, :order => SensorHistory.ORDER_NEWEST_FIRST};
-    	var iter = new Lang.Method(Toybox.SensorHistory, type).invoke(iterParam);
+    	var iter = new Toybox.Lang.Method(Toybox.SensorHistory, type).invoke(iterParam);
 
    		var min = iter.getMin();
 		var max = iter.getMax();

@@ -15,8 +15,6 @@ class WWFView extends WatchUi.WatchFace {
     function initialize() {
 
         WatchFace.initialize();
-        memoryCache = new MemoryCache();
-        Application.getApp().registerEvents();
         fields = null;
         itsOnShow = false;
     }
@@ -442,7 +440,9 @@ class WWFView extends WatchUi.WatchFace {
 		}
     	Application.getApp().registerEvents();
     	itsOnShow = true;
-    	//memoryCache = new MemoryCache();
+    	if ((memoryCache == null) || !(memoryCache instanceof :MemoryCache)){
+    		memoryCache = new MemoryCache();
+    	}
     }
 
 	///////////////////////////////////////////////////////////////////////////
