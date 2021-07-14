@@ -438,11 +438,11 @@ class WWFView extends WatchUi.WatchFace {
 				}
 			}
 		}
-    	Application.getApp().registerEvents();
     	itsOnShow = true;
     	if (memoryCache == null){
     		memoryCache = new MemoryCache();
     	}
+    	Application.getApp().registerEvents();
     }
 
 	///////////////////////////////////////////////////////////////////////////
