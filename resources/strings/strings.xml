@@ -126,5 +126,8 @@
 	<string id="ThemeLightMonochrome" scope="foreground">Light monochrome</string>
 	<string id="ThemeDarkColor" scope="foreground">Dark color</string>
 	<string id="ThemeLightColor" scope="foreground">Light color</string>
+	<string id="ThemeRedColor" scope="foreground">Red background</string>
+	<string id="ThemeGreenColor" scope="foreground">Green background</string>
+	<string id="ThemeBlueColor" scope="foreground">Blue background</string>
 	
 </strings>

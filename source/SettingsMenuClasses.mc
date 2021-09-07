@@ -290,6 +290,9 @@ module SettingsReference{
 			LIGHT  			 => :ThemeLight,
 			LIGHT_MONOCHROME => :ThemeLightMonochrome,
 			LIGHT_COLOR 	 => :ThemeLightColor,
+			RED_COLOR 	 	 => :ThemeRedColor,
+			GREEN_COLOR	 	 => :ThemeGreenColor,
+			BLUE_COLOR 	 	 => :ThemeBlueColor,
 		};
 	}
 	

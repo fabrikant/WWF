@@ -84,7 +84,10 @@ class MemoryCache {
 		var res = false;
 		if (settings[:theme] == DARK 
 			|| settings[:theme] == DARK_MONOCHROME
-			|| settings[:theme] == DARK_COLOR){
+			|| settings[:theme] == DARK_COLOR
+			|| settings[:theme] == RED_COLOR
+			|| settings[:theme] == GREEN_COLOR
+			|| settings[:theme] == BLUE_COLOR){
 			res = true;
 		}
 		return res;
@@ -92,7 +95,12 @@ class MemoryCache {
 	
 	function themeIsMonochrome(){
 		var res = false;
-		if (settings[:theme] == DARK_MONOCHROME || settings[:theme] == LIGHT_MONOCHROME){
+		if (settings[:theme] == DARK_MONOCHROME 
+			|| settings[:theme] == LIGHT_MONOCHROME 
+			|| settings[:theme] == RED_COLOR
+			|| settings[:theme] == GREEN_COLOR
+			|| settings[:theme] == BLUE_COLOR)
+		{
 			res = true;
 		}
 		return res;
@@ -101,7 +109,13 @@ class MemoryCache {
 	function getBackgroundColor(){
 	
 		var color = Graphics.COLOR_BLACK;
-		if (themeIsDark()){
+		if (settings[:theme] == RED_COLOR){
+			color = 0x550000;
+		} else if (settings[:theme] == GREEN_COLOR){
+			color = 0x005555;			
+		} else if (settings[:theme] == BLUE_COLOR){
+			color = 0x000055;			
+		} else if (themeIsDark()){
 			color = Graphics.COLOR_BLACK;
 		}else{
 			color = Graphics.COLOR_WHITE;
