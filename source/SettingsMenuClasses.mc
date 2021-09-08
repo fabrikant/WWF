@@ -287,12 +287,15 @@ module SettingsReference{
 			DARK  			 => :ThemeDark,
 			DARK_MONOCHROME	 => :ThemeDarkMonochrome,
 			DARK_COLOR  	 => :ThemeDarkColor,
+			DARK_RED_COLOR 	 => :ThemeDarkRedColor,
+			DARK_GREEN_COLOR => :ThemeDarkGreenColor,
+			DARK_BLUE_COLOR  => :ThemeDarkBlueColor,
 			LIGHT  			 => :ThemeLight,
 			LIGHT_MONOCHROME => :ThemeLightMonochrome,
 			LIGHT_COLOR 	 => :ThemeLightColor,
-			RED_COLOR 	 	 => :ThemeRedColor,
-			GREEN_COLOR	 	 => :ThemeGreenColor,
-			BLUE_COLOR 	 	 => :ThemeBlueColor,
+			LIGHT_RED_COLOR  => :ThemeLightRedColor,
+			LIGHT_GREEN_COLOR=> :ThemeLightGreenColor,
+			LIGHT_BLUE_COLOR => :ThemeLightBlueColor,
 		};
 	}
 	

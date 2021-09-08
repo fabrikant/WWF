@@ -126,8 +126,11 @@
 	<string id="ThemeLightMonochrome" scope="foreground">Светлая монохромная</string>
 	<string id="ThemeDarkColor" scope="foreground">Темная цветная</string>
 	<string id="ThemeLightColor" scope="foreground">Светлая цветная</string>
-	<string id="ThemeRedColor" scope="foreground">Красный фон</string>
-	<string id="ThemeGreenColor" scope="foreground">Зеленый фон</string>
-	<string id="ThemeBlueColor" scope="foreground">Синий фон</string>
+	<string id="ThemeLightRedColor" scope="foreground">Светлая красный фон </string>
+	<string id="ThemeLightGreenColor" scope="foreground">Светлая зеленый фон</string>
+	<string id="ThemeLightBlueColor" scope="foreground">Светлая синий фон</string>
+	<string id="ThemeDarkRedColor" scope="foreground">Темная красный фон </string>
+	<string id="ThemeDarkGreenColor" scope="foreground">Темная зеленый фон</string>
+	<string id="ThemeDarkBlueColor" scope="foreground">Темная синий фон</string>
 	
 </strings>
