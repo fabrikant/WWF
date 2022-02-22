@@ -5,6 +5,7 @@
 	<string id="keyOW" scope="foreground">API key for weather</string>
 	<string id="KeyOWPrompt" scope="foreground">get it for free</string>
 	<string id="DNDisNight" scope="foreground">DND is the night mode</string>
+	<string id="AgrRend" scope="foreground">Aggressive rendering</string>
 
     <string id="WTypeTop" scope="foreground">Top widget type</string>
     <string id="WTypeBottom" scope="foreground">Bottom widget type</string>

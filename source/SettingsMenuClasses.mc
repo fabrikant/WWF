@@ -16,6 +16,7 @@ class GeneralMenu extends WatchUi.Menu2{
 		addItem(new TogleItem(:DNDisNight, "DNDisNight", Rez.Strings.DNDisNight));
 		addItem(new TogleItem(:MilFt, "MilFt", Rez.Strings.MilFt));
 		addItem(new TogleItem(:HFt01, "HFt01", Rez.Strings.HFt01));
+		addItem(new TogleItem(:AgrRend, "AgrRend", Rez.Strings.AgrRend));
 		addItem(new Item(:T1TZ, "T1TZ", Rez.Strings.T1TZ, null, Application.Properties.getValue("T1TZ").toString()));
 		addItem(new Item(:keyOW, "keyOW", Rez.Strings.keyOW, null, Application.Properties.getValue("keyOW")));
 		addItem(new Item(:PrU, "PrU", Rez.Strings.PrU, :pressureUnit, SettingsReference.getSublabelForField(SettingsReference.pressureUnit(),"PrU")));
