@@ -524,8 +524,9 @@ class WWFView extends WatchUi.WatchFace {
 			var fieldId = ids[idsIndex];
 			var value = Data.getFieldValue(fields[fieldId]);
 
-
-			if (fields[fieldId].needUpdate(value) || memoryCache.settings[:AgrRend]){
+			if (memoryCache.settings[:AgrRend]){
+				fields[fieldId].draw(dc, value);
+			}else if (fields[fieldId].needUpdate(value)){
 				fields[fieldId].draw(dc, value);
 			}
 		}
