@@ -8,20 +8,24 @@ using Toybox.ActivityMonitor;
 //*****************************************************************************
 class GeneralMenu extends WatchUi.Menu2{
 	function initialize() {
+		System.println("GeneralMenu_1");
 		fonts = null;
 		memoryCache = null;
+		System.println("GeneralMenu_2");
 		Menu2.initialize({:title=> Application.loadResource(Rez.Strings.SettingsMenu)});
 		addItem(new TogleItem(:SwitchDayNight, "SwitchDayNight", Rez.Strings.SwitchDayNight));
 		addItem(new Item(:G, null, Rez.Strings.SettingsGlobal, null, null));
 		addItem(new Item(:D, null, Rez.Strings.SettingsDay, null, null));
 		addItem(new Item(:N, null, Rez.Strings.SettingsNight, null, null));
 		addItem(new TogleItem(:DNDisNight, "DNDisNight", Rez.Strings.DNDisNight));
+		System.println("GeneralMenu_3");
 		addItem(new TogleItem(:MilFt, "MilFt", Rez.Strings.MilFt));
 		addItem(new TogleItem(:HFt01, "HFt01", Rez.Strings.HFt01));
 		addItem(new Item(:T1TZ, "T1TZ", Rez.Strings.T1TZ, null, Application.Properties.getValue("T1TZ").toString()));
 		addItem(new Item(:keyOW, "keyOW", Rez.Strings.keyOW, null, Application.Properties.getValue("keyOW")));
 		addItem(new Item(:PrU, "PrU", Rez.Strings.PrU, :pressureUnit, SettingsReference.getSublabelForField(SettingsReference.pressureUnit(),"PrU")));
 		addItem(new Item(:WU, "WU", Rez.Strings.WU, :windSpeedUnit, SettingsReference.getSublabelForField(SettingsReference.windSpeedUnit(),"WU")));
+		System.println("GeneralMenu_4");
 	}
 }
 
@@ -186,8 +190,10 @@ class GeneralMenuDelegate extends WatchUi.Menu2InputDelegate{
 	var mode;
 	
 	function initialize(mode) {
+		System.println("GeneralMenuDelegate_1");
 		self.mode = mode;
         Menu2InputDelegate.initialize();
+        System.println("GeneralMenuDelegate_2");
     }
     
 	function onSelect(item){

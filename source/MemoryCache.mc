@@ -19,10 +19,10 @@ class MemoryCache {
 		everySecondFields = null;
 		settings = {};
 		weather = null;
-		var view = Application.getApp().view;
-		if (view != null){
-			view.fields = null;
-		}
+//		var view = Application.getApp().view;
+//		if (view instanceof WWFView){
+//			view.fields = null;
+//		}
 		
 		mode = :G;
 		readWeather();
@@ -41,9 +41,19 @@ class MemoryCache {
 		//////////////////////////////////////////////////////////
 	}
 
+	function modeToString(){
+		var res = "G";
+		if(mode == :N){
+			res = "N";
+		}else if(mode == :D){
+			res = "D";
+		}
+		return res;
+	}
+	
 	function themeIsDark(){
 		var res = false;
-		var theme = Application.Properties.getValue(mode.toString()+"Theme");
+		var theme = Application.Properties.getValue(modeToString()+"Theme");
 		if (theme == DARK 
 			|| theme == DARK_MONOCHROME
 			|| theme == DARK_COLOR
@@ -57,7 +67,7 @@ class MemoryCache {
 	
 	function themeIsMonochrome(){
 		var res = false;
-		var theme = Application.Properties.getValue(mode.toString()+"Theme");
+		var theme = Application.Properties.getValue(modeToString()+"Theme");
 		if (theme == DARK_MONOCHROME 
 			|| theme == LIGHT_MONOCHROME 
 			|| theme == LIGHT_RED_COLOR
@@ -75,7 +85,7 @@ class MemoryCache {
 	function getBackgroundColor(){
 	
 		var color = Graphics.COLOR_BLACK;
-		var theme = Application.Properties.getValue(mode.toString()+"Theme");
+		var theme = Application.Properties.getValue(modeToString()+"Theme");
 		if (theme == DARK_RED_COLOR){
 			color = 0x550000;
 		} else if (theme == DARK_GREEN_COLOR){
@@ -110,7 +120,7 @@ class MemoryCache {
 	function getColorByFieldType(type){
 		
 		var color = getColor();
-		var theme = Application.Properties.getValue(mode.toString()+"Theme");
+		var theme = Application.Properties.getValue(modeToString()+"Theme");
 		var dictColors = {
 			CONNECTED => {DARK => Graphics.COLOR_BLUE, 
 						LIGHT => Graphics.COLOR_DK_BLUE},
@@ -211,7 +221,6 @@ class MemoryCache {
 			:temp => defColor,
 			:wind => defColor
 		};
-		
 		if (themeIsMonochrome()){
 			return;
 		}

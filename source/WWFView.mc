@@ -120,13 +120,12 @@ class WWFView extends WatchUi.WatchFace {
 	function createFields(dc){
 		
 		var propNames = SettingsReference.getAppPropertyNames(memoryCache.mode);
-		var modeString = memoryCache.mode.toString();
+		var modeString = memoryCache.modeToString();
 		fields = {};
 		var hDataField = 22;
 		if (dc.getWidth() == 218){
 			hDataField = 18;
 		}
-		
 		///////////////////////////////////////////////////////////////////////
 		//TIME
 		var font = fonts[:time];
@@ -401,7 +400,6 @@ class WWFView extends WatchUi.WatchFace {
     // the state of this View and prepare it to be shown. This includes
     // loading resources into memory.
     function onShow() {
-    	
     	if(fonts == null){
 	        fonts = {};
 	        fonts[:time] = Application.loadResource(Rez.Fonts.big);
@@ -448,16 +446,13 @@ class WWFView extends WatchUi.WatchFace {
 	///////////////////////////////////////////////////////////////////////////
     // Update the view
     function onUpdate(dc) {
-		
 		var reCreateFields = false;
     	if (memoryCache == null){
     		memoryCache = new MemoryCache();
     		reCreateFields = true;
     	}
-		
 		//Set day naght presets
 		if (Application.Properties.getValue("SwitchDayNight")){
-			
 			var newMode = :N;
 			var itsDNDNight = false;
 			if (Application.Properties.getValue("DNDisNight")){
@@ -487,7 +482,7 @@ class WWFView extends WatchUi.WatchFace {
 				reCreateFields = true;
 			}
 		}
-
+		
 		drawBackground(dc);
 		if (reCreateFields){
 			memoryCache.setWeatherAutoColors();
@@ -495,12 +490,10 @@ class WWFView extends WatchUi.WatchFace {
 		}else if(fields == null){
 			createFields(dc);
 		}
-		
 		memoryCache.checkWeatherActuality();
 
 		var ids = fields.keys();
 		for (var idsIndex = 0; idsIndex < ids.size(); idsIndex++){
-
 			var fieldId = ids[idsIndex];
 			var value = Data.getFieldValue(fields[fieldId]);
 
