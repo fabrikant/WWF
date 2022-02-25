@@ -6,7 +6,6 @@ class MemoryCache {
 	var settings;
 	var weather;
 	var everySecondFields;
-	var flags;
 	var sunEvents;
 	var moonPhase;
 	var mode;// :G, :D, :N
@@ -18,7 +17,7 @@ class MemoryCache {
 	function reload(){
 		//Erase all feilds for clear RAM before saveSettings
 		everySecondFields = null;
-		settings = null;
+		settings = {};
 		weather = null;
 		var view = Application.getApp().view;
 		if (view != null){
@@ -26,48 +25,9 @@ class MemoryCache {
 		}
 		
 		mode = :G;
-		readSettings();
-		readGeolocation();
 		readWeather();
-		flags = {};
 		sunEvents = {};
 		moonPhase = {};
-	}
-
-	function readSettings(){
-
-		settings = {};
-		settings[:switchDayNight] = Application.Properties.getValue("SwitchDayNight");
-		settings[:DNDisNight] = Application.Properties.getValue("DNDisNight");
-		settings[:AgrRend] = Application.Properties.getValue("AgrRend");
-		
-		var propName = "GTheme";
-		if (mode == :D){
-			propName = "DTheme";
-		}else if(mode == :N){
-			propName = "NTheme";
-		}
-		settings[:theme] = Application.Properties.getValue(modeAsString()+"Theme");
-		settings[:backgroundColor] = getBackgroundColor();
-		settings[:time] = {};
-		settings[:time][:military] = Application.Properties.getValue("MilFt");
-		settings[:time][:hours01] = Application.Properties.getValue("HFt01");
-
-		settings[:pressureUnit] = Application.Properties.getValue("PrU");
-		settings[:windUnit] = Application.Properties.getValue("WU");
-		settings[:time1] = Application.Properties.getValue("T1TZ");
-		settings[:keyOW] = Application.Properties.getValue("keyOW");
-		readGeolocation();
-	}
-
-	function readGeolocation(){
-		//////////////////////////////////////////////////////////
-		//DEBUG
-//		Application.Storage.setValue("Lat", 55.03325);
-//		Application.Storage.setValue("Lon", 73.449715);
-//		Application.Properties.setValue("keyOW", "69bcb8de48220cd2b2fb7a8400c68d1e");
-		//////////////////////////////////////////////////////////
-		settings[:geoLocation] = [Application.Storage.getValue("Lat"), Application.Storage.getValue("Lon")];
 	}
 
 	function readWeather(){
@@ -83,12 +43,13 @@ class MemoryCache {
 
 	function themeIsDark(){
 		var res = false;
-		if (settings[:theme] == DARK 
-			|| settings[:theme] == DARK_MONOCHROME
-			|| settings[:theme] == DARK_COLOR
-			|| settings[:theme] == DARK_RED_COLOR
-			|| settings[:theme] == DARK_GREEN_COLOR
-			|| settings[:theme] == DARK_BLUE_COLOR){
+		var theme = Application.Properties.getValue(mode.toString()+"Theme");
+		if (theme == DARK 
+			|| theme == DARK_MONOCHROME
+			|| theme == DARK_COLOR
+			|| theme == DARK_RED_COLOR
+			|| theme == DARK_GREEN_COLOR
+			|| theme == DARK_BLUE_COLOR){
 			res = true;
 		}
 		return res;
@@ -96,14 +57,15 @@ class MemoryCache {
 	
 	function themeIsMonochrome(){
 		var res = false;
-		if (settings[:theme] == DARK_MONOCHROME 
-			|| settings[:theme] == LIGHT_MONOCHROME 
-			|| settings[:theme] == LIGHT_RED_COLOR
-			|| settings[:theme] == LIGHT_GREEN_COLOR
-			|| settings[:theme] == LIGHT_BLUE_COLOR
-			|| settings[:theme] == DARK_RED_COLOR
-			|| settings[:theme] == DARK_GREEN_COLOR
-			|| settings[:theme] == DARK_BLUE_COLOR)
+		var theme = Application.Properties.getValue(mode.toString()+"Theme");
+		if (theme == DARK_MONOCHROME 
+			|| theme == LIGHT_MONOCHROME 
+			|| theme == LIGHT_RED_COLOR
+			|| theme == LIGHT_GREEN_COLOR
+			|| theme == LIGHT_BLUE_COLOR
+			|| theme == DARK_RED_COLOR
+			|| theme == DARK_GREEN_COLOR
+			|| theme == DARK_BLUE_COLOR)
 		{
 			res = true;
 		}
@@ -113,17 +75,18 @@ class MemoryCache {
 	function getBackgroundColor(){
 	
 		var color = Graphics.COLOR_BLACK;
-		if (settings[:theme] == DARK_RED_COLOR){
+		var theme = Application.Properties.getValue(mode.toString()+"Theme");
+		if (theme == DARK_RED_COLOR){
 			color = 0x550000;
-		} else if (settings[:theme] == DARK_GREEN_COLOR){
+		} else if (theme == DARK_GREEN_COLOR){
 			color = 0x005555;			
-		} else if (settings[:theme] == DARK_BLUE_COLOR){
+		} else if (theme == DARK_BLUE_COLOR){
 			color = 0x000055;			
-		}else if (settings[:theme] == LIGHT_RED_COLOR){
+		}else if (theme == LIGHT_RED_COLOR){
 			color = 0xff5555;
-		} else if (settings[:theme] == LIGHT_GREEN_COLOR){
+		} else if (theme == LIGHT_GREEN_COLOR){
 			color = 0x00ffaa;			
-		} else if (settings[:theme] == LIGHT_BLUE_COLOR){
+		} else if (theme == LIGHT_BLUE_COLOR){
 			color = 0x55aaff;			
 		} else if (themeIsDark()){
 			color = Graphics.COLOR_BLACK;
@@ -147,14 +110,14 @@ class MemoryCache {
 	function getColorByFieldType(type){
 		
 		var color = getColor();
-		
+		var theme = Application.Properties.getValue(mode.toString()+"Theme");
 		var dictColors = {
 			CONNECTED => {DARK => Graphics.COLOR_BLUE, 
 						LIGHT => Graphics.COLOR_DK_BLUE},
 			:moon	  => {DARK => Graphics.COLOR_ORANGE, 
 						LIGHT => Graphics.COLOR_ORANGE}};		
 		
-		if (settings[:theme] == DARK_COLOR || settings[:theme] == LIGHT_COLOR){
+		if (theme == DARK_COLOR || theme == LIGHT_COLOR){
 			dictColors = {
 				CONNECTED => {DARK_COLOR => Graphics.COLOR_BLUE,
 							  LIGHT_COLOR => Graphics.COLOR_DK_BLUE},
@@ -232,7 +195,7 @@ class MemoryCache {
 		}
 		
 		if (dictColors[fType] != null){
-			var _color = dictColors[fType][settings[:theme]]; 
+			var _color = dictColors[fType][theme]; 
 			if (_color != null){
 				color = _color;
 			}
@@ -253,7 +216,7 @@ class MemoryCache {
 			return;
 		}
 		if (weather != null){
-			var backgroundColor = settings[:backgroundColor];
+			var backgroundColor = getBackgroundColor();
 			
 			var backIsLight = false;
 			if (backgroundColor == Graphics.COLOR_WHITE 
@@ -364,7 +327,7 @@ class MemoryCache {
 	function getSpeedUnitString(){
 		if (memoryCache.weather != null){
 			var dict = SettingsReference.windSpeedUnit();
-			return Application.loadResource(Rez.Strings[dict[settings[:windUnit]]]);
+			return Application.loadResource(Rez.Strings[dict[Application.Properties.getValue("WU")]]);
 		}else{
 			return "";
 		}
@@ -403,13 +366,4 @@ class MemoryCache {
 		}
 	}
 	
-	function modeAsString(){
-		var res = "G";
-		if (mode == :D){
-			res = "D";
-		}else if (mode == :N){
-			res = "N";	
-		}
-		return res;
-	}
 }

@@ -9,14 +9,16 @@ using Toybox.Math;
 class WWFView extends WatchUi.WatchFace {
 
 	var fields;
-	var itsOnShow; 
 	
 	///////////////////////////////////////////////////////////////////////////
     function initialize() {
 
         WatchFace.initialize();
         fields = null;
-        itsOnShow = false;
+//		Application.Storage.setValue("Lat", 55.03325);
+//		Application.Storage.setValue("Lon", 73.449715);
+//		Application.Properties.setValue("keyOW", "69bcb8de48220cd2b2fb7a8400c68d1e");
+        
     }
 
 	///////////////////////////////////////////////////////////////////////////
@@ -24,15 +26,6 @@ class WWFView extends WatchUi.WatchFace {
     function onLayout(dc) {
 	}
 	
-	///////////////////////////////////////////////////////////////////////////
-	function initFonts(){
-        fonts = {};
-        fonts[:time] = Application.loadResource(Rez.Fonts.big);
-        fonts[:small] = Application.loadResource(Rez.Fonts.small);
-        fonts[:small_letters] = Graphics.FONT_SYSTEM_XTINY;
-        fonts[:medium] = Application.loadResource(Rez.Fonts.med);
-        fonts[:picture] = Application.loadResource(Rez.Fonts.images);
-	}
 	
 	///////////////////////////////////////////////////////////////////////////
 	function createWeatherFields(top, h, w, fieldsIds){
@@ -127,7 +120,7 @@ class WWFView extends WatchUi.WatchFace {
 	function createFields(dc){
 		
 		var propNames = SettingsReference.getAppPropertyNames(memoryCache.mode);
-		var modeString = memoryCache.modeAsString();
+		var modeString = memoryCache.mode.toString();
 		fields = {};
 		var hDataField = 22;
 		if (dc.getWidth() == 218){
@@ -408,9 +401,14 @@ class WWFView extends WatchUi.WatchFace {
     // the state of this View and prepare it to be shown. This includes
     // loading resources into memory.
     function onShow() {
-    
-    	if (fonts == null){
-    		initFonts();
+    	
+    	if(fonts == null){
+	        fonts = {};
+	        fonts[:time] = Application.loadResource(Rez.Fonts.big);
+	        fonts[:small] = Application.loadResource(Rez.Fonts.small);
+	        fonts[:small_letters] = Graphics.FONT_SYSTEM_XTINY;
+	        fonts[:medium] = Application.loadResource(Rez.Fonts.med);
+	        fonts[:picture] = Application.loadResource(Rez.Fonts.images);
     	}
        	var location = Activity.getActivityInfo().currentLocation;
     	if (location != null) {
@@ -421,28 +419,22 @@ class WWFView extends WatchUi.WatchFace {
 				memoryCache.sunEvents = {};
 			}
 		} else {
-			if (Application.Storage.getValue("Lat") == null || Application.Storage.getValue("Lon") == null){
-				if ( Toybox has :Weather){
-					location = Toybox.Weather.getCurrentConditions();
-					if (location != null) {
-						location = location.observationLocationPosition;
-				    	if (location != null) {
-							location = location.toDegrees();
-							Application.Storage.setValue("Lat", location[0].toFloat());
-							Application.Storage.setValue("Lon", location[1].toFloat());
-							if (memoryCache != null){
-								memoryCache.sunEvents = {};
-							}
+			if (Toybox has :Weather){
+				location = Toybox.Weather.getCurrentConditions();
+				if (location != null) {
+					location = location.observationLocationPosition;
+			    	if (location != null) {
+						location = location.toDegrees();
+						Application.Storage.setValue("Lat", location[0].toFloat());
+						Application.Storage.setValue("Lon", location[1].toFloat());
+						if (memoryCache != null){
+							memoryCache.sunEvents = {};
 						}
 					}
 				}
 			}
 		}
-    	itsOnShow = true;
-    	if (memoryCache == null){
-    		memoryCache = new MemoryCache();
-    	}
-    	Application.getApp().registerEvents();
+     	Application.getApp().registerEvents();
     }
 
 	///////////////////////////////////////////////////////////////////////////
@@ -458,26 +450,17 @@ class WWFView extends WatchUi.WatchFace {
     function onUpdate(dc) {
 		
 		var reCreateFields = false;
-		
-		if (itsOnShow){
-			reCreateFields = true;
-			itsOnShow = false;
-		}
-		
-		var isCharging = System.getSystemStats().charging;  
-		if (memoryCache.flags[:isCharging] != null){
-			if (memoryCache.flags[:isCharging] && !isCharging){
-				reCreateFields = true;
-			}
-		}
-		memoryCache.flags[:isCharging] = isCharging;
+    	if (memoryCache == null){
+    		memoryCache = new MemoryCache();
+    		reCreateFields = true;
+    	}
 		
 		//Set day naght presets
-		if (memoryCache.settings[:switchDayNight]){
+		if (Application.Properties.getValue("SwitchDayNight")){
 			
 			var newMode = :N;
 			var itsDNDNight = false;
-			if (memoryCache.settings[:DNDisNight]){
+			if (Application.Properties.getValue("DNDisNight")){
 				if (System.getDeviceSettings().doNotDisturb){
 					itsDNDNight = true;
 				}
@@ -505,14 +488,11 @@ class WWFView extends WatchUi.WatchFace {
 			}
 		}
 
-		
+		drawBackground(dc);
 		if (reCreateFields){
-			memoryCache.readSettings();
 			memoryCache.setWeatherAutoColors();
-			drawBackground(dc);
 			createFields(dc);
 		}else if(fields == null){
-			drawBackground(dc);
 			createFields(dc);
 		}
 		
@@ -524,11 +504,7 @@ class WWFView extends WatchUi.WatchFace {
 			var fieldId = ids[idsIndex];
 			var value = Data.getFieldValue(fields[fieldId]);
 
-			if (memoryCache.settings[:AgrRend]){
-				fields[fieldId].draw(dc, value);
-			}else if (fields[fieldId].needUpdate(value)){
-				fields[fieldId].draw(dc, value);
-			}
+			fields[fieldId].draw(dc, value);
 		}
 
 		dc.setClip(0, 0, 0, 0);//fix bug Vivoactive 4
@@ -552,13 +528,11 @@ class WWFView extends WatchUi.WatchFace {
 
 	///////////////////////////////////////////////////////////////////////////
     function onHide() {
-    	memoryCache = new MemoryCache();
     }
 
 	///////////////////////////////////////////////////////////////////////////
     // The user has just looked at their watch. Timers and animations may be started here.
     function onExitSleep() {
-    	memoryCache = new MemoryCache();
     }
 
  	///////////////////////////////////////////////////////////////////////////

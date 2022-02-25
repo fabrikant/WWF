@@ -12,7 +12,7 @@ class BitmapField extends SimpleField{
 	function draw(dc, value){
 		clear(dc);
 		if (value != null){
-			var backgroundColor = memoryCache.settings[:backgroundColor];
+			var backgroundColor = getBackgroundColor();
 			
 			var pref = "l";
 			if (memoryCache.themeIsDark()){

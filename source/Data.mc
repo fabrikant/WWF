@@ -39,18 +39,7 @@ module Data{
 		}else if (field.type == :date){
 
 			var now = Time.now();
-			var today = Gregorian.info(now, Time.FORMAT_SHORT);
-
-			if (field.oldValue == null || memoryCache.flags[:todayDay] == null || memoryCache.flags[:todayDay] != today.day
-				|| (memoryCache.weather != null && memoryCache.flags[STORAGE_KEY_WEATHER_DESCRIPTION] != memoryCache.weather[STORAGE_KEY_WEATHER_DESCRIPTION])){
-				if (memoryCache.weather != null){
-					memoryCache.flags[STORAGE_KEY_WEATHER_DESCRIPTION] = memoryCache.weather[STORAGE_KEY_WEATHER_DESCRIPTION];
-				}
-				memoryCache.flags[:todayDay] = today.day;
-				res = getDateString(now);
-	 		}else{
-	 			res = field.oldValue;
-			}
+			res = getDateString(now);
 
 		///////////////////////////////////////////////////////////////////////
 		//STATUS FIELDS
@@ -279,10 +268,11 @@ module Data{
             }
         }
         var timeFormat = "$1$:$2$";
-        if (memoryCache.settings[:time][:military]) {
+        var military = Application.Properties.getValue("MilFt");
+        if (military) {
             timeFormat = "$1$$2$";
         }
-        if (memoryCache.settings[:time][:hours01] || memoryCache.settings[:time][:military]){
+        if (Application.Properties.getValue("HFt01") || military){
     		hours = hours.format("%02d");
     	}
        return Lang.format(timeFormat, [hours, clockTime.min.format("%02d")]);
@@ -559,7 +549,7 @@ module Data{
 
 	///////////////////////////////////////////////////////////////////////////
 	function getSecondTime(){
-		var offset = memoryCache.settings[:time1]*60 - System.getClockTime().timeZoneOffset;
+		var offset = Application.Properties.getValue("T1TZ")*60 - System.getClockTime().timeZoneOffset;
 		var dur = new Time.Duration(offset);
 		var secondTime = Time.now().add(dur);
 		return Tools.momentToString(secondTime);

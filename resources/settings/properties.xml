@@ -1,9 +1,8 @@
 <properties>
 
 	<property id="keyOW" type="string"></property>
-	<property id="SwitchDayNight" type="boolean">true</property>
-	<property id="DNDisNight" type="boolean">true</property>
-	<property id="AgrRend" type="boolean">false</property>
+	<property id="SwitchDayNight" type="boolean">false</property>
+	<property id="DNDisNight" type="boolean">false</property>
 
 	<!--SECOND TIME -->
 	<property id="T1TZ" type="number">180</property>

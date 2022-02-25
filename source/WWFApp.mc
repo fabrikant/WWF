@@ -29,7 +29,9 @@ class WWFApp extends Application.AppBase {
 
     // New app settings have been received so trigger a UI update
     function onSettingsChanged() {
-     	memoryCache.reload();
+    	if (memoryCache instanceof MemoryCache){
+	     	memoryCache.reload();
+    	}
     	WatchUi.requestUpdate();
     	registerEvents();
     }
@@ -50,9 +52,6 @@ class WWFApp extends Application.AppBase {
 	    	if (data[STORAGE_KEY_RESPONCE_CODE] != null){
 	     		Application.Storage.setValue(STORAGE_KEY_RESPONCE_CODE, data[STORAGE_KEY_RESPONCE_CODE]);
 		        if (data[STORAGE_KEY_RESPONCE_CODE].toNumber() == 200){
-		        	if (memoryCache == null){
-		        		memoryCache = new MemoryCache();
-		        	}
 	       			memoryCache.onWeatherUpdate(data);
 		        }
 	 		}
@@ -65,24 +64,18 @@ class WWFApp extends Application.AppBase {
 		//////////////////////////////////////////////////////////
 		//DEBUG
 		//System.println("registerEvents");
-		//System.println("geoLocation "+memoryCache.settings[:geoLocation]);
-		//System.println("apiKey "+memoryCache.settings[:keyOW]);
+		//System.println("geoLocation "+[Application.Storage.getValue("Lat"), Application.Storage.getValue("Lon")]);
+		//System.println("apiKey "+Application.Properties.getValue("keyOW"));
 		//////////////////////////////////////////////////////////
 
-		if (memoryCache == null){
-			return;
-		}
-		var geoLatLong = memoryCache.settings[:geoLocation];
-		if (geoLatLong == null){
-			return;
-		}
+		var geoLatLong = [Application.Storage.getValue("Lat"), Application.Storage.getValue("Lon")];
 		if (geoLatLong[0] == null || geoLatLong[1] == null){
 			return;
 		}
 		if (geoLatLong[0] == 0 && geoLatLong[1] == 0){
 			return;
 		}
-		var kewOw = memoryCache.settings[:keyOW];
+		var kewOw = Application.Properties.getValue("keyOW");
 		if (kewOw.equals("")){
 			return;
 		}

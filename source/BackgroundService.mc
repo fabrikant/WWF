@@ -81,10 +81,6 @@ class BackgroundService extends System.ServiceDelegate {
 		var lon = Application.Storage.getValue("Lon");
 		var appid = Application.Properties.getValue("keyOW");
 
-//		var lat = memoryCache.settings[:geoLocation][0];
-//		var lon = memoryCache.settings[:geoLocation][1];
-//		var appid = memoryCache.settings[:keyOW];
-
 		//////////////////////////////////////////////////////////
 		//DEBUG
 		//System.println("onTemporalEvent: "+Time.now().value());
@@ -139,7 +135,6 @@ class BackgroundService extends System.ServiceDelegate {
 				STORAGE_KEY_ICON => data["current"]["weather"][0]["icon"],
 				STORAGE_KEY_WIND_SPEED => data["current"]["wind_speed"],
 				STORAGE_KEY_WIND_DEG => data["current"]["wind_deg"],
-				STORAGE_KEY_DT => data["current"]["dt"],
 				STORAGE_KEY_UVI => data["current"]["uvi"],
 				STORAGE_KEY_DEW_POINT => data["current"]["dew_point"],
 				STORAGE_KEY_VISIBILITY => data["current"]["visibility"],

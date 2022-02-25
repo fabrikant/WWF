@@ -70,7 +70,7 @@ module Tools {
 	///////////////////////////////////////////////////////////////////////////
 	function speedToString(rawData){
 		var value = rawData;//meters/sec
-		var unit =  memoryCache.settings[:windUnit];
+		var unit =  Application.Properties.getValue("WU");
 		if (unit == UNIT_SPEED_KMH){ /*km/h*/
 			value = rawData*3.6;
 		}else if (unit == UNIT_SPEED_MLH){ /*mile/h*/
@@ -126,7 +126,7 @@ module Tools {
 			}
 		}
 		var f = "%d";
-		if (memoryCache.settings[:time][:hours01]){
+		if (Application.Properties.getValue("HFt01")){
 			f = "%02d";
 		}
 		return hours.format(f)+":"+info.min.format("%02d");
@@ -143,7 +143,7 @@ module Tools {
 
 	///////////////////////////////////////////////////////////////////////////
 	function getSunEvent(event, allowTomorrow){
-		var geoLatLong = memoryCache.settings[:geoLocation];
+		var geoLatLong = [Application.Storage.getValue("Lat"), Application.Storage.getValue("Lon")];
 		if (geoLatLong == null){
 			return null;
 		}
@@ -223,7 +223,7 @@ module Tools {
 	///////////////////////////////////////////////////////////////////////////
 	function pressureToString(rawData){
 		var value = rawData; /*Pa */
-		var unit  = memoryCache.settings[:pressureUnit];
+		var unit  =  Application.Properties.getValue("PrU");
 		if (unit == UNIT_PRESSURE_MM_HG){ /*MmHg*/
 			value = Math.round(rawData/133.322).format("%d");
 		}else if (unit == UNIT_PRESSURE_PSI){ /*Psi*/

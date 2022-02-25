@@ -11,9 +11,6 @@ class WindDWidget extends SimpleField{
 
 		clear(dc);
 		var color = getColor();
-		if (color == getBackgroundColor()){
-			return;
-		}
 		var ratio = 0.5;
 		//direction		
 		var direction = values[:weather_wind_dir];

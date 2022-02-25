@@ -5,7 +5,6 @@ class SimpleField {
 
 	var type, fontId, justify;
 	var x, y, w, h;
-	var oldValue;
 
 	function initialize(params){
 		x = params[:x];
@@ -15,16 +14,12 @@ class SimpleField {
 		type = params[:type];
 		fontId = params[:fontId];
 		justify = params[:justify];
-		oldValue = null;
 	}
 
 	function draw(dc, text){
 
 		clear(dc);
 		var color = getColor(); 
-		if (color == getBackgroundColor()){
-			return;
-		}
 		dc.setColor(color, Graphics.COLOR_TRANSPARENT);
 
 		var _x = x;
@@ -55,7 +50,7 @@ class SimpleField {
 	}
 
 	function getBackgroundColor(){
-		return memoryCache.settings[:backgroundColor];
+		return memoryCache.getBackgroundColor();
 	}
 
 	function getColor(){
@@ -66,42 +61,6 @@ class SimpleField {
 		}else{
 			return memoryCache.getColorByFieldType(type);
 		}			
-	}
-
-	function needUpdate(value){
-	
-		//Danger place.
-		var res = false;
-		if(value == null){
-			res = (value != oldValue);
-		}else if(value instanceof  Dictionary){
-			res = false;
-			if (oldValue instanceof  Dictionary){
-				var keys = value.keys();
-				for (var i = 0; i < keys.size(); i++){
-					if(value[keys[i]] has :equals){
-						if (!value[keys[i]].equals(oldValue[keys[i]])){
-							res = true;
-							break;
-						}
-					}else{
-						if (!value[keys[i]] != oldValue[keys[i]]){
-							res = true;
-							break;
-						}
-					}
-				}
-			}else{
-				res = true;
-			}
-		}else if(value has :equals){
-			res = !value.equals(oldValue);
-		}else{
-			res = (value != oldValue);
-		}
-	
-		oldValue = value;
-		return res;
 	}
 	
 	function drawBorder(dc){

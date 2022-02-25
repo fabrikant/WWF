@@ -1,5 +1,5 @@
-var memoryCache;
-var fonts;
+var memoryCache = null;
+var fonts = null;
 
 enum{
 	HR,
@@ -46,7 +46,6 @@ enum{
 	STORAGE_KEY_ICON,
 	STORAGE_KEY_WIND_SPEED,
 	STORAGE_KEY_WIND_DEG,
-	STORAGE_KEY_DT,
 	STORAGE_KEY_WEATHER,
 	STORAGE_KEY_SETTINGS,
 	STORAGE_KEY_UVI,
