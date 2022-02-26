@@ -259,23 +259,27 @@ module Data{
 
 	///////////////////////////////////////////////////////////////////////////
 	function getTimeString(clockTime){
-
+		
         // Get the current time and format it correctly
         var hours = clockTime.hour;
+        var formatHours = "%d";
         if (!System.getDeviceSettings().is24Hour) {
             if (hours > 12) {
                 hours = hours - 12;
             }
         }
         var timeFormat = "$1$:$2$";
-        var military = Application.Properties.getValue("MilFt");
+        var military  = Application.Properties.getValue("MilFt");
+        var hFormat01 = Application.Properties.getValue("HFt01");
+        
+        
         if (military) {
             timeFormat = "$1$$2$";
         }
-        if (Application.Properties.getValue("HFt01") || military){
-    		hours = hours.format("%02d");
+        if (hFormat01){
+    		formatHours = "%02d";
     	}
-       return Lang.format(timeFormat, [hours, clockTime.min.format("%02d")]);
+		return Lang.format(timeFormat, [hours.format(formatHours), clockTime.min.format("%02d")]);
 
 	}
 

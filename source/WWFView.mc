@@ -29,7 +29,7 @@ class WWFView extends WatchUi.WatchFace {
 	
 	///////////////////////////////////////////////////////////////////////////
 	function createWeatherFields(top, h, w, fieldsIds){
-	
+		
 		var fromPictureToTemp = 5;
 		fields[fieldsIds[0]] = new BitmapField(
 			{
@@ -446,11 +446,13 @@ class WWFView extends WatchUi.WatchFace {
 	///////////////////////////////////////////////////////////////////////////
     // Update the view
     function onUpdate(dc) {
+    	
 		var reCreateFields = false;
     	if (memoryCache == null){
     		memoryCache = new MemoryCache();
     		reCreateFields = true;
     	}
+    	
 		//Set day naght presets
 		if (Application.Properties.getValue("SwitchDayNight")){
 			var newMode = :N;
@@ -491,15 +493,13 @@ class WWFView extends WatchUi.WatchFace {
 			createFields(dc);
 		}
 		memoryCache.checkWeatherActuality();
-
 		var ids = fields.keys();
 		for (var idsIndex = 0; idsIndex < ids.size(); idsIndex++){
 			var fieldId = ids[idsIndex];
 			var value = Data.getFieldValue(fields[fieldId]);
-
 			fields[fieldId].draw(dc, value);
+			
 		}
-
 		dc.setClip(0, 0, 0, 0);//fix bug Vivoactive 4
     }
 

@@ -32,7 +32,6 @@ class MemoryCache {
 
 	function readWeather(){
 
-		weather = null;
 		weather = Application.Storage.getValue(STORAGE_KEY_WEATHER);
 		setWeatherAutoColors();
 		//////////////////////////////////////////////////////////
