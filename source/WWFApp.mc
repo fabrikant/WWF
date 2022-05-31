@@ -34,7 +34,8 @@ class WWFApp extends Application.AppBase {
     }
 	
 	function getSettingsView(){
-		return [new GeneralMenu(), new GeneralMenuDelegate(null)];
+		//return [new GeneralMenu(), new GeneralMenuDelegate(null)];
+		return [new GeneralMenu(), new SimpleMenuDelegate()];
 	}
 
 	///////////////////////////////////////////////////////////////////////////

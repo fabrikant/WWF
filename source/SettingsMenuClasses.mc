@@ -6,7 +6,7 @@ using Toybox.Activity;
 using Toybox.ActivityMonitor;
 
 //*****************************************************************************
-class GeneralMenu extends WatchUi.Menu2{
+class GeneralMenu1 extends WatchUi.Menu2{
 	function initialize() {
 		fonts = null;
 		memoryCache = null;
@@ -87,7 +87,7 @@ class MenuFieldsList extends WatchUi.Menu2{
 }
 
 //*****************************************************************************
-class SelectMenu extends WatchUi.Menu2{
+class SelectMenu1 extends WatchUi.Menu2{
 
 	function initialize(title, itemsDictonary, propName){
 		Menu2.initialize({:title=> title});
@@ -103,7 +103,7 @@ class SelectMenu extends WatchUi.Menu2{
 }
 
 //*****************************************************************************
-class Item extends WatchUi.MenuItem{
+class Item1 extends WatchUi.MenuItem{
 
 	var propName;
 	var subMenuDictonarySymbol;
@@ -144,7 +144,7 @@ class Item extends WatchUi.MenuItem{
 }
 
 //*****************************************************************************
-class TogleItem extends WatchUi.ToggleMenuItem{
+class TogleItem1 extends WatchUi.ToggleMenuItem{
 	
 	var propName;
 	
@@ -161,7 +161,7 @@ class TogleItem extends WatchUi.ToggleMenuItem{
 }
 
 //*****************************************************************************
-class SelectItem extends WatchUi.MenuItem{
+class SelectItem1 extends WatchUi.MenuItem{
 	
 	var value;
 	

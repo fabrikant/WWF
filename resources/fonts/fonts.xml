@@ -1,9 +1,9 @@
 <fonts>
-	<font id="big" scope="foreground" antialias="true"
+	<font id="big" scope="foreground" antialias="false"
 		filename="rajdhani/rajdhani_digits_86.fnt" />
-	<font id="med" scope="foreground" antialias="true"
+	<font id="med" scope="foreground" antialias="false"
 		filename="rajdhani/rajdhani_digits_26.fnt" />
-	<font id="small" scope="foreground" antialias="true"
+	<font id="small" scope="foreground" antialias="false"
 		filename="rajdhani/rajdhani_digits_20.fnt" />
 	<font id="images" scope="foreground" antialias="false"
 		filename="watch-face-images-05/watch-face-images-05-18.fnt" />
