@@ -17,7 +17,7 @@
 			<color>AAAAAA</color>
 		</palette>
 	</bitmap>
-	
+
 	<bitmap id="l02d" filename="owm/02d.png">
 		<palette disableTransparency="false">
 			<color>AAAAAA</color>
@@ -97,6 +97,9 @@
 
 	<bitmap id="d10d" filename="owm/10d.png">
 		<palette disableTransparency="false">
+			<color>555555</color>
+			<color>AAAAAA</color>
+			<color>FF5500</color>
 		</palette>
 	</bitmap>
 

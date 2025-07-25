@@ -56,11 +56,8 @@
 	<string id="FIELD_TYPE_ALARMS_COUNT" scope="foreground">Number of alarms</string>
 	<string id="FIELD_TYPE_WEATHER_PRESSURE" scope="foreground">Pressure (weather)</string>
 	<string id="FIELD_TYPE_WEATHER_HUM" scope="foreground">Humidity</string>
-	<string id="FIELD_TYPE_WEATHER_VISIBILITY" scope="foreground">Visibility</string>
 	<string id="FIELD_TYPE_WEATHER_WIND_SPEED" scope="foreground">Wind speed</string>
 	<string id="FIELD_TYPE_WEATHER_WIND_DEG" scope="foreground">Direction of the wind</string>
-	<string id="FIELD_TYPE_WEATHER_UVI" scope="foreground">UVI</string>
-	<string id="FIELD_TYPE_WEATHER_DEW_POINT" scope="foreground">Dew point</string>
 	<string id="FIELD_TYPE_WEATHER_TEMPERATURE" scope="foreground">Temperature (weather)</string>
     <string id="FIELD_TYPE_MOON" scope="foreground">Moon phase</string>
 	
